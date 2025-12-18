@@ -59,7 +59,7 @@ function iconIMGFromTok(tok){
   const safe = String(tok || "").trim();
   const src = `assets/icons/${safe}.png`;
   // alt intentionally blank so broken icons don't inject text into rules
-  return `<img class="sym" src="${src}" alt="" title="${safe}">`;
+  return `<img class="sym" src="${src}" alt="" title="${safe}" data-token="${safe}">`;
 }
 
 function attachIconFallbacks(root){
@@ -241,8 +241,8 @@ function openModal(card){
   }
 
   // Blocks — hide empties
-  setBlock("mRules", "Rules", card.rules, modal);
-  setBlock("mFlavor", "Flavor", card.flavor, modal);
+  setBlock("mRules", "Rules", card.rules);
+  setBlock("mFlavor", "Flavor", card.flavor);
 
   // Hide any completely empty "block" containers that might be in the HTML template
   modal.querySelectorAll(".block").forEach(b => {
@@ -350,7 +350,7 @@ function bindModalClose(){
 document.addEventListener("keydown", (e) => { if(e.key === "Escape") closeModal(); });
 }
 
-function setBlock(id, text){
+function setBlock(id, label, text){
   // Be tolerant of markup variations across patches (mRules vs modalRules, etc.).
   const candidates = [];
   if (id) candidates.push(id);
@@ -376,18 +376,33 @@ function setBlock(id, text){
 
   const t = (text || "").trim();
 
-  // Prefer a nested body so any headings remain intact.
-  const body = el.querySelector?.(".blockBody") || el.querySelector?.(".body") || el;
+  // Ensure base styling + type styling
+  el.classList.add("block");
+  el.classList.toggle("rulesBlock", id === "mRules");
+  el.classList.toggle("flavorBlock", id === "mFlavor");
 
   if (!t){
     el.style.display = "none";
-    body.innerHTML = "";
+    el.innerHTML = "";
     return;
   }
 
   el.style.display = "block";
-  body.innerHTML = richText(t);
+
+  // If your HTML template already contains a body element, use it.
+  const body = el.querySelector?.(".blockBody") || el.querySelector?.(".body") || null;
+  if (body){
+    body.innerHTML = richText(t);
+  } else {
+    el.innerHTML = `
+      <div class="blockLabel">${escapeHtml(label || "")}</div>
+      <div class="blockBody">${richText(t)}</div>
+    `;
+  }
+
+  attachIconFallbacks(el);
 }
+
 
 // ---- Boot ----
 async function init(){
