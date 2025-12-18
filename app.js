@@ -333,20 +333,32 @@ function bindModalClose(){
 document.addEventListener("keydown", (e) => { if(e.key === "Escape") closeModal(); });
 }
 
-function setBlock(id, label, text, modal){
-  const el = $(id) || (modal ? modal.querySelector("#"+id) : null);
+function setBlock(id, label, text){
+  const el = document.getElementById(id);
   if(!el) return;
 
-  const t = (text === null || text === undefined) ? "" : String(text);
-  if(!t.trim() || t.trim().toLowerCase() === "nan"){
-    el.innerHTML = "";
-    el.style.display = "none";
+  // tag block type for styling
+  el.classList.remove('rulesBlock','flavorBlock');
+  if(id === 'modalRules') el.classList.add('rulesBlock');
+  if(id === 'modalFlavor') el.classList.add('flavorBlock');
+
+  const t = (text ?? '').toString().trim();
+  if(!t){
+    el.classList.add('hidden');
+    el.innerHTML = '';
     return;
   }
+  el.classList.remove('hidden');
 
-  el.style.display = "";
-  el.innerHTML = `<div class="blockLabel">${escapeHtml(label)}:</div><div class="blockBody">${richText(t)}</div>`;
-  attachIconFallbacks(el);
+  const body = (id === 'modalFlavor')
+    ? `<div class="blockBody flavorBody">${richText(t)}</div>`
+    : `<div class="blockBody rulesBody">${richText(t)}</div>`;
+
+  const title = (label && label.trim())
+    ? `<div class="blockTitle">${escapeHtml(label)}:</div>`
+    : ``;
+
+  el.innerHTML = title + body;
 }
 
 // ---- Boot ----

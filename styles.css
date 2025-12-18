@@ -234,8 +234,12 @@ body{
   font-size: 28px;
   font-weight: 800;
   letter-spacing: 0.2px;
+  display:flex;
+  align-items:center;
+  gap: 12px;
 }
-.nameCost{ margin-left: 10px; vertical-align: middle; }
+.modalTitle .titleName{ line-height: 1.05; }
+.nameCost{ display:inline-flex; align-items:center; gap: 4px; margin-left: 0; }
 
 .modalMeta{
   color: var(--muted);
@@ -248,6 +252,27 @@ body{
   background: rgba(255,255,255,0.035);
   padding: 12px 14px;
 }
+.block.rulesBlock{
+  background: rgba(255,255,255,0.08);
+}
+
+.block.rulesBlock .blockBody{
+  color: rgba(245,248,255,0.96);
+}
+
+.block.flavorBlock{
+  background: rgba(120,140,180,0.10);
+}
+
+.block.flavorBlock .blockBody{
+  font-style: italic;
+  color: rgba(235,240,255,0.92);
+}
+
+.block.flavorBlock .sym{
+  opacity: 0.95;
+}
+
 .blockLabel{
   font-weight: 750;
   margin-bottom: 6px;
@@ -371,3 +396,5 @@ body{
 
 .titleRow{ display:flex; align-items:center; gap:10px; }
 .titleCost{ display:inline-flex; align-items:center; gap:2px; }
+
+.rulesBody .sym{ filter: drop-shadow(0 1px 1px rgba(0,0,0,0.55)); }
