@@ -430,3 +430,65 @@ body{
 .titleCost .sym{
   margin: 0 1px 0 0;
 }
+
+
+/* --- Content warning blur + overlay --- */
+.thumbWrap{ position: relative; overflow: hidden; }
+
+.cwBlur{
+  filter: blur(14px);
+}
+
+.cwOverlay{
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 14px;
+  background: rgba(0,0,0,0.35);
+}
+
+.cwOverlay .cwMsg{
+  background: rgba(0,0,0,0.62);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 14px;
+  padding: 10px 12px;
+  font-size: 13px;
+  line-height: 1.25;
+  color: rgba(255,255,255,0.92);
+}
+
+.modalLeft{ position: relative; }
+
+/* --- Modal prev/next --- */
+.modalNav{
+  position: absolute;
+  top: 16px;
+  right: 76px;
+  display: flex;
+  gap: 10px;
+  z-index: 3;
+}
+
+.modalNavBtn{
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.16);
+  background: rgba(13,20,34,0.55);
+  color: rgba(255,255,255,0.92);
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.modalNavBtn:hover{
+  background: rgba(13,20,34,0.78);
+}
+
+.modalNavBtn:disabled{
+  opacity: 0.35;
+  cursor: default;
+}
