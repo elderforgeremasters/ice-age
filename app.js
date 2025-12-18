@@ -310,7 +310,7 @@ function closeModal(){
   document.body.style.overflow = "";
 }
 
-async function init(){
+async async function init(){
   try{
     const res = await fetch("data/cards.json", { cache: "no-store" });
     if(!res.ok) throw new Error(`HTTP ${res.status} loading data/cards.json`);
