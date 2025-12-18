@@ -121,9 +121,8 @@ body{
 }
 
 .thumbWrap{
-  position: relative;
   border-radius: 8px;
-  overflow: hidden;
+  overflow: visible;
   background: transparent;
   border: none;
   box-shadow: 0 10px 30px rgba(0,0,0,0.35);
@@ -200,6 +199,36 @@ body{
 }
 .modalClose:hover{ background: rgba(255,255,255,0.07); }
 
+/* modal prev/next (match the Close button) */
+.modalNav{
+  position:absolute;
+  top: 10px;
+  right: 62px; /* 12px (close right) + 40px (close width) + 10px gap */
+  display:flex;
+  gap: 10px;
+  z-index: 3;
+}
+.modalNavBtn{
+  width: 40px;
+  height: 40px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.04);
+  color: var(--text);
+  font-size: 26px;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  line-height: 1;
+}
+.modalNavBtn:hover{ background: rgba(255,255,255,0.07); }
+.modalNavBtn:disabled{
+  opacity: 0.35;
+  cursor: default;
+}
+
+
 .modalBody{
   display:grid;
   grid-template-columns: 350px 1fr;
@@ -208,7 +237,6 @@ body{
 }
 
 .modalLeft{
-  position: relative;
   display:flex;
   align-items:flex-start;
   justify-content:center;
@@ -283,6 +311,20 @@ body{
 .block.flavorBlock .sym{
   opacity: 0.95;
 }
+
+.block.loreBlock{
+  background: rgba(255,255,255,0.045);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+.block.artBlock{
+  background: rgba(255,255,255,0.045);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+.block.loreBlock .blockBody,
+.block.artBlock .blockBody{
+  color: rgba(233,238,247,0.94);
+}
+
 
 .blockLabel{
   font-weight: 750;
@@ -434,34 +476,12 @@ body{
 }
 
 
-/* modal nav (prev/next) */
-.modalNav{
-  position:absolute;
-  top: 10px;
-  right: 64px; /* leaves room for the X button */
-  display:flex;
-  gap: 10px;
-  z-index: 3;
-}
-.navBtn{
-  width: 40px;
-  height: 40px;
-  border-radius: 14px;
-  border: 1px solid rgba(255,255,255,0.12);
-  background: rgba(255,255,255,0.04);
-  color: var(--text);
-  font-size: 26px;
-  cursor:pointer;
-}
-.navBtn:hover{ background: rgba(255,255,255,0.07); }
-.navBtn:disabled{
-  opacity: 0.35;
-  cursor: not-allowed;
-}
-
 /* content warning blur + overlay */
+.thumbWrap.cw{ position: relative; }
+.modalLeft{ position: relative; }
+
 .cwBlur{
-  filter: blur(12px);
+  filter: blur(18px);
   transform: scale(1.02);
 }
 .cwOverlay{
@@ -470,49 +490,17 @@ body{
   display:flex;
   align-items:center;
   justify-content:center;
-  padding: 10px;
+  background: rgba(0,0,0,0.38);
+  border-radius: inherit;
+}
+.cwMsg{
   text-align:center;
-  background: rgba(0,0,0,0.46);
-  border-radius: 8px;
-}
-.cwOverlay .cwMsg{
-  font-weight: 700;
-  font-size: 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(0,0,0,0.48);
+  color: rgba(233,238,247,0.92);
+  font-size: 13px;
   line-height: 1.25;
-  color: rgba(245,248,255,0.95);
-  text-shadow: 0 2px 10px rgba(0,0,0,0.65);
-}
-.cwOverlay .cwHint{
-  margin-top: 6px;
-  font-weight: 600;
-  font-size: 11px;
-  opacity: 0.85;
-}
-
-/* modal overlay button */
-.cwOverlayModal{
-  position:absolute;
-  inset: 0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding: 14px;
-  text-align:center;
-  border: 1px solid rgba(255,255,255,0.14);
-  border-radius: 14px;
-  background: rgba(0,0,0,0.55);
-  color: rgba(245,248,255,0.96);
-  cursor:pointer;
-}
-.cwOverlayModal:hover{ background: rgba(0,0,0,0.62); }
-.cwOverlayModal .cwMsg{
-  font-weight: 800;
-  font-size: 14px;
-  line-height: 1.25;
-}
-.cwOverlayModal .cwHint{
-  margin-top: 8px;
-  font-weight: 650;
-  font-size: 12px;
-  opacity: 0.86;
+  max-width: 240px;
 }

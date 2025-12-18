@@ -295,7 +295,7 @@ function bindModalNavKeys(){
 function cardMatches(card, q){
   if(!q) return true;
   const hay = [
-    card.name, card.type, card.rules, card.flavor, card.cost, card.pt
+    card.name, card.type, card.rules, card.flavor, card.lore, card.art, card.cost, card.pt
   ].map(x => String(x ?? "")).join(" ").toLowerCase();
   return hay.includes(q);
 }
@@ -362,6 +362,36 @@ function applyFilters(){
   render();
 }
 
+function ensureLoreArtBlocks(modal){
+  // Ensure Lore/Art blocks exist in the modal (only shown when text exists)
+  const right = modal?.querySelector?.(".modalRight");
+  if(!right) return;
+
+  const rulesEl = document.getElementById("mRules") || right.querySelector("#mRules");
+  const flavorEl = document.getElementById("mFlavor") || right.querySelector("#mFlavor");
+
+  // Insert between Rules and Flavor if possible, otherwise append.
+  function ensure(id, className){
+    let el = document.getElementById(id) || right.querySelector(`#${id}`);
+    if(el) return el;
+    el = document.createElement("div");
+    el.id = id;
+    el.className = `block ${className}`;
+    if(flavorEl){
+      right.insertBefore(el, flavorEl);
+    } else if(rulesEl && rulesEl.nextSibling){
+      right.insertBefore(el, rulesEl.nextSibling);
+    } else {
+      right.appendChild(el);
+    }
+    return el;
+  }
+
+  // Keep flavor last (nice for quotes)
+  ensure("mLore", "loreBlock");
+  ensure("mArt", "artBlock");
+}
+
 // ---- modal ----
 function modalEl(){
   return $("modal") || document.querySelector(".modal");
@@ -421,9 +451,11 @@ function openModal(card){
   }
 
   // Blocks — hide empties
+  ensureLoreArtBlocks(modal);
   setBlock("mRules", "Rules", card.rules);
+  setBlock("mLore", "Lore", card.lore);
+  setBlock("mArt", "Art", card.art);
   setBlock("mFlavor", "Flavor", card.flavor);
-
   // Hide any completely empty "block" containers that might be in the HTML template
   modal.querySelectorAll(".block").forEach(b => {
     const txt = (b.textContent || "").trim();
@@ -539,6 +571,8 @@ function setBlock(id, label, text){
   if (id) candidates.push(id);
   if (id === "mRules") candidates.push("modalRules", "rules", "rulesBlock");
   if (id === "mFlavor") candidates.push("modalFlavor", "flavor", "flavorBlock");
+  if (id === "mLore") candidates.push("modalLore", "lore", "loreBlock");
+  if (id === "mArt") candidates.push("modalArt", "art", "artBlock");
 
   let el = null;
   for (const cid of candidates){
@@ -552,13 +586,15 @@ function setBlock(id, label, text){
     if (modal){
       if (id === "mRules") el = modal.querySelector('[data-block="rules"], #modalRules, #mRules, #rules');
       if (id === "mFlavor") el = modal.querySelector('[data-block="flavor"], #modalFlavor, #mFlavor, #flavor');
+      if (id === "mLore") el = modal.querySelector('[data-block="lore"], #modalLore, #mLore, #lore');
+      if (id === "mArt") el = modal.querySelector('[data-block="art"], #modalArt, #mArt, #art');
     }
   }
 
   if (!el) return;
 
   let tRaw = (text || "");
-  if(id === "mRules" || id === "mFlavor"){
+  if(id === "mRules" || id === "mFlavor" || id === "mLore" || id === "mArt"){
     tRaw = sanitizeRulesFlavorText(tRaw);
   }
   const t = String(tRaw).trim();
@@ -567,6 +603,8 @@ function setBlock(id, label, text){
   el.classList.add("block");
   el.classList.toggle("rulesBlock", id === "mRules");
   el.classList.toggle("flavorBlock", id === "mFlavor");
+  el.classList.toggle("loreBlock", id === "mLore");
+  el.classList.toggle("artBlock", id === "mArt");
 
   if (!t){
     el.style.display = "none";
