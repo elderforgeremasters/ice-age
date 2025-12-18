@@ -313,14 +313,16 @@ body{
 }
 
 .block.loreBlock{
-  background: rgba(255,255,255,0.045);
-  border: 1px solid rgba(255,255,255,0.12);
+  background: linear-gradient(180deg, rgba(120,34,44,0.30), rgba(44,18,22,0.22));
+  border: 1px solid rgba(220,140,150,0.20);
 }
 .block.artBlock{
-  background: rgba(255,255,255,0.045);
-  border: 1px solid rgba(255,255,255,0.12);
+  background: linear-gradient(180deg, rgba(90,100,120,0.18), rgba(28,34,46,0.16));
+  border: 1px solid rgba(190,205,225,0.16);
 }
-.block.loreBlock .blockBody,
+.block.loreBlock .blockBody{
+  color: rgba(245,232,236,0.93);
+}
 .block.artBlock .blockBody{
   color: rgba(233,238,247,0.94);
 }
@@ -334,6 +336,13 @@ body{
   color: var(--text);
   line-height: 1.45;
 }
+
+.lead{
+  font-weight: 750;
+  letter-spacing: 0.1px;
+}
+.loreLead{ color: rgba(255,185,195,0.95); }
+.artLead{ color: rgba(210,222,240,0.95); }
 
 /* symbols */
 .sym{

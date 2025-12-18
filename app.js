@@ -41,7 +41,8 @@ function getSetInfo(code){
     "IA":  { name: "Ice Age", year: "1995/2024" },
     "ALL": { name: "Alliances", year: "1996/2024" },
     "AL":  { name: "Alliances", year: "1996/2024" },
-    "CSP": { name: "Coldsnap", year: "2006/2024" }
+    "CSP": { name: "Coldsnap", year: "2006/2024" },
+    "CS":  { name: "Coldsnap", year: "2006/2024" }
   };
   return map[c] || { name: (code || ""), year: "" };
 }
@@ -177,6 +178,22 @@ function collectorKey(card){
   const raw = cleanCollector(card?.collector || "");
   return (raw.split("/")[0] || "").trim();
 }
+
+function cardNumber(card){
+  // Prefer numeric `num` field; otherwise parse leading digits from collector like "718\697" or "51A\697"
+  const n = Number(card?.num);
+  if(Number.isFinite(n) && n > 0) return n;
+
+  const raw = cleanCollector(card?.collector || "");
+  const first = (raw.split("/")[0] || "").trim();
+  const dm = first.match(/^(\d+)/);
+  return dm ? parseInt(dm[1], 10) : 0;
+}
+
+function isNewCard(card){
+  return cardNumber(card) >= 698;
+}
+
 
 function isContentWarn(card){
   return CW_COLLECTORS.has(collectorKey(card));
@@ -364,33 +381,47 @@ function applyFilters(){
 
 function ensureLoreArtBlocks(modal){
   // Ensure Lore/Art blocks exist in the modal (only shown when text exists)
+  // Desired order: Rules, Flavor, Lore, Art
   const right = modal?.querySelector?.(".modalRight");
   if(!right) return;
 
   const rulesEl = document.getElementById("mRules") || right.querySelector("#mRules");
   const flavorEl = document.getElementById("mFlavor") || right.querySelector("#mFlavor");
 
-  // Insert between Rules and Flavor if possible, otherwise append.
-  function ensure(id, className){
+  function insertAfter(refEl, el){
+    if(refEl && refEl.parentElement){
+      if(refEl.nextSibling) refEl.parentElement.insertBefore(el, refEl.nextSibling);
+      else refEl.parentElement.appendChild(el);
+      return;
+    }
+    right.appendChild(el);
+  }
+
+  function ensure(id, className, afterEl){
     let el = document.getElementById(id) || right.querySelector(`#${id}`);
     if(el) return el;
+
     el = document.createElement("div");
     el.id = id;
     el.className = `block ${className}`;
-    if(flavorEl){
-      right.insertBefore(el, flavorEl);
-    } else if(rulesEl && rulesEl.nextSibling){
-      right.insertBefore(el, rulesEl.nextSibling);
+
+    if(afterEl){
+      insertAfter(afterEl, el);
+    } else if(flavorEl){
+      insertAfter(flavorEl, el);
+    } else if(rulesEl){
+      insertAfter(rulesEl, el);
     } else {
       right.appendChild(el);
     }
     return el;
   }
 
-  // Keep flavor last (nice for quotes)
-  ensure("mLore", "loreBlock");
-  ensure("mArt", "artBlock");
+  const loreEl = ensure("mLore", "loreBlock", flavorEl);
+  ensure("mArt", "artBlock", loreEl);
 }
+
+
 
 // ---- modal ----
 function modalEl(){
@@ -440,7 +471,11 @@ function openModal(card){
   metaBits.push(escapeHtml(rarityLong(card.rarity)));
   const si = getSetInfo(card.set);
   if(si.name) metaBits.push(escapeHtml(si.name));
-  if(si.year) metaBits.push(escapeHtml(`${si.year} Atlantica Remasters`));
+  if(isNewCard(card)){
+    metaBits.push(escapeHtml(`2024 Atlantica Remasters`));
+  } else if(si.year){
+    metaBits.push(escapeHtml(`${si.year} Atlantica Remasters`));
+  }
   const col = cleanCollector(card.collector);
   if(col) metaBits.push(escapeHtml(col));
 
@@ -453,9 +488,9 @@ function openModal(card){
   // Blocks — hide empties
   ensureLoreArtBlocks(modal);
   setBlock("mRules", "Rules", card.rules);
+  setBlock("mFlavor", "Flavor", card.flavor);
   setBlock("mLore", "Lore", card.lore);
   setBlock("mArt", "Art", card.art);
-  setBlock("mFlavor", "Flavor", card.flavor);
   // Hide any completely empty "block" containers that might be in the HTML template
   modal.querySelectorAll(".block").forEach(b => {
     const txt = (b.textContent || "").trim();
@@ -614,14 +649,18 @@ function setBlock(id, label, text){
 
   el.style.display = "block";
 
+  let bodyHtml = richText(t);
+  if(id === "mLore") bodyHtml = `<span class="lead loreLead">Lore:</span> ` + bodyHtml;
+  if(id === "mArt")  bodyHtml = `<span class="lead artLead">Art Brief:</span> ` + bodyHtml;
+
   // If your HTML template already contains a body element, use it.
   const body = el.querySelector?.(".blockBody") || el.querySelector?.(".body") || null;
   if (body){
-    body.innerHTML = richText(t);
+    body.innerHTML = bodyHtml;
   } else {
     el.innerHTML = `
       <div class="blockLabel">${escapeHtml(label || "")}</div>
-      <div class="blockBody">${richText(t)}</div>
+      <div class="blockBody">${bodyHtml}</div>
     `;
   }
 
