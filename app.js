@@ -5,6 +5,33 @@ const $ = (id) => document.getElementById(id);
 
 function norm(s){ return String(s || "").toLowerCase(); }
 
+function isToken(card){
+  return norm(card.type).startsWith("token");
+}
+function isBasic(card){
+  return norm(card.type).includes("basic land");
+}
+
+// category order: normal cards, then basic lands (L...), then tokens (T...)
+function category(card){
+  if(isToken(card)) return 2;
+  if(isBasic(card)) return 1;
+  return 0;
+}
+
+function numFromCollector(card){
+  return (typeof card.num === "number") ? card.num : 1e9;
+}
+
+function collectorStr(card){
+  return String(card.collector || "");
+}
+
+function versionNum(card){
+  const v = Number(card.version);
+  return Number.isFinite(v) ? v : 1;
+}
+
 function matches(card, q){
   if(!q) return true;
   const hay = [
@@ -40,7 +67,12 @@ function cardThumb(card){
   img.loading = "lazy";
   img.src = card.image;
   img.alt = card.name;
-  img.onerror = () => { img.src = ""; img.alt = `${card.name} (missing image)`; img.style.background = "#000"; };
+  img.onerror = () => {
+    // Leave a readable placeholder instead of a broken icon.
+    img.removeAttribute("src");
+    img.alt = `${card.name} (missing image)`;
+    img.style.background = "#000";
+  };
 
   const info = document.createElement("div");
   info.className = "cInfo";
@@ -121,15 +153,49 @@ function escapeHtml(s){
 async function init(){
   try{
     const res = await fetch("data/cards.json", { cache: "no-store" });
+    if(!res.ok) throw new Error(`HTTP ${res.status} loading data/cards.json`);
     ALL = await res.json();
-    // stable default order: by num then name
-    ALL.sort((a,b) => (a.num ?? 1e9) - (b.num ?? 1e9) || String(a.name).localeCompare(String(b.name)));
+
+    // Required ordering:
+    // 1) by collector number (normal cards only)
+    // 2) then all basic lands (L...)
+    // 3) then all tokens (T1..T5)
+    ALL.sort((a,b) => {
+      const ca = category(a), cb = category(b);
+      if(ca !== cb) return ca - cb;
+
+      // within each category, primarily by numeric collector
+      const na = numFromCollector(a), nb = numFromCollector(b);
+      if(na !== nb) return na - nb;
+
+      // break ties:
+      if(ca === 0){
+        // normal cards: keep A/B variants grouped
+        const sa = collectorStr(a).localeCompare(collectorStr(b));
+        if(sa !== 0) return sa;
+        // then version
+        const va = versionNum(a), vb = versionNum(b);
+        if(va !== vb) return va - vb;
+      } else if(ca === 1){
+        // basics: by name then version
+        const sn = String(a.name||"").localeCompare(String(b.name||""));
+        if(sn !== 0) return sn;
+        const va = versionNum(a), vb = versionNum(b);
+        if(va !== vb) return va - vb;
+      } else {
+        // tokens: by token number already handled; then name
+        const sn = String(a.name||"").localeCompare(String(b.name||""));
+        if(sn !== 0) return sn;
+      }
+      return String(a.name||"").localeCompare(String(b.name||""));
+    });
+
     FILTERED = ALL;
     $("status").textContent = `${ALL.length} cards`;
     renderGrid();
   }catch(err){
     console.error(err);
-    $("status").textContent = "Failed to load data/cards.json";
+    $("status").textContent = "Failed to load data/cards.json: " + err;
   }
 
   $("q").addEventListener("input", applyFilters);
