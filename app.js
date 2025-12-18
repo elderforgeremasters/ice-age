@@ -351,24 +351,42 @@ document.addEventListener("keydown", (e) => { if(e.key === "Escape") closeModal(
 }
 
 function setBlock(id, text){
-  const el = document.getElementById(id);
-  if(!el) return;
+  // Be tolerant of markup variations across patches (mRules vs modalRules, etc.).
+  const candidates = [];
+  if (id) candidates.push(id);
+  if (id === "mRules") candidates.push("modalRules", "rules", "rulesBlock");
+  if (id === "mFlavor") candidates.push("modalFlavor", "flavor", "flavorBlock");
 
-  // tag block type for styling
-  el.classList.remove('rulesBlock','flavorBlock');
-  if(id === 'mRules') el.classList.add('rulesBlock');
-  if(id === 'mFlavor') el.classList.add('flavorBlock');
+  let el = null;
+  for (const cid of candidates){
+    el = document.getElementById(cid);
+    if (el) break;
+  }
 
-  const t = (text ?? '').toString().trim();
-  if(!t){
-    el.classList.add('hidden');
-    el.innerHTML = '';
+  // Last resort: locate within the modal by common selectors.
+  if (!el){
+    const modal = document.getElementById("modal") || document.querySelector(".modal");
+    if (modal){
+      if (id === "mRules") el = modal.querySelector('[data-block="rules"], #modalRules, #mRules, #rules');
+      if (id === "mFlavor") el = modal.querySelector('[data-block="flavor"], #modalFlavor, #mFlavor, #flavor');
+    }
+  }
+
+  if (!el) return;
+
+  const t = (text || "").trim();
+
+  // Prefer a nested body so any headings remain intact.
+  const body = el.querySelector?.(".blockBody") || el.querySelector?.(".body") || el;
+
+  if (!t){
+    el.style.display = "none";
+    body.innerHTML = "";
     return;
   }
-  el.classList.remove('hidden');
 
-  const cls = (id === 'mFlavor') ? 'blockBody flavorBody' : 'blockBody rulesBody';
-  el.innerHTML = `<div class="${cls}">${richText(t)}</div>`;
+  el.style.display = "block";
+  body.innerHTML = richText(t);
 }
 
 // ---- Boot ----

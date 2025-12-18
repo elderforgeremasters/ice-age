@@ -107,7 +107,7 @@ body{
   display:flex;
   flex-direction:column;
   gap: 10px;
-  padding: 10px;
+  padding: 8px;
   border-radius: var(--radius);
   border: 1px solid rgba(255,255,255,0.08);
   background: rgba(255,255,255,0.03);
@@ -121,7 +121,7 @@ body{
 }
 
 .thumbWrap{
-  border-radius: 10px;
+  border-radius: 8px;
   overflow: visible;
   background: transparent;
   border: none;
@@ -132,7 +132,7 @@ body{
   aspect-ratio: 745 / 1040;
   object-fit: contain;
   display: block;
-  border-radius: 10px;
+  border-radius: 8px;
   background: transparent;
 }
 .thumb.missing{
@@ -201,7 +201,7 @@ body{
 
 .modalBody{
   display:grid;
-  grid-template-columns: 380px 1fr;
+  grid-template-columns: 350px 1fr;
   gap: 16px;
   padding: 16px;
 }
@@ -216,7 +216,7 @@ body{
   height: auto;
   max-height: calc(100vh - 90px);
   object-fit: contain;
-  border-radius: 18px;
+  border-radius: 14px;
   /* preserves rounded corners even if image has no alpha */
   overflow: hidden;
   border: 1px solid rgba(255,255,255,0.10);
@@ -254,13 +254,14 @@ body{
 }
 
 .block{
-  border-radius: 18px;
+  border-radius: 14px;
   border: 1px solid rgba(255,255,255,0.10);
   background: rgba(255,255,255,0.035);
   padding: 12px 14px;
 }
 .block.rulesBlock{
-  background: rgba(255,255,255,0.08);
+  background: rgba(245,250,255,0.14);
+  border: 1px solid rgba(220,235,255,0.18);
 }
 
 .block.rulesBlock .blockBody{
@@ -268,12 +269,13 @@ body{
 }
 
 .block.flavorBlock{
-  background: rgba(120,140,180,0.10);
+  background: linear-gradient(180deg, rgba(108,72,26,0.38), rgba(52,32,16,0.30));
+  border: 1px solid rgba(220,185,120,0.22);
 }
 
 .block.flavorBlock .blockBody{
   font-style: italic;
-  color: rgba(235,240,255,0.92);
+  color: rgba(245,232,205,0.92);
 }
 
 .block.flavorBlock .sym{
@@ -409,3 +411,22 @@ body{
 
 /* Hide box titles (we style by box type instead) */
 .blockLabel{ display:none; }
+
+/* --- v16 modal polish --- */
+/* Remove box headings; the styling already differentiates them */
+.block.rulesBlock .blockLabel,
+.block.flavorBlock .blockLabel,
+.block.rulesBlock > h3,
+.block.flavorBlock > h3{
+  display: none;
+}
+
+/* Make rules symbols read cleaner */
+.block.rulesBlock .sym{
+  filter: drop-shadow(0 1px 0 rgba(0,0,0,0.25));
+}
+
+/* Tighten mana cost spacing in the modal title line */
+.titleCost .sym{
+  margin: 0 1px 0 0;
+}
