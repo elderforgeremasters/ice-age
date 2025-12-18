@@ -19,6 +19,11 @@ function escapeHtml(s){
     .replaceAll("'","&#39;");
 }
 
+function normalizePT(pt){
+  if(!pt) return "";
+  return String(pt).replace(/\\/g, "/");
+}
+
 function rarityLong(r){
   const v = String(r ?? "").trim().toUpperCase();
   if(v === "C") return "Common";
@@ -51,11 +56,10 @@ function normalizeSlash(v){
 }
 
 function iconIMGFromTok(tok){
-  const t = String(tok || "").trim();
-  if(!t) return "";
-  const file = t.replaceAll("/", "-").replaceAll(" ", "-"); // filenames are literal token strings
-  const src = assetURL(`assets/icons/${encodeURIComponent(file)}.png`);
-  return `<img class="sym" src="${src}" alt="${escapeHtml(t)}" data-token="${escapeHtml(t)}" loading="lazy">`;
+  const safe = String(tok || "").trim();
+  const src = `assets/icons/${safe}.png`;
+  // alt intentionally blank so broken icons don't inject text into rules
+  return `<img class="sym" src="${src}" alt="" title="${safe}">`;
 }
 
 function attachIconFallbacks(root){
@@ -93,18 +97,19 @@ function attachIconFallbacks(root){
   });
 }
 
-function richText(raw){
-  if(raw === null || raw === undefined) return "";
-  let s = escapeHtml(String(raw));
+function richText(str){
+  if(!str) return "";
+  let s = String(str);
 
-  // backticks -> bold
-  s = s.replace(/`+([^`]+)`+/g, (_,inner) => `<strong>${inner}</strong>`);
+  // Bold anything wrapped in backticks: `Vigilance` -> <strong>Vigilance</strong>
+  s = s.replace(/`([^`]+)`/g, "<strong>$1</strong>");
 
-  // braces -> icon
-  s = s.replace(/\{([^}]+)\}/g, (_,tok) => iconIMGFromTok(String(tok).trim()));
+  // Replace {Anything} with its icon (mana, keyword, etc.)
+  s = s.replace(/\{([^}]+)\}/g, (m, tok) => iconIMGFromTok(tok));
 
-  // newlines
-  s = s.replaceAll("\\n", "<br>");
+  // Preserve line breaks from JSON (\n becomes actual newline after JSON.parse)
+  s = s.replace(/\r?\n/g, "<br>");
+
   return s;
 }
 
@@ -276,7 +281,56 @@ function bindModalClose(){
   });
 
   // ESC closes
-  document.addEventListener("keydown", (e) => { if(e.key === "Escape") closeModal(); });
+  function initRarityDropdown(){
+  const sel = $("rarity");
+  const btn = $("rarityBtn");
+  const label = $("rarityLabel");
+  const menu = $("rarityMenu");
+
+  if(!sel || !btn || !label || !menu) return;
+
+  function setLabelFromValue(){
+    const opt = Array.from(sel.options).find(o => o.value === sel.value);
+    label.textContent = opt ? opt.textContent : "All rarities";
+  }
+
+  function openMenu(){
+    menu.hidden = false;
+    btn.setAttribute("aria-expanded", "true");
+  }
+  function closeMenu(){
+    menu.hidden = true;
+    btn.setAttribute("aria-expanded", "false");
+  }
+  function toggleMenu(){
+    if(menu.hidden) openMenu(); else closeMenu();
+  }
+
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    toggleMenu();
+  });
+
+  menu.addEventListener("click", (e) => {
+    const t = e.target;
+    if(!(t instanceof HTMLElement)) return;
+    const val = t.getAttribute("data-value");
+    if(val === null) return;
+    sel.value = val;
+    setLabelFromValue();
+    applyFilters();
+    closeMenu();
+  });
+
+  document.addEventListener("click", () => closeMenu());
+
+  // keep label in sync if code changes select
+  sel.addEventListener("change", () => setLabelFromValue());
+
+  setLabelFromValue();
+}
+
+document.addEventListener("keydown", (e) => { if(e.key === "Escape") closeModal(); });
 }
 
 function setBlock(id, label, text, modal){

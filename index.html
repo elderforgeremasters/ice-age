@@ -15,13 +15,26 @@
 
     <div class="controls">
       <input id="q" class="search" type="search" placeholder="Search name, type, rules…" autocomplete="off" />
-      <select id="rarity" class="select">
-        <option value="ALL">All rarities</option>
+      <select id="rarity" class="srOnly">
+        <option value="">All rarities</option>
         <option value="C">Common</option>
         <option value="U">Uncommon</option>
         <option value="R">Rare</option>
         <option value="M">Mythic</option>
       </select>
+      <div class="dropdown" id="rarityDD">
+        <button class="ddBtn" id="rarityBtn" type="button" aria-haspopup="listbox" aria-expanded="false">
+          <span id="rarityLabel">All rarities</span>
+          <span class="ddChev">▾</span>
+        </button>
+        <div class="ddMenu" id="rarityMenu" role="listbox" aria-label="Rarity" hidden>
+          <button class="ddItem" type="button" data-value="">All rarities</button>
+          <button class="ddItem" type="button" data-value="C">Common</button>
+          <button class="ddItem" type="button" data-value="U">Uncommon</button>
+          <button class="ddItem" type="button" data-value="R">Rare</button>
+          <button class="ddItem" type="button" data-value="M">Mythic</button>
+        </div>
+      </div>
       <button id="clear" class="btn" type="button">Clear</button>
     </div>
   </header>
