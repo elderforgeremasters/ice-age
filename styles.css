@@ -121,8 +121,9 @@ body{
 }
 
 .thumbWrap{
+  position: relative;
   border-radius: 8px;
-  overflow: visible;
+  overflow: hidden;
   background: transparent;
   border: none;
   box-shadow: 0 10px 30px rgba(0,0,0,0.35);
@@ -207,6 +208,7 @@ body{
 }
 
 .modalLeft{
+  position: relative;
   display:flex;
   align-items:flex-start;
   justify-content:center;
@@ -432,63 +434,85 @@ body{
 }
 
 
-/* --- Content warning blur + overlay --- */
-.thumbWrap{ position: relative; overflow: hidden; }
-
-.cwBlur{
-  filter: blur(14px);
-}
-
-.cwOverlay{
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 14px;
-  background: rgba(0,0,0,0.35);
-}
-
-.cwOverlay .cwMsg{
-  background: rgba(0,0,0,0.62);
-  border: 1px solid rgba(255,255,255,0.18);
-  border-radius: 14px;
-  padding: 10px 12px;
-  font-size: 13px;
-  line-height: 1.25;
-  color: rgba(255,255,255,0.92);
-}
-
-.modalLeft{ position: relative; }
-
-/* --- Modal prev/next --- */
+/* modal nav (prev/next) */
 .modalNav{
-  position: absolute;
-  top: 16px;
-  right: 76px;
-  display: flex;
+  position:absolute;
+  top: 10px;
+  right: 64px; /* leaves room for the X button */
+  display:flex;
   gap: 10px;
   z-index: 3;
 }
-
-.modalNavBtn{
-  width: 44px;
-  height: 44px;
+.navBtn{
+  width: 40px;
+  height: 40px;
   border-radius: 14px;
-  border: 1px solid rgba(255,255,255,0.16);
-  background: rgba(13,20,34,0.55);
-  color: rgba(255,255,255,0.92);
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.04);
+  color: var(--text);
   font-size: 26px;
-  line-height: 1;
-  cursor: pointer;
+  cursor:pointer;
 }
-
-.modalNavBtn:hover{
-  background: rgba(13,20,34,0.78);
-}
-
-.modalNavBtn:disabled{
+.navBtn:hover{ background: rgba(255,255,255,0.07); }
+.navBtn:disabled{
   opacity: 0.35;
-  cursor: default;
+  cursor: not-allowed;
+}
+
+/* content warning blur + overlay */
+.cwBlur{
+  filter: blur(12px);
+  transform: scale(1.02);
+}
+.cwOverlay{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding: 10px;
+  text-align:center;
+  background: rgba(0,0,0,0.46);
+  border-radius: 8px;
+}
+.cwOverlay .cwMsg{
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1.25;
+  color: rgba(245,248,255,0.95);
+  text-shadow: 0 2px 10px rgba(0,0,0,0.65);
+}
+.cwOverlay .cwHint{
+  margin-top: 6px;
+  font-weight: 600;
+  font-size: 11px;
+  opacity: 0.85;
+}
+
+/* modal overlay button */
+.cwOverlayModal{
+  position:absolute;
+  inset: 0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding: 14px;
+  text-align:center;
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 14px;
+  background: rgba(0,0,0,0.55);
+  color: rgba(245,248,255,0.96);
+  cursor:pointer;
+}
+.cwOverlayModal:hover{ background: rgba(0,0,0,0.62); }
+.cwOverlayModal .cwMsg{
+  font-weight: 800;
+  font-size: 14px;
+  line-height: 1.25;
+}
+.cwOverlayModal .cwHint{
+  margin-top: 8px;
+  font-weight: 650;
+  font-size: 12px;
+  opacity: 0.86;
 }

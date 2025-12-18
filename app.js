@@ -101,7 +101,7 @@ function richText(str){
   if(!str) return "";
   let s = String(str);
 
-  // Italics: anything between ##...## or #...# (used on printed cards)
+  // Italics markers used in your export (e.g. #or# or ##or##)
   s = s.replace(/##([^#]+)##/g, "<em>$1</em>");
   s = s.replace(/#([^#]+)#/g, "<em>$1</em>");
 
@@ -111,14 +111,16 @@ function richText(str){
   // Replace {Anything} with its icon (mana, keyword, etc.)
   s = s.replace(/\{([^}]+)\}/g, (m, tok) => iconIMGFromTok(tok));
 
-  // Add a little breathing room between adjacent keyword chunks (when the source had no spaces)
-  s = s.replace(/<\/strong>(?=<img class="sym")/g, "</strong>&nbsp;&nbsp;");
+  // If hair/figure spaces were used for print centering, we strip them for UI.
+  // This adds a normal readable gap between consecutive keyword chunks.
+  s = s.replace(/<\/strong>(?=<(?:img|span)\b)/g, "</strong> ");
 
   // Preserve line breaks from JSON (\n becomes actual newline after JSON.parse)
   s = s.replace(/\r?\n/g, "<br>");
 
   return s;
 }
+
 
 // Only used for Rules / Flavor rendering (keeps other fields untouched)
 function sanitizeRulesFlavorText(str){
@@ -128,14 +130,16 @@ function sanitizeRulesFlavorText(str){
   // Remove custom break tokens that shouldn't appear in the UI
   s = s.replaceAll("{BL}", "").replaceAll("{BL2}", "");
 
-  // Remove hair spaces used for print-centering (U+200A) + common entity variants
-  s = s.replaceAll("\u200A", "").replaceAll("&hairsp;", "");
+  // Strip print-centering whitespace (figure space, hair space, etc.) for clean UI rendering
+  s = s.replace(/[\u2007\u200A\u2009\u202F]/g, ""); // figure, hair, thin, narrow no-break
+  s = s.replaceAll("&hairsp;", "");
 
   // Change {Tn} tokens to {Ts}
   s = s.replaceAll("{Tn}", "{Ts}");
 
   return s;
 }
+
 
 // ---- sorting (by filename prefix) ----
 function sortKeyFromImage(imagePath){
@@ -160,134 +164,89 @@ function sortKeyFromImage(imagePath){
 let ALL_CARDS = [];
 let FILTERED = [];
 
-
-// ------------------------------
-// Content warnings (blur specific arts until clicked)
-// ------------------------------
-const CW_COLLECTORS = new Set([
+// --- content warning (blur) + modal navigation ---
+const CONTENT_WARNING_COLLECTORS = new Set([
   "4","51A","64A","119","184","208A","260","260A","260B","260C","292","401","471A","483A","494","494A","511A","542"
-]);
+].map(x => String(x).toUpperCase()));
 
-// Session-only reveal (no persistence)
-const CW_REVEALED = new Set();
+const REVEALED_CW = new Set();
 
 function collectorKey(card){
-  const raw = cleanCollector(card?.collector || "");
-  return (raw.split("/")[0] || "").trim();
+  const col = cleanCollector(card?.collector || "");
+  return (col.split("/")[0] || "").trim().toUpperCase();
 }
-
-function isContentWarn(card){
-  return CW_COLLECTORS.has(collectorKey(card));
+function isContentWarningCard(card){
+  return CONTENT_WARNING_COLLECTORS.has(collectorKey(card));
 }
-
-function isRevealed(card){
-  return CW_REVEALED.has(collectorKey(card));
+function isRevealedCW(card){
+  return REVEALED_CW.has(collectorKey(card));
 }
-
-function revealCard(card){
-  if(!card) return;
-  CW_REVEALED.add(collectorKey(card));
+function revealCW(card){
+  REVEALED_CW.add(collectorKey(card));
 }
 
 let CURRENT_INDEX = -1;
+let CURRENT_CARD = null;
 
-function findFilteredIndex(card){
-  if(!card) return -1;
-  const tgtImage = String(card.image || "");
-  const tgtCol = cleanCollector(card.collector || "");
-  const tgtName = String(card.name || "");
-
-  return FILTERED.findIndex(c =>
-    c === card ||
-    (tgtImage && String(c.image || "") === tgtImage) ||
-    (tgtCol && cleanCollector(c.collector || "") === tgtCol && String(c.name || "") === tgtName)
-  );
-}
-
-function gotoFilteredIndex(i){
+function navigateModal(delta){
+  const i = CURRENT_INDEX + delta;
   if(i < 0 || i >= FILTERED.length) return;
   openModal(FILTERED[i]);
 }
 
 function ensureModalNav(modal){
-  const panel = modal?.querySelector?.(".modalPanel") || modal;
-  if(!panel) return null;
+  const panel = modal.querySelector(".modalPanel") || modal;
+  if(panel.querySelector(".modalNav")) return;
 
-  let nav = panel.querySelector(".modalNav");
-  if(nav) return nav;
-
-  nav = document.createElement("div");
+  const nav = document.createElement("div");
   nav.className = "modalNav";
+  nav.innerHTML = `
+    <button class="navBtn prev" type="button" aria-label="Previous card">‹</button>
+    <button class="navBtn next" type="button" aria-label="Next card">›</button>
+  `;
+  panel.appendChild(nav);
 
-  const prev = document.createElement("button");
-  prev.type = "button";
-  prev.className = "modalNavBtn";
-  prev.setAttribute("aria-label", "Previous card");
-  prev.textContent = "‹";
-
-  const next = document.createElement("button");
-  next.type = "button";
-  next.className = "modalNavBtn";
-  next.setAttribute("aria-label", "Next card");
-  next.textContent = "›";
-
-  prev.addEventListener("click", (e)=>{ e.stopPropagation(); gotoFilteredIndex(CURRENT_INDEX - 1); });
-  next.addEventListener("click", (e)=>{ e.stopPropagation(); gotoFilteredIndex(CURRENT_INDEX + 1); });
-
-  nav.appendChild(prev);
-  nav.appendChild(next);
-
-  panel.insertBefore(nav, panel.firstChild);
-  return nav;
+  nav.querySelector(".prev")?.addEventListener("click", (e)=>{ e.stopPropagation(); navigateModal(-1); });
+  nav.querySelector(".next")?.addEventListener("click", (e)=>{ e.stopPropagation(); navigateModal( 1); });
 }
 
-function updateModalNavState(modal){
-  const nav = ensureModalNav(modal);
-  if(!nav) return;
-  const btns = nav.querySelectorAll(".modalNavBtn");
-  const prev = btns[0];
-  const next = btns[1];
-  if(prev) prev.disabled = !(CURRENT_INDEX > 0);
-  if(next) next.disabled = !(CURRENT_INDEX >= 0 && CURRENT_INDEX < FILTERED.length - 1);
+function updateModalNav(modal){
+  const prev = modal.querySelector(".modalNav .prev");
+  const next = modal.querySelector(".modalNav .next");
+  if(prev) prev.disabled = CURRENT_INDEX <= 0;
+  if(next) next.disabled = CURRENT_INDEX >= (FILTERED.length - 1);
 }
 
-function setModalContentWarning(modal, card){
-  const imgEl = $("mImg") || modal.querySelector("#mImg") || modal.querySelector("img.modalCard") || modal.querySelector("img");
-  const left = modal.querySelector(".modalLeft") || imgEl?.parentElement;
+function applyModalContentWarning(modal, card){
+  const imgEl = modal.querySelector("#mImg") || modal.querySelector("img.modalCard") || modal.querySelector("img");
+  const left = modal.querySelector(".modalLeft") || (imgEl ? imgEl.parentElement : null);
 
-  // remove old overlay
-  left?.querySelector?.(".cwOverlay")?.remove();
+  const needs = isContentWarningCard(card) && !isRevealedCW(card);
+  if(imgEl) imgEl.classList.toggle("cwBlur", needs);
 
-  if(!imgEl) return;
+  if(!left) return;
 
-  const needs = isContentWarn(card) && !isRevealed(card);
-  imgEl.classList.toggle("cwBlur", !!needs);
-
-  if(!needs) return;
-
-  if(left){
-    const ov = document.createElement("div");
-    ov.className = "cwOverlay";
-    ov.innerHTML = `<div class="cwMsg">Artwork depicts partial nudity.<br>Click to reveal.</div>`;
-    ov.addEventListener("click", (e)=>{
-      e.stopPropagation();
-      revealCard(card);
-      setModalContentWarning(modal, card);
-      // update grid to unblur this card too
-      render();
-    });
-    left.appendChild(ov);
+  let overlay = left.querySelector(".cwOverlayModal");
+  if(!overlay){
+    overlay = document.createElement("button");
+    overlay.type = "button";
+    overlay.className = "cwOverlayModal";
+    overlay.innerHTML = `
+      <div class="cwMsg">
+        Artwork depicts partial nudity.
+        <div class="cwHint">Click to view the card.</div>
+      </div>
+    `;
+    left.appendChild(overlay);
   }
-}
 
-function bindModalNavKeys(){
-  // one global handler; only active when modal is open
-  document.addEventListener("keydown", (e)=>{
-    const modal = modalEl();
-    if(!modal || !modal.classList.contains("open")) return;
-    if(e.key === "ArrowLeft"){ e.preventDefault(); gotoFilteredIndex(CURRENT_INDEX - 1); }
-    if(e.key === "ArrowRight"){ e.preventDefault(); gotoFilteredIndex(CURRENT_INDEX + 1); }
-  });
+  overlay.style.display = needs ? "flex" : "none";
+  overlay.onclick = (e) => {
+    e.stopPropagation();
+    revealCW(card);
+    applyModalContentWarning(modal, card);
+    render();
+  };
 }
 
 function cardMatches(card, q){
@@ -316,12 +275,21 @@ function render(){
     const title = escapeHtml(card.name || "");
     const type = escapeHtml(card.type || "");
 
-    const cw = isContentWarn(card) && !isRevealed(card);
+    const blurred = isContentWarningCard(card) && !isRevealedCW(card);
+    const overlay = blurred ? `
+      <div class="cwOverlay" aria-hidden="true">
+        <div class="cwMsg">
+          Artwork depicts partial nudity.
+          <div class="cwHint">Click to reveal</div>
+        </div>
+      </div>
+    ` : "";
+
     el.innerHTML = `
-      <div class="thumbWrap${cw ? " cw" : ""}">
-        <img class="thumb${cw ? " cwBlur" : ""}" src="${imgSrc}" alt="${title}" loading="lazy"
+      <div class="thumbWrap ${blurred ? "cwWrap" : ""}">
+        <img class="thumb ${blurred ? "cwBlur" : ""}" src="${imgSrc}" alt="${title}" loading="lazy"
           onerror="this.classList.add('missing'); this.alt=this.alt+' (missing image)';">
-        ${cw ? `<div class="cwOverlay"><div class="cwMsg">Artwork depicts partial nudity.<br>Click to reveal.</div></div>` : ``}
+        ${overlay}
       </div>
       <div class="cardMeta">
         <div class="cardName">${title}</div>
@@ -329,11 +297,9 @@ function render(){
       </div>
     `;
 
-    el.addEventListener("click", (e) => {
-      if(isContentWarn(card) && !isRevealed(card)){
-        e.preventDefault();
-        e.stopPropagation();
-        revealCard(card);
+    el.addEventListener("click", () => {
+      if(isContentWarningCard(card) && !isRevealedCW(card)){
+        revealCW(card);
         render();
         return;
       }
@@ -369,8 +335,11 @@ function openModal(card){
   const modal = modalEl();
   if(!modal) return;
 
-  CURRENT_INDEX = findFilteredIndex(card);
-  if(CURRENT_INDEX < 0) CURRENT_INDEX = 0;
+  CURRENT_CARD = card;
+  CURRENT_INDEX = FILTERED.indexOf(card);
+
+  ensureModalNav(modal);
+  updateModalNav(modal);
 
   // Title & cost: prefer #mTitle, else inject into the first header area we can find
   const titleEl =
@@ -387,19 +356,11 @@ function openModal(card){
   }
 
   // Image
-  const imgEl =
-    $("mImg") ||
-    modal.querySelector("#mImg") ||
-    modal.querySelector("img.modalCard") ||
-    modal.querySelector("img");
-
+  const imgEl = $("mImg") || modal.querySelector("#mImg") || modal.querySelector("img.modalCard") || modal.querySelector("img");
   if(imgEl){
     imgEl.src = assetURL(card.image || "");
     imgEl.alt = card.name || "";
   }
-
-  // Blur overlay (content warnings)
-  setModalContentWarning(modal, card);
 
   // Meta line (type, pt, rarity, set full name, year+Atlantica Remasters, collector)
   const metaBits = [];
@@ -428,15 +389,17 @@ function openModal(card){
     if(!txt) b.style.display = "none";
   });
 
-  // Nav buttons
-  updateModalNavState(modal);
+  // content warning blur in modal
+  applyModalContentWarning(modal, card);
 
   // open
   modal.classList.add("open");
   modal.setAttribute("aria-hidden", "false");
-}
 
-function closeModal(){
+  // refresh nav state after open
+  updateModalNav(modal);
+}
+(){
   const modal = modalEl();
   if(!modal) return;
   modal.classList.remove("open");
@@ -473,7 +436,7 @@ function bindModalClose(){
   // Clicking backdrop closes: if click hits the modal container itself or an element explicitly marked as backdrop
   modal.addEventListener("click", (e) => {
     const t = e.target;
-    if(t === modal || t.id === "modalBackdrop" || t.classList.contains("backdrop")){
+    if(t === modal || t.classList.contains("modalBackdrop") || t.getAttribute?.("data-close") === "modal" || t.id === "modalBackdrop" || t.classList.contains("backdrop")){
       closeModal();
     }
   });
@@ -528,7 +491,18 @@ function bindModalClose(){
   setLabelFromValue();
 }
 
-document.addEventListener("keydown", (e) => { if(e.key === "Escape") closeModal(); });
+document.addEventListener("keydown", (e) => {
+  if(e.key === "Escape"){ closeModal(); return; }
+
+  const modal = modalEl();
+  if(!modal || !modal.classList.contains("open")) return;
+
+  const ae = document.activeElement;
+  if(ae && (ae.tagName === "INPUT" || ae.tagName === "TEXTAREA")) return;
+
+  if(e.key === "ArrowLeft"){ e.preventDefault(); navigateModal(-1); }
+  if(e.key === "ArrowRight"){ e.preventDefault(); navigateModal(1); }
+});
 }
 
 function setBlock(id, label, text){
@@ -616,7 +590,6 @@ async function init(){
 
     initRarityDropdownTop();
     bindModalClose();
-    bindModalNavKeys();
     applyFilters();
   }catch(err){
     console.error(err);
