@@ -266,12 +266,18 @@ function openModal(card){
   $("mImg").src = card.image;
   $("mImg").alt = card.name;
 
-  $("mName").textContent = card.name;
+  // Name + mana cost icons
+  const nameEl = $("mName");
+  if(nameEl){
+    const costHtml = card.cost ? ` <span class="mCost">${richText(card.cost)}</span>` : "";
+    nameEl.innerHTML = `<span class="mTitleText">${escapeHtml(card.name)}</span>${costHtml}`;
+    attachIconFallbacks(nameEl);
+  }
 
   const metaBits = [];
   // meta line: Type • P/T • Rarity • Set • 1995/2024 Atlantica Remasters • 1/697
   if(card.type) metaBits.push(escapeHtml(card.type));
-  if(card.pt) metaBits.push(escapeHtml(String(card.pt).replaceAll("\\","/")));
+  if(card.pt) metaBits.push(escapeHtml(String(card.pt).replaceAll("\","/")));
   metaBits.push(escapeHtml(rarityLong(card.rarity)));
   const si = getSetInfo(card.set);
   if(si.name) metaBits.push(escapeHtml(si.name));
@@ -280,7 +286,6 @@ function openModal(card){
   if(col) metaBits.push(escapeHtml(col));
   $("mMeta").innerHTML = metaBits.join(" • ");
   attachIconFallbacks($("mMeta"));
-  attachIconFallbacks($("mMeta"));
 
   setBlock("mRules", card.rules, "Rules");
   setBlock("mFlavor", card.flavor, "Flavor");
@@ -288,12 +293,20 @@ function openModal(card){
   setBlock("mArt", card.art, "Art");
   setBlock("mPlay", card.playNotes, "Play Notes");
 
-  $("modal").setAttribute("aria-hidden","false");
+  const modal = $("modal");
+  if(modal){
+    modal.setAttribute("aria-hidden","false");
+    modal.classList.add("open"); // supports CSS that uses .open instead of aria-hidden
+  }
   document.body.style.overflow = "hidden";
 }
 
 function closeModal(){
-  $("modal").setAttribute("aria-hidden","true");
+  const modal = $("modal");
+  if(modal){
+    modal.setAttribute("aria-hidden","true");
+    modal.classList.remove("open");
+  }
   document.body.style.overflow = "";
 }
 
