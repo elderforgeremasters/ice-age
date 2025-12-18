@@ -79,11 +79,11 @@ Collector’s Number,Name,Version,Type,expected_image
 520\697,Balduvian Trading Post,,Land,cards/520-Balduvian-Trading-Post.webp
 521\697,Heart of Yavimaya,,Land,cards/521-Heart-of-Yavimaya.webp
 522\697,Kjeldoran Outpost,,Land,cards/522-Kjeldoran-Outpost.webp
-523\697,Lake of the Dead,,Snow Land,cards/523-Lake-of-the-Dead.webp
-524\697,School of the Unseen,,Snow Land,cards/524-School-of-the-Unseen.webp
+523\697,Lake of the Dead,,Snow Land,cards/523-Lake-of-the-Dead1.webp
+524\697,School of the Unseen,,Snow Land,cards/524-School-of-the-Unseen1.webp
 525\697,Sheltered Valley of Elbreth,,Legendary Land,cards/525-Sheltered-Valley-of-Elbreth.webp
 526\697,Soldevi Excavations,,Land,cards/526-Soldevi-Excavations.webp
-527\697,Thawing Glaciers,,Snow Land,cards/527-Thawing-Glaciers.webp
+527\697,Thawing Glaciers,,Snow Land,cards/527-Thawing-Glaciers1.webp
 21\60,Plains,6.0,Basic Land — Plains,cards/L21-Plains5.webp
 22\60,Plains,9.0,Basic Land — Plains,cards/L22-Plains6.webp
 23\60,Plains,12.0,Basic Land — Plains,cards/L23-Plains7.webp
@@ -234,34 +234,34 @@ Collector’s Number,Name,Version,Type,expected_image
 660\697,Vanish into Memory,,Instant,cards/660-Vanish-into-Memory.webp
 661\697,Wilderness Elemental,,Creature — Elemental,cards/661-Wilderness-Elemental.webp
 662\697,Zur the Enchanter,,Legendary Creature — Human Wizard,cards/662-Zur-the-Enchanter.webp
-670\697,Arctic Flats,,Snow Land,cards/670-Arctic-Flats.webp
-671\697,Boreal Shelf,,Snow Land,cards/671-Boreal-Shelf.webp
-672\697,Dark Depths of Ronom,,Legendary Snow Land,cards/672-Dark-Depths-of-Ronom.webp
-673\697,Frost Marsh,,Snow Land,cards/673-Frost-Marsh.webp
-674\697,Highland Weald,,Snow Land,cards/674-Highland-Weald.webp
-675\697,Mouth of Ronom,,Legendary Snow Land,cards/675-Mouth-of-Ronom.webp
-676\697,Scrying Sheets,,Snow Land,cards/676-Scrying-Sheets.webp
-694\697,Snow Forest,1.0,Basic Snow Land — Forest,cards/694-Snow-Forest.webp
+670\697,Arctic Flats,,Snow Land,cards/670-Arctic-Flats1.webp
+671\697,Boreal Shelf,,Snow Land,cards/671-Boreal-Shelf1.webp
+672\697,Dark Depths of Ronom,,Legendary Snow Land,cards/672-Dark-Depths-of-Ronom1.webp
+673\697,Frost Marsh,,Snow Land,cards/673-Frost-Marsh1.webp
+674\697,Highland Weald,,Snow Land,cards/674-Highland-Weald1.webp
+675\697,Mouth of Ronom,,Legendary Snow Land,cards/675-Mouth-of-Ronom1.webp
+676\697,Scrying Sheets,,Snow Land,cards/676-Scrying-Sheets1.webp
+694\697,Snow Forest,1.0,Basic Snow Land — Forest,cards/694-Snow-Forest1.webp
 695\697,Snow Forest,2.0,Basic Snow Land — Forest,cards/695-Snow-Forest2.webp
 696\697,Snow Forest,3.0,Basic Snow Land — Forest,cards/696-Snow-Forest3.webp
 697\697,Snow Forest,4.0,Basic Snow Land — Forest,cards/697-Snow-Forest4.webp
-682\697,Snow Island,1.0,Basic Snow Land — Island,cards/682-Snow-Island.webp
+682\697,Snow Island,1.0,Basic Snow Land — Island,cards/682-Snow-Island1.webp
 683\697,Snow Island,2.0,Basic Snow Land — Island,cards/683-Snow-Island2.webp
 684\697,Snow Island,3.0,Basic Snow Land — Island,cards/684-Snow-Island3.webp
 685\697,Snow Island,4.0,Basic Snow Land — Island,cards/685-Snow-Island4.webp
-690\697,Snow Mountain,1.0,Basic Snow Land — Mountain,cards/690-Snow-Mountain.webp
+690\697,Snow Mountain,1.0,Basic Snow Land — Mountain,cards/690-Snow-Mountain1.webp
 691\697,Snow Mountain,2.0,Basic Snow Land — Mountain,cards/691-Snow-Mountain2.webp
 692\697,Snow Mountain,3.0,Basic Snow Land — Mountain,cards/692-Snow-Mountain3.webp
 693\697,Snow Mountain,4.0,Basic Snow Land — Mountain,cards/693-Snow-Mountain4.webp
-678\697,Snow Plains,1.0,Basic Snow Land — Plains,cards/678-Snow-Plains.webp
+678\697,Snow Plains,1.0,Basic Snow Land — Plains,cards/678-Snow-Plains1.webp
 679\697,Snow Plains,2.0,Basic Snow Land — Plains,cards/679-Snow-Plains2.webp
 680\697,Snow Plains,3.0,Basic Snow Land — Plains,cards/680-Snow-Plains3.webp
 681\697,Snow Plains,4.0,Basic Snow Land — Plains,cards/681-Snow-Plains4.webp
-686\697,Snow Swamp,1.0,Basic Snow Land — Swamp,cards/686-Snow-Swamp.webp
+686\697,Snow Swamp,1.0,Basic Snow Land — Swamp,cards/686-Snow-Swamp1.webp
 687\697,Snow Swamp,2.0,Basic Snow Land — Swamp,cards/687-Snow-Swamp2.webp
 688\697,Snow Swamp,3.0,Basic Snow Land — Swamp,cards/688-Snow-Swamp3.webp
 689\697,Snow Swamp,4.0,Basic Snow Land — Swamp,cards/689-Snow-Swamp4.webp
-677\697,Tresserhorn Sinks,,Snow Land,cards/677-Tresserhorn-Sinks.webp
+677\697,Tresserhorn Sinks,,Snow Land,cards/677-Tresserhorn-Sinks1.webp
 41\60,Plains,13.0,Basic Land — Plains,cards/L41-Plains9.webp
 42\60,Plains,10.0,Basic Land — Plains,cards/L42-Plains10.webp
 43\60,Plains,18.0,Basic Land — Plains,cards/L43-Plains11.webp
@@ -328,7 +328,7 @@ Collector’s Number,Name,Version,Type,expected_image
 571\697,Rimewind Taskmage,,Creature — Human Wizard,cards/571-Rimewind-Taskmage.webp
 572\697,Ronom Serpent,,Snow Creature — Serpent,cards/572-Ronom-Serpent.webp
 573\697,Rune Snag,,Instant,cards/573-Rune-Snag.webp
-574\697,Surging AEther,,Instant,cards/574-Surging-AEther.webp
+574\697,Surging AEther,,Instant,cards/574-Surging-Aether.webp
 575\697,Survivor of the Unseen,,Creature — Human Wizard Survivor,cards/575-Survivor-of-the-Unseen.webp
 576\697,Thermal Flux,,Instant,cards/576-Thermal-Flux.webp
 577\697,Vexing Sphinx,,Snow Creature — Sphinx,cards/577-Vexing-Sphinx.webp
@@ -542,30 +542,30 @@ Collector’s Number,Name,Version,Type,expected_image
 303\697,Storm Spirit,,Creature — Elemental Spirit,cards/303-Storm-Spirit.webp
 304\697,Stormbind,,Snow Enchantment,cards/304-Stormbind.webp
 305\697,Wings of Aesthir,,Enchantment — Aura,cards/305-Wings-of-Aesthir.webp
-351\697,Adarkar Wastes,,Snow Land,cards/351-Adarkar-Wastes.webp
-352\697,Brushland,,Snow Land,cards/352-Brushland.webp
+351\697,Adarkar Wastes,,Snow Land,cards/351-Adarkar-Wastes1.webp
+352\697,Brushland,,Snow Land,cards/352-Brushland1.webp
 17\60,Forest,14.0,Basic Land — Forest,cards/L17-Forest1.webp
 18\60,Forest,2.0,Basic Land — Forest,cards/L18-Forest2.webp
 19\60,Forest,3.0,Basic Land — Forest,cards/L19-Forest3.webp
 20\60,Forest,15.0,Basic Land — Forest,cards/L20-Forest4.webp
-353\697,Glacial Chasm,,Snow Land,cards/353-Glacial-Chasm.webp
+353\697,Glacial Chasm,,Snow Land,cards/353-Glacial-Chasm1.webp
 354\697,Halls of Mist,,Land,cards/354-Halls-of-Mist.webp
-355\697,Ice Floe,,Snow Land,cards/355-Ice-Floe.webp
-5\60,Island,1.0,Basic Land — Island,cards/L5-Island1.webp
-6\60,Island,2.0,Basic Land — Island,cards/L6-Island2.webp
-7\60,Island,6.0,Basic Land — Island,cards/L7-Island3.webp
-8\60,Island,14.0,Basic Land — Island,cards/L8-Island4.webp
-356\697,Karplusan Forest,,Snow Land,cards/356-Karplusan-Forest.webp
+355\697,Ice Floe,,Snow Land,cards/355-Ice-Floe1.webp
+5\60,Island,1.0,Basic Land — Island,cards/L05-Island1.webp
+6\60,Island,2.0,Basic Land — Island,cards/L06-Island2.webp
+7\60,Island,6.0,Basic Land — Island,cards/L07-Island3.webp
+8\60,Island,14.0,Basic Land — Island,cards/L08-Island4.webp
+356\697,Karplusan Forest,,Snow Land,cards/356-Karplusan-Forest1.webp
 357\697,Land Cap,,Land,cards/357-Land-Cap.webp
 358\697,Lava Tubes,,Land,cards/358-Lava-Tubes.webp
 13\60,Mountain,1.0,Basic Land — Mountain,cards/L13-Mountain1.webp
 14\60,Mountain,2.0,Basic Land — Mountain,cards/L14-Mountain2.webp
 15\60,Mountain,3.0,Basic Land — Mountain,cards/L15-Mountain3.webp
 16\60,Mountain,4.0,Basic Land — Mountain,cards/L16-Mountain4.webp
-1\60,Plains,1.0,Basic Land — Plains,cards/L1-Plains1.webp
-2\60,Plains,2.0,Basic Land — Plains,cards/L2-Plains2.webp
-3\60,Plains,15.0,Basic Land — Plains,cards/L3-Plains3.webp
-4\60,Plains,17.0,Basic Land — Plains,cards/L4-Plains4.webp
+1\60,Plains,1.0,Basic Land — Plains,cards/L01-Plains1.webp
+2\60,Plains,2.0,Basic Land — Plains,cards/L02-Plains2.webp
+3\60,Plains,15.0,Basic Land — Plains,cards/L03-Plains3.webp
+4\60,Plains,17.0,Basic Land — Plains,cards/L04-Plains4.webp
 359\697,River Delta,,Land,cards/359-River-Delta.webp
 380\697,Snow Forest,5.0,Basic Snow Land — Forest,cards/380-Snow-Forest5.webp
 381\697,Snow Forest,6.0,Basic Snow Land — Forest,cards/381-Snow-Forest6.webp
@@ -587,13 +587,13 @@ Collector’s Number,Name,Version,Type,expected_image
 373\697,Snow Swamp,6.0,Basic Snow Land — Swamp,cards/373-Snow-Swamp6.webp
 374\697,Snow Swamp,7.0,Basic Snow Land — Swamp,cards/374-Snow-Swamp7.webp
 375\697,Snow Swamp,8.0,Basic Snow Land — Swamp,cards/375-Snow-Swamp8.webp
-360\697,Sulfurous Springs,,Snow Land,cards/360-Sulfurous-Springs.webp
-9\60,Swamp,1.0,Basic Land — Swamp,cards/L9-Swamp1.webp
+360\697,Sulfurous Springs,,Snow Land,cards/360-Sulfurous-Springs1.webp
+9\60,Swamp,1.0,Basic Land — Swamp,cards/L09-Swamp1.webp
 10\60,Swamp,2.0,Basic Land — Swamp,cards/L10-Swamp2.webp
 11\60,Swamp,3.0,Basic Land — Swamp,cards/L11-Swamp3.webp
 12\60,Swamp,4.0,Basic Land — Swamp,cards/L12-Swamp4.webp
 361\697,Timberline Ridge,,Land,cards/361-Timberline-Ridge.webp
-362\697,Underground River,,Snow Land,cards/362-Underground-River.webp
+362\697,Underground River,,Snow Land,cards/362-Underground-River1.webp
 363\697,Veldt,,Land,cards/363-Veldt.webp
 169\697,Aggression,,Enchantment — Aura,cards/169-Aggression.webp
 170\697,Anarchy,,Sorcery,cards/170-Anarchy.webp
@@ -652,50 +652,50 @@ Collector’s Number,Name,Version,Type,expected_image
 222\697,Vertigo,,Instant,cards/222-Vertigo.webp
 223\697,Wall of Lava,,Creature — Wall,cards/223-Wall-of-Lava.webp
 224\697,Word of Blasting,,Instant,cards/224-Word-of-Blasting.webp
-57\697,Arnjlot's Ascent,,Enchantment,cards/57-Arnjlots-Ascent.webp
-58\697,Balduvian Conjurer,,Creature — Human Wizard,cards/58-Balduvian-Conjurer.webp
-59\697,Balduvian Shaman,,Creature — Human Cleric Shaman,cards/59-Balduvian-Shaman.webp
-60\697,Binding Grasp,,Enchantment — Aura,cards/60-Binding-Grasp.webp
-61\697,Brainstorm,,Instant,cards/61-Brainstorm.webp
-62\697,Breath of Dreams,,Enchantment,cards/62-Breath-of-Dreams.webp
-63\697,Clairvoyance,,Instant,cards/63-Clairvoyance.webp
-64\697,Counterspell,1.0,Instant,cards/64-Counterspell.webp
-64A\697,Counterspell,2.0,Instant,cards/64-Counterspell2.webp
-65\697,Deflection,,Instant,cards/65-Deflection.webp
-66\697,Dreams of the Dead,,Enchantment,cards/66-Dreams-of-the-Dead.webp
-67\697,Enervate,,Instant,cards/67-Enervate.webp
-68\697,Errant Minion,,Snow Enchantment — Aura,cards/68-Errant-Minion.webp
-69\697,Essence Flare,,Enchantment — Aura,cards/69-Essence-Flare.webp
-70\697,Force Void,,Instant,cards/70-Force-Void.webp
-71\697,Glacial Wall,,Snow Creature — Wall,cards/71-Glacial-Wall.webp
-72\697,Hydroblast,,Instant,cards/72-Hydroblast.webp
-73\697,Iceberg,,Snow Enchantment,cards/73-Iceberg.webp
-74\697,Icy Prison,,Snow Enchantment,cards/74-Icy-Prison.webp
-75\697,Illusionary Forces,,Creature — Illusion,cards/75-Illusionary-Forces.webp
-76\697,Illusionary Presence,,Creature — Illusion,cards/76-Illusionary-Presence.webp
-77\697,Illusionary Terrain,,Snow Enchantment,cards/77-Illusionary-Terrain.webp
-78\697,Illusionary Wall,,Creature — Illusion Wall,cards/78-Illusionary-Wall.webp
-79\697,Illusions of Grandeur,,Enchantment,cards/79-Illusions-of-Grandeur.webp
-80\697,Infuse,,Instant,cards/80-Infuse.webp
-81\697,Krovikan Sorcerer,,Creature — Human Wizard,cards/81-Krovikan-Sorcerer.webp
-82\697,Magus of the Unseen,,Creature — Human Wizard,cards/82-Magus-of-the-Unseen.webp
-83\697,Mesmeric Trance,,Enchantment,cards/83-Mesmeric-Trance.webp
-84\697,Mistfolk,,Creature — Illusion,cards/84-Mistfolk.webp
-85\697,Musician,,Creature — Human Wizard,cards/85-Musician.webp
-86\697,Mystic Might,,Enchantment — Aura,cards/86-Mystic-Might.webp
-87\697,Mystic Remora,,Enchantment,cards/87-Mystic-Remora.webp
-88\697,Phantasmal Mount,,Creature — Illusion Horse,cards/88-Phantasmal-Mount.webp
-89\697,Polar Kraken,,Snow Creature — Kraken,cards/89-Polar-Kraken.webp
-90\697,Portent,,Sorcery,cards/90-Portent.webp
-91\697,Power Sink,,Instant,cards/91-Power-Sink.webp
-92\697,Ray of Command,,Instant,cards/92-Ray-of-Command.webp
-93\697,Ray of Erasure,,Instant,cards/93-Ray-of-Erasure.webp
-94\697,Reality Twist,,Enchantment,cards/94-Reality-Twist.webp
-95\697,Sea Spirit,,Creature — Elemental Spirit,cards/95-Sea-Spirit.webp
-96\697,Shyft,,Creature — Shapeshifter,cards/96-Shyft.webp
-97\697,Sibilant Spirit,,Creature — Spirit,cards/97-Sibilant-Spirit.webp
-98\697,Silver Erne,,Creature — Bird,cards/98-Silver-Erne.webp
-99\697,Sleight of Mind,,Instant,cards/99-Sleight-of-Mind.webp
+57\697,Arnjlot's Ascent,,Enchantment,cards/057-Arnjlots-Ascent.webp
+58\697,Balduvian Conjurer,,Creature — Human Wizard,cards/058-Balduvian-Conjurer.webp
+59\697,Balduvian Shaman,,Creature — Human Cleric Shaman,cards/059-Balduvian-Shaman.webp
+60\697,Binding Grasp,,Enchantment — Aura,cards/060-Binding-Grasp.webp
+61\697,Brainstorm,,Instant,cards/061-Brainstorm.webp
+62\697,Breath of Dreams,,Enchantment,cards/062-Breath-of-Dreams.webp
+63\697,Clairvoyance,,Instant,cards/063-Clairvoyance.webp
+64\697,Counterspell,1.0,Instant,cards/064-Counterspell.webp
+64A\697,Counterspell,2.0,Instant,cards/064-Counterspell2.webp
+65\697,Deflection,,Instant,cards/065-Deflection.webp
+66\697,Dreams of the Dead,,Enchantment,cards/066-Dreams-of-the-Dead.webp
+67\697,Enervate,,Instant,cards/067-Enervate.webp
+68\697,Errant Minion,,Snow Enchantment — Aura,cards/068-Errant-Minion.webp
+69\697,Essence Flare,,Enchantment — Aura,cards/069-Essence-Flare.webp
+70\697,Force Void,,Instant,cards/070-Force-Void.webp
+71\697,Glacial Wall,,Snow Creature — Wall,cards/071-Glacial-Wall.webp
+72\697,Hydroblast,,Instant,cards/072-Hydroblast.webp
+73\697,Iceberg,,Snow Enchantment,cards/073-Iceberg.webp
+74\697,Icy Prison,,Snow Enchantment,cards/074-Icy-Prison.webp
+75\697,Illusionary Forces,,Creature — Illusion,cards/075-Illusionary-Forces.webp
+76\697,Illusionary Presence,,Creature — Illusion,cards/076-Illusionary-Presence.webp
+77\697,Illusionary Terrain,,Snow Enchantment,cards/077-Illusionary-Terrain.webp
+78\697,Illusionary Wall,,Creature — Illusion Wall,cards/078-Illusionary-Wall.webp
+79\697,Illusions of Grandeur,,Enchantment,cards/079-Illusions-of-Grandeur.webp
+80\697,Infuse,,Instant,cards/080-Infuse.webp
+81\697,Krovikan Sorcerer,,Creature — Human Wizard,cards/081-Krovikan-Sorcerer.webp
+82\697,Magus of the Unseen,,Creature — Human Wizard,cards/082-Magus-of-the-Unseen.webp
+83\697,Mesmeric Trance,,Enchantment,cards/083-Mesmeric-Trance.webp
+84\697,Mistfolk,,Creature — Illusion,cards/084-Mistfolk.webp
+85\697,Musician,,Creature — Human Wizard,cards/085-Musician.webp
+86\697,Mystic Might,,Enchantment — Aura,cards/086-Mystic-Might.webp
+87\697,Mystic Remora,,Enchantment,cards/087-Mystic-Remora.webp
+88\697,Phantasmal Mount,,Creature — Illusion Horse,cards/088-Phantasmal-Mount.webp
+89\697,Polar Kraken,,Snow Creature — Kraken,cards/089-Polar-Kraken.webp
+90\697,Portent,,Sorcery,cards/090-Portent.webp
+91\697,Power Sink,,Instant,cards/091-Power-Sink.webp
+92\697,Ray of Command,,Instant,cards/092-Ray-of-Command.webp
+93\697,Ray of Erasure,,Instant,cards/093-Ray-of-Erasure.webp
+94\697,Reality Twist,,Enchantment,cards/094-Reality-Twist.webp
+95\697,Sea Spirit,,Creature — Elemental Spirit,cards/095-Sea-Spirit.webp
+96\697,Shyft,,Creature — Shapeshifter,cards/096-Shyft.webp
+97\697,Sibilant Spirit,,Creature — Spirit,cards/097-Sibilant-Spirit.webp
+98\697,Silver Erne,,Creature — Bird,cards/098-Silver-Erne.webp
+99\697,Sleight of Mind,,Instant,cards/099-Sleight-of-Mind.webp
 100\697,Snow Devil,,Snow Enchantment — Aura,cards/100-Snow-Devil.webp
 101\697,Snowfall,,Snow Enchantment,cards/101-Snowfall.webp
 102\697,Soldevi Machinist,,Creature — Human Wizard Artificer,cards/102-Soldevi-Machinist.webp
@@ -709,66 +709,66 @@ Collector’s Number,Name,Version,Type,expected_image
 110\697,Zuran Enchanter,,Creature — Human Wizard,cards/110-Zuran-Enchanter.webp
 111\697,Zuran Spellcaster,,Creature — Human Wizard,cards/111-Zuran-Spellcaster.webp
 112\697,Zur's Weirding,,Enchantment,cards/112-Zurs-Weirding.webp
-1\697,Adarkar Unicorn,,Snow Creature — Unicorn,cards/1-Adarkar-Unicorn.webp
-2\697,Arctic Foxes,,Snow Creature — Fox,cards/2-Arctic-Foxes.webp
-3\697,Arenson's Aura,,Enchantment,cards/3-Arensons-Aura.webp
-4\697,Armor of Faith,,Enchantment — Aura,cards/4-Armor-of-Faith.webp
-5\697,Battle Cry,,Instant,cards/5-Battle-Cry.webp
-6\697,Black Scarab,,Enchantment — Aura,cards/6-Black-Scarab.webp
-7\697,Blessed Wine,,Instant,cards/7-Blessed-Wine.webp
-8\697,Blinking Spirit,,Creature — Spirit,cards/8-Blinking-Spirit.webp
-9\697,Blue Scarab,,Enchantment — Aura,cards/9-Blue-Scarab.webp
-10\697,Call to Arms,,Enchantment,cards/10-Call-to-Arms.webp
-11\697,Caribou Range,,Snow Enchantment — Aura,cards/11-Caribou-Range.webp
-12\697,Circle of Protection: Black,,Enchantment,cards/12-Circle-of-Protection-Black.webp
-13\697,Circle of Protection: Blue,,Enchantment,cards/13-Circle-of-Protection-Blue.webp
-14\697,Circle of Protection: Green,,Enchantment,cards/14-Circle-of-Protection-Green.webp
-15\697,Circle of Protection: Red,,Enchantment,cards/15-Circle-of-Protection-Red.webp
-16\697,Circle of Protection: White,,Enchantment,cards/16-Circle-of-Protection-White.webp
-17\697,Cold Snap,,Snow Enchantment,cards/17-Cold-Snap.webp
-18\697,Cooperation,,Enchantment — Aura,cards/18-Cooperation.webp
-19\697,Death Ward,,Instant,cards/19-Death-Ward.webp
-20\697,Disenchant,,Instant,cards/20-Disenchant.webp
-21\697,Drought,,Enchantment,cards/21-Drought.webp
-22\697,Elvish Healer,,Creature — Elf Cleric,cards/22-Elvish-Healer.webp
-23\697,Enduring Renewal,,Enchantment,cards/23-Enduring-Renewal.webp
-24\697,Energy Storm,,Enchantment,cards/24-Energy-Storm.webp
-25\697,Formation,,Instant,cards/25-Formation.webp
-26\697,Fylgja,,Snow Enchantment — Aura,cards/26-Fylgja.webp
-27\697,General Jarkeld,,Legendary Creature — Human Soldier,cards/27-General-Jarkeld.webp
-28\697,Green Scarab,,Enchantment — Aura,cards/28-Green-Scarab.webp
-29\697,Hallowed Ground,,Snow Enchantment,cards/29-Hallowed-Ground.webp
-30\697,Heal,,Instant,cards/30-Heal.webp
-31\697,Hipparion,,Creature — Horse,cards/31-Hipparion.webp
-32\697,Justice,,Enchantment,cards/32-Justice.webp
-33\697,Kelsinko Ranger,,Creature — Human Ranger,cards/33-Kelsinko-Ranger.webp
-34\697,Kjeldoran Elite Guard,,Creature — Human Soldier,cards/34-Kjeldoran-Elite-Guard.webp
-35\697,Kjeldoran Guard,,Creature — Human Soldier,cards/35-Kjeldoran-Guard.webp
-36\697,Kjeldoran Knight,,Creature — Human Knight,cards/36-Kjeldoran-Knight.webp
-37\697,Kjeldoran Phalanx,,Creature — Human Soldier,cards/37-Kjeldoran-Phalanx.webp
-38\697,Kjeldoran Royal Guard,,Creature — Human Soldier,cards/38-Kjeldoran-Royal-Guard.webp
-39\697,Kjeldoran Skycaptain,,Creature — Human Soldier,cards/39-Kjeldoran-Skycaptain.webp
-40\697,Kjeldoran Skyknight,,Creature — Human Knight,cards/40-Kjeldoran-Skyknight.webp
-41\697,Kjeldoran Warrior,,Creature — Human Warrior,cards/41-Kjeldoran-Warrior.webp
-42\697,Lightning Blow,,Instant,cards/42-Lightning-Blow.webp
-43\697,Lost Order of Jarkeld,,Creature — Human Knight,cards/43-Lost-Order-of-Jarkeld.webp
-44\697,Mercenaries,,Creature — Human Mercenary,cards/44-Mercenaries.webp
-45\697,Order of the Sacred Torch,,Creature — Human Knight,cards/45-Order-of-the-Sacred-Torch.webp
-46\697,Order of the White Shield,,Creature — Human Knight,cards/46-Order-of-the-White-Shield.webp
-47\697,Prismatic Ward,,Enchantment — Aura,cards/47-Prismatic-Ward.webp
-48\697,Rally,,Instant,cards/48-Rally.webp
-49\697,Red Scarab,,Enchantment — Aura,cards/49-Red-Scarab.webp
-50\697,Sacred Boon,,Instant,cards/50-Sacred-Boon.webp
-51\697,Seraph,1.0,Creature — Angel,cards/51-Seraph.webp
-51A\697,Seraph,2.0,Creature — Angel,cards/51-Seraph2.webp
-52\697,Shield Bearer,,Creature — Human Soldier,cards/52-Shield-Bearer.webp
-53\697,Snow Hound,,Snow Creature — Dog,cards/53-Snow-Hound.webp
-54\697,Swords to Plowshares,,Instant,cards/54-Swords-to-Plowshares.webp
-55\697,Warning,,Instant,cards/55-Warning.webp
-56\697,White Scarab,,Enchantment — Aura,cards/56-White-Scarab.webp
+1\697,Adarkar Unicorn,,Snow Creature — Unicorn,cards/001-Adarkar-Unicorn.webp
+2\697,Arctic Foxes,,Snow Creature — Fox,cards/002-Arctic-Foxes.webp
+3\697,Arenson's Aura,,Enchantment,cards/003-Arensons-Aura.webp
+4\697,Armor of Faith,,Enchantment — Aura,cards/004-Armor-of-Faith.webp
+5\697,Battle Cry,,Instant,cards/005-Battle-Cry.webp
+6\697,Black Scarab,,Enchantment — Aura,cards/006-Black-Scarab.webp
+7\697,Blessed Wine,,Instant,cards/007-Blessed-Wine.webp
+8\697,Blinking Spirit,,Creature — Spirit,cards/008-Blinking-Spirit.webp
+9\697,Blue Scarab,,Enchantment — Aura,cards/009-Blue-Scarab.webp
+10\697,Call to Arms,,Enchantment,cards/010-Call-to-Arms.webp
+11\697,Caribou Range,,Snow Enchantment — Aura,cards/011-Caribou-Range.webp
+12\697,Circle of Protection: Black,,Enchantment,cards/012-Circle-of-Protection-Black.webp
+13\697,Circle of Protection: Blue,,Enchantment,cards/013-Circle-of-Protection-Blue.webp
+14\697,Circle of Protection: Green,,Enchantment,cards/014-Circle-of-Protection-Green.webp
+15\697,Circle of Protection: Red,,Enchantment,cards/015-Circle-of-Protection-Red.webp
+16\697,Circle of Protection: White,,Enchantment,cards/016-Circle-of-Protection-White.webp
+17\697,Cold Snap,,Snow Enchantment,cards/017-Cold-Snap.webp
+18\697,Cooperation,,Enchantment — Aura,cards/018-Cooperation.webp
+19\697,Death Ward,,Instant,cards/019-Death-Ward.webp
+20\697,Disenchant,,Instant,cards/020-Disenchant.webp
+21\697,Drought,,Enchantment,cards/021-Drought.webp
+22\697,Elvish Healer,,Creature — Elf Cleric,cards/022-Elvish-Healer.webp
+23\697,Enduring Renewal,,Enchantment,cards/023-Enduring-Renewal.webp
+24\697,Energy Storm,,Enchantment,cards/024-Energy-Storm.webp
+25\697,Formation,,Instant,cards/025-Formation.webp
+26\697,Fylgja,,Snow Enchantment — Aura,cards/026-Fylgja.webp
+27\697,General Jarkeld,,Legendary Creature — Human Soldier,cards/027-General-Jarkeld.webp
+28\697,Green Scarab,,Enchantment — Aura,cards/028-Green-Scarab.webp
+29\697,Hallowed Ground,,Snow Enchantment,cards/029-Hallowed-Ground.webp
+30\697,Heal,,Instant,cards/030-Heal.webp
+31\697,Hipparion,,Creature — Horse,cards/031-Hipparion.webp
+32\697,Justice,,Enchantment,cards/032-Justice.webp
+33\697,Kelsinko Ranger,,Creature — Human Ranger,cards/033-Kelsinko-Ranger.webp
+34\697,Kjeldoran Elite Guard,,Creature — Human Soldier,cards/034-Kjeldoran-Elite-Guard.webp
+35\697,Kjeldoran Guard,,Creature — Human Soldier,cards/035-Kjeldoran-Guard.webp
+36\697,Kjeldoran Knight,,Creature — Human Knight,cards/036-Kjeldoran-Knight.webp
+37\697,Kjeldoran Phalanx,,Creature — Human Soldier,cards/037-Kjeldoran-Phalanx.webp
+38\697,Kjeldoran Royal Guard,,Creature — Human Soldier,cards/038-Kjeldoran-Royal-Guard.webp
+39\697,Kjeldoran Skycaptain,,Creature — Human Soldier,cards/039-Kjeldoran-Skycaptain.webp
+40\697,Kjeldoran Skyknight,,Creature — Human Knight,cards/040-Kjeldoran-Skyknight.webp
+41\697,Kjeldoran Warrior,,Creature — Human Warrior,cards/041-Kjeldoran-Warrior.webp
+42\697,Lightning Blow,,Instant,cards/042-Lightning-Blow.webp
+43\697,Lost Order of Jarkeld,,Creature — Human Knight,cards/043-Lost-Order-of-Jarkeld.webp
+44\697,Mercenaries,,Creature — Human Mercenary,cards/044-Mercenaries.webp
+45\697,Order of the Sacred Torch,,Creature — Human Knight,cards/045-Order-of-the-Sacred-Torch.webp
+46\697,Order of the White Shield,,Creature — Human Knight,cards/046-Order-of-the-White-Shield.webp
+47\697,Prismatic Ward,,Enchantment — Aura,cards/047-Prismatic-Ward.webp
+48\697,Rally,,Instant,cards/048-Rally.webp
+49\697,Red Scarab,,Enchantment — Aura,cards/049-Red-Scarab.webp
+50\697,Sacred Boon,,Instant,cards/050-Sacred-Boon.webp
+51\697,Seraph,1.0,Creature — Angel,cards/051-Seraph.webp
+51A\697,Seraph,2.0,Creature — Angel,cards/051-Seraph2.webp
+52\697,Shield Bearer,,Creature — Human Soldier,cards/052-Shield-Bearer.webp
+53\697,Snow Hound,,Snow Creature — Dog,cards/053-Snow-Hound.webp
+54\697,Swords to Plowshares,,Instant,cards/054-Swords-to-Plowshares.webp
+55\697,Warning,,Instant,cards/055-Warning.webp
+56\697,White Scarab,,Enchantment — Aura,cards/056-White-Scarab.webp
 718\697,Adarkar Silver Statues,,Legendary Artifact,cards/718-Adarkar-Silver-Statues.webp
 719\697,"Aevar Borg, Northern Guide",,Legendary Creature — Human Scout,cards/719-Aevar-Borg-Northern-Guide.webp
-720\697,Almaaz,,Legendary Snow Land,cards/720-Almaaz.webp
+720\697,Almaaz,,Legendary Snow Land,cards/720-Almaaz1.webp
 721\697,Altair of Coloni,,Legendary Planeswalker — Altair,cards/721-Altair-of-Coloni.webp
 722\697,Argivia,,Legendary Land,cards/722-Argivia.webp
 723\697,Argivian Sylex,,Legendary Artifact,cards/723-Argivian-Sylex.webp
@@ -779,12 +779,12 @@ Collector’s Number,Name,Version,Type,expected_image
 728\697,Avram Garrisson,,Legendary Creature — Human Knight,cards/728-Avram-Garrisson.webp
 729\697,Azoria,,Legendary Land,cards/729-Azoria.webp
 730\697,Balduvian Steppe,,Legendary Land,cards/730-Balduvian-Steppe.webp
-731\697,Balesh Pass,,Legendary Snow Land,cards/731-Balesh-Pass.webp
+731\697,Balesh Pass,,Legendary Snow Land,cards/731-Balesh-Pass1.webp
 732\697,Bandu,,Legendary Land,cards/732-Bandu.webp
 733\697,Belenda Danisdotter,,Legendary Creature — Human Soldier,cards/733-Belenda-Danisdotter.webp
 734\697,Big Bog Frog,,Creature — Frog Horror,cards/734-Big-Bog-Frog.webp
 735\697,Black Pearl of Nadrum,,Legendary Artifact,cards/735-Black-Pearl-of-Nadrum.webp
-736\697,Boreal Tundra,,Legendary Snow Land — Plains Island,cards/736-Boreal-Tundra.webp
+736\697,Boreal Tundra,,Legendary Snow Land — Plains Island,cards/736-Boreal-Tundra1.webp
 737\697,Caves of Neffia,,Legendary Land,cards/737-Caves-of-Neffia.webp
 738\697,Chaeska the Towerwright,,Legendary Creature — Zombie Minion,cards/738-Chaeska-the-Towerwright.webp
 739\697,Cheyne the Archaeologist,,Legendary Creature — Human Scout,cards/739-Cheyne-the-Archaeologist.webp
@@ -798,14 +798,14 @@ Collector’s Number,Name,Version,Type,expected_image
 747\697,"Drufalden, Last of Rigida",,Legendary Snow Creature — Elemental,cards/747-Drufalden-Last-of-Rigida.webp
 748\697,"Elkan, Balduvian Mage",,Legendary Creature — Human Wizard,cards/748-Elkan-Balduvian-Mage.webp
 749\697,"Embereck, Ash Warlord",,Legendary Planeswalker — Embereck,cards/749-Embereck-Ash-Warlord.webp
-750\697,Endless Sea,,Legendary Snow Land — Island Swamp,cards/750-Endless-Sea.webp
+750\697,Endless Sea,,Legendary Snow Land — Island Swamp,cards/750-Endless-Sea1.webp
 751\697,Eyebeams Cat,,Legendary Creature — Cat Horror,cards/751-Eyebeams-Cat.webp
 752\697,Faralyn of the Shard,,Legendary Planeswalker — Faralyn,cards/752-Faralyn-of-the-Shard.webp
 753\697,"Fatima, Mysterious Benefactor",,Legendary Planeswalker — Fatima,cards/753-Fatima-Mysterious-Benefactor.webp
 754\697,Fens of Foulmere,,Legendary Land,cards/754-Fens-of-Foulmere.webp
 755\697,Finroy the False Regent,,Legendary Creature — Human Knight,cards/755-Finroy-the-False-Regent.webp
-756\697,Flarg Mountains,,Legendary Snow Land,cards/756-Flarg-Mountains.webp
-757\697,Fortress of Tresserhorn,,Legendary Snow Land,cards/757-Fortress-of-Tresserhorn.webp
+756\697,Flarg Mountains,,Legendary Snow Land,cards/756-Flarg-Mountains1.webp
+757\697,Fortress of Tresserhorn,,Legendary Snow Land,cards/757-Fortress-of-Tresserhorn1.webp
 758\697,Freyalise the Fire Mage,,Legendary Creature — Elf Human Wizard,cards/758-Freyalise-the-Fire-Mage.webp
 759\697,"Freyalise, Fyndhorn Goddess",,Legendary Planeswalker — Freyalise,cards/759-Freyalise-Fyndhorn-Goddess.webp
 760\697,"Freyalise, Llanowar's Fury",,Legendary Planeswalker — Freyalise,cards/760-Freyalise-Llanowars-Fury.webp
@@ -813,8 +813,8 @@ Collector’s Number,Name,Version,Type,expected_image
 762\697,"Gendrin, Rimewind Keeper",,Legendary Creature — Human Wizard,cards/762-Gendrin-Rimewind-Keeper.webp
 763\697,Gerda Aagesdotter,,Legendary Creature — Human Wizard,cards/763-Gerda-Aagesdotter.webp
 764\697,Glacial Revelation,,Sorcery,cards/764-Glacial-Revelation.webp
-765\697,Glimmer Vale,,Legendary Snow Land,cards/765-Glimmer-Vale.webp
-766\697,Great Glacier,,Legendary Snow Land,cards/766-Great-Glacier.webp
+765\697,Glimmer Vale,,Legendary Snow Land,cards/765-Glimmer-Vale1.webp
+766\697,Great Glacier,,Legendary Snow Land,cards/766-Great-Glacier1.webp
 767\697,Grenfell Mor of Golthonor,,Legendary Planeswalker — Grenfell Mor,cards/767-Grenfell-Mor-of-Golthonor.webp
 768\697,Groth Jonar,,Legendary Creature — Orc Warrior,cards/768-Groth-Jonar.webp
 769\697,"Guldark, Torgash Leader",,Legendary Creature — Orc Warrior,cards/769-Guldark-Torgash-Leader.webp
@@ -838,17 +838,17 @@ Collector’s Number,Name,Version,Type,expected_image
 787\697,"Jodah, the Researcher",,Legendary Creature — Human Wizard,cards/787-Jodah-the-Researcher.webp
 788\697,Jodah's Mirror,,Legendary Artifact,cards/788-Jodahs-Mirror.webp
 789\697,Jornstad,,Legendary Land,cards/789-Jornstad.webp
-790\697,Karplusan Mountains,,Legendary Snow Land,cards/790-Karplusan-Mountains.webp
+790\697,Karplusan Mountains,,Legendary Snow Land,cards/790-Karplusan-Mountains1.webp
 791\697,Kelsinko,,Legendary Land,cards/791-Kelsinko.webp
 792\697,Kher Ridges,,Legendary Land — Mountain Plains,cards/792-Kher-Ridges.webp
 793\697,Kjeld,,Legendary Land,cards/793-Kjeld.webp
 794\697,Kjeldoran Hinterlands,,Legendary Land,cards/794-Kjeldoran-Hinterlands.webp
-795\697,Kjeldoran Marshes,,Legendary Snow Land — Plains Swamp,cards/795-Kjeldoran-Marshes.webp
+795\697,Kjeldoran Marshes,,Legendary Snow Land — Plains Swamp,cards/795-Kjeldoran-Marshes1.webp
 796\697,Klazina Jansdotter,,Legendary Creature — Human Knight,cards/796-Klazina-Jansdotter.webp
 797\697,"Kolbjorn, Fyndhorn Elder",,Legendary Creature — Human Druid,cards/797-Kolbjorn-Fyndhorn-Elder.webp
 798\697,Kristina of the Woods,,Legendary Planeswalker — Kristina,cards/798-Kristina-of-the-Woods.webp
 799\697,Krov,,Legendary Land,cards/799-Krov.webp
-800\697,Labyrinth of Raynor,,Legendary Snow Land,cards/800-Labyrinth-of-Raynor.webp
+800\697,Labyrinth of Raynor,,Legendary Snow Land,cards/800-Labyrinth-of-Raynor1.webp
 801\697,Lagfrak the Low,,Legendary Creature — Barbarian Scout,cards/801-Lagfrak-the-Low.webp
 802\697,Laina of the Elvish Council,,Legendary Creature — Elf Advisor,cards/802-Laina-of-the-Elvish-Council.webp
 803\697,"Leshrac, Walker of Night",,Legendary Planeswalker — Leshrac,cards/803-Leshrac-Walker-of-Night.webp
@@ -862,12 +862,12 @@ Collector’s Number,Name,Version,Type,expected_image
 811\697,Lovisa the Harborer,,Legendary Creature — Human Warrior,cards/811-Lovisa-the-Harborer.webp
 812\697,"Lovisa, Martyr Queen",,Legendary Creature — Human Warrior,cards/812-Lovisa-Martyr-Queen.webp
 813\697,Lucilde Fiksdotter,,Legendary Creature — Human Knight,cards/813-Lucilde-Fiksdotter.webp
-814\697,Mardun River Valley,,Legendary Snow Land — Forest Plains,cards/814-Mardun-River-Valley.webp
+814\697,Mardun River Valley,,Legendary Snow Land — Forest Plains,cards/814-Mardun-River-Valley1.webp
 815\697,Mark of the Elder Druid,,Legendary Enchantment — Aura,cards/815-Mark-of-the-Elder-Druid.webp
 816\697,Meanders of Yavimaya River,,Legendary Land,cards/816-Meanders-of-Yavimaya-River.webp
 817\697,Mirror of True Nature,,Legendary Artifact,cards/817-Mirror-of-True-Nature.webp
 818\697,Mirror of Yesterday,,Legendary Artifact,cards/818-Mirror-of-Yesterday.webp
-819\697,Mount Sarraza,,Legendary Snow Land,cards/819-Mount-Sarraza.webp
+819\697,Mount Sarraza,,Legendary Snow Land,cards/819-Mount-Sarraza1.webp
 820\697,New Sumifa,,Legendary Land,cards/820-New-Sumifa.webp
 821\697,Northern Wastes,,Legendary Land — Swamp Mountain,cards/821-Northern-Wastes.webp
 822\697,Null Moon,,Legendary Land,cards/822-Null-Moon.webp
@@ -885,9 +885,9 @@ Collector’s Number,Name,Version,Type,expected_image
 834\697,Ravidel the Dragon Keeper,,Legendary Creature — Human Wizard,cards/834-Ravidel-the-Dragon-Keeper.webp
 835\697,"Ravidel, Collector of Lives",,Legendary Planeswalker — Ravidel,cards/835-Ravidel-Collector-of-Lives.webp
 836\697,Ravidel's Planar Barge,,Legendary Artifact Creature — Skeleton,cards/836-Ravidels-Planar-Barge.webp
-837\697,Raynor Glacier,,Legendary Snow Land,cards/837-Raynor-Glacier.webp
+837\697,Raynor Glacier,,Legendary Snow Land,cards/837-Raynor-Glacier1.webp
 838\697,Rigida,,Snow Creature — Beast Elemental,cards/838-Rigida.webp
-839\697,Rimewind Keep,,Legendary Snow Land,cards/839-Rimewind-Keep.webp
+839\697,Rimewind Keep,,Legendary Snow Land,cards/839-Rimewind-Keep1.webp
 840\697,Ring of Mairsil,,Legendary Artifact,cards/840-Ring-of-Mairsil.webp
 841\697,Riolla Hifrata,,Legendary Creature — Human Advisor,cards/841-Riolla-Hifrata.webp
 842\697,River Kingdom of Selkies,,Legendary Enchantment,cards/842-River-Kingdom-of-Selkies.webp
@@ -904,7 +904,7 @@ Collector’s Number,Name,Version,Type,expected_image
 853\697,Sarrazan River,,Legendary Land,cards/853-Sarrazan-River.webp
 854\697,Sea of Almaaz,,Legendary Land,cards/854-Sea-of-Almaaz.webp
 855\697,Sea of Laments,,Legendary Land,cards/855-Sea-of-Laments.webp
-856\697,Silver Sea,,Legendary Snow Land,cards/856-Silver-Sea.webp
+856\697,Silver Sea,,Legendary Snow Land,cards/856-Silver-Sea1.webp
 857\697,Soldev,,Legendary Land,cards/857-Soldev.webp
 858\697,Sorine Relicbane,,Legendary Creature — Human Cleric,cards/858-Sorine-Relicbane.webp
 859\697,Steinar Icefist,,Legendary Creature — Human Shaman,cards/859-Steinar-Icefist.webp
@@ -931,7 +931,7 @@ Collector’s Number,Name,Version,Type,expected_image
 880\697,Wall of Scoria,,Snow Creature — Wall,cards/880-Wall-of-Scoria.webp
 881\697,Water Sapphire,,Legendary Artifact,cards/881-Water-Sapphire.webp
 882\697,"Wiggulf, Selkies Waterking",,Legendary Creature — Merfolk Shapeshifter,cards/882-Wiggulf-Selkies-Waterking.webp
-883\697,Yavimaya Forest,,Legendary Snow Land — Swamp Forest,cards/883-Yavimaya-Forest.webp
+883\697,Yavimaya Forest,,Legendary Snow Land — Swamp Forest,cards/883-Yavimaya-Forest1.webp
 884\697,"Ysidra, Valkyrie of Valor",,Legendary Creature — Spirit Angel,cards/884-Ysidra-Valkyrie-of-Valor.webp
 885\697,"Zaraya, Kjeldoran Commander",,Legendary Creature — Human Knight,cards/885-Zaraya-Kjeldoran-Commander.webp
 698\697,Snow Plains,9.0,Basic Snow Land — Plains,cards/698-Snow-Plains9.webp
