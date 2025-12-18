@@ -1,10 +1,12 @@
 // ElderForge — Ice Age (static card database)
-// Robust loader + modal + symbol rendering (PNG icons in /assets/icons/)
+// Single-file app.js for GitHub Pages project sites.
+// Icons: /assets/icons/<TOKEN>.png  (PNG)
+// Cards: /cards/*.webp
+// Data: /data/cards.json
 
 function $(id){ return document.getElementById(id); }
 
 function assetURL(relPath){
-  // Works for GitHub Pages project sites under subpaths (/ice-age/)
   return new URL(relPath, document.baseURI).toString();
 }
 
@@ -40,27 +42,18 @@ function getSetInfo(code){
 }
 
 function cleanCollector(v){
-  return String(v || "").trim().replace(/^#\s*/, "");
+  // Convert things like "504\697" or "#504\697" to "504/697"
+  return String(v || "").trim().replace(/^#\s*/,"").replaceAll("\\", "/");
 }
 
-function iconFileCandidates(tok){
-  const t = String(tok || "").trim();
-  if(!t) return [];
-  const candidates = [];
-  candidates.push(t);
-  candidates.push(t.replaceAll("/", "-").replaceAll(" ", "-"));
-  candidates.push(t.toUpperCase());
-  candidates.push(t.toUpperCase().replaceAll("/", "-").replaceAll(" ", "-"));
-  return [...new Set(candidates)];
+function normalizeSlash(v){
+  return String(v || "").replaceAll("\\", "/");
 }
 
 function iconIMGFromTok(tok){
   const t = String(tok || "").trim();
-  const cand = iconFileCandidates(t);
-  // Prefer exact token first; if that fails the browser will try nothing else,
-  // so we pick the most likely filename deterministically:
-  const file = (cand[0] || "").trim();
-  if(!file) return null;
+  if(!t) return "";
+  const file = t.replaceAll("/", "-").replaceAll(" ", "-"); // filenames are literal token strings
   const src = assetURL(`assets/icons/${encodeURIComponent(file)}.png`);
   return `<img class="sym" src="${src}" alt="${escapeHtml(t)}" data-token="${escapeHtml(t)}" loading="lazy">`;
 }
@@ -91,7 +84,7 @@ function attachIconFallbacks(root){
         return;
       }
 
-      // Otherwise show token text (precise, no aliases)
+      // otherwise literal token text (precision)
       const span = document.createElement("span");
       span.className = "kw";
       span.textContent = tok;
@@ -107,16 +100,31 @@ function richText(raw){
   // backticks -> bold
   s = s.replace(/`+([^`]+)`+/g, (_,inner) => `<strong>${inner}</strong>`);
 
-  // braces -> icon (PNG)
-  s = s.replace(/\{([^}]+)\}/g, (_,tok) => {
-    const t = String(tok).trim();
-    if(!t) return "";
-    const img = iconIMGFromTok(t);
-    return img || `<span class="kw">${escapeHtml(t)}</span>`;
-  });
+  // braces -> icon
+  s = s.replace(/\{([^}]+)\}/g, (_,tok) => iconIMGFromTok(String(tok).trim()));
 
+  // newlines
   s = s.replaceAll("\\n", "<br>");
   return s;
+}
+
+// ---- sorting (by filename prefix) ----
+function sortKeyFromImage(imagePath){
+  const base = String(imagePath || "").split("/").pop() || "";
+  // 001-Name.webp
+  let m = base.match(/^(\d{3})-/);
+  if(m) return 0 * 1_000_000 + parseInt(m[1],10);
+
+  // L01-Plains1.webp
+  m = base.match(/^L(\d+)-/i);
+  if(m) return 1_000_000 + parseInt(m[1],10);
+
+  // T1-Token.webp
+  m = base.match(/^T(\d+)-/i);
+  if(m) return 2_000_000 + parseInt(m[1],10);
+
+  // fallback: by name
+  return 9_000_000 + base.toLowerCase().charCodeAt(0);
 }
 
 // ---- UI state ----
@@ -148,9 +156,11 @@ function render(){
     const imgSrc = assetURL(card.image || "");
     const title = escapeHtml(card.name || "");
     const type = escapeHtml(card.type || "");
+
     el.innerHTML = `
       <div class="thumbWrap">
-        <img class="thumb" src="${imgSrc}" alt="${title}" loading="lazy" onerror="this.classList.add('missing'); this.alt=this.alt+' (missing image)';">
+        <img class="thumb" src="${imgSrc}" alt="${title}" loading="lazy"
+          onerror="this.classList.add('missing'); this.alt=this.alt+' (missing image)';">
       </div>
       <div class="cardMeta">
         <div class="cardName">${title}</div>
@@ -178,28 +188,40 @@ function applyFilters(){
   render();
 }
 
+// ---- modal ----
+function modalEl(){
+  return $("modal") || document.querySelector(".modal");
+}
+
 function openModal(card){
-  const modal = $("modal");
+  const modal = modalEl();
   if(!modal) return;
 
-  // Title + mana cost
-  const title = $("mTitle");
-  if(title){
-    title.innerHTML = `${escapeHtml(card.name || "")}<span class="nameCost">${richText(card.cost || "")}</span>`;
-    attachIconFallbacks(title);
+  // Title & cost: prefer #mTitle, else inject into the first header area we can find
+  const titleEl =
+    $("mTitle") ||
+    modal.querySelector("#mTitle") ||
+    modal.querySelector(".modalTitle") ||
+    modal.querySelector("h2") ||
+    null;
+
+  const costHTML = card.cost ? `<span class="nameCost">${richText(card.cost)}</span>` : "";
+  if(titleEl){
+    titleEl.innerHTML = `${escapeHtml(card.name || "")}${costHTML}`;
+    attachIconFallbacks(titleEl);
   }
 
   // Image
-  const mImg = $("mImg");
-  if(mImg){
-    mImg.src = assetURL(card.image || "");
-    mImg.alt = card.name || "";
+  const imgEl = $("mImg") || modal.querySelector("#mImg") || modal.querySelector("img.modalCard") || modal.querySelector("img");
+  if(imgEl){
+    imgEl.src = assetURL(card.image || "");
+    imgEl.alt = card.name || "";
   }
 
-  // Meta line (no #, full set name, year+Atlantica Remasters)
+  // Meta line (type, pt, rarity, set full name, year+Atlantica Remasters, collector)
   const metaBits = [];
   if(card.type) metaBits.push(escapeHtml(card.type));
-  if(card.pt) metaBits.push(escapeHtml(String(card.pt).replaceAll("\\","/")));
+  if(card.pt) metaBits.push(escapeHtml(normalizeSlash(card.pt)));
   metaBits.push(escapeHtml(rarityLong(card.rarity)));
   const si = getSetInfo(card.set);
   if(si.name) metaBits.push(escapeHtml(si.name));
@@ -207,15 +229,21 @@ function openModal(card){
   const col = cleanCollector(card.collector);
   if(col) metaBits.push(escapeHtml(col));
 
-  const mMeta = $("mMeta");
-  if(mMeta){
-    mMeta.innerHTML = metaBits.join(" • ");
-    attachIconFallbacks(mMeta);
+  const metaEl = $("mMeta") || modal.querySelector("#mMeta") || modal.querySelector(".modalMeta") || null;
+  if(metaEl){
+    metaEl.innerHTML = metaBits.join(" • ");
+    attachIconFallbacks(metaEl);
   }
 
-  // Blocks
-  setBlock("mRules", "Rules", card.rules);
-  setBlock("mFlavor", "Flavor", card.flavor);
+  // Blocks — hide empties
+  setBlock("mRules", "Rules", card.rules, modal);
+  setBlock("mFlavor", "Flavor", card.flavor, modal);
+
+  // Hide any completely empty "block" containers that might be in the HTML template
+  modal.querySelectorAll(".block").forEach(b => {
+    const txt = (b.textContent || "").trim();
+    if(!txt) b.style.display = "none";
+  });
 
   // open
   modal.classList.add("open");
@@ -223,21 +251,45 @@ function openModal(card){
 }
 
 function closeModal(){
-  const modal = $("modal");
+  const modal = modalEl();
   if(!modal) return;
   modal.classList.remove("open");
   modal.setAttribute("aria-hidden", "true");
 }
 
-function setBlock(id, label, text){
-  const el = $(id);
+function bindModalClose(){
+  const modal = modalEl();
+  if(!modal) return;
+
+  // Close buttons: try a bunch of common selectors (your "X" button)
+  const btns = modal.querySelectorAll(
+    "#mClose, .close, .modalClose, button[aria-label='Close'], button[title='Close'], button[data-close='modal']"
+  );
+  btns.forEach(b => b.addEventListener("click", closeModal));
+
+  // Clicking backdrop closes: if click hits the modal container itself or an element explicitly marked as backdrop
+  modal.addEventListener("click", (e) => {
+    const t = e.target;
+    if(t === modal || t.id === "modalBackdrop" || t.classList.contains("backdrop")){
+      closeModal();
+    }
+  });
+
+  // ESC closes
+  document.addEventListener("keydown", (e) => { if(e.key === "Escape") closeModal(); });
+}
+
+function setBlock(id, label, text, modal){
+  const el = $(id) || (modal ? modal.querySelector("#"+id) : null);
   if(!el) return;
-  const t = (text === null || text === undefined || String(text).trim()==="" || String(text).toLowerCase()==="nan") ? "" : String(text);
-  if(!t){
+
+  const t = (text === null || text === undefined) ? "" : String(text);
+  if(!t.trim() || t.trim().toLowerCase() === "nan"){
     el.innerHTML = "";
     el.style.display = "none";
     return;
   }
+
   el.style.display = "";
   el.innerHTML = `<div class="blockLabel">${escapeHtml(label)}:</div><div class="blockBody">${richText(t)}</div>`;
   attachIconFallbacks(el);
@@ -253,10 +305,13 @@ async function init(){
     if(!res.ok) throw new Error(`HTTP ${res.status} fetching ${url}`);
     const data = await res.json();
     if(!Array.isArray(data)) throw new Error("cards.json is not an array");
+
+    // sort once, globally
+    data.sort((a,b) => sortKeyFromImage(a.image) - sortKeyFromImage(b.image));
+
     ALL_CARDS = data;
     FILTERED = data;
 
-    // Wire controls
     $("q")?.addEventListener("input", applyFilters);
     $("rarity")?.addEventListener("change", applyFilters);
     $("clear")?.addEventListener("click", () => {
@@ -265,24 +320,13 @@ async function init(){
       applyFilters();
     });
 
-    // Modal close
-    $("mClose")?.addEventListener("click", closeModal);
-    $("modalBackdrop")?.addEventListener("click", closeModal);
-    document.addEventListener("keydown", (e) => { if(e.key === "Escape") closeModal(); });
-
-    // First paint
+    bindModalClose();
     applyFilters();
   }catch(err){
     console.error(err);
     if(status) status.textContent = `Failed to load cards: ${err?.message || err}`;
-    // make it visible even if CSS hides status
     if(status) status.style.opacity = "1";
   }
 }
-
-window.addEventListener("error", (e) => {
-  const status = $("status");
-  if(status) status.textContent = `Script error: ${e.message || "unknown"}`;
-});
 
 document.addEventListener("DOMContentLoaded", init);
