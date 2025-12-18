@@ -213,3 +213,26 @@ strong{ font-weight:800; }
 }
 
 .kw{ font-variant: small-caps; letter-spacing:.3px; opacity:.92; }
+
+/* Card name + mana cost on same line in modal */
+#modal .mHead{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+}
+#modal h2{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.nameCost{
+  display:inline-flex;
+  align-items:center;
+  gap:2px;
+  margin-left:8px;
+  opacity:.95;
+}
+
+#modal h2 .sym{ width:1.15em; height:1.15em; vertical-align:-0.18em; }

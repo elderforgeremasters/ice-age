@@ -1,3 +1,10 @@
+
+
+function assetURL(relPath){
+  // Robustly resolve assets when hosted under a subpath (GitHub Pages project sites)
+  // Example: https://<user>.github.io/ice-age/ -> assets resolve under /ice-age/
+  return new URL(relPath, document.baseURI).toString();
+}
 let ALL = [];
 let FILTERED = [];
 
@@ -79,7 +86,7 @@ function manaIMG(key){
   const k = String(key || "").toUpperCase().trim();
   if(!k) return null;
   const file = `${k}.png`;
-  return `<img class="mana" src="assets/icons/${file}" alt="${escapeHtml(k)}" loading="lazy">`;
+  return `<img class="mana" src="${assetURL(`assets/icons/${file}`)}" alt="${escapeHtml(k)}" loading="lazy">`;
 }
 
 function pip(text, snow=false){
@@ -93,7 +100,7 @@ function iconFileCandidates(tok){
   if(!t) return [];
   const candidates = [];
 
-  // 1) exact token
+  // 1) exact token (case-sensitive)
   candidates.push(t);
 
   // 2) filename-friendly variant (slashes/spaces -> hyphens)
@@ -116,7 +123,7 @@ function iconIMGFromTok(tok){
   const cand = iconFileCandidates(t);
   const file = (cand[1] || cand[0] || "").trim(); // prefer normalized
   if(!file) return null;
-  return `<img class="sym" src="assets/icons/${encodeURIComponent(file)}.png" alt="${escapeHtml(t)}" data-token="${escapeHtml(t)}" loading="lazy">`;
+  return `<img class="sym" src="${assetURL(`assets/icons/${encodeURIComponent(file)}.png`)}" alt="${escapeHtml(t)}" data-token="${escapeHtml(t)}" loading="lazy">`;
 }
 
 function attachIconFallbacks(root){
@@ -262,26 +269,17 @@ function openModal(card){
   $("mName").textContent = card.name;
 
   const metaBits = [];
-
-  // cost rendered with icons
-  if(card.cost) metaBits.push(richText(card.cost));
-
-  // type and P/T (use / not \)
+  // meta line: Type • P/T • Rarity • Set • 1995/2024 Atlantica Remasters • 1/697
   if(card.type) metaBits.push(escapeHtml(card.type));
-  if(card.pt) metaBits.push(escapeHtml(prettySlash(card.pt)));
-
-  // rarity as words
-  metaBits.push(rarityName(rarityCode(card)));
-
-  // set name + year + Atlantica Remasters
-  const si = setInfo(card.set);
-  const setText = si.year ? `${si.name} • ${si.year} Atlantica Remasters` : `${si.name} • Atlantica Remasters`;
-  metaBits.push(escapeHtml(setText));
-
-  // collector number with / not \
-  if(card.collector) metaBits.push(`#${escapeHtml(prettySlash(card.collector))}`);
-
+  if(card.pt) metaBits.push(escapeHtml(String(card.pt).replaceAll("\\","/")));
+  metaBits.push(escapeHtml(rarityLong(card.rarity)));
+  const si = getSetInfo(card.set);
+  if(si.name) metaBits.push(escapeHtml(si.name));
+  if(si.year) metaBits.push(escapeHtml(`${si.year} Atlantica Remasters`));
+  const col = cleanCollector(card.collector);
+  if(col) metaBits.push(escapeHtml(col));
   $("mMeta").innerHTML = metaBits.join(" • ");
+  attachIconFallbacks($("mMeta"));
   attachIconFallbacks($("mMeta"));
 
   setBlock("mRules", card.rules, "Rules");
@@ -355,4 +353,20 @@ async function init(){
   });
 }
 
-init();
+init();function getSetInfo(code){
+  const c = String(code || "").trim().toUpperCase();
+  const map = {
+    "ICE": { name: "Ice Age", year: "1995/2024" },
+    "IA":  { name: "Ice Age", year: "1995/2024" },
+    "ALL": { name: "Alliances", year: "1996/2024" },
+    "AL":  { name: "Alliances", year: "1996/2024" },
+    "CSP": { name: "Coldsnap", year: "2006/2024" }
+  };
+  return map[c] || { name: (code || ""), year: "" };
+}
+
+function cleanCollector(v){
+  return String(v || "").trim().replace(/^#\s*/, "");
+}
+
+
