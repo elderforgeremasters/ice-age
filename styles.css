@@ -121,19 +121,19 @@ body{
 }
 
 .thumbWrap{
-  width:100%;
-  aspect-ratio: 745 / 1040;
-  border-radius: 16px;
-  overflow:hidden;
-  background: rgba(0,0,0,0.25);
-  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+  overflow: visible;
+  background: transparent;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
 }
 .thumb{
-  width:100%;
-  height:100%;
+  width: 100%;
+  aspect-ratio: 745 / 1040;
   object-fit: contain;
-  display:block;
-  border-radius: 16px;
+  display: block;
+  border-radius: 10px;
+  background: transparent;
 }
 .thumb.missing{
   opacity: 0.0;
@@ -201,7 +201,7 @@ body{
 
 .modalBody{
   display:grid;
-  grid-template-columns: 420px 1fr;
+  grid-template-columns: 380px 1fr;
   gap: 16px;
   padding: 16px;
 }
@@ -235,11 +235,18 @@ body{
   font-weight: 800;
   letter-spacing: 0.2px;
   display:flex;
-  align-items:center;
+  align-items: baseline;
   gap: 12px;
+  flex-wrap: wrap;
 }
 .modalTitle .titleName{ line-height: 1.05; }
-.nameCost{ display:inline-flex; align-items:center; gap: 4px; margin-left: 0; }
+.nameCost{
+  display:inline-flex;
+  align-items: baseline;
+  gap: 1px;
+  margin-left: 0;
+  transform: translateY(1px);
+}
 
 .modalMeta{
   color: var(--muted);
@@ -398,3 +405,7 @@ body{
 .titleCost{ display:inline-flex; align-items:center; gap:2px; }
 
 .rulesBody .sym{ filter: drop-shadow(0 1px 1px rgba(0,0,0,0.55)); }
+
+
+/* Hide box titles (we style by box type instead) */
+.blockLabel{ display:none; }

@@ -262,6 +262,23 @@ function closeModal(){
   modal.setAttribute("aria-hidden", "true");
 }
 
+
+function initRarityDropdownTop(){
+  const ddl = document.getElementById('rarity');
+  if(!ddl) return;
+
+  // Ensure readable menu colors in dark UI (browser-dependent)
+  ddl.addEventListener('mousedown', ()=>{
+    ddl.style.color = '#e6eefc';
+    ddl.style.background = 'rgba(13,20,34,0.98)';
+  });
+
+  ddl.addEventListener('change', ()=>{
+    state.rarity = ddl.value || '';
+    applyFilters();
+  });
+}
+
 function bindModalClose(){
   const modal = modalEl();
   if(!modal) return;
@@ -333,14 +350,14 @@ function bindModalClose(){
 document.addEventListener("keydown", (e) => { if(e.key === "Escape") closeModal(); });
 }
 
-function setBlock(id, label, text){
+function setBlock(id, text){
   const el = document.getElementById(id);
   if(!el) return;
 
   // tag block type for styling
   el.classList.remove('rulesBlock','flavorBlock');
-  if(id === 'modalRules') el.classList.add('rulesBlock');
-  if(id === 'modalFlavor') el.classList.add('flavorBlock');
+  if(id === 'mRules') el.classList.add('rulesBlock');
+  if(id === 'mFlavor') el.classList.add('flavorBlock');
 
   const t = (text ?? '').toString().trim();
   if(!t){
@@ -350,15 +367,8 @@ function setBlock(id, label, text){
   }
   el.classList.remove('hidden');
 
-  const body = (id === 'modalFlavor')
-    ? `<div class="blockBody flavorBody">${richText(t)}</div>`
-    : `<div class="blockBody rulesBody">${richText(t)}</div>`;
-
-  const title = (label && label.trim())
-    ? `<div class="blockTitle">${escapeHtml(label)}:</div>`
-    : ``;
-
-  el.innerHTML = title + body;
+  const cls = (id === 'mFlavor') ? 'blockBody flavorBody' : 'blockBody rulesBody';
+  el.innerHTML = `<div class="${cls}">${richText(t)}</div>`;
 }
 
 // ---- Boot ----
@@ -386,6 +396,7 @@ async function init(){
       applyFilters();
     });
 
+    initRarityDropdownTop();
     bindModalClose();
     applyFilters();
   }catch(err){
