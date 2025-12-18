@@ -121,11 +121,12 @@ function sanitizeRulesFlavorText(str){
   // Remove custom break tokens that shouldn't appear in the UI
   s = s.replaceAll("{BL}", "").replaceAll("{BL2}", "");
 
-  // Remove hair space (U+200A) and common HTML entity variant
-  s = s.replaceAll("\u200A", "").replaceAll("&hairsp;", "");
+  // Replace hair space (U+200A) and common HTML entity variant with regular spacing.
+  // Using &nbsp; keeps spacing visible even when HTML collapses multiple spaces.
+  s = s.replaceAll("\u200A", "&nbsp;&nbsp;").replaceAll("&hairsp;", "&nbsp;&nbsp;");
 
-  // Normalize snow-suffixed tokens that you don't want rendered as snow
-  s = s.replaceAll("{1s}", "{1}").replaceAll("{Ws}", "{W}");
+  // Change {Tn} tokens to {Ts}
+  s = s.replaceAll("{Tn}", "{Ts}");
 
   return s;
 }
