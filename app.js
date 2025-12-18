@@ -1,4 +1,3 @@
-\
 let ALL = [];
 let FILTERED = [];
 
