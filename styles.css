@@ -1,20 +1,300 @@
-/* Patch v11: visibility + modal behavior polish */
+/* ElderForge — Ice Age | styles.css (full) */
 
-.cardMeta .cardName { color: var(--text, #e9eef7) !important; }
-.cardMeta .cardType { color: var(--muted, #a8b3c7) !important; }
-
-.block:empty { display: none !important; }
-.block[style*="display: none"] { display: none !important; }
-
-/* Slightly lighter rules/blocks for better symbol contrast */
-.block, .panel, .modalPanel {
-  background: rgba(255,255,255,0.03) !important;
+:root{
+  --bg0:#070b12;
+  --bg1:#0b1220;
+  --panel: rgba(255,255,255,0.04);
+  --panel2: rgba(255,255,255,0.06);
+  --stroke: rgba(255,255,255,0.10);
+  --text:#e9eef7;
+  --muted:#a8b3c7;
+  --shadow: 0 14px 60px rgba(0,0,0,0.55);
+  --radius: 18px;
 }
 
-/* Ensure modal actually hides when closed */
-#modal[aria-hidden="true"], .modal[aria-hidden="true"] { display: none !important; }
-#modal.open, .modal.open { display: flex !important; }
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: radial-gradient(1200px 600px at 40% -10%, rgba(95,140,255,0.18), transparent 60%),
+              radial-gradient(900px 500px at 110% 10%, rgba(50,255,210,0.10), transparent 60%),
+              linear-gradient(180deg, var(--bg1), var(--bg0));
+  color: var(--text);
+}
 
-/* Title + cost alignment */
-.nameCost { margin-left: 10px; vertical-align: middle; }
-.nameCost .sym { width: 18px; height: 18px; }
+.topbar{
+  position: sticky;
+  top:0;
+  z-index: 10;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding: 16px 18px;
+  background: linear-gradient(180deg, rgba(11,18,32,0.96), rgba(7,11,18,0.86));
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.brand .title{
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+.brand .subtitle{
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.controls{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-width: 520px;
+}
+
+.search{
+  flex: 1 1 auto;
+  height: 40px;
+  padding: 0 14px;
+  border-radius: 14px;
+  border: 1px solid var(--stroke);
+  background: rgba(255,255,255,0.03);
+  color: var(--text);
+  outline: none;
+}
+.search::placeholder{ color: rgba(168,179,199,0.55); }
+
+.select{
+  height: 40px;
+  padding: 0 12px;
+  border-radius: 14px;
+  border: 1px solid var(--stroke);
+  background: rgba(255,255,255,0.03);
+  color: var(--text);
+  outline:none;
+}
+
+.btn{
+  height: 40px;
+  padding: 0 14px;
+  border-radius: 14px;
+  border: 1px solid var(--stroke);
+  background: rgba(255,255,255,0.04);
+  color: var(--text);
+  cursor:pointer;
+}
+.btn:hover{ background: rgba(255,255,255,0.06); }
+
+.wrap{
+  padding: 18px;
+}
+
+.status{
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 14px;
+}
+
+.card{
+  display:flex;
+  flex-direction:column;
+  gap: 10px;
+  padding: 10px;
+  border-radius: var(--radius);
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.03);
+  box-shadow: 0 10px 35px rgba(0,0,0,0.18);
+  cursor: pointer;
+  text-align: left;
+}
+.card:hover{
+  border-color: rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.045);
+}
+
+.thumbWrap{
+  width:100%;
+  aspect-ratio: 745 / 1040;
+  border-radius: 16px;
+  overflow:hidden;
+  background: rgba(0,0,0,0.25);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.thumb{
+  width:100%;
+  height:100%;
+  object-fit: contain;
+  display:block;
+  border-radius: 16px;
+}
+.thumb.missing{
+  opacity: 0.0;
+}
+
+.cardMeta{
+  padding: 0 4px 2px 4px;
+}
+.cardName{
+  color: var(--text);
+  font-weight: 650;
+  font-size: 14px;
+  line-height: 1.15;
+}
+.cardType{
+  color: var(--muted);
+  font-size: 12.5px;
+  margin-top: 4px;
+  line-height: 1.2;
+}
+
+/* modal */
+.modal{
+  position: fixed;
+  inset: 0;
+  display: none;
+  z-index: 50;
+}
+.modal.open{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+.modalBackdrop{
+  position:absolute;
+  inset:0;
+  background: rgba(0,0,0,0.62);
+}
+.modalPanel{
+  position: relative;
+  width: min(1200px, calc(100vw - 24px));
+  max-height: calc(100vh - 24px);
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: linear-gradient(180deg, rgba(16,25,44,0.96), rgba(9,14,25,0.96));
+  box-shadow: var(--shadow);
+  overflow:hidden;
+}
+
+.modalClose{
+  position:absolute;
+  top: 10px;
+  right: 12px;
+  width: 40px;
+  height: 40px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.04);
+  color: var(--text);
+  font-size: 26px;
+  cursor:pointer;
+  z-index: 3;
+}
+.modalClose:hover{ background: rgba(255,255,255,0.07); }
+
+.modalBody{
+  display:grid;
+  grid-template-columns: 420px 1fr;
+  gap: 16px;
+  padding: 16px;
+}
+
+.modalLeft{
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+}
+.modalCard{
+  width: 100%;
+  height: auto;
+  max-height: calc(100vh - 90px);
+  object-fit: contain;
+  border-radius: 18px;
+  /* preserves rounded corners even if image has no alpha */
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(0,0,0,0.35);
+}
+
+.modalRight{
+  min-width: 0;
+  display:flex;
+  flex-direction:column;
+  gap: 10px;
+}
+
+.modalTitle{
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+}
+.nameCost{ margin-left: 10px; vertical-align: middle; }
+
+.modalMeta{
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.block{
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.035);
+  padding: 12px 14px;
+}
+.blockLabel{
+  font-weight: 750;
+  margin-bottom: 6px;
+}
+.blockBody{
+  color: var(--text);
+  line-height: 1.45;
+}
+
+/* symbols */
+.sym{
+  width: 18px;
+  height: 18px;
+  vertical-align: -3px;
+  margin: 0 2px;
+  object-fit: contain;
+  image-rendering: auto;
+}
+.pip{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 6px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(0,0,0,0.28);
+  color: var(--text);
+  font-size: 12px;
+  vertical-align: -3px;
+  margin: 0 2px;
+}
+.kw{
+  display:inline-block;
+  padding: 1px 6px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.05);
+  font-size: 12px;
+  vertical-align: 1px;
+  margin: 0 2px;
+}
+
+@media (max-width: 980px){
+  .controls{ min-width: 0; width: 100%; }
+  .topbar{ flex-wrap: wrap; }
+  .modalBody{ grid-template-columns: 1fr; }
+  .modalCard{ max-height: 56vh; }
+}
