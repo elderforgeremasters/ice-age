@@ -113,6 +113,23 @@ function richText(str){
   return s;
 }
 
+// Only used for Rules / Flavor rendering (keeps other fields untouched)
+function sanitizeRulesFlavorText(str){
+  if(str == null) return "";
+  let s = String(str);
+
+  // Remove custom break tokens that shouldn't appear in the UI
+  s = s.replaceAll("{BL}", "").replaceAll("{BL2}", "");
+
+  // Remove hair space (U+200A) and common HTML entity variant
+  s = s.replaceAll("\u200A", "").replaceAll("&hairsp;", "");
+
+  // Normalize snow-suffixed tokens that you don't want rendered as snow
+  s = s.replaceAll("{1s}", "{1}").replaceAll("{Ws}", "{W}");
+
+  return s;
+}
+
 // ---- sorting (by filename prefix) ----
 function sortKeyFromImage(imagePath){
   const base = String(imagePath || "").split("/").pop() || "";
@@ -374,7 +391,11 @@ function setBlock(id, label, text){
 
   if (!el) return;
 
-  const t = (text || "").trim();
+  let tRaw = (text || "");
+  if(id === "mRules" || id === "mFlavor"){
+    tRaw = sanitizeRulesFlavorText(tRaw);
+  }
+  const t = String(tRaw).trim();
 
   // Ensure base styling + type styling
   el.classList.add("block");
