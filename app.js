@@ -144,6 +144,9 @@ function sanitizeRulesFlavorText(str){
   s = s.replace(/[\u00A0\u2000-\u200B\u202F\u205F\u3000]/g, "");
   s = s.replaceAll("&hairsp;", "");
 
+  // Tighten em dashes (remove spaces around —) for cleaner typography
+  s = s.replace(/\s*—\s*/g, "—");
+
   // Change {Tn} tokens to {Ts}
   s = s.replaceAll("{Tn}", "{Ts}");
 
