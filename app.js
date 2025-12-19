@@ -109,6 +109,16 @@ function richText(str){
   // Bold anything wrapped in backticks: `Vigilance` -> <strong>Vigilance</strong>
   s = s.replace(/`([^`]+)`/g, "<strong>$1</strong>");
 
+  // Planeswalker loyalty costs: make "+1:" / "-2:" / "-X:" stand out at line starts.
+  // Supports ASCII "-" and Unicode minus "−" (U+2212). Also matches literal <br> tags in source text.
+  const LOY_RE = /(^|\n|\r|<br\s*\/?>)\s*([+\-−](?:\d+|X)):/gi;
+  s = s.replace(LOY_RE, (m, pre, num) => {
+    const n = String(num).toUpperCase();
+    const sign = n.trim()[0];
+    const cls = (sign === "+") ? "loy loyPlus" : "loy loyMinus";
+    return `${pre}<span class="${cls}">${n}:</span>`;
+  });
+
   // Replace {Anything} with its icon (mana, keyword, etc.)
   s = s.replace(/\{([^}]+)\}/g, (m, tok) => iconIMGFromTok(tok));
 
@@ -131,12 +141,20 @@ function sanitizeRulesFlavorText(str){
 
   // Strip print-centering whitespace used in exported text (web should not render it)
   // U+2007 figure space, U+200A hair space, U+2009 thin space, U+202F narrow no-break, U+00A0 nbsp
-  s = s.replace(/[\u2007\u200A\u2009\u202F\u00A0]/g, "");
+  s = s.replace(/[\u00A0\u2000-\u200B\u202F\u205F\u3000]/g, "");
   s = s.replaceAll("&hairsp;", "");
 
   // Change {Tn} tokens to {Ts}
   s = s.replaceAll("{Tn}", "{Ts}");
 
+  return s;
+}
+
+// Lore display sanitizer: same as rules/flavor, plus tighter em-dash typography
+function sanitizeLoreText(str){
+  if(str == null) return "";
+  let s = sanitizeRulesFlavorText(str);
+  s = s.replace(/\s*—\s*/g, "—");
   return s;
 }
 
@@ -175,8 +193,15 @@ const CW_COLLECTORS = new Set([
 const CW_REVEALED = new Set();
 
 function collectorKey(card){
-  const raw = cleanCollector(card?.collector || "");
-  return (raw.split("/")[0] || "").trim();
+  const raw = cleanCollector(card?.collector || "").trim();
+
+  // Many cards use "N/697" while some special sheets use "N/60" etc.
+  // Only collapse to the left side when the denominator is 697; otherwise keep the full string.
+  if(raw.includes("/")){
+    const [left, right] = raw.split("/", 2).map(s => (s || "").trim());
+    return (right === "697") ? left : raw;
+  }
+  return raw;
 }
 
 function cardNumber(card){
@@ -263,70 +288,314 @@ function ensureModalNav(modal){
 function updateModalNavState(modal){
   const nav = ensureModalNav(modal);
   if(!nav) return;
+  const btns = nav.querySelectorAll(".modalNavBtn");
+  const prev = btns[0];
+  const next = btns[1];
+  if(prev) prev.disabled = !(CURRENT_INDEX > 0);
+  if(next) next.disabled = !(CURRENT_INDEX >= 0 && CURRENT_INDEX < FILTERED.length - 1);
+}
 
-// ---- Rarity dropdown (custom) ----
-let rarityUI = null;
+function setModalContentWarning(modal, card){
+  const imgEl = $("mImg") || modal.querySelector("#mImg") || modal.querySelector("img.modalCard") || modal.querySelector("img");
+  const left = modal.querySelector(".modalLeft") || imgEl?.parentElement;
+
+  // remove old overlay
+  left?.querySelector?.(".cwOverlay")?.remove();
+
+  if(!imgEl) return;
+
+  const needs = isContentWarn(card) && !isRevealed(card);
+  imgEl.classList.toggle("cwBlur", !!needs);
+
+  if(!needs) return;
+
+  if(left){
+    const ov = document.createElement("div");
+    ov.className = "cwOverlay";
+    ov.innerHTML = `<div class="cwMsg">Artwork depicts partial nudity.<br>Click to reveal.</div>`;
+    ov.addEventListener("click", (e)=>{
+      e.stopPropagation();
+      revealCard(card);
+      setModalContentWarning(modal, card);
+      // update grid to unblur this card too
+      render();
+    });
+    left.appendChild(ov);
+  }
+}
+
+function bindModalNavKeys(){
+  // one global handler; only active when modal is open
+  document.addEventListener("keydown", (e)=>{
+    const modal = modalEl();
+    if(!modal || !modal.classList.contains("open")) return;
+    if(e.key === "ArrowLeft"){ e.preventDefault(); gotoFilteredIndex(CURRENT_INDEX - 1); }
+    if(e.key === "ArrowRight"){ e.preventDefault(); gotoFilteredIndex(CURRENT_INDEX + 1); }
+  });
+}
+
+function cardMatches(card, q){
+  if(!q) return true;
+  const hay = [
+    card.name, card.type, card.rules, card.flavor, card.lore, card.art, card.cost, card.pt
+  ].map(x => String(x ?? "")).join(" ").toLowerCase();
+  return hay.includes(q);
+}
+
+function rarityKey(card){
+  return String(card.rarity ?? "").trim().toUpperCase();
+}
+
+function render(){
+  const grid = $("grid");
+  if(!grid) return;
+
+  grid.innerHTML = "";
+  for(const card of FILTERED){
+    const el = document.createElement("button");
+    el.className = "card";
+    el.type = "button";
+
+    const imgSrc = assetURL(card.image || "");
+    const title = escapeHtml(card.name || "");
+    const type = escapeHtml(card.type || "");
+
+    const cw = isContentWarn(card) && !isRevealed(card);
+    el.innerHTML = `
+      <div class="thumbWrap${cw ? " cw" : ""}">
+        <img class="thumb${cw ? " cwBlur" : ""}" src="${imgSrc}" alt="${title}" loading="lazy"
+          onerror="this.classList.add('missing'); this.alt=this.alt+' (missing image)';">
+        ${cw ? `<div class="cwOverlay"><div class="cwMsg">Artwork depicts partial nudity.<br>Click to reveal.</div></div>` : ``}
+      </div>
+      <div class="cardMeta">
+        <div class="cardName">${title}</div>
+        <div class="cardType">${type}</div>
+      </div>
+    `;
+
+    el.addEventListener("click", (e) => {
+      if(isContentWarn(card) && !isRevealed(card)){
+        e.preventDefault();
+        e.stopPropagation();
+        revealCard(card);
+        render();
+        return;
+      }
+      openModal(card);
+    });
+
+    grid.appendChild(el);
+  }
+
+  const status = $("status");
+  if(status) status.textContent = `${FILTERED.length} cards`;
+}
+
+function applyFilters(){
+  const q = ($("q")?.value || "").trim().toLowerCase();
+  const r = ($("rarity")?.value || "").trim().toUpperCase();
+
+  FILTERED = ALL_CARDS.filter(c => {
+    if(q && !cardMatches(c, q)) return false;
+    if(r && rarityKey(c) !== r) return false;
+    return true;
+  });
+
+  render();
+}
+
+function ensureLoreArtBlocks(modal){
+  // Ensure Lore/Art blocks exist in the modal (only shown when text exists)
+  // Desired order: Rules, Flavor, Lore
+  const right = modal?.querySelector?.(".modalRight");
+  if(!right) return;
+
+  const rulesEl = document.getElementById("mRules") || right.querySelector("#mRules");
+  const flavorEl = document.getElementById("mFlavor") || right.querySelector("#mFlavor");
+
+  function insertAfter(refEl, el){
+    if(refEl && refEl.parentElement){
+      if(refEl.nextSibling) refEl.parentElement.insertBefore(el, refEl.nextSibling);
+      else refEl.parentElement.appendChild(el);
+      return;
+    }
+    right.appendChild(el);
+  }
+
+  function ensure(id, className, afterEl){
+    let el = document.getElementById(id) || right.querySelector(`#${id}`);
+    if(el) return el;
+
+    el = document.createElement("div");
+    el.id = id;
+    el.className = `block ${className}`;
+
+    if(afterEl){
+      insertAfter(afterEl, el);
+    } else if(flavorEl){
+      insertAfter(flavorEl, el);
+    } else if(rulesEl){
+      insertAfter(rulesEl, el);
+    } else {
+      right.appendChild(el);
+    }
+    return el;
+  }
+  const loreEl = ensure("mLore", "loreBlock", flavorEl);
+
+  // If an Art block exists from older builds, hide it.
+  const art = document.getElementById("mArt") || right.querySelector("#mArt");
+  if(art) art.style.display = "none";
+}
+
+
+
+// ---- modal ----
+function modalEl(){
+  return $("modal") || document.querySelector(".modal");
+}
+
+function openModal(card){
+  const modal = modalEl();
+  if(!modal) return;
+
+  CURRENT_INDEX = findFilteredIndex(card);
+  if(CURRENT_INDEX < 0) CURRENT_INDEX = 0;
+
+  // Title & cost: prefer #mTitle, else inject into the first header area we can find
+  const titleEl =
+    $("mTitle") ||
+    modal.querySelector("#mTitle") ||
+    modal.querySelector(".modalTitle") ||
+    modal.querySelector("h2") ||
+    null;
+
+  const costHTML = card.cost ? `<span class="nameCost">${richText(card.cost)}</span>` : "";
+  if(titleEl){
+    titleEl.innerHTML = `${escapeHtml(card.name || "")}${costHTML}`;
+    attachIconFallbacks(titleEl);
+  }
+
+  // Image
+  const imgEl =
+    $("mImg") ||
+    modal.querySelector("#mImg") ||
+    modal.querySelector("img.modalCard") ||
+    modal.querySelector("img");
+
+  if(imgEl){
+    imgEl.src = assetURL(card.image || "");
+    imgEl.alt = card.name || "";
+  }
+
+  // Blur overlay (content warnings)
+  setModalContentWarning(modal, card);
+
+  // Meta line (type, pt, rarity, set full name, year+Atlantica Remasters, collector)
+  const metaBits = [];
+  if(card.type) metaBits.push(escapeHtml(card.type));
+  if(card.pt) metaBits.push(escapeHtml(normalizeSlash(card.pt)));
+  metaBits.push(escapeHtml(rarityLong(card.rarity)));
+  const si = getSetInfo(card.set);
+  if(si.name) metaBits.push(escapeHtml(si.name));
+  if(isNewCard(card)){
+    metaBits.push(escapeHtml(`2024 Atlantica Remasters`));
+  } else if(si.year){
+    metaBits.push(escapeHtml(`${si.year} Atlantica Remasters`));
+  }
+  const col = cleanCollector(card.collector);
+  if(col) metaBits.push(escapeHtml(col));
+
+  const metaEl = $("mMeta") || modal.querySelector("#mMeta") || modal.querySelector(".modalMeta") || null;
+  if(metaEl){
+    metaEl.innerHTML = metaBits.join(" • ");
+    attachIconFallbacks(metaEl);
+  }
+
+  // Blocks — hide empties
+  ensureLoreArtBlocks(modal);
+  setBlock("mRules", "Rules", card.rules);
+  setBlock("mFlavor", "Flavor", card.flavor);
+  setBlock("mLore", "Lore", card.lore);
+  // Hide any completely empty "block" containers that might be in the HTML template
+  modal.querySelectorAll(".block").forEach(b => {
+    const txt = (b.textContent || "").trim();
+    if(!txt) b.style.display = "none";
+  });
+
+  // Nav buttons
+  updateModalNavState(modal);
+
+  // open
+  modal.classList.add("open");
+  modal.setAttribute("aria-hidden", "false");
+}
+
+function closeModal(){
+  const modal = modalEl();
+  if(!modal) return;
+  modal.classList.remove("open");
+  modal.setAttribute("aria-hidden", "true");
+}
+
+
 
 function initRarityDropdown(){
   const sel = $("rarity");
   const btn = $("rarityBtn");
   const label = $("rarityLabel");
   const menu = $("rarityMenu");
-
   if(!sel || !btn || !label || !menu) return;
 
   function setLabelFromValue(){
     const opt = Array.from(sel.options).find(o => o.value === sel.value);
     label.textContent = opt ? opt.textContent : "All rarities";
-    // reflect state for accessibility
-    btn.setAttribute("aria-label", `Rarity: ${label.textContent}`);
   }
 
   function openMenu(){
     menu.hidden = false;
     btn.setAttribute("aria-expanded", "true");
   }
-
   function closeMenu(){
     menu.hidden = true;
     btn.setAttribute("aria-expanded", "false");
   }
 
-  function toggleMenu(){
-    if(menu.hidden) openMenu(); else closeMenu();
-  }
-
   btn.addEventListener("click", (e) => {
     e.stopPropagation();
-    toggleMenu();
+    if(menu.hidden) openMenu(); else closeMenu();
   });
 
   menu.addEventListener("click", (e) => {
+    e.stopPropagation();
     const t = e.target;
     if(!(t instanceof HTMLElement)) return;
     const val = t.getAttribute("data-value");
     if(val === null) return;
     sel.value = val;
-    setLabelFromValue();
-    applyFilters();
+    sel.dispatchEvent(new Event("change"));
     closeMenu();
   });
 
-  // close when clicking anywhere else
+  // Close on outside click
   document.addEventListener("click", () => closeMenu());
 
-  // keep label synced if code changes the select
+  // Close on Escape (without interfering with modal Escape)
+  document.addEventListener("keydown", (e) => {
+    if(e.key === "Escape") closeMenu();
+  });
+
+  // Keep label in sync if code changes select value
   sel.addEventListener("change", () => setLabelFromValue());
 
   setLabelFromValue();
-  rarityUI = { setLabelFromValue, closeMenu };
 }
 
 function bindModalClose(){
   const modal = modalEl();
   if(!modal) return;
 
-  // Close buttons: try a bunch of common selectors (your "X" button)
+  // Close buttons
   const btns = modal.querySelectorAll(
     "#mClose, .close, .modalClose, button[aria-label='Close'], button[title='Close'], button[data-close='modal']"
   );
@@ -335,58 +604,129 @@ function bindModalClose(){
   // Clicking backdrop closes
   modal.addEventListener("click", (e) => {
     const t = e.target;
-    if(t === modal || t.id === "modalBackdrop" || (t && t.classList && t.classList.contains("backdrop"))){
+    if(t === modal || t.dataset?.close === "modal" || t.classList.contains("modalBackdrop")){
       closeModal();
+    }
+  });
+
+  // ESC closes (modal only)
+  document.addEventListener("keydown", (e) => {
+    if(e.key === "Escape"){
+      const m = modalEl();
+      if(m && m.classList.contains("open")){
+        e.preventDefault();
+        closeModal();
+      }
     }
   });
 }
 
-// ESC closes modal
-document.addEventListener("keydown", (e) => {
-  if(e.key === "Escape") closeModal();
-});
+function setBlock(id, label, text){
+  // Art block is intentionally omitted from the web viewer.
+  if(id === "mArt" || id === "modalArt") return;
+  // Be tolerant of markup variations across patches (mRules vs modalRules, etc.).
+  const candidates = [];
+  if (id) candidates.push(id);
+  if (id === "mRules") candidates.push("modalRules", "rules", "rulesBlock");
+  if (id === "mFlavor") candidates.push("modalFlavor", "flavor", "flavorBlock");
+  if (id === "mLore") candidates.push("modalLore", "lore", "loreBlock");
+  if (id === "mArt") candidates.push("modalArt", "art", "artBlock");
 
-// Mini helper: adjust stacked boxes (rules/flavor/lore) spacing
-function setBlock(id, labelText, text){
-  const el = $(id);
-  if(!el) return;
-  const has = (text || "").trim().length > 0;
-  if(!has){ el.style.display = "none"; return; }
+  let el = null;
+  for (const cid of candidates){
+    el = document.getElementById(cid);
+    if (el) break;
+  }
+
+  // Last resort: locate within the modal by common selectors.
+  if (!el){
+    const modal = document.getElementById("modal") || document.querySelector(".modal");
+    if (modal){
+      if (id === "mRules") el = modal.querySelector('[data-block="rules"], #modalRules, #mRules, #rules');
+      if (id === "mFlavor") el = modal.querySelector('[data-block="flavor"], #modalFlavor, #mFlavor, #flavor');
+      if (id === "mLore") el = modal.querySelector('[data-block="lore"], #modalLore, #mLore, #lore');
+      if (id === "mArt") el = modal.querySelector('[data-block="art"], #modalArt, #mArt, #art');
+    }
+  }
+
+  if (!el) return;
+
+  let tRaw = (text || "");
+  if(id === "mLore"){
+    tRaw = sanitizeLoreText(tRaw);
+  } else if(id === "mRules" || id === "mFlavor" || id === "mArt"){
+    tRaw = sanitizeRulesFlavorText(tRaw);
+  }
+  const t = String(tRaw).trim();
+
+  // Ensure base styling + type styling
+  el.classList.add("block");
+  el.classList.toggle("rulesBlock", id === "mRules");
+  el.classList.toggle("flavorBlock", id === "mFlavor");
+  el.classList.toggle("loreBlock", id === "mLore");
+  el.classList.toggle("artBlock", id === "mArt");
+
+  if (!t){
+    el.style.display = "none";
+    el.innerHTML = "";
+    return;
+  }
+
   el.style.display = "block";
-  el.innerHTML = labelText ? `<strong>${labelText}</strong> ${escapeHtml(text)}` : escapeHtml(text);
+
+  let bodyHtml = richText(t);
+  if(id === "mLore") bodyHtml = `<span class="lead loreLead">Lore:</span> ` + bodyHtml;
+  if(id === "mArt")  bodyHtml = `<span class="lead artLead">Art:</span> ` + bodyHtml;
+
+  // If your HTML template already contains a body element, use it.
+  const body = el.querySelector?.(".blockBody") || el.querySelector?.(".body") || null;
+  if (body){
+    body.innerHTML = bodyHtml;
+  } else {
+    el.innerHTML = `
+      <div class="blockLabel">${escapeHtml(label || "")}</div>
+      <div class="blockBody">${bodyHtml}</div>
+    `;
+  }
+
+  attachIconFallbacks(el);
 }
 
+
+// ---- Boot ----
 async function init(){
-  // load cards
-  const res = await fetch("cards.json");
-  ALL_CARDS = await res.json();
+  const status = $("status");
+  try{
+    if(status) status.textContent = "Loading cards…";
+    const url = assetURL("data/cards.json");
+    const res = await fetch(url, { cache: "no-store" });
+    if(!res.ok) throw new Error(`HTTP ${res.status} fetching ${url}`);
+    const data = await res.json();
+    if(!Array.isArray(data)) throw new Error("cards.json is not an array");
 
-  // hook search + rarity
-  $("q")?.addEventListener("input", applyFilters);
-  $("rarity")?.addEventListener("change", () => {
-    rarityUI?.setLabelFromValue?.();
+    // sort once, globally
+    data.sort((a,b) => sortKeyFromImage(a.image) - sortKeyFromImage(b.image));
+
+    ALL_CARDS = data;
+    FILTERED = data;
+
+    $("q")?.addEventListener("input", applyFilters);
+    $("rarity")?.addEventListener("change", applyFilters);
+    $("clear")?.addEventListener("click", () => {
+      if($("q")) $("q").value = "";
+      if($("rarity")) { $("rarity").value = ""; $("rarity").dispatchEvent(new Event("change")); }
+      applyFilters();
+    });
+
+    initRarityDropdown();
+    bindModalClose();
+    bindModalNavKeys();
     applyFilters();
-  });
-
-  // clear
-  $("clear")?.addEventListener("click", () => {
-    if($("q")) $("q").value = "";
-    if($("rarity")) $("rarity").value = "";
-    rarityUI?.setLabelFromValue?.();
-    applyFilters();
-  });
-
-  initRarityDropdown();
-  bindModalClose();
-
-  // initial render
-  applyFilters();
+  }catch(err){
+    console.error(err);
+    if(status) status.textContent = `Failed to load cards: ${err?.message || err}`;
+    if(status) status.style.opacity = "1";
+  }
 }
 
-window.addEventListener("DOMContentLoaded", () => {
-  init().catch(err => {
-    console.error(err);
-    const status = $("status");
-    if(status) status.textContent = "Failed to load cards. Check console.";
-  });
-});
+document.addEventListener("DOMContentLoaded", init);
