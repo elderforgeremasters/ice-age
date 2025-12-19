@@ -109,6 +109,14 @@ function richText(str){
   // Bold anything wrapped in backticks: `Vigilance` -> <strong>Vigilance</strong>
   s = s.replace(/`([^`]+)`/g, "<strong>$1</strong>");
 
+  // Planeswalker loyalty costs: make "+1:" / "-2:" stand out at line starts
+  // Supports ASCII "-" and Unicode minus "−" (U+2212).
+  s = s.replace(/(^|\n)\s*([+\-−]\d+):/g, (m, pre, num) => {
+    const sign = num.trim()[0];
+    const cls = (sign === "+") ? "loy loyPlus" : "loy loyMinus";
+    return `${pre}<span class="${cls}">${num}:</span>`;
+  });
+
   // Replace {Anything} with its icon (mana, keyword, etc.)
   s = s.replace(/\{([^}]+)\}/g, (m, tok) => iconIMGFromTok(tok));
 
@@ -175,8 +183,15 @@ const CW_COLLECTORS = new Set([
 const CW_REVEALED = new Set();
 
 function collectorKey(card){
-  const raw = cleanCollector(card?.collector || "");
-  return (raw.split("/")[0] || "").trim();
+  const raw = cleanCollector(card?.collector || "").trim();
+
+  // Many cards use "N/697" while some special sheets use "N/60" etc.
+  // Only collapse to the left side when the denominator is 697; otherwise keep the full string.
+  if(raw.includes("/")){
+    const [left, right] = raw.split("/", 2).map(s => (s || "").trim());
+    return (right === "697") ? left : raw;
+  }
+  return raw;
 }
 
 function cardNumber(card){
@@ -651,7 +666,7 @@ function setBlock(id, label, text){
 
   let bodyHtml = richText(t);
   if(id === "mLore") bodyHtml = `<span class="lead loreLead">Lore:</span> ` + bodyHtml;
-  if(id === "mArt")  bodyHtml = `<span class="lead artLead">Art Brief:</span> ` + bodyHtml;
+  if(id === "mArt")  bodyHtml = `<span class="lead artLead">Art:</span> ` + bodyHtml;
 
   // If your HTML template already contains a body element, use it.
   const body = el.querySelector?.(".blockBody") || el.querySelector?.(".body") || null;
