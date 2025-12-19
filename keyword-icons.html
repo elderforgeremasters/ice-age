@@ -3,343 +3,153 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>ElderForge — Ice Age • Keyword Icons</title>
+  <title>Keyword Icons — ElderForge — Ice Age</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="topbar">
     <div class="brand">
-      <a href="index.html">
-        <div class="title">ElderForge — Ice Age</div>
-      </a>
-      <div class="subtitle">Guide • Keyword Icons</div>
+      <div class="title">ElderForge — Ice Age</div>
+      <div class="subtitle">Keyword Icons</div>
     </div>
-
-    <div class="controls" style="min-width:auto">
-      <a class="btn" href="index.html">Cards</a>
-      <div class="menu" id="guide">
-        <button class="btn menuBtn" type="button" aria-haspopup="menu" aria-expanded="false">
-          Guide <span class="ddChev">▾</span>
+    <div class="nav">
+      <a class="navBtn" href="index.html">Cards database</a>
+      <div class="dropdown" id="guideDD">
+        <button class="ddBtn ddSmall" id="guideBtn" type="button" aria-haspopup="menu" aria-expanded="false">
+          <span>Guide</span>
+          <span class="ddChev">▾</span>
         </button>
-        <div class="menuDrop" role="menu" aria-label="Guide">
-          <a class="menuItem" href="keyword-icons.html" role="menuitem">Keyword Icons</a>
-          <a class="menuItem" href="disclaimer.html" role="menuitem">Disclaimer</a>
-          <a class="menuItem" href="privacy.html" role="menuitem">Privacy</a>
-          <a class="menuItem" href="contact.html" role="menuitem">Contact</a>
+        <div class="ddMenu" id="guideMenu" role="menu" aria-label="Guide" hidden>
+          <a class="ddLink" href="keyword-icons.html" role="menuitem">Keyword Icons</a>
+          <a class="ddLink" href="basic-rules.html" role="menuitem">Basic Rules</a>
+          <a class="ddLink" href="campaign-setup.html" role="menuitem">Campaign Setup</a>
+          <a class="ddLink" href="geography.html" role="menuitem">Geography</a>
         </div>
       </div>
     </div>
   </header>
-
   <main class="pageWrap">
-    <article class="pageCard">
+    <section class="pagePanel">
       <h1>Keyword Icons</h1>
-      <div class="kwIntro">
-        <p class="muted">Full-art cards are beautiful… and occasionally cryptic. This page is a quick “icon → meaning” decoder for the playgroup.</p>
-      </div>
+      <p>Full-art cards sometimes show only the icon. This page is here so your brain can build fast “oh that symbol means…” reflexes.</p>
 
-      <div class="kwGrid">
-        <section class="kwItem">
-          <div class="kwIcons">
-          <img class="kwIcon" data-icon="Changeling" alt="Changeling icon" />
-          </div>
-          <div class="kwName">Changeling</div>
-          <p class="kwText">This creature is every creature type at all times.</p>
-        </section>
-        <section class="kwItem">
-          <div class="kwIcons">
-          <img class="kwIcon" data-icon="Cycling" alt="Cycling icon" />
-          </div>
-          <div class="kwName">Cycling</div>
-          <p class="kwText">Pay the cycling cost, discard this card: draw a card. Great for smoothing draws.</p>
-        </section>
-        <section class="kwItem">
-          <div class="kwIcons">
-          <img class="kwIcon" data-icon="Deathtouch" alt="Deathtouch icon" />
-          </div>
-          <div class="kwName">Deathtouch</div>
-          <p class="kwText">Any amount of damage this creature deals to a creature is enough to destroy it.</p>
-        </section>
-        <section class="kwItem">
-          <div class="kwIcons">
-          <img class="kwIcon" data-icon="Defender" alt="Defender icon" />
-          </div>
-          <div class="kwName">Defender</div>
-          <p class="kwText">This creature can’t attack.</p>
-        </section>
-        <section class="kwItem">
-          <div class="kwIcons">
-          <img class="kwIcon" data-icon="DoubleStrike" alt="Double strike icon" />
-          </div>
-          <div class="kwName">Double strike</div>
-          <p class="kwText">This creature deals both first-strike and regular combat damage.</p>
-        </section>
-        <section class="kwItem">
-          <div class="kwIcons">
-          <img class="kwIcon" data-icon="Equip" alt="Equip icon" />
-          </div>
-          <div class="kwName">Equip</div>
-          <p class="kwText">Attach an Equipment to a creature you control. Equipment stays on the battlefield.</p>
-        </section>
-        <section class="kwItem">
-          <div class="kwIcons">
-          <img class="kwIcon" data-icon="Fear" alt="Fear icon" />
-          </div>
-          <div class="kwName">Fear</div>
-          <p class="kwText">Can’t be blocked except by artifact creatures and/or black creatures.</p>
-        </section>
-        <section class="kwItem">
-          <div class="kwIcons">
-          <img class="kwIcon" data-icon="FirstStrike" alt="First strike icon" />
-          </div>
-          <div class="kwName">First strike</div>
-          <p class="kwText">This creature deals combat damage before creatures without first strike.</p>
-        </section>
-        <section class="kwItem">
-          <div class="kwIcons">
-          <img class="kwIcon" data-icon="Flash" alt="Flash icon" />
-          </div>
-          <div class="kwName">Flash</div>
-          <p class="kwText">You may cast this spell any time you could cast an instant.</p>
-        </section>
-        <section class="kwItem">
-          <div class="kwIcons">
-          <img class="kwIcon" data-icon="Flashback" alt="Flashback icon" />
-          </div>
-          <div class="kwName">Flashback</div>
-          <p class="kwText">You may cast this card from your graveyard for its flashback cost, then it’s exiled.</p>
-        </section>
-        <section class="kwItem">
-          <div class="kwIcons">
-          <img class="kwIcon" data-icon="Flying" alt="Flying icon" />
-          </div>
-          <div class="kwName">Flying</div>
-          <p class="kwText">Can’t be blocked except by creatures with flying or reach.</p>
-        </section>
-        <section class="kwItem">
-          <div class="kwIcons">
-          <img class="kwIcon" data-icon="Haste" alt="Haste icon" />
-          </div>
-          <div class="kwName">Haste</div>
-          <p class="kwText">This creature can attack and use {T} abilities as soon as it enters play.</p>
-        </section>
-        <section class="kwItem">
-          <div class="kwIcons">
-          <img class="kwIcon" data-icon="Hexproof" alt="Hexproof icon" />
-          <img class="kwIcon" data-icon="HexproofB" alt="Hexproof icon" />
-          <img class="kwIcon" data-icon="HexproofR" alt="Hexproof icon" />
-          <img class="kwIcon" data-icon="HexproofS" alt="Hexproof icon" />
-          </div>
-          <div class="kwName">Hexproof</div>
-          <p class="kwText">This permanent can’t be the target of spells or abilities your opponents control (some cards show variant icons).</p>
-        </section>
-        <section class="kwItem">
-          <div class="kwIcons">
-          <img class="kwIcon" data-icon="Horsemanship" alt="Horsemanship icon" />
-          </div>
-          <div class="kwName">Horsemanship</div>
-          <p class="kwText">Like flying, but only other creatures with horsemanship can block it.</p>
-        </section>
-        <section class="kwItem">
-          <div class="kwIcons">
-          <img class="kwIcon" data-icon="Indestructible" alt="Indestructible icon" />
-          </div>
-          <div class="kwName">Indestructible</div>
-          <p class="kwText">Damage and ‘destroy’ effects don’t destroy this permanent.</p>
-        </section>
-        <section class="kwItem">
-          <div class="kwIcons">
-          <img class="kwIcon" data-icon="Infect" alt="Infect icon" />
-          </div>
-          <div class="kwName">Infect</div>
-          <p class="kwText">Deals damage to creatures as -1/-1 counters and to players as poison counters.</p>
-        </section>
-        <section class="kwItem">
-          <div class="kwIcons">
-          <img class="kwIcon" data-icon="Intimidate" alt="Intimidate icon" />
-          </div>
-          <div class="kwName">Intimidate</div>
-          <p class="kwText">Can’t be blocked except by artifact creatures and/or creatures that share a color with it.</p>
-        </section>
-        <section class="kwItem">
-          <div class="kwIcons">
-          <img class="kwIcon" data-icon="Kicker" alt="Kicker icon" />
-          </div>
-          <div class="kwName">Kicker</div>
-          <p class="kwText">You may pay an extra kicker cost as you cast this spell for a bigger effect.</p>
-        </section>
-        <section class="kwItem">
-          <div class="kwIcons">
-          <img class="kwIcon" data-icon="Islandwalk" alt="Landwalk icon" />
-          <img class="kwIcon" data-icon="Swampwalk" alt="Landwalk icon" />
-          <img class="kwIcon" data-icon="Mountainwalk" alt="Landwalk icon" />
-          <img class="kwIcon" data-icon="Forestwalk" alt="Landwalk icon" />
-          <img class="kwIcon" data-icon="Snowwalk" alt="Landwalk icon" />
-          </div>
-          <div class="kwName">Landwalk</div>
-          <p class="kwText">If the defending player controls the matching land type, this creature can’t be blocked.</p>
-        </section>
-        <section class="kwItem">
-          <div class="kwIcons">
-          <img class="kwIcon" data-icon="Lifelink" alt="Lifelink icon" />
-          </div>
-          <div class="kwName">Lifelink</div>
-          <p class="kwText">Damage this creature deals also causes you to gain that much life.</p>
-        </section>
-        <section class="kwItem">
-          <div class="kwIcons">
-          <img class="kwIcon" data-icon="Menace" alt="Menace icon" />
-          </div>
-          <div class="kwName">Menace</div>
-          <p class="kwText">Can’t be blocked except by two or more creatures.</p>
-        </section>
-        <section class="kwItem">
-          <div class="kwIcons">
-          <img class="kwIcon" data-icon="Mill" alt="Mill icon" />
-          </div>
-          <div class="kwName">Mill</div>
-          <p class="kwText">Put cards from the top of a library into its graveyard.</p>
-        </section>
-        <section class="kwItem">
-          <div class="kwIcons">
-          <img class="kwIcon" data-icon="Multikicker" alt="Multikicker icon" />
-          </div>
-          <div class="kwName">Multikicker</div>
-          <p class="kwText">You may pay the multikicker cost any number of times as you cast this spell.</p>
-        </section>
-        <section class="kwItem">
-          <div class="kwIcons">
-          <img class="kwIcon" data-icon="ProtectionW" alt="Protection icon" />
-          <img class="kwIcon" data-icon="ProtectionU" alt="Protection icon" />
-          <img class="kwIcon" data-icon="ProtectionB" alt="Protection icon" />
-          <img class="kwIcon" data-icon="ProtectionR" alt="Protection icon" />
-          <img class="kwIcon" data-icon="ProtectionG" alt="Protection icon" />
-          <img class="kwIcon" data-icon="ProtectionS" alt="Protection icon" />
-          </div>
-          <div class="kwName">Protection</div>
-          <p class="kwText">Prevents damage, enchanting/equipping, blocking, and targeting from the stated quality (often a color).</p>
-        </section>
-        <section class="kwItem">
-          <div class="kwIcons">
-          <img class="kwIcon" data-icon="Reach" alt="Reach icon" />
-          </div>
-          <div class="kwName">Reach</div>
-          <p class="kwText">Can block creatures with flying.</p>
-        </section>
-        <section class="kwItem">
-          <div class="kwIcons">
-          <img class="kwIcon" data-icon="Scry" alt="Scry icon" />
-          </div>
-          <div class="kwName">Scry</div>
-          <p class="kwText">Look at the top cards of your library, put any number on bottom and the rest on top.</p>
-        </section>
-        <section class="kwItem">
-          <div class="kwIcons">
-          <img class="kwIcon" data-icon="Shadow3" alt="Shadow icon" />
-          </div>
-          <div class="kwName">Shadow</div>
-          <p class="kwText">Can block or be blocked only by creatures with shadow.</p>
-        </section>
-        <section class="kwItem">
-          <div class="kwIcons">
-          <img class="kwIcon" data-icon="Shroud" alt="Shroud icon" />
-          </div>
-          <div class="kwName">Shroud</div>
-          <p class="kwText">This permanent can’t be the target of spells or abilities (from anyone).</p>
-        </section>
-        <section class="kwItem">
-          <div class="kwIcons">
-          <img class="kwIcon" data-icon="Toxic" alt="Toxic icon" />
-          </div>
-          <div class="kwName">Toxic</div>
-          <p class="kwText">When this creature deals combat damage to a player, they get that many poison counters.</p>
-        </section>
-        <section class="kwItem">
-          <div class="kwIcons">
-          <img class="kwIcon" data-icon="Trample" alt="Trample icon" />
-          </div>
-          <div class="kwName">Trample</div>
-          <p class="kwText">Excess damage to blockers carries over to the defending player/planeswalker.</p>
-        </section>
-        <section class="kwItem">
-          <div class="kwIcons">
-          <img class="kwIcon" data-icon="Vigilance" alt="Vigilance icon" />
-          </div>
-          <div class="kwName">Vigilance</div>
-          <p class="kwText">Attacking doesn’t cause this creature to tap.</p>
-        </section>
-        <section class="kwItem">
-          <div class="kwIcons">
-          <img class="kwIcon" data-icon="Ward" alt="Ward icon" />
-          </div>
-          <div class="kwName">Ward</div>
-          <p class="kwText">Spells/abilities that target this cost extra; if not paid, they’re countered.</p>
-        </section>
-        <section class="kwItem">
-          <div class="kwIcons">
-          <img class="kwIcon" data-icon="Wither" alt="Wither icon" />
-          </div>
-          <div class="kwName">Wither</div>
-          <p class="kwText">Deals damage to creatures in the form of -1/-1 counters.</p>
-        </section>
-      </div>
+      <div class="iconSectionTitle">Keywords with icons</div>
+      <div id="withIcons" class="iconList"></div>
 
-      <p class="muted" style="margin-top:14px">Icon loading note: this page looks for each icon in <code>assets/icons/</code> and will try <code>.webp</code>, then <code>.png</code>, then <code>.svg</code>.</p>
+      <div class="iconSectionTitle">Keywords without icons</div>
+      <div id="noIcons" class="iconList"></div>
 
-    </article>
+      <script>
+      const WITH_ICONS = [
+        { name:"Deathtouch", icons:["Deathtouch"], desc:"Any amount of damage this creature deals to a creature is enough to destroy it." },
+        { name:"Defender", icons:["Defender"], desc:"This creature can't attack." },
+        { name:"Double strike", icons:["DoubleStrike"], desc:"This creature deals both first-strike damage and regular combat damage." },
+        { name:"Fear", icons:["Fear"], desc:"This creature can't be blocked except by artifact creatures and/or black creatures." },
+        { name:"First strike", icons:["FirstStrike"], desc:"This creature deals combat damage before creatures without first strike." },
+        { name:"Flash", icons:["Flash"], desc:"You may cast this spell any time you could cast an instant." },
+        { name:"Flashback", icons:["Flashback"], desc:"You may cast this card from your graveyard for its flashback cost. Then it’s exiled." },
+        { name:"Flying", icons:["Flying"], desc:"This creature can't be blocked except by creatures with flying or reach." },
+        { name:"Haste", icons:["Haste"], desc:"This creature can attack and use activated abilities with {T} as soon as it enters play." },
+        { name:"Hexproof", icons:["Hexproof","HexproofB","HexproofR","HexproofS"], desc:"This permanent can’t be the target of spells or abilities your opponents control (sometimes shown with color-specific variants)." },
+        { name:"Horsemanship", icons:["Horsemanship"], desc:"This creature can't be blocked except by creatures with horsemanship." },
+        { name:"Indestructible", icons:["Indestructible"], desc:"Effects that say “destroy” don’t destroy it. Lethal damage doesn’t destroy it either." },
+        { name:"Infect", icons:["Infect"], desc:"This creature deals damage to creatures as -1/-1 counters and to players as poison counters." },
+        { name:"Intimidate", icons:["Intimidate"], desc:"This creature can't be blocked except by artifact creatures and/or creatures that share a color with it." },
+        { name:"Landwalk", icons:["Islandwalk","Swampwalk","Mountainwalk","Forestwalk","Snowwalk"], desc:"If defending player controls the named land type, this creature can’t be blocked." },
+        { name:"Lifelink", icons:["Lifelink"], desc:"Damage dealt by this creature also causes you to gain that much life." },
+        { name:"Menace", icons:["Menace"], desc:"This creature can’t be blocked except by two or more creatures." },
+        { name:"Protection", icons:["ProtectionW","ProtectionU","ProtectionB","ProtectionR","ProtectionG","ProtectionS"], desc:"A bundle of “can’t be damaged / enchanted / equipped / blocked / targeted” by the given quality (often shown with color variants)." },
+        { name:"Reach", icons:["Reach"], desc:"This creature can block creatures with flying." },
+        { name:"Shadow", icons:["Shadow3"], desc:"This creature can block or be blocked only by other creatures with shadow." },
+        { name:"Shroud", icons:["Shroud"], desc:"This permanent can’t be the target of spells or abilities." },
+        { name:"Toxic", icons:["Toxic"], desc:"When this creature deals combat damage to a player, that player also gets poison counters (the number matters)." },
+        { name:"Trample", icons:["Trample"], desc:"Excess combat damage can be assigned to the defending player or planeswalker." },
+        { name:"Vigilance", icons:["Vigilance"], desc:"Attacking doesn’t cause this creature to tap." },
+        { name:"Ward", icons:["Ward"], desc:"Spells/abilities your opponents use to target this cost extra (or have another requirement) or they’re countered." },
+        { name:"Wither", icons:["Wither"], desc:"This creature deals damage to creatures as -1/-1 counters." },
+      ];
+
+      const NO_ICONS = [
+        { name:"Changeling", desc:"This creature is every creature type." },
+        { name:"Cycling", desc:"Pay the cycling cost, discard this card: draw a card." },
+        { name:"Equip", desc:"Attach an Equipment to a creature you control for the equip cost." },
+        { name:"Kicker", desc:"You may pay an extra kicker cost as you cast the spell for a bigger effect." },
+        { name:"Mill", desc:"Put cards from the top of a library into a graveyard." },
+        { name:"Multikicker", desc:"You may pay the multikicker cost any number of times; the spell scales with how many times you paid." },
+        { name:"Scry", desc:"Look at cards from the top of your library and put any number on bottom and the rest on top." },
+      ];
+
+      function makeIconImg(token){
+        const img = document.createElement("img");
+        img.className = "iconImg";
+        img.alt = token;
+        const tries = [
+          `assets/icons/${token}.webp`,
+          `assets/icons/${token}.png`,
+          `assets/icons/${token}.svg`,
+        ];
+        let i = 0;
+        img.src = tries[i];
+        img.addEventListener("error", ()=>{
+          i++;
+          if(i < tries.length) img.src = tries[i];
+        });
+        return img;
+      }
+
+      function rowWithIcons(item){
+        const row = document.createElement("div");
+        row.className = "iconRow";
+
+        const stack = document.createElement("div");
+        stack.className = "iconStack";
+        item.icons.forEach(tok => stack.appendChild(makeIconImg(tok)));
+
+        const text = document.createElement("div");
+        text.innerHTML = `<div class="iconName">${item.name}</div><div class="iconDesc">${item.desc}</div>`;
+
+        row.appendChild(stack);
+        row.appendChild(text);
+        return row;
+      }
+
+      function rowNoIcons(item){
+        const row = document.createElement("div");
+        row.className = "iconRow";
+
+        const left = document.createElement("div");
+        left.className = "iconTextOnly";
+        left.textContent = "—";
+
+        const text = document.createElement("div");
+        text.innerHTML = `<div class="iconName">${item.name}</div><div class="iconDesc">${item.desc}</div>`;
+
+        row.appendChild(left);
+        row.appendChild(text);
+        return row;
+      }
+
+      const withEl = document.getElementById("withIcons");
+      WITH_ICONS.forEach(it => withEl.appendChild(rowWithIcons(it)));
+
+      const noEl = document.getElementById("noIcons");
+      NO_ICONS.forEach(it => noEl.appendChild(rowNoIcons(it)));
+      </script>
+
+    </section>
   </main>
-
   <footer class="footer">
     <div class="footerInner">
-      <div class="footerNote">This site is maintained for a private playgroup.</div>
-      <div class="footerLinks">
+      <div class="footerLeft">
         <a class="footerLink" href="contact.html">Contact</a>
+        <span class="footerText">This site is maintained for a private playgroup. Use the contact method you received this link through.</span>
+      </div>
+      <div class="footerLinks">
         <a class="footerLink" href="disclaimer.html">Disclaimer</a>
         <a class="footerLink" href="privacy.html">Privacy</a>
       </div>
     </div>
   </footer>
-
-  <script>
-    // lightweight Guide menu toggle for touch devices
-    (function(){
-      const wrap = document.getElementById("guide");
-      if(!wrap) return;
-      const btn = wrap.querySelector(".menuBtn");
-      const drop = wrap.querySelector(".menuDrop");
-      if(!btn || !drop) return;
-
-      btn.addEventListener("click", (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        wrap.classList.toggle("open");
-      });
-      drop.addEventListener("click", (e) => e.stopPropagation());
-      document.addEventListener("click", () => wrap.classList.remove("open"));
-      document.addEventListener("keydown", (e) => {
-        if(e.key === "Escape") wrap.classList.remove("open");
-      });
-    }());
-  </script>
-
-  <script>
-    // Icon fallback loader: tries .webp → .png → .svg
-    (function(){
-      const exts = ["webp","png","svg"];
-      document.querySelectorAll("img[data-icon]").forEach((img) => {
-        const base = img.getAttribute("data-icon");
-        let i = 0;
-        function tryNext(){
-          if(i >= exts.length){
-            img.style.display = "none";
-            return;
-          }
-          img.src = `assets/icons/${base}.${exts[i++]}`;
-        }
-        img.addEventListener("error", tryNext);
-        tryNext();
-      });
-    }());
-  </script>
+  <script src="site.js"></script>
 </body>
 </html>

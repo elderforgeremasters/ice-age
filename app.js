@@ -312,7 +312,7 @@ function setModalContentWarning(modal, card){
   if(left){
     const ov = document.createElement("div");
     ov.className = "cwOverlay";
-    ov.innerHTML = `<div class="cwMsg">Artwork depicts partial nudity.<br>Click to reveal.</div>`;
+    ov.innerHTML = `<div class="cwMsg">Potentially NSFW artwork.<br>Click to reveal.</div>`;
     ov.addEventListener("click", (e)=>{
       e.stopPropagation();
       revealCard(card);
@@ -365,7 +365,7 @@ function render(){
       <div class="thumbWrap${cw ? " cw" : ""}">
         <img class="thumb${cw ? " cwBlur" : ""}" src="${imgSrc}" alt="${title}" loading="lazy"
           onerror="this.classList.add('missing'); this.alt=this.alt+' (missing image)';">
-        ${cw ? `<div class="cwOverlay"><div class="cwMsg">Artwork depicts partial nudity.<br>Click to reveal.</div></div>` : ``}
+        ${cw ? `<div class="cwOverlay"><div class="cwMsg">Potentially NSFW artwork.<br>Click to reveal.</div></div>` : ``}
       </div>
       <div class="cardMeta">
         <div class="cardName">${title}</div>
@@ -394,10 +394,15 @@ function render(){
 function applyFilters(){
   const q = ($("q")?.value || "").trim().toLowerCase();
   const r = ($("rarity")?.value || "").trim().toUpperCase();
+  const t = ($("type")?.value || "").trim();
 
   FILTERED = ALL_CARDS.filter(c => {
     if(q && !cardMatches(c, q)) return false;
     if(r && rarityKey(c) !== r) return false;
+    if(t){
+      const ct = String(c.type || "").toLowerCase();
+      if(!ct.includes(t.toLowerCase())) return false;
+    }
     return true;
   });
 
@@ -553,6 +558,12 @@ function initRarityDropdown(){
   }
 
   function openMenu(){
+    // Close other menus (avoid overlapping dropdowns)
+    const tm = $("typeMenu"); if(tm) tm.hidden = true;
+    const tb = $("typeBtn"); if(tb) tb.setAttribute("aria-expanded","false");
+    const gm = $("guideMenu"); if(gm) gm.hidden = true;
+    const gb = $("guideBtn"); if(gb) gb.setAttribute("aria-expanded","false");
+
     menu.hidden = false;
     btn.setAttribute("aria-expanded", "true");
   }
@@ -588,6 +599,57 @@ function initRarityDropdown(){
   // Keep label in sync if code changes select value
   sel.addEventListener("change", () => setLabelFromValue());
 
+  setLabelFromValue();
+}
+
+
+function initTypeDropdown(){
+  const sel = $("type");
+  const btn = $("typeBtn");
+  const label = $("typeLabel");
+  const menu = $("typeMenu");
+  if(!sel || !btn || !label || !menu) return;
+
+  function setLabelFromValue(){
+    const opt = Array.from(sel.options).find(o => o.value === sel.value);
+    label.textContent = opt ? opt.textContent : "All types";
+  }
+
+  function openMenu(){
+    // Close other menus (avoid overlapping dropdowns)
+    const rm = $("rarityMenu"); if(rm) rm.hidden = true;
+    const rb = $("rarityBtn"); if(rb) rb.setAttribute("aria-expanded","false");
+    const gm = $("guideMenu"); if(gm) gm.hidden = true;
+    const gb = $("guideBtn"); if(gb) gb.setAttribute("aria-expanded","false");
+
+    menu.hidden = false;
+    btn.setAttribute("aria-expanded", "true");
+  }
+  function closeMenu(){
+    menu.hidden = true;
+    btn.setAttribute("aria-expanded", "false");
+  }
+
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    if(menu.hidden) openMenu(); else closeMenu();
+  });
+
+  menu.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const t = e.target;
+    if(!(t instanceof HTMLElement)) return;
+    const val = t.getAttribute("data-value");
+    if(val === null) return;
+    sel.value = val;
+    sel.dispatchEvent(new Event("change"));
+    closeMenu();
+  });
+
+  document.addEventListener("click", () => closeMenu());
+  document.addEventListener("keydown", (e) => { if(e.key === "Escape") closeMenu(); });
+
+  sel.addEventListener("change", () => setLabelFromValue());
   setLabelFromValue();
 }
 
@@ -693,27 +755,6 @@ function setBlock(id, label, text){
 }
 
 
-
-function initGuideMenu(){
-  const wrap = $("guide");
-  if(!wrap) return;
-  const btn = wrap.querySelector(".menuBtn");
-  const drop = wrap.querySelector(".menuDrop");
-  if(!btn || !drop) return;
-
-  btn.addEventListener("click", (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    wrap.classList.toggle("open");
-  });
-
-  drop.addEventListener("click", (e) => e.stopPropagation());
-  document.addEventListener("click", () => wrap.classList.remove("open"));
-  document.addEventListener("keydown", (e) => {
-    if(e.key === "Escape") wrap.classList.remove("open");
-  });
-}
-
 // ---- Boot ----
 async function init(){
   const status = $("status");
@@ -733,15 +774,16 @@ async function init(){
 
     $("q")?.addEventListener("input", applyFilters);
     $("rarity")?.addEventListener("change", applyFilters);
-    $("clear")?.addEventListener("click", () => {
+    $("type")?.addEventListener("change", applyFilters);
+    $("clearBtn")?.addEventListener("click", () => {
       if($("q")) $("q").value = "";
       if($("rarity")) { $("rarity").value = ""; $("rarity").dispatchEvent(new Event("change")); }
+      if($("type")) { $("type").value = ""; $("type").dispatchEvent(new Event("change")); }
       applyFilters();
-      $("guide")?.classList.remove("open");
     });
 
     initRarityDropdown();
-    initGuideMenu();
+    initTypeDropdown();
     bindModalClose();
     bindModalNavKeys();
     applyFilters();
