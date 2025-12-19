@@ -144,12 +144,17 @@ function sanitizeRulesFlavorText(str){
   s = s.replace(/[\u00A0\u2000-\u200B\u202F\u205F\u3000]/g, "");
   s = s.replaceAll("&hairsp;", "");
 
-  // Tighten em dashes (remove spaces around —) for cleaner typography
-  s = s.replace(/\s*—\s*/g, "—");
-
   // Change {Tn} tokens to {Ts}
   s = s.replaceAll("{Tn}", "{Ts}");
 
+  return s;
+}
+
+// Lore display sanitizer: same as rules/flavor, plus tighter em-dash typography
+function sanitizeLoreText(str){
+  if(str == null) return "";
+  let s = sanitizeRulesFlavorText(str);
+  s = s.replace(/\s*—\s*/g, "—");
   return s;
 }
 
@@ -652,7 +657,9 @@ function setBlock(id, label, text){
   if (!el) return;
 
   let tRaw = (text || "");
-  if(id === "mRules" || id === "mFlavor" || id === "mLore" || id === "mArt"){
+  if(id === "mLore"){
+    tRaw = sanitizeLoreText(tRaw);
+  } else if(id === "mRules" || id === "mFlavor" || id === "mArt"){
     tRaw = sanitizeRulesFlavorText(tRaw);
   }
   const t = String(tRaw).trim();
