@@ -109,12 +109,14 @@ function richText(str){
   // Bold anything wrapped in backticks: `Vigilance` -> <strong>Vigilance</strong>
   s = s.replace(/`([^`]+)`/g, "<strong>$1</strong>");
 
-  // Planeswalker loyalty costs: make "+1:" / "-2:" stand out at line starts
-  // Supports ASCII "-" and Unicode minus "−" (U+2212).
-  s = s.replace(/(^|\n)\s*([+\-−]\d+):/g, (m, pre, num) => {
-    const sign = num.trim()[0];
+  // Planeswalker loyalty costs: make "+1:" / "-2:" / "-X:" stand out at line starts.
+  // Supports ASCII "-" and Unicode minus "−" (U+2212). Also matches literal <br> tags in source text.
+  const LOY_RE = /(^|\n|\r|<br\s*\/?>)\s*([+\-−](?:\d+|X)):/gi;
+  s = s.replace(LOY_RE, (m, pre, num) => {
+    const n = String(num).toUpperCase();
+    const sign = n.trim()[0];
     const cls = (sign === "+") ? "loy loyPlus" : "loy loyMinus";
-    return `${pre}<span class="${cls}">${num}:</span>`;
+    return `${pre}<span class="${cls}">${n}:</span>`;
   });
 
   // Replace {Anything} with its icon (mana, keyword, etc.)
@@ -139,7 +141,7 @@ function sanitizeRulesFlavorText(str){
 
   // Strip print-centering whitespace used in exported text (web should not render it)
   // U+2007 figure space, U+200A hair space, U+2009 thin space, U+202F narrow no-break, U+00A0 nbsp
-  s = s.replace(/[\u2007\u200A\u2009\u202F\u00A0]/g, "");
+  s = s.replace(/[\u00A0\u2000-\u200B\u202F\u205F\u3000]/g, "");
   s = s.replaceAll("&hairsp;", "");
 
   // Change {Tn} tokens to {Ts}
@@ -396,7 +398,7 @@ function applyFilters(){
 
 function ensureLoreArtBlocks(modal){
   // Ensure Lore/Art blocks exist in the modal (only shown when text exists)
-  // Desired order: Rules, Flavor, Lore, Art
+  // Desired order: Rules, Flavor, Lore
   const right = modal?.querySelector?.(".modalRight");
   if(!right) return;
 
@@ -431,9 +433,11 @@ function ensureLoreArtBlocks(modal){
     }
     return el;
   }
-
   const loreEl = ensure("mLore", "loreBlock", flavorEl);
-  ensure("mArt", "artBlock", loreEl);
+
+  // If an Art block exists from older builds, hide it.
+  const art = document.getElementById("mArt") || right.querySelector("#mArt");
+  if(art) art.style.display = "none";
 }
 
 
@@ -505,7 +509,6 @@ function openModal(card){
   setBlock("mRules", "Rules", card.rules);
   setBlock("mFlavor", "Flavor", card.flavor);
   setBlock("mLore", "Lore", card.lore);
-  setBlock("mArt", "Art", card.art);
   // Hide any completely empty "block" containers that might be in the HTML template
   modal.querySelectorAll(".block").forEach(b => {
     const txt = (b.textContent || "").trim();
@@ -616,6 +619,8 @@ document.addEventListener("keydown", (e) => { if(e.key === "Escape") closeModal(
 }
 
 function setBlock(id, label, text){
+  // Art block is intentionally omitted from the web viewer.
+  if(id === "mArt" || id === "modalArt") return;
   // Be tolerant of markup variations across patches (mRules vs modalRules, etc.).
   const candidates = [];
   if (id) candidates.push(id);
