@@ -693,6 +693,27 @@ function setBlock(id, label, text){
 }
 
 
+
+function initGuideMenu(){
+  const wrap = $("guide");
+  if(!wrap) return;
+  const btn = wrap.querySelector(".menuBtn");
+  const drop = wrap.querySelector(".menuDrop");
+  if(!btn || !drop) return;
+
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    wrap.classList.toggle("open");
+  });
+
+  drop.addEventListener("click", (e) => e.stopPropagation());
+  document.addEventListener("click", () => wrap.classList.remove("open"));
+  document.addEventListener("keydown", (e) => {
+    if(e.key === "Escape") wrap.classList.remove("open");
+  });
+}
+
 // ---- Boot ----
 async function init(){
   const status = $("status");
@@ -716,9 +737,11 @@ async function init(){
       if($("q")) $("q").value = "";
       if($("rarity")) { $("rarity").value = ""; $("rarity").dispatchEvent(new Event("change")); }
       applyFilters();
+      $("guide")?.classList.remove("open");
     });
 
     initRarityDropdown();
+    initGuideMenu();
     bindModalClose();
     bindModalNavKeys();
     applyFilters();

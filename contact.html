@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ElderForge — Ice Age • Contact</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <a href="index.html">
+        <div class="title">ElderForge — Ice Age</div>
+      </a>
+      <div class="subtitle">Contact</div>
+    </div>
+
+    <div class="controls" style="min-width:auto">
+      <a class="btn" href="index.html">Cards</a>
+      <div class="menu" id="guide">
+        <button class="btn menuBtn" type="button" aria-haspopup="menu" aria-expanded="false">
+          Guide <span class="ddChev">▾</span>
+        </button>
+        <div class="menuDrop" role="menu" aria-label="Guide">
+          <a class="menuItem" href="keyword-icons.html" role="menuitem">Keyword Icons</a>
+          <a class="menuItem" href="disclaimer.html" role="menuitem">Disclaimer</a>
+          <a class="menuItem" href="privacy.html" role="menuitem">Privacy</a>
+          <a class="menuItem" href="contact.html" role="menuitem">Contact</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="pageWrap">
+    <article class="pageCard">
+      <h1>Contact</h1>
+      <p class="muted">This site is maintained for a private playgroup. Use the contact method you received this link through.</p>
+
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="footerInner">
+      <div class="footerNote">This site is maintained for a private playgroup.</div>
+      <div class="footerLinks">
+        <a class="footerLink" href="contact.html">Contact</a>
+        <a class="footerLink" href="disclaimer.html">Disclaimer</a>
+        <a class="footerLink" href="privacy.html">Privacy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // lightweight Guide menu toggle for touch devices
+    (function(){
+      const wrap = document.getElementById("guide");
+      if(!wrap) return;
+      const btn = wrap.querySelector(".menuBtn");
+      const drop = wrap.querySelector(".menuDrop");
+      if(!btn || !drop) return;
+
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        wrap.classList.toggle("open");
+      });
+      drop.addEventListener("click", (e) => e.stopPropagation());
+      document.addEventListener("click", () => wrap.classList.remove("open"));
+      document.addEventListener("keydown", (e) => {
+        if(e.key === "Escape") wrap.classList.remove("open");
+      });
+    }());
+  </script>
+</body>
+</html>

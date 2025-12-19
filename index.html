@@ -10,7 +10,7 @@
   <header class="topbar">
     <div class="brand">
       <div class="title">ElderForge — Ice Age</div>
-      <div class="subtitle">Card database</div>
+      <div class="subtitle">Card database (static)</div>
     </div>
 
     <div class="controls">
@@ -35,8 +35,20 @@
           <button class="ddItem" type="button" data-value="M">Mythic</button>
         </div>
       </div>
-      <button id="clear" class="btn" type="button">Clear</button>
-    </div>
+<div class="menu" id="guide">
+  <button class="btn menuBtn" type="button" aria-haspopup="menu" aria-expanded="false">
+    Guide <span class="ddChev">▾</span>
+  </button>
+  <div class="menuDrop" role="menu" aria-label="Guide">
+    <a class="menuItem" href="keyword-icons.html" role="menuitem">Keyword Icons</a>
+    <a class="menuItem" href="disclaimer.html" role="menuitem">Disclaimer</a>
+    <a class="menuItem" href="privacy.html" role="menuitem">Privacy</a>
+    <a class="menuItem" href="contact.html" role="menuitem">Contact</a>
+    <div class="menuSep" role="separator"></div>
+    <button id="clear" class="menuItem" type="button" role="menuitem">Clear filters</button>
+  </div>
+</div>
+</div>
   </header>
 
   <main class="wrap">
@@ -65,6 +77,17 @@
       </div>
     </div>
   </div>
+
+<footer class="footer">
+  <div class="footerInner">
+    <div class="footerNote">This site is maintained for a private playgroup.</div>
+    <div class="footerLinks">
+      <a class="footerLink" href="contact.html">Contact</a>
+      <a class="footerLink" href="disclaimer.html">Disclaimer</a>
+      <a class="footerLink" href="privacy.html">Privacy</a>
+    </div>
+  </div>
+</footer>
 
   <script src="app.js"></script>
 </body>
