@@ -397,7 +397,7 @@ function applyFilters(){
 
   FILTERED = ALL_CARDS.filter(c => {
     if(q && !cardMatches(c, q)) return false;
-    if(r && rarityKey(c) !== r) return false;
+    if(r && r !== "ALL" && rarityKey(c) !== r) return false;
     return true;
   });
 
@@ -539,12 +539,47 @@ function closeModal(){
 }
 
 
+function initRarityDropdownTop(){
+  const ddl = document.getElementById('rarity');
+  if(!ddl) return;
 
-function initRarityDropdown(){
+  // Ensure readable menu colors in dark UI (browser-dependent)
+  ddl.addEventListener('mousedown', ()=>{
+    ddl.style.color = '#e6eefc';
+    ddl.style.background = 'rgba(13,20,34,0.98)';
+  });
+
+  ddl.addEventListener('change', ()=>{
+    state.rarity = ddl.value || '';
+    applyFilters();
+  });
+}
+
+function bindModalClose(){
+  const modal = modalEl();
+  if(!modal) return;
+
+  // Close buttons: try a bunch of common selectors (your "X" button)
+  const btns = modal.querySelectorAll(
+    "#mClose, .close, .modalClose, button[aria-label='Close'], button[title='Close'], button[data-close='modal']"
+  );
+  btns.forEach(b => b.addEventListener("click", closeModal));
+
+  // Clicking backdrop closes: if click hits the modal container itself or an element explicitly marked as backdrop
+  modal.addEventListener("click", (e) => {
+    const t = e.target;
+    if(t === modal || t.id === "modalBackdrop" || t.classList.contains("backdrop")){
+      closeModal();
+    }
+  });
+
+  // ESC closes
+  function initRarityDropdown(){
   const sel = $("rarity");
   const btn = $("rarityBtn");
   const label = $("rarityLabel");
   const menu = $("rarityMenu");
+
   if(!sel || !btn || !label || !menu) return;
 
   function setLabelFromValue(){
@@ -560,65 +595,35 @@ function initRarityDropdown(){
     menu.hidden = true;
     btn.setAttribute("aria-expanded", "false");
   }
+  function toggleMenu(){
+    if(menu.hidden) openMenu(); else closeMenu();
+  }
 
   btn.addEventListener("click", (e) => {
     e.stopPropagation();
-    if(menu.hidden) openMenu(); else closeMenu();
+    toggleMenu();
   });
 
   menu.addEventListener("click", (e) => {
-    e.stopPropagation();
     const t = e.target;
     if(!(t instanceof HTMLElement)) return;
     const val = t.getAttribute("data-value");
     if(val === null) return;
     sel.value = val;
-    sel.dispatchEvent(new Event("change"));
+    setLabelFromValue();
+    applyFilters();
     closeMenu();
   });
 
-  // Close on outside click
   document.addEventListener("click", () => closeMenu());
 
-  // Close on Escape (without interfering with modal Escape)
-  document.addEventListener("keydown", (e) => {
-    if(e.key === "Escape") closeMenu();
-  });
-
-  // Keep label in sync if code changes select value
+  // keep label in sync if code changes select
   sel.addEventListener("change", () => setLabelFromValue());
 
   setLabelFromValue();
 }
 
-function bindModalClose(){
-  const modal = modalEl();
-  if(!modal) return;
-
-  // Close buttons
-  const btns = modal.querySelectorAll(
-    "#mClose, .close, .modalClose, button[aria-label='Close'], button[title='Close'], button[data-close='modal']"
-  );
-  btns.forEach(b => b.addEventListener("click", closeModal));
-
-  // Clicking backdrop closes
-  modal.addEventListener("click", (e) => {
-    const t = e.target;
-    if(t === modal || t.dataset?.close === "modal" || t.classList.contains("modalBackdrop")){
-      closeModal();
-    }
-  });
-
-  // ESC closes (modal only)
-  document.addEventListener("keydown", (e) => {
-    if(e.key === "Escape"){
-      const m = modalEl();
-      if(m && m.classList.contains("open")){
-        e.preventDefault();
-        closeModal();
-      }
-    }
-  });
+document.addEventListener("keydown", (e) => { if(e.key === "Escape") closeModal(); });
 }
 
 function setBlock(id, label, text){
@@ -714,11 +719,11 @@ async function init(){
     $("rarity")?.addEventListener("change", applyFilters);
     $("clear")?.addEventListener("click", () => {
       if($("q")) $("q").value = "";
-      if($("rarity")) { $("rarity").value = ""; $("rarity").dispatchEvent(new Event("change")); }
+      if($("rarity")) $("rarity").value = "ALL";
       applyFilters();
     });
 
-    initRarityDropdown();
+    initRarityDropdownTop();
     bindModalClose();
     bindModalNavKeys();
     applyFilters();
