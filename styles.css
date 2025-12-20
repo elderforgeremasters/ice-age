@@ -1051,3 +1051,28 @@ body{
   /* Clear break before the content blocks */
   margin-bottom: 12px;
 }
+/* --- Modal tuning patch (optical centering + meta spacing) ---
+   Paste this at the VERY END of your CSS (so it wins). */
+
+/* 1) Make the icons sit visually centered inside the square buttons */
+.modalClose,
+.modalNavBtn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  padding: 0;            /* reset any previous padding */
+}
+
+/* X stays perfect */
+.modalClose{ padding: 0 0 4px 0; }
+
+/* Arrows were riding too high — give them less upward nudge */
+.modalNavBtn{ padding: 0 0 1px 0; }
+
+/* 2) Pull the meta line up to “belong” with the title, then give it breathing room */
+.modalMeta{
+  font-weight: 700;
+  margin-top: -8px;      /* closer to title + mana cost */
+  margin-bottom: 18px;   /* clear separation before the blocks */
+}
