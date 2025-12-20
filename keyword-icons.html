@@ -38,34 +38,50 @@
       <div id="noIcons" class="iconList"></div>
 
       <script>
+      // One icon per line, variants untangled, and lists sorted alphabetically.
+
+      const TAP_ICON_HTML = "<img class=\"inlineIcon\" alt=\"{T}\" src=\"assets/icons/Ts.webp\" onerror=\"this.onerror=null;this.src='assets/icons/Ts.png';\">";
+
       const WITH_ICONS = [
-        { name:"Deathtouch", icons:["Deathtouch"], desc:"Any amount of damage this creature deals to a creature is enough to destroy it." },
-        { name:"Defender", icons:["Defender"], desc:"This creature can't attack." },
-        { name:"Double strike", icons:["DoubleStrike"], desc:"This creature deals both first-strike damage and regular combat damage." },
-        { name:"Fear", icons:["Fear"], desc:"This creature can't be blocked except by artifact creatures and/or black creatures." },
-        { name:"First strike", icons:["FirstStrike"], desc:"This creature deals combat damage before creatures without first strike." },
-        { name:"Flash", icons:["Flash"], desc:"You may cast this spell any time you could cast an instant." },
-        { name:"Flashback", icons:["Flashback"], desc:"You may cast this card from your graveyard for its flashback cost. Then it’s exiled." },
-        { name:"Flying", icons:["Flying"], desc:"This creature can't be blocked except by creatures with flying or reach." },
-        { name:"Haste", icons:["Haste"], desc:"This creature can attack and use activated abilities with {T} as soon as it enters play." },
-        { name:"Hexproof", icons:["Hexproof","HexproofB","HexproofR","HexproofS"], desc:"This permanent can’t be the target of spells or abilities your opponents control (sometimes shown with color-specific variants)." },
-        { name:"Horsemanship", icons:["Horsemanship"], desc:"This creature can't be blocked except by creatures with horsemanship." },
-        { name:"Indestructible", icons:["Indestructible"], desc:"Effects that say “destroy” don’t destroy it. Lethal damage doesn’t destroy it either." },
-        { name:"Infect", icons:["Infect"], desc:"This creature deals damage to creatures as -1/-1 counters and to players as poison counters." },
-        { name:"Intimidate", icons:["Intimidate"], desc:"This creature can't be blocked except by artifact creatures and/or creatures that share a color with it." },
-        { name:"Landwalk", icons:["Islandwalk","Swampwalk","Mountainwalk","Forestwalk","Snowwalk"], desc:"If defending player controls the named land type, this creature can’t be blocked." },
-        { name:"Lifelink", icons:["Lifelink"], desc:"Damage dealt by this creature also causes you to gain that much life." },
-        { name:"Menace", icons:["Menace"], desc:"This creature can’t be blocked except by two or more creatures." },
-        { name:"Protection", icons:["ProtectionW","ProtectionU","ProtectionB","ProtectionR","ProtectionG","ProtectionS"], desc:"A bundle of “can’t be damaged / enchanted / equipped / blocked / targeted” by the given quality (often shown with color variants)." },
-        { name:"Reach", icons:["Reach"], desc:"This creature can block creatures with flying." },
-        { name:"Shadow", icons:["Shadow3"], desc:"This creature can block or be blocked only by other creatures with shadow." },
-        { name:"Shroud", icons:["Shroud"], desc:"This permanent can’t be the target of spells or abilities." },
-        { name:"Toxic", icons:["Toxic"], desc:"When this creature deals combat damage to a player, that player also gets poison counters (the number matters)." },
-        { name:"Trample", icons:["Trample"], desc:"Excess combat damage can be assigned to the defending player or planeswalker." },
-        { name:"Vigilance", icons:["Vigilance"], desc:"Attacking doesn’t cause this creature to tap." },
-        { name:"Ward", icons:["Ward"], desc:"Spells/abilities your opponents use to target this cost extra (or have another requirement) or they’re countered." },
-        { name:"Wither", icons:["Wither"], desc:"This creature deals damage to creatures as -1/-1 counters." },
-      ];
+        { name:"Deathtouch", token:"Deathtouch", desc:"Any amount of damage this creature deals to a creature is enough to destroy it." },
+        { name:"Defender", token:"Defender", desc:"This creature can't attack." },
+        { name:"Double strike", token:"DoubleStrike", desc:"This creature deals both first-strike damage and regular combat damage." },
+        { name:"Fear", token:"Fear", desc:"This creature can't be blocked except by artifact creatures and/or black creatures." },
+        { name:"First strike", token:"FirstStrike", desc:"This creature deals combat damage before creatures without first strike." },
+        { name:"Flash", token:"Flash", desc:"You may cast this spell any time you could cast an instant." },
+        { name:"Flashback", token:"Flashback", desc:"You may cast this card from your graveyard for its flashback cost. Then it’s exiled." },
+        { name:"Flying", token:"Flying", desc:"This creature can't be blocked except by creatures with flying or reach." },
+        { name:"Forestwalk", token:"Forestwalk", desc:"If defending player controls a Forest, this creature can’t be blocked." },
+        { name:"Haste", token:"Haste", desc:`This creature can attack and use activated abilities with ${TAP_ICON_HTML} as soon as it enters play.` },
+        { name:"Hexproof", token:"Hexproof", desc:"This permanent can’t be the target of spells or abilities your opponents control." },
+        { name:"Hexproof (black variant)", token:"HexproofB", desc:"Same as hexproof — this icon variant appears on some cards." },
+        { name:"Hexproof (red variant)", token:"HexproofR", desc:"Same as hexproof — this icon variant appears on some cards." },
+        { name:"Hexproof (snow variant)", token:"HexproofS", desc:"Same as hexproof — this icon variant appears on some cards." },
+        { name:"Horsemanship", token:"Horsemanship", desc:"This creature can't be blocked except by creatures with horsemanship." },
+        { name:"Indestructible", token:"Indestructible", desc:"Effects that say “destroy” don’t destroy it. Lethal damage doesn’t destroy it either." },
+        { name:"Infect", token:"Infect", desc:"This creature deals damage to creatures as -1/-1 counters and to players as poison counters." },
+        { name:"Intimidate", token:"Intimidate", desc:"This creature can't be blocked except by artifact creatures and/or creatures that share a color with it." },
+        { name:"Islandwalk", token:"Islandwalk", desc:"If defending player controls an Island, this creature can’t be blocked." },
+        { name:"Lifelink", token:"Lifelink", desc:"Damage dealt by this creature also causes you to gain that much life." },
+        { name:"Menace", token:"Menace", desc:"This creature can’t be blocked except by two or more creatures." },
+        { name:"Mountainwalk", token:"Mountainwalk", desc:"If defending player controls a Mountain, this creature can’t be blocked." },
+        { name:"Protection from black", token:"ProtectionB", desc:"It can’t be damaged, enchanted/equipped, blocked, or targeted by black sources." },
+        { name:"Protection from blue", token:"ProtectionU", desc:"It can’t be damaged, enchanted/equipped, blocked, or targeted by blue sources." },
+        { name:"Protection from green", token:"ProtectionG", desc:"It can’t be damaged, enchanted/equipped, blocked, or targeted by green sources." },
+        { name:"Protection from red", token:"ProtectionR", desc:"It can’t be damaged, enchanted/equipped, blocked, or targeted by red sources." },
+        { name:"Protection from snow", token:"ProtectionS", desc:"It can’t be damaged, enchanted/equipped, blocked, or targeted by snow sources." },
+        { name:"Protection from white", token:"ProtectionW", desc:"It can’t be damaged, enchanted/equipped, blocked, or targeted by white sources." },
+        { name:"Reach", token:"Reach", desc:"This creature can block creatures with flying." },
+        { name:"Shadow", token:"Shadow3", desc:"This creature can block or be blocked only by other creatures with shadow." },
+        { name:"Shroud", token:"Shroud", desc:"This permanent can’t be the target of spells or abilities." },
+        { name:"Snowwalk", token:"Snowwalk", desc:"If defending player controls a snow land, this creature can’t be blocked." },
+        { name:"Swampwalk", token:"Swampwalk", desc:"If defending player controls a Swamp, this creature can’t be blocked." },
+        { name:"Toxic", token:"Toxic", desc:"When this creature deals combat damage to a player, that player also gets poison counters (the number matters)." },
+        { name:"Trample", token:"Trample", desc:"Excess combat damage can be assigned to the defending player or planeswalker." },
+        { name:"Vigilance", token:"Vigilance", desc:"Attacking doesn’t cause this creature to tap." },
+        { name:"Ward", token:"Ward", desc:"Spells/abilities your opponents use to target this cost extra (or have another requirement) or they’re countered." },
+        { name:"Wither", token:"Wither", desc:"This creature deals damage to creatures as -1/-1 counters." },
+      ].sort((a,b)=>a.name.localeCompare(b.name));
 
       const NO_ICONS = [
         { name:"Changeling", desc:"This creature is every creature type." },
@@ -75,7 +91,7 @@
         { name:"Mill", desc:"Put cards from the top of a library into a graveyard." },
         { name:"Multikicker", desc:"You may pay the multikicker cost any number of times; the spell scales with how many times you paid." },
         { name:"Scry", desc:"Look at cards from the top of your library and put any number on bottom and the rest on top." },
-      ];
+      ].sort((a,b)=>a.name.localeCompare(b.name));
 
       function makeIconImg(token){
         const img = document.createElement("img");
@@ -95,23 +111,23 @@
         return img;
       }
 
-      function rowWithIcons(item){
+      function rowWithIcon(item){
         const row = document.createElement("div");
         row.className = "iconRow";
 
-        const stack = document.createElement("div");
-        stack.className = "iconStack";
-        item.icons.forEach(tok => stack.appendChild(makeIconImg(tok)));
+        const left = document.createElement("div");
+        left.className = "iconStack";
+        left.appendChild(makeIconImg(item.token));
 
         const text = document.createElement("div");
         text.innerHTML = `<div class="iconName">${item.name}</div><div class="iconDesc">${item.desc}</div>`;
 
-        row.appendChild(stack);
+        row.appendChild(left);
         row.appendChild(text);
         return row;
       }
 
-      function rowNoIcons(item){
+      function rowNoIcon(item){
         const row = document.createElement("div");
         row.className = "iconRow";
 
@@ -128,10 +144,10 @@
       }
 
       const withEl = document.getElementById("withIcons");
-      WITH_ICONS.forEach(it => withEl.appendChild(rowWithIcons(it)));
+      WITH_ICONS.forEach(it => withEl.appendChild(rowWithIcon(it)));
 
       const noEl = document.getElementById("noIcons");
-      NO_ICONS.forEach(it => noEl.appendChild(rowNoIcons(it)));
+      NO_ICONS.forEach(it => noEl.appendChild(rowNoIcon(it)));
       </script>
 
     </section>
