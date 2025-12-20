@@ -1013,13 +1013,13 @@ body{
 .pagePanel h2::first-letter,
 .mapTitle::first-letter,
 .iconSectionTitle::first-letter{
-  font-size: 0.90em;
+  font-size: 0.8em;
 }
 
 
 
 /* Reduce uppercase dominance specifically on type/subtype lines */
-.cardType::first-letter{ font-size: 0.86em; }
+.cardType::first-letter{ font-size: 0.8em; }
 .cardType{ letter-spacing: .015em; }
 
 /* Magical serif for card popup content (Rules/Flavor/Lore/Art bodies) */
@@ -1091,7 +1091,7 @@ body{
 
 /* Bigger title, tighter line box */
 .modalPanel .modalTitle{
-  font-size: 36px;              /* was 28px */
+  font-size: 40px;              /* was 28px */
   line-height: 1;               /* tighten */
   margin: 0 0 2px 0 !important; /* small title→meta spacing */
 }
