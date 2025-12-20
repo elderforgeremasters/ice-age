@@ -1,6 +1,6 @@
 /* ElderForge — Ice Age | styles.css (full) */
-
 @import url("https://fonts.googleapis.com/css2?family=Oxanium:wght@400;500;600;700&display=swap");
+
 
 :root{
   --bg0:#070b12;
@@ -15,14 +15,12 @@
   --font-ui: "Oxanium", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
+
 *{ box-sizing:border-box; }
 html,body{ min-height:100%; }
 
-/* Typography utilities */
-.uiFont{ font-family: var(--font-ui); }
-.smallCaps{
-  font-variant-caps: small-caps;
-  font-synthesis-small-caps: auto;
+button, input, select, textarea{
+  font-family: inherit;
 }
 
 html{
@@ -33,7 +31,7 @@ html{
 }
 body{
   margin:0;
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-family: var(--font-ui);
   background: transparent;
   min-height: 100%;
   color: var(--text);
@@ -689,35 +687,6 @@ body{
   background: rgba(255,255,255,0.03);
   box-shadow: 0 10px 35px rgba(0,0,0,0.18);
 }
-/* Oxanium “uppercase glyphs + synthesized lowercase” look for UI/display text */
-.brand .title,
-.brand .subtitle,
-.navBtn,
-.ddBtn,
-.ddItem,
-.ddLink,
-.cardName,
-.cardType,
-.kw,
-.pip,
-.modalTitle,
-.modalMeta,
-.modalNavBtn,
-.pagePanel h1,
-.pagePanel h2,
-.anatomyTitle,
-.anatomyArrow,
-.mapTitle,
-.mapBadge,
-.mapCard h3,
-.iconSectionTitle,
-.iconName,
-.footerLink{
-  font-family: var(--font-ui);
-  font-variant-caps: small-caps;
-  font-synthesis-small-caps: auto;
-}
-
 .pagePanel h1{
   margin: 0 0 10px 0;
   font-size: 32px;
@@ -994,3 +963,43 @@ body{
 .ddMenu a.ddLink:hover{
   background: rgba(255,255,255,0.06);
 }
+
+/* Oxanium + tuned synthetic small-caps (bigger “lowercase” feel) */
+.brand .title,
+.brand .subtitle,
+.navBtn,
+.ddBtn,
+.ddItem,
+.ddMenu a.ddLink,
+.cardName,
+.cardType,
+.modalTitle,
+.modalMeta,
+.pagePanel h1,
+.pagePanel h2,
+.block.flavorBlock > h3,
+.mapTitle,
+.iconSectionTitle{
+  font-variant-caps: small-caps;
+  font-synthesis-small-caps: auto;
+  letter-spacing: .02em;
+  font-size: 1.06em;
+}
+.brand .title,
+.brand .subtitle,
+.navBtn,
+.ddBtn,
+.ddItem,
+.ddMenu a.ddLink,
+.cardName,
+.cardType,
+.modalTitle,
+.modalMeta,
+.pagePanel h1,
+.pagePanel h2,
+.block.flavorBlock > h3,
+.mapTitle,
+.iconSectionTitle::first-letter{
+  font-size: .92em;
+}
+
