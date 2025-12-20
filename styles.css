@@ -1063,3 +1063,26 @@ body{
 .modalPanel .modalTitle .nameCost{
   transform: translateY(-0.5px) !important;
 }
+
+/* ==========================================================
+   Modal header sizing + meta snugness (v3)
+   - Restore title presence (all-small-caps reads smaller)
+   - Make meta line sit snug under title (no abyss)
+   ========================================================== */
+
+/* Remove generic vertical gap in the right column so we can control spacing precisely */
+.modalPanel .modalRight{
+  gap: 0 !important;
+}
+
+/* Title: bump size a bit (small-caps looks ~10–15% smaller) */
+.modalPanel .modalTitle{
+  font-size: 40px !important;   /* tune: 38–44 */
+  line-height: 1.08 !important;
+  margin: 0 0 2px 0 !important; /* snug to meta */
+}
+
+/* Meta line: snug under title, then give breathing room before blocks */
+.modalPanel .modalMeta{
+  margin: 0 0 28px 0 !important;
+}
