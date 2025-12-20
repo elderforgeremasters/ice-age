@@ -767,7 +767,7 @@ body{
 .anatomyRight .anatomyArrow{ order: 1; }
 .anatomyRight .anatomyText{ order: 2; }
 
-@media (max-width: 980px){
+ (max-width: 980px){
   .anatomyGrid{ grid-template-columns: 1fr; }
   .anatomyLeft .anatomyItem, .anatomyRight .anatomyItem{ text-align:left; justify-content:flex-start; }
   .anatomyLeft .anatomyArrow, .anatomyRight .anatomyArrow{ display:none; }
@@ -1077,37 +1077,39 @@ body{
   margin-bottom: 18px;   /* clear separation before the blocks */
 }
 
-/* === FINAL modal layout fix (meta hugs title; spacing controlled; arrows/X optically centered) === */
-/* Keep glyphs centered without touching the rest of the site */
-.modalClose,
-.modalNavBtn{
-  display:flex !important;
-  align-items:center !important;
-  justify-content:center !important;
-  line-height: 1 !important;
-  box-sizing: border-box !important;
-}
+/* ==========================================================
+   Modal header sizing tweak (title + mana) — Dec 2025
+   Goal: make Title+Mana feel like a single “header unit” and
+   visually bridge the gap to the meta line, WITHOUT pushing
+   the meta line further down.
+   ========================================================== */
 
-/* Optical centering: X and arrows need slightly different nudges */
-.modalClose{ padding: 0 0 4px 0 !important; }
-.modalNavBtn{ padding: 0 0 1px 0 !important; }
-
-/* Make the title + meta feel like one header, then add space before content blocks */
+/* Control vertical rhythm explicitly (don’t rely on a single column gap) */
 .modalPanel .modalRight{
   gap: 0 !important;
 }
 
+/* Bigger title, tighter line box */
 .modalPanel .modalTitle{
-  margin: 0 0 2px 0 !important;
+  font-size: 34px;              /* was 28px */
+  line-height: 1;               /* tighten */
+  margin: 0 0 2px 0 !important; /* small title→meta spacing */
 }
 
+.modalPanel .modalTitle .titleName{
+  line-height: 1;
+}
+
+/* Scale mana with the title (icons inherit size) */
+.modalPanel .modalTitle .nameCost{
+  font-size: 1.12em;            /* slightly larger than title text */
+  transform: translateY(2px);   /* optical baseline alignment */
+}
+
+/* Keep meta glued to title, then add breathing room before blocks */
 .modalPanel .modalMeta{
-  margin: 0 0 14px 0 !important;
-  font-weight: 700 !important;
+  margin: 0 0 18px 0 !important;
 }
 
-/* Preserve nice spacing between the content blocks (Rules / Flavor / Lore) */
-.modalPanel .modalRight .block + .block{
-  margin-top: 10px !important;
-}
-
+/* Preserve the comfortable spacing between the content blocks */
+.modalPanel .block + .block{ margin-top: 10px; }
