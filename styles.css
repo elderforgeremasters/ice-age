@@ -1117,5 +1117,5 @@ body{
 
 /* --- Modal header optical tweak: lift mana glyphs without moving header stack --- */
 .modalPanel .nameCost{
-  transform: translateY(-1px) !important; /* was +1px in base; lift icons */
+  transform: translateY(0px) !important; /* was +1px in base; lift icons */
 }
