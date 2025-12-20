@@ -1018,22 +1018,3 @@ body{
 .modalCard .blockBody{
   font-family: var(--font-magic);
 }
-
-
-/* --- popup Rules/Flavor/Lore: match grid type/subtype Oxanium small-caps --- */
-.modalPanel .block.rulesBlock .blockBody,
-.modalPanel .block.flavorBlock .blockBody,
-.modalPanel .block.loreBlock .blockBody{
-  font-family: var(--font-ui);
-  font-variant-caps: small-caps;
-  font-synthesis-small-caps: auto;
-  letter-spacing: .02em;
-}
-
-/* Reduce the “giant first letter” effect inside these popup bodies */
-.modalPanel .block.rulesBlock .blockBody::first-letter,
-.modalPanel .block.flavorBlock .blockBody::first-letter,
-.modalPanel .block.loreBlock .blockBody::first-letter{
-  font-size: 0.90em;
-}
-
