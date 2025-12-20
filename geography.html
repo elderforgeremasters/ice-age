@@ -29,38 +29,60 @@
     </div>
   </header>
   <main class="pageWrap">
+    
     <section class="pagePanel">
-      <h1>Geography</h1>
-      <p>This is your campaign atlas: a high-level view of Terisiare in the Ice Age era — where the cold is endless, the roads are worse, and every shortcut has teeth.</p>
+      <div class="geoHero">
+        <h1>Geography</h1>
+        <p class="geoLead">Terisiare is a continent of broken kingdoms, frostbound forests, and uneasy roads — where every journey feels like a decision with consequences.</p>
+      </div>
 
-      <div class="mapHero">
-        <div class="mapHeroTop">
-          <div class="mapBadge">Terisiare — Ice Age Era</div>
-          <h2 class="mapTitle">The Frozen Continent</h2>
-          <p class="mapLead">Use the map below to anchor journeys, dungeons, expeditions, and rumors. It’s meant to feel like something you’d unroll beside a campfire — and then immediately regret because the wind exists.</p>
-        </div>
+      <div class="geoLayout">
+        <div class="geoMapCard">
+          <div class="geoMapHead">
+            <div class="geoMapTitle">Ice Age Terisiare Map</div>
+            <div class="geoMapSub">Reference map used for campaign locations and naming.</div>
+          </div>
 
-        <div class="mapFrame">
-          <img class="mapImg" src="assets/images/IceAgeGeography.webp" alt="Map of Terisiare during the Ice Age" loading="lazy" />
-          <div class="mapCompass" aria-hidden="true">
-            <div class="mapCompassRing"></div>
-            <div class="mapCompassNeedle"></div>
-            <div class="mapCompassN">N</div>
+          <div class="geoMapFrame">
+            <img class="geoMapImg" src="assets/images/IceAgeGeography.webp" alt="Ice Age Terisiare geography map" loading="lazy" />
+            <div class="geoOverlay" aria-hidden="true">
+              <div class="geoBadge">Field Map</div>
+              <div class="geoCompass">
+                <div class="geoCompassN">N</div>
+                <div class="geoCompassNeedle"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="geoMapFoot">
+            <div class="geoHint"><strong>Tip:</strong> Click to open the image in a new tab for full detail.</div>
+            <a class="geoOpenLink" href="assets/images/IceAgeGeography.webp" target="_blank" rel="noreferrer">Open full map</a>
           </div>
         </div>
 
-        <div class="mapGrid">
-          <div class="mapCard">
-            <h3>Regions</h3>
-            <p>Kjeldor, Balduvia, Fyndhorn, and the endless ice around Ronom Glacier — the “nearby” places that somehow still require heroic logistics.</p>
+        <div class="geoSide">
+          <div class="geoCard">
+            <div class="geoCardTitle">How to use this page</div>
+            <p class="geoCardText">Town names, dungeons, and quests pull from real places on this map. If a location sounds like it belongs on a cold, windswept road — it probably does.</p>
           </div>
-          <div class="mapCard">
-            <h3>Landmarks</h3>
-            <p>Glacial chasms, ruined keeps, frozen marshes, and the kind of coastline that looks calm right up until it eats a ship.</p>
+
+          <div class="geoCard">
+            <div class="geoCardTitle">Adventure vibe checklist</div>
+            <ul class="geoList">
+              <li><strong>Ronom Glacier</strong> — the frozen heart of the endgame.</li>
+              <li><strong>Kjeldor / Krov / Soldev</strong> — faction hubs and supply lines.</li>
+              <li><strong>Forests & marshes</strong> — where “shortcuts” go to die.</li>
+              <li><strong>Old ruins</strong> — the polite word for “trap museum.”</li>
+            </ul>
           </div>
-          <div class="mapCard">
-            <h3>Table use</h3>
-            <p>Pick a route, drop a rumor, or mark a dungeon you’ve cleared. The point is not perfect geography — it’s mood, momentum, and a sense of “we’re not in Kansas, we’re in a snowdrift.”</p>
+
+          <div class="geoCard">
+            <div class="geoCardTitle">Legend</div>
+            <div class="geoLegend">
+              <div class="geoLegItem"><span class="geoDot geoDotTown"></span> Town / settlement</div>
+              <div class="geoLegItem"><span class="geoDot geoDotWild"></span> Wild regions</div>
+              <div class="geoLegItem"><span class="geoDot geoDotIce"></span> Glacial / high danger</div>
+            </div>
           </div>
         </div>
       </div>
