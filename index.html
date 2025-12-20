@@ -10,11 +10,27 @@
   <header class="topbar">
     <div class="brand">
       <div class="title">ElderForge — Ice Age</div>
-      <div class="subtitle">Card database (static)</div>
+      <div class="subtitle">Card database</div>
     </div>
 
     <div class="controls">
-      <input id="q" class="search" type="search" placeholder="Search name, type, rules…" autocomplete="off" />
+      <div class="searchWrap">
+        <input id="q" class="search" type="search" placeholder="Search name, type, rules, or flavor…" autocomplete="off" />
+        <button id="clearBtn" class="iconBtn" type="button" aria-label="Clear filters" title="Clear filters">×</button>
+      </div>
+
+      <!-- Hidden native selects (accessibility + state); custom dropdowns below -->
+      <select id="type" class="srOnly">
+        <option value="">All types</option>
+        <option value="Creature">Creature</option>
+        <option value="Instant">Instant</option>
+        <option value="Sorcery">Sorcery</option>
+        <option value="Enchantment">Enchantment</option>
+        <option value="Artifact">Artifact</option>
+        <option value="Land">Land</option>
+        <option value="Planeswalker">Planeswalker</option>
+      </select>
+
       <select id="rarity" class="srOnly">
         <option value="">All rarities</option>
         <option value="C">Common</option>
@@ -22,6 +38,24 @@
         <option value="R">Rare</option>
         <option value="M">Mythic</option>
       </select>
+
+      <div class="dropdown" id="typeDD">
+        <button class="ddBtn" id="typeBtn" type="button" aria-haspopup="listbox" aria-expanded="false">
+          <span id="typeLabel">All types</span>
+          <span class="ddChev">▾</span>
+        </button>
+        <div class="ddMenu" id="typeMenu" role="listbox" aria-label="Type" hidden>
+          <button class="ddItem" type="button" data-value="">All types</button>
+          <button class="ddItem" type="button" data-value="Creature">Creature</button>
+          <button class="ddItem" type="button" data-value="Instant">Instant</button>
+          <button class="ddItem" type="button" data-value="Sorcery">Sorcery</button>
+          <button class="ddItem" type="button" data-value="Enchantment">Enchantment</button>
+          <button class="ddItem" type="button" data-value="Artifact">Artifact</button>
+          <button class="ddItem" type="button" data-value="Land">Land</button>
+          <button class="ddItem" type="button" data-value="Planeswalker">Planeswalker</button>
+        </div>
+      </div>
+
       <div class="dropdown" id="rarityDD">
         <button class="ddBtn" id="rarityBtn" type="button" aria-haspopup="listbox" aria-expanded="false">
           <span id="rarityLabel">All rarities</span>
@@ -35,7 +69,21 @@
           <button class="ddItem" type="button" data-value="M">Mythic</button>
         </div>
       </div>
-      <button id="clear" class="btn" type="button">Clear</button>
+    </div>
+
+    <div class="nav">
+      <div class="dropdown" id="guideDD">
+        <button class="ddBtn ddSmall" id="guideBtn" type="button" aria-haspopup="menu" aria-expanded="false">
+          <span>Guide</span>
+          <span class="ddChev">▾</span>
+        </button>
+        <div class="ddMenu" id="guideMenu" role="menu" aria-label="Guide" hidden>
+          <a class="ddLink" href="keyword-icons.html" role="menuitem">Keyword Icons</a>
+          <a class="ddLink" href="basic-rules.html" role="menuitem">Basic Rules</a>
+          <a class="ddLink" href="campaign-setup.html" role="menuitem">Campaign Setup</a>
+          <a class="ddLink" href="geography.html" role="menuitem">Geography</a>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -43,6 +91,19 @@
     <div id="status" class="status">Loading cards…</div>
     <div id="grid" class="grid" aria-live="polite"></div>
   </main>
+
+  <footer class="footer">
+  <div class="footerInner">
+    <div class="footerLeft">
+      <span class="footerText">This site is a fan-made reference for a private playgroup.</span>
+    </div>
+    <div class="footerLinks">
+      <a class="footerLink" href="contact.html">Contact</a>
+      <a class="footerLink" href="disclaimer.html">Disclaimer</a>
+      <a class="footerLink" href="privacy.html">Privacy</a>
+    </div>
+  </div>
+</footer>
 
   <!-- Modal -->
   <div id="modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
@@ -66,6 +127,7 @@
     </div>
   </div>
 
+  <script src="site.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
