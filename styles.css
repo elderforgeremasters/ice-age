@@ -1026,3 +1026,14 @@ body{
 .modalCard .blockBody{
   font-family: var(--font-magic);
 }
+/* === Modal polish (optical centering + tighter title/meta grouping) === */
+.modalClose,
+.modalNavBtn{
+  box-sizing: border-box;
+  padding: 0 0 2px 0; /* optical center for × ‹ › glyphs */
+}
+
+.modalMeta{
+  margin-top: -6px;   /* pull meta line closer to title/mana */
+  margin-bottom: 12px;/* add breathing room before the 3 blocks */
+}
