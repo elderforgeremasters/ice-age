@@ -1076,3 +1076,16 @@ body{
   margin-top: -8px;      /* closer to title + mana cost */
   margin-bottom: 18px;   /* clear separation before the blocks */
 }
+/* Modal meta spacing patch — make meta line hug the title, then breathe before blocks */
+.modalPanel .modalRight{
+  gap: 0 !important;                 /* remove generic vertical gap so we can control spacing precisely */
+}
+
+.modalPanel .modalTitle{
+  margin: 0 0 2px 0 !important;      /* title + mana cost cluster */
+}
+
+.modalPanel .modalMeta{
+  font-weight: 700 !important;
+  margin: 0 0 18px 0 !important;     /* space AFTER meta, before rules/flavor/lore blocks */
+}
