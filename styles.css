@@ -60,7 +60,7 @@ body{
   min-width: 0;
 
   justify-content:flex-end;
-  padding-right: 8px;
+  padding-right: 16px;
 }
 
 .nav{
@@ -68,7 +68,7 @@ body{
   align-items:center;
   gap:10px;
   flex: 0 0 auto;
-  margin-left: 8px;
+  margin-left: 16px;
 }
 
 .searchWrap{
@@ -109,7 +109,10 @@ body{
   justify-content:center;
   font-size: 14px;
   line-height: 1;
+
+  transform: translateY(-1px);
 }
+
 .navBtn:hover{ background: rgba(255,255,255,0.06); }
 .search{
   flex: 1 1 auto;
