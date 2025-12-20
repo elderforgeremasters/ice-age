@@ -77,7 +77,11 @@ body{
   font-synthesis-small-caps: auto;
   letter-spacing: .02em;
 }
-
+/* Match the tighter 5–8% cap-to-smallcap ratio */
+.brand .title::first-letter,
+.brand .subtitle::first-letter{
+  font-size: 0.86em;
+}
 
 .nav{
   display:flex;
@@ -992,7 +996,7 @@ body{
   letter-spacing: .02em;
 }
 
-/* Make the leading capital less dominant so “faked lowercase” feels larger */
+/* Make the leading capital less dominant so “faked lowercase” stays close to full caps (≈5–8% difference) */
 .navBtn::first-letter,
 .ddBtn::first-letter,
 .ddItem::first-letter,
@@ -1005,13 +1009,10 @@ body{
 .pagePanel h2::first-letter,
 .mapTitle::first-letter,
 .iconSectionTitle::first-letter{
-  font-size: 0.90em;
+  font-size: 0.86em;
 }
 
-
-
-/* Reduce uppercase dominance specifically on type/subtype lines */
-.cardType::first-letter{ font-size: 0.86em; }
+/* Type/subtype line: keep the exact “perfect” feel */
 .cardType{ letter-spacing: .015em; }
 
 /* Magical serif for card popup content (Rules/Flavor/Lore/Art bodies) */
