@@ -1113,3 +1113,16 @@ body{
 
 /* Preserve the comfortable spacing between the content blocks */
 .modalPanel .block + .block{ margin-top: 10px; }
+
+
+/* --- Modal header sizing tweak v2 (title slightly bigger to match mana icons) --- */
+.modalPanel .modalTitle{
+  font-size: 36px !important;   /* was 34px in v1 */
+  line-height: 1.06 !important; /* keeps it tight, avoids pushing meta down */
+}
+/* optional optical baseline: uncomment if icons look slightly low/high */
+/*
+.modalPanel .modalTitle .nameCost{
+  transform: translateY(-1px);
+}
+*/
