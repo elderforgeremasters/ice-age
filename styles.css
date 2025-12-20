@@ -1,14 +1,9 @@
 /* ElderForge — Ice Age | styles.css (full) */
-
-
-@import url("https://fonts.googleapis.com/css2?family=Oxanium:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Grape+Nuts&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap");
 :root{
-  
   --font-ui: "Oxanium", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  --font-magic: "Cormorant Garamond", ui-serif, Georgia, "Times New Roman", Times, serif;
-  --font-flavor: "Grape Nuts", "Cormorant Garamond", ui-serif, Georgia, "Times New Roman", Times, serif;
---bg0:#070b12;
+  --font-magic: "Cormorant Garamond", ui-serif, Georgia, serif;
+  --bg0:#070b12;
   --bg1:#0b1220;
   --panel: rgba(255,255,255,0.04);
   --panel2: rgba(255,255,255,0.06);
@@ -20,6 +15,10 @@
 }
 
 *{ box-sizing:border-box; }
+
+button, input, select, textarea{
+  font-family: inherit;
+}
 html,body{ min-height:100%; }
 html{
   background: radial-gradient(1200px 600px at 40% -10%, rgba(95,140,255,0.18), transparent 60%),
@@ -69,6 +68,16 @@ body{
   justify-content:flex-end;
   padding-right: 8px;
 }
+
+
+/* Brand title/subtitle use Oxanium synthetic small-caps */
+.brand .title,
+.brand .subtitle{
+  font-variant-caps: small-caps;
+  font-synthesis-small-caps: auto;
+  letter-spacing: .02em;
+}
+
 
 .nav{
   display:flex;
@@ -220,7 +229,8 @@ body{
 }
 .cardType{
   color: var(--muted);
-  font-size: 12.5px;
+  font-size: 13.2px;
+  font-weight: 500;
   margin-top: 4px;
   line-height: 1.2;
 }
@@ -609,8 +619,8 @@ body{
   border: none;
   background: transparent;
   color: rgba(233,238,247,0.92);
-  font-size: 13px;
-  line-height: 1.25;
+  font-size: 12px;
+  line-height: 1.18;
   max-width: 260px;
   text-shadow: 0 2px 10px rgba(0,0,0,0.65);
 }
@@ -963,69 +973,48 @@ body{
 }
 
 
-/* Ensure UI controls inherit site font */
-input, button, select, textarea{ font-family: inherit; }
-
-
-/* --- Oxanium synthetic small-caps tuning --- */
-:root{
-  --sc-lead: 0.70;      /* shrink the leading cap to make “fake lowercase” feel bigger */
-  --sc-weight: 600;     /* slightly heavier to avoid thin-looking small-caps */
-  --sc-spacing: 0.04em; /* a touch of air improves legibility */
-}
-
-/* Apply small-caps to key UI text without changing original sizes */
-.brand .title,
-.brand .subtitle,
+/* Oxanium small-caps styling (synthetic) — tuned to reduce the “giant first letter” effect */
+.uiSmallCaps,
 .navBtn,
 .ddBtn,
 .ddItem,
-.ddLink,
-.ddSmall,
+.ddMenu a.ddLink,
 .cardName,
 .cardType,
 .modalTitle,
-.modalMeta{
+.modalMeta,
+.pagePanel h1,
+.pagePanel h2,
+.mapTitle,
+.iconSectionTitle{
   font-variant-caps: small-caps;
   font-synthesis-small-caps: auto;
-  letter-spacing: var(--sc-spacing);
-  font-weight: var(--sc-weight);
+  letter-spacing: .02em;
 }
 
-/* Reduce the “jarring” leading cap size across the board */
-.brand .title::first-letter,
-.brand .subtitle::first-letter,
+/* Make the leading capital less dominant so “faked lowercase” feels larger */
 .navBtn::first-letter,
 .ddBtn::first-letter,
 .ddItem::first-letter,
-.ddLink::first-letter,
-.ddSmall::first-letter,
+.ddMenu a.ddLink::first-letter,
 .cardName::first-letter,
 .cardType::first-letter,
 .modalTitle::first-letter,
-.modalMeta::first-letter{
-  font-size: var(--sc-lead);
+.modalMeta::first-letter,
+.pagePanel h1::first-letter,
+.pagePanel h2::first-letter,
+.mapTitle::first-letter,
+.iconSectionTitle::first-letter{
+  font-size: 0.90em;
 }
 
-/* --- Popup typography (spellbook vibe) --- */
-/* Default modal blocks use the magical serif, but keep labels/UI in Oxanium */
-.block.rulesBlock .blockBody,
-.block.loreBlock  .blockBody,
-.block.artBlock   .blockBody{
+
+
+/* Reduce uppercase dominance specifically on type/subtype lines */
+.cardType::first-letter{ font-size: 0.86em; }
+.cardType{ letter-spacing: .015em; }
+
+/* Magical serif for card popup content (Rules/Flavor/Lore/Art bodies) */
+.modalCard .blockBody{
   font-family: var(--font-magic);
-}
-
-/* Flavor specifically uses Grape Nuts */
-.block.flavorBlock .blockBody{
-  font-family: var(--font-flavor);
-  font-style: normal; /* Grape Nuts already has character */
-  letter-spacing: 0.2px;
-}
-
-/* Keep block labels in Oxanium small-caps */
-.blockLabel{
-  font-family: var(--font-ui);
-  font-variant-caps: small-caps;
-  font-synthesis-small-caps: auto;
-  letter-spacing: 0.06em;
 }
