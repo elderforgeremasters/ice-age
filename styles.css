@@ -1091,7 +1091,7 @@ body{
 
 /* Bigger title, tighter line box */
 .modalPanel .modalTitle{
-  font-size: 34px;              /* was 28px */
+  font-size: 36px;              /* was 28px */
   line-height: 1;               /* tighten */
   margin: 0 0 2px 0 !important; /* small title→meta spacing */
 }
