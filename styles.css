@@ -1053,7 +1053,7 @@ body{
    but make them subtle (not towering). */
 .modalPanel .modalTitle .capInit{
   font-variant-caps: normal !important; /* real caps */
-  font-size: 0.84em !important;         /* ~6–8% larger than small-caps, depending on font */
+  font-size: 0.86em !important;         /* ~6–8% larger than small-caps, depending on font */
   position: relative;
   top: 0;                                /* no lift */
   letter-spacing: inherit;
@@ -1084,7 +1084,7 @@ body{
 
 /* Meta line: snug under title, then give breathing room before blocks */
 .modalPanel .modalMeta{
-  margin: 0 0 28px 0 !important;
+  margin: 0 0 22px 0 !important;
 }
 
 /* ==========================================================
