@@ -45,68 +45,28 @@
       <h2>Parts of a card (example: Adarkar Unicorn)</h2>
       <p>This annotated example shows the key things to notice when you pick up a card for the first time.</p>
 
-      
-      <div class="cardAnatomy">
-        <div class="anatomyCol">
-          <div class="anatomyItem">
-            <div class="anatomyTitle">Card name <span class="anatomyArrow">→</span></div>
-            <div class="anatomyDesc">The identity of the card. If two cards share a name, they’re the “same card” for effects that care about names.</div>
-          </div>
+      <div class="cardDiagramWrap">
+        <div class="cardDiagram" aria-label="Card diagram">
+          <img id="diagramCard" class="cardDiagramImg" alt="Adarkar Unicorn" />
 
-          <div class="anatomyItem">
-            <div class="anatomyTitle">Artwork <span class="anatomyArrow">→</span></div>
-            <div class="anatomyDesc">The illustration. Looks cool, hints at the vibe, and occasionally helps you remember what the card does.</div>
-          </div>
+          <svg class="cardDiagramSvg" viewBox="0 0 100 140" preserveAspectRatio="none" aria-hidden="true">
+            <line x1="14" y1="10" x2="30" y2="18" />
+            <line x1="86" y1="10" x2="70" y2="18" />
+            <line x1="14" y1="48" x2="30" y2="52" />
+            <line x1="14" y1="76" x2="30" y2="78" />
+            <line x1="14" y1="104" x2="30" y2="104" />
+            <line x1="86" y1="126" x2="72" y2="122" />
+          </svg>
 
-          <div class="anatomyItem">
-            <div class="anatomyTitle">Type line (type + subtype) <span class="anatomyArrow">→</span></div>
-            <div class="anatomyDesc">Tells you what the card is (Creature, Instant, Land…) and sometimes what kind (like <em>Unicorn</em>). Types affect rules and interactions.</div>
-          </div>
-
-          <div class="anatomyItem">
-            <div class="anatomyTitle">Rules text <span class="anatomyArrow">→</span></div>
-            <div class="anatomyDesc">What the card actually does. Keywords (like Flying) are just short-hand — see the Keyword Icons page.</div>
-          </div>
-
-          <div class="anatomyItem">
-            <div class="anatomyTitle">Flavor text <span class="anatomyArrow">→</span></div>
-            <div class="anatomyDesc">Story-only. No rules impact… but it’s often the soul of the card.</div>
-          </div>
+          <div class="cardCallout coName">Card name</div>
+          <div class="cardCallout coCost">Mana cost</div>
+          <div class="cardCallout coArt">Artwork</div>
+          <div class="cardCallout coType">Type line</div>
+          <div class="cardCallout coText">Rules & flavor text</div>
+          <div class="cardCallout coPT">Power / Toughness</div>
         </div>
-
-        <div class="cardAnatomyCenter">
-          <img id="anatomyCard" class="cardAnatomyImg" alt="Adarkar Unicorn" />
-        </div>
-
-        <div class="anatomyCol">
-          <div class="anatomyItem">
-            <div class="anatomyTitle"><span class="anatomyArrow">←</span> Mana cost</div>
-            <div class="anatomyDesc">What you pay to cast the spell. Numbers are generic mana; colored symbols require that color.</div>
-          </div>
-
-          <div class="anatomyItem">
-            <div class="anatomyTitle"><span class="anatomyArrow">←</span> Expansion symbol (set + rarity)</div>
-            <div class="anatomyDesc">Shows which set the card is from. The symbol’s styling/color typically indicates rarity (common → mythic).</div>
-          </div>
-
-          <div class="anatomyItem">
-            <div class="anatomyTitle"><span class="anatomyArrow">←</span> Power / Toughness</div>
-            <div class="anatomyDesc">Creatures only. Power is how hard it hits; toughness is how much damage it can take in a turn before it dies.</div>
-          </div>
-
-          <div class="anatomyItem">
-            <div class="anatomyTitle"><span class="anatomyArrow">←</span> Collector info</div>
-            <div class="anatomyDesc">Collector number, set code/abbreviation, and rarity letter (varies by card frame). Helps sorting and referencing.</div>
-          </div>
-
-          <div class="anatomyItem">
-            <div class="anatomyTitle"><span class="anatomyArrow">←</span> Artist credit</div>
-            <div class="anatomyDesc">Who made the illustration. Useful when you fall in love with a style and want to find more.</div>
-          </div>
-        </div>
+        <div class="cardDiagramNote">(Loaded from your card database, so it stays correct even if the filename changes.)</div>
       </div>
-      <div class="anatomyNote">(This image loads from your card database, so it stays correct even if the filename changes.)</div>
-
 
       <h2>Setup</h2>
       <ul>
@@ -198,7 +158,7 @@
       const card = (Array.isArray(data) ? data : []).find(c => String(c?.name||'').toLowerCase() === 'adarkar unicorn')
         || (Array.isArray(data) ? data : []).find(c => String(c?.name||'').toLowerCase().includes('adarkar unicorn'));
 
-      const img = document.getElementById('anatomyCard');
+      const img = document.getElementById('diagramCard');
       if(!img) return;
       const srcRaw = String(card?.image || '').trim();
       if(!srcRaw) return;
