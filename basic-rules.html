@@ -45,27 +45,97 @@
       <h2>Parts of a card (example: Adarkar Unicorn)</h2>
       <p>This annotated example shows the key things to notice when you pick up a card for the first time.</p>
 
-      <div class="cardDiagramWrap">
-        <div class="cardDiagram" aria-label="Card diagram">
-          <img id="diagramCard" class="cardDiagramImg" alt="Adarkar Unicorn" />
+      <div class="anatomyWrap">
+        <div class="anatomyGrid" aria-label="Card anatomy diagram">
+          <div class="anatomyCol anatomyLeft">
+            <div class="anatomyItem">
+              <div class="anatomyText">
+                <div class="anatomyTitle">Card name</div>
+                <div class="anatomyDesc">Top-left nameplate.</div>
+              </div>
+              <div class="anatomyArrow" aria-hidden="true">→</div>
+            </div>
 
-          <svg class="cardDiagramSvg" viewBox="0 0 100 140" preserveAspectRatio="none" aria-hidden="true">
-            <line x1="14" y1="10" x2="30" y2="18" />
-            <line x1="86" y1="10" x2="70" y2="18" />
-            <line x1="14" y1="48" x2="30" y2="52" />
-            <line x1="14" y1="76" x2="30" y2="78" />
-            <line x1="14" y1="104" x2="30" y2="104" />
-            <line x1="86" y1="126" x2="72" y2="122" />
-          </svg>
+            <div class="anatomyItem">
+              <div class="anatomyText">
+                <div class="anatomyTitle">Mana cost</div>
+                <div class="anatomyDesc">Top-right symbols tell you what mana to pay.</div>
+              </div>
+              <div class="anatomyArrow" aria-hidden="true">→</div>
+            </div>
 
-          <div class="cardCallout coName">Card name</div>
-          <div class="cardCallout coCost">Mana cost</div>
-          <div class="cardCallout coArt">Artwork</div>
-          <div class="cardCallout coType">Type line</div>
-          <div class="cardCallout coText">Rules & flavor text</div>
-          <div class="cardCallout coPT">Power / Toughness</div>
+            <div class="anatomyItem">
+              <div class="anatomyText">
+                <div class="anatomyTitle">Expansion symbol</div>
+                <div class="anatomyDesc">Its <em>color</em> shows rarity: black (C), silver (U), gold (R), orange-red (M).</div>
+              </div>
+              <div class="anatomyArrow" aria-hidden="true">→</div>
+            </div>
+
+            <div class="anatomyItem">
+              <div class="anatomyText">
+                <div class="anatomyTitle">Type line & subtype</div>
+                <div class="anatomyDesc">Example: <strong>Creature — Unicorn</strong>. Subtype is after the dash.</div>
+              </div>
+              <div class="anatomyArrow" aria-hidden="true">→</div>
+            </div>
+
+            <div class="anatomyItem">
+              <div class="anatomyText">
+                <div class="anatomyTitle">Power / Toughness</div>
+                <div class="anatomyDesc">Bottom-right on creatures (attack / durability).</div>
+              </div>
+              <div class="anatomyArrow" aria-hidden="true">→</div>
+            </div>
+          </div>
+
+          <div class="anatomyCard">
+            <img id="diagramCard" class="anatomyCardImg" alt="Adarkar Unicorn" />
+            <div class="anatomyCardNote">(Loaded from your card database, so it stays correct even if the filename changes.)</div>
+          </div>
+
+          <div class="anatomyCol anatomyRight">
+            <div class="anatomyItem">
+              <div class="anatomyArrow" aria-hidden="true">←</div>
+              <div class="anatomyText">
+                <div class="anatomyTitle">Rules text</div>
+                <div class="anatomyDesc">Abilities, restrictions, and activated costs live here.</div>
+              </div>
+            </div>
+
+            <div class="anatomyItem">
+              <div class="anatomyArrow" aria-hidden="true">←</div>
+              <div class="anatomyText">
+                <div class="anatomyTitle">Flavor text</div>
+                <div class="anatomyDesc">Story tone — has no gameplay effect.</div>
+              </div>
+            </div>
+
+            <div class="anatomyItem">
+              <div class="anatomyArrow" aria-hidden="true">←</div>
+              <div class="anatomyText">
+                <div class="anatomyTitle">Collector number</div>
+                <div class="anatomyDesc">Bottom line: set order and print identification.</div>
+              </div>
+            </div>
+
+            <div class="anatomyItem">
+              <div class="anatomyArrow" aria-hidden="true">←</div>
+              <div class="anatomyText">
+                <div class="anatomyTitle">Artist credit</div>
+                <div class="anatomyDesc">Bottom line: who illustrated the card.</div>
+              </div>
+            </div>
+
+            <div class="anatomyItem">
+              <div class="anatomyArrow" aria-hidden="true">←</div>
+              <div class="anatomyText">
+                <div class="anatomyTitle">Set code & rarity</div>
+                <div class="anatomyDesc">Bottom line: set abbreviation (e.g., ICE) and rarity letter (C/U/R/M).</div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="cardDiagramNote">(Loaded from your card database, so it stays correct even if the filename changes.)</div>
       </div>
 
       <h2>Setup</h2>
