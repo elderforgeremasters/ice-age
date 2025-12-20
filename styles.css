@@ -1077,7 +1077,7 @@ body{
 
 /* Title: bump size a bit (small-caps looks ~10–15% smaller) */
 .modalPanel .modalTitle{
-  font-size: 40px !important;   /* tune: 38–44 */
+  font-size: 38px !important;   /* tune: 38–44 */
   line-height: 1.08 !important;
   margin: 0 0 2px 0 !important; /* snug to meta */
 }
@@ -1086,3 +1086,20 @@ body{
 .modalPanel .modalMeta{
   margin: 0 0 28px 0 !important;
 }
+
+/* ==========================================================
+   Modal section spacing (rules / flavor / lore)
+   ========================================================== */
+
+/* Ensure the three content blocks keep their breathing room */
+.modalPanel .block{
+  margin-top: 0 !important;
+}
+
+.modalPanel .block.rulesBlock,
+.modalPanel .block.flavorBlock,
+.modalPanel .block.loreBlock{
+  margin-top: 14px !important;   /* space between blocks */
+}
+
+.modalPanel .block.rulesBlock{ margin-top: 0 !important; } /* first block sits under meta spacing */
