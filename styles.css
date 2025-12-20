@@ -1037,3 +1037,17 @@ body{
   margin-top: -6px;   /* pull meta line closer to title/mana */
   margin-bottom: 12px;/* add breathing room before the 3 blocks */
 }
+
+/* --- Modal polish v4: optical centering + tighter title/meta grouping --- */
+.modalClose,
+.modalNavBtn{
+  /* Optical centering for × / ‹ / › glyphs */
+  padding: 0 0 4px 0;
+}
+
+.modalMeta{
+  /* Pull meta closer to the title/mana cost */
+  margin-top: -8px;
+  /* Clear break before the content blocks */
+  margin-bottom: 12px;
+}
