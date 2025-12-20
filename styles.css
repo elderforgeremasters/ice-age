@@ -60,6 +60,7 @@ body{
   min-width: 0;
 
   justify-content:flex-end;
+  padding-right: 8px;
 }
 
 .nav{
@@ -67,6 +68,7 @@ body{
   align-items:center;
   gap:10px;
   flex: 0 0 auto;
+  margin-left: 8px;
 }
 
 .searchWrap{
@@ -106,6 +108,7 @@ body{
   align-items:center;
   justify-content:center;
   font-size: 14px;
+  line-height: 1;
 }
 .navBtn:hover{ background: rgba(255,255,255,0.06); }
 .search{
@@ -481,7 +484,9 @@ body{
   background: rgba(255,255,255,.06);
   border:1px solid rgba(255,255,255,.10);
   color: var(--text);
-  padding: 10px 12px;
+  height: 40px;
+  padding: 0 12px;
+  line-height: 1;
   border-radius: 14px;
   min-width: 160px;
   display:flex;
@@ -681,6 +686,46 @@ body{
   color: rgba(233,238,247,0.92);
   line-height: 1.55;
 }
+
+/* basic rules: card diagram */
+.cardDiagramWrap{ margin: 10px 0 18px 0; }
+.cardDiagram{
+  position: relative;
+  width: min(520px, 100%);
+  margin: 12px 0 8px 0;
+}
+.cardDiagramImg{
+  width: 100%;
+  display:block;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.02);
+  box-shadow: 0 18px 55px rgba(0,0,0,0.45);
+}
+.cardDiagramSvg{ position:absolute; inset:0; width:100%; height:100%; pointer-events:none; }
+.cardDiagramSvg line{ stroke: rgba(220,230,255,0.55); stroke-width: 0.7; }
+.cardCallout{
+  position:absolute;
+  background: rgba(7,11,18,0.55);
+  border: 1px solid rgba(255,255,255,0.16);
+  backdrop-filter: blur(10px);
+  padding: 6px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  color: rgba(245,247,255,0.92);
+  letter-spacing: 0.15px;
+}
+.cardDiagramNote{
+  color: rgba(168,179,199,0.82);
+  font-size: 13px;
+}
+
+.coName{ left: 4%; top: 6%; }
+.coCost{ right: 4%; top: 6%; }
+.coArt{ left: 4%; top: 34%; }
+.coType{ left: 4%; top: 54%; }
+.coText{ left: 4%; top: 74%; }
+.coPT{ right: 4%; bottom: 6%; }
 
 /* keyword icons page */
 .iconSectionTitle{

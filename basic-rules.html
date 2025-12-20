@@ -42,6 +42,32 @@
         <li><strong>Read the type line.</strong> It tells you what the card is (Creature, Instant, Land, etc.).</li>
       </ul>
 
+      <h2>Parts of a card (example: Adarkar Unicorn)</h2>
+      <p>This annotated example shows the key things to notice when you pick up a card for the first time.</p>
+
+      <div class="cardDiagramWrap">
+        <div class="cardDiagram" aria-label="Card diagram">
+          <img id="diagramCard" class="cardDiagramImg" alt="Adarkar Unicorn" />
+
+          <svg class="cardDiagramSvg" viewBox="0 0 100 140" preserveAspectRatio="none" aria-hidden="true">
+            <line x1="14" y1="10" x2="30" y2="18" />
+            <line x1="86" y1="10" x2="70" y2="18" />
+            <line x1="14" y1="48" x2="30" y2="52" />
+            <line x1="14" y1="76" x2="30" y2="78" />
+            <line x1="14" y1="104" x2="30" y2="104" />
+            <line x1="86" y1="126" x2="72" y2="122" />
+          </svg>
+
+          <div class="cardCallout coName">Card name</div>
+          <div class="cardCallout coCost">Mana cost</div>
+          <div class="cardCallout coArt">Artwork</div>
+          <div class="cardCallout coType">Type line</div>
+          <div class="cardCallout coText">Rules & flavor text</div>
+          <div class="cardCallout coPT">Power / Toughness</div>
+        </div>
+        <div class="cardDiagramNote">(Loaded from your card database, so it stays correct even if the filename changes.)</div>
+      </div>
+
       <h2>Setup</h2>
       <ul>
         <li>Each player shuffles their deck and draws <strong>7 cards</strong>.</li>
@@ -58,7 +84,7 @@
         <li><strong>Main phase</strong> — Play a land (if you haven’t), cast spells, activate abilities.</li>
         <li><strong>Combat</strong> — Declare attackers, then blockers, then damage happens.</li>
         <li><strong>Main phase (again)</strong> — Cast more spells after combat.</li>
-        <li><strong>End step / Cleanup</strong> — “At end step” abilities happen; damage wears off; discard down to hand size (usually 7).</li>
+        <li><strong>End step / Cleanup</strong> — “At end step” abilities happen; damage wears off; if you’re holding more than 7 cards, reduce to 7.</li>
       </ol>
 
       <h2>Mana and casting spells</h2>
@@ -71,7 +97,7 @@
       <h2>Card types (the quick mental model)</h2>
       <ul>
         <li><strong>Lands</strong> — Your main mana source. Played only on your turn, one per turn.</li>
-        <li><strong>Creatures</strong> — Stay on the battlefield. They attack/block. Power/Toughness is bottom-right (e.g., 3/2).</li>
+        <li><strong>Creatures</strong> — Stay in play. They attack/block. Power/Toughness is bottom-right (e.g., 3/2).</li>
         <li><strong>Instants</strong> — Fast spells. Cast them any time you have priority (often in response).</li>
         <li><strong>Sorceries</strong> — Slower spells. Cast only during your main phase when the stack is empty.</li>
         <li><strong>Enchantments / Artifacts</strong> — Permanents that stay in play and provide ongoing effects.</li>
@@ -123,5 +149,22 @@
   </div>
 </footer>
   <script src="site.js"></script>
+  <script>
+  // Load the Adarkar Unicorn image for the diagram without hardcoding filenames.
+  (async () => {
+    try{
+      const res = await fetch('data/cards.json', { cache: 'no-store' });
+      const data = await res.json();
+      const card = (Array.isArray(data) ? data : []).find(c => String(c?.name||'').toLowerCase() === 'adarkar unicorn')
+        || (Array.isArray(data) ? data : []).find(c => String(c?.name||'').toLowerCase().includes('adarkar unicorn'));
+
+      const img = document.getElementById('diagramCard');
+      if(!img) return;
+      const srcRaw = String(card?.image || '').trim();
+      if(!srcRaw) return;
+      img.src = srcRaw.startsWith('/') ? srcRaw.slice(1) : srcRaw;
+    }catch(_e){ /* silent */ }
+  })();
+  </script>
 </body>
 </html>
