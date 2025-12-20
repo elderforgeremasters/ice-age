@@ -1113,3 +1113,9 @@ body{
 
 /* Preserve the comfortable spacing between the content blocks */
 .modalPanel .block + .block{ margin-top: 10px; }
+
+
+/* --- Modal header optical tweak: lift mana glyphs without moving header stack --- */
+.modalPanel .nameCost{
+  transform: translateY(-1px) !important; /* was +1px in base; lift icons */
+}
