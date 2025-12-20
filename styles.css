@@ -1,8 +1,6 @@
 /* ElderForge — Ice Age | styles.css (full) */
-@import url("https://fonts.googleapis.com/css2?family=Saira:wght@300;400;500;600;700&display=swap");
+
 :root{
-  --font-ui: "Saira", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  --font-magic: "Saira", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   --bg0:#070b12;
   --bg1:#0b1220;
   --panel: rgba(255,255,255,0.04);
@@ -15,10 +13,6 @@
 }
 
 *{ box-sizing:border-box; }
-
-button, input, select, textarea{
-  font-family: inherit;
-}
 html,body{ min-height:100%; }
 html{
   background: radial-gradient(1200px 600px at 40% -10%, rgba(95,140,255,0.18), transparent 60%),
@@ -28,7 +22,7 @@ html{
 }
 body{
   margin:0;
-  font-family: var(--font-ui);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   background: transparent;
   min-height: 100%;
   color: var(--text);
@@ -68,16 +62,6 @@ body{
   justify-content:flex-end;
   padding-right: 8px;
 }
-
-
-/* Brand title/subtitle use Oxanium synthetic small-caps */
-.brand .title,
-.brand .subtitle{
-  font-variant-caps: small-caps;
-  font-synthesis-small-caps: auto;
-  letter-spacing: .02em;
-}
-
 
 .nav{
   display:flex;
@@ -229,8 +213,7 @@ body{
 }
 .cardType{
   color: var(--muted);
-  font-size: 13.2px;
-  font-weight: 500;
+  font-size: 12.5px;
   margin-top: 4px;
   line-height: 1.2;
 }
@@ -275,12 +258,6 @@ body{
   color: var(--text);
   font-size: 26px;
   cursor:pointer;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  line-height: 1;
-  padding: 0;
-
   z-index: 3;
 }
 .modalClose:hover{ background: rgba(255,255,255,0.07); }
@@ -367,8 +344,6 @@ body{
 .modalMeta{
   color: var(--muted);
   font-size: 14px;
-
-  font-weight: 700;
 }
 
 .block{
@@ -627,8 +602,8 @@ body{
   border: none;
   background: transparent;
   color: rgba(233,238,247,0.92);
-  font-size: 12px;
-  line-height: 1.18;
+  font-size: 13px;
+  line-height: 1.25;
   max-width: 260px;
   text-shadow: 0 2px 10px rgba(0,0,0,0.65);
 }
@@ -980,112 +955,32 @@ body{
   background: rgba(255,255,255,0.06);
 }
 
-
-/* Oxanium small-caps styling (synthetic) — tuned to reduce the “giant first letter” effect */
-.uiSmallCaps,
-.navBtn,
-.ddBtn,
-.ddItem,
-.ddMenu a.ddLink,
-.cardName,
-.cardType,
-.modalTitle,
-.modalMeta,
-.pagePanel h1,
-.pagePanel h2,
-.mapTitle,
-.iconSectionTitle{
-  font-variant-caps: small-caps;
-  font-synthesis-small-caps: auto;
-  letter-spacing: .02em;
-}
-
-/* Make the leading capital less dominant so “faked lowercase” feels larger */
-.navBtn::first-letter,
-.ddBtn::first-letter,
-.ddItem::first-letter,
-.ddMenu a.ddLink::first-letter,
-.cardName::first-letter,
-.cardType::first-letter,
-.modalTitle::first-letter,
-.modalMeta::first-letter,
-.pagePanel h1::first-letter,
-.pagePanel h2::first-letter,
-.mapTitle::first-letter,
-.iconSectionTitle::first-letter{
-  font-size: 0.90em;
-}
-
-
-
-/* Reduce uppercase dominance specifically on type/subtype lines */
-.cardType::first-letter{ font-size: 0.86em; }
-.cardType{ letter-spacing: .015em; }
-
-/* Magical serif for card popup content (Rules/Flavor/Lore/Art bodies) */
-.modalCard .blockBody{
-  font-family: var(--font-magic);
-}
-/* === Modal polish (optical centering + tighter title/meta grouping) === */
-.modalClose,
-.modalNavBtn{
-  box-sizing: border-box;
-  padding: 0 0 2px 0; /* optical center for × ‹ › glyphs */
-}
-
-.modalMeta{
-  margin-top: -6px;   /* pull meta line closer to title/mana */
-  margin-bottom: 12px;/* add breathing room before the 3 blocks */
-}
-
-/* --- Modal polish v4: optical centering + tighter title/meta grouping --- */
-.modalClose,
-.modalNavBtn{
-  /* Optical centering for × / ‹ / › glyphs */
-  padding: 0 0 4px 0;
-}
-
-.modalMeta{
-  /* Pull meta closer to the title/mana cost */
-  margin-top: -8px;
-  /* Clear break before the content blocks */
-  margin-bottom: 12px;
-}
-/* --- Modal tuning patch (optical centering + meta spacing) ---
-   Paste this at the VERY END of your CSS (so it wins). */
-
-/* 1) Make the icons sit visually centered inside the square buttons */
-.modalClose,
-.modalNavBtn{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
-  padding: 0;            /* reset any previous padding */
-}
-
-/* X stays perfect */
-.modalClose{ padding: 0 0 4px 0; }
-
-/* Arrows were riding too high — give them less upward nudge */
-.modalNavBtn{ padding: 0 0 1px 0; }
-
-/* 2) Pull the meta line up to “belong” with the title, then give it breathing room */
-.modalMeta{
-  font-weight: 700;
-  margin-top: -8px;      /* closer to title + mana cost */
-  margin-bottom: 18px;   /* clear separation before the blocks */
-}
-/* Modal meta spacing patch — make meta line hug the title, then breathe before blocks */
+/* --- v17 modal spacing + optical icon centering --- */
+/* Make the title + meta feel like one header, then create space before the content blocks */
 .modalPanel .modalRight{
-  gap: 0 !important;                 /* remove generic vertical gap so we can control spacing precisely */
+  gap: 0 !important;
 }
-
 .modalPanel .modalTitle{
-  margin: 0 0 2px 0 !important;      /* title + mana cost cluster */
+  margin: 0 0 2px 0 !important;
 }
-
 .modalPanel .modalMeta{
   font-weight: 700 !important;
-  margin: 0 0 18px 0 !important;     /* space AFTER meta, before rules/flavor/lore blocks */
+  margin: 0 0 16px 0 !important;
 }
+
+/* Recreate intentional spacing BETWEEN the three blocks */
+.modalPanel #mRules.block{ margin-top: 0 !important; }
+.modalPanel #mFlavor.block{ margin-top: 12px !important; }
+.modalPanel #mLore.block{ margin-top: 12px !important; }
+
+/* Optical centering: keep X perfect, drop the arrows slightly */
+.modalPanel .modalClose,
+.modalPanel .modalNavBtn{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  line-height: 1;
+  padding: 0 !important; /* neutralize any earlier padding tweaks */
+}
+.modalPanel .modalClose{ padding-bottom: 4px !important; }
+.modalPanel .modalNavBtn{ padding-bottom: 1px !important; }
