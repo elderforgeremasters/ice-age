@@ -45,27 +45,97 @@
       <h2>Parts of a card (example: Adarkar Unicorn)</h2>
       <p>This annotated example shows the key things to notice when you pick up a card for the first time.</p>
 
-      <div class="cardDiagramWrap">
-        <div class="cardDiagram" aria-label="Card diagram">
-          <img id="diagramCard" class="cardDiagramImg" alt="Adarkar Unicorn" />
+      <div class="anatomyWrap">
+        <div class="anatomyGrid" aria-label="Card anatomy diagram">
+          <div class="anatomyCol anatomyLeft">
+            <div class="anatomyItem">
+              <div class="anatomyText">
+                <div class="anatomyTitle">Card name</div>
+                <div class="anatomyDesc">Top-left nameplate.</div>
+              </div>
+              <div class="anatomyArrow" aria-hidden="true">→</div>
+            </div>
 
-          <svg class="cardDiagramSvg" viewBox="0 0 100 140" preserveAspectRatio="none" aria-hidden="true">
-            <line x1="14" y1="10" x2="30" y2="18" />
-            <line x1="86" y1="10" x2="70" y2="18" />
-            <line x1="14" y1="48" x2="30" y2="52" />
-            <line x1="14" y1="76" x2="30" y2="78" />
-            <line x1="14" y1="104" x2="30" y2="104" />
-            <line x1="86" y1="126" x2="72" y2="122" />
-          </svg>
+            <div class="anatomyItem">
+              <div class="anatomyText">
+                <div class="anatomyTitle">Mana cost</div>
+                <div class="anatomyDesc">Top-right symbols tell you what mana to pay.</div>
+              </div>
+              <div class="anatomyArrow" aria-hidden="true">→</div>
+            </div>
 
-          <div class="cardCallout coName">Card name</div>
-          <div class="cardCallout coCost">Mana cost</div>
-          <div class="cardCallout coArt">Artwork</div>
-          <div class="cardCallout coType">Type line</div>
-          <div class="cardCallout coText">Rules & flavor text</div>
-          <div class="cardCallout coPT">Power / Toughness</div>
+            <div class="anatomyItem">
+              <div class="anatomyText">
+                <div class="anatomyTitle">Expansion symbol</div>
+                <div class="anatomyDesc">Its <em>color</em> shows rarity: black (C), silver (U), gold (R), orange-red (M).</div>
+              </div>
+              <div class="anatomyArrow" aria-hidden="true">→</div>
+            </div>
+
+            <div class="anatomyItem">
+              <div class="anatomyText">
+                <div class="anatomyTitle">Type line & subtype</div>
+                <div class="anatomyDesc">Example: <strong>Creature — Unicorn</strong>. Subtype is after the dash.</div>
+              </div>
+              <div class="anatomyArrow" aria-hidden="true">→</div>
+            </div>
+
+            <div class="anatomyItem">
+              <div class="anatomyText">
+                <div class="anatomyTitle">Power / Toughness</div>
+                <div class="anatomyDesc">Bottom-right on creatures (attack / durability).</div>
+              </div>
+              <div class="anatomyArrow" aria-hidden="true">→</div>
+            </div>
+          </div>
+
+          <div class="anatomyCard">
+            <img id="diagramCard" class="anatomyCardImg" alt="Adarkar Unicorn" />
+            <div class="anatomyCardNote">(Loaded from your card database, so it stays correct even if the filename changes.)</div>
+          </div>
+
+          <div class="anatomyCol anatomyRight">
+            <div class="anatomyItem">
+              <div class="anatomyArrow" aria-hidden="true">←</div>
+              <div class="anatomyText">
+                <div class="anatomyTitle">Rules text</div>
+                <div class="anatomyDesc">Abilities, restrictions, and activated costs live here.</div>
+              </div>
+            </div>
+
+            <div class="anatomyItem">
+              <div class="anatomyArrow" aria-hidden="true">←</div>
+              <div class="anatomyText">
+                <div class="anatomyTitle">Flavor text</div>
+                <div class="anatomyDesc">Story tone — has no gameplay effect.</div>
+              </div>
+            </div>
+
+            <div class="anatomyItem">
+              <div class="anatomyArrow" aria-hidden="true">←</div>
+              <div class="anatomyText">
+                <div class="anatomyTitle">Collector number</div>
+                <div class="anatomyDesc">Bottom line: set order and print identification.</div>
+              </div>
+            </div>
+
+            <div class="anatomyItem">
+              <div class="anatomyArrow" aria-hidden="true">←</div>
+              <div class="anatomyText">
+                <div class="anatomyTitle">Artist credit</div>
+                <div class="anatomyDesc">Bottom line: who illustrated the card.</div>
+              </div>
+            </div>
+
+            <div class="anatomyItem">
+              <div class="anatomyArrow" aria-hidden="true">←</div>
+              <div class="anatomyText">
+                <div class="anatomyTitle">Set code & rarity</div>
+                <div class="anatomyDesc">Bottom line: set abbreviation (e.g., ICE) and rarity letter (C/U/R/M).</div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="cardDiagramNote">(Loaded from your card database, so it stays correct even if the filename changes.)</div>
       </div>
 
       <h2>Setup</h2>
@@ -149,7 +219,6 @@
   </div>
 </footer>
   <script src="site.js"></script>
-  
   <script>
   // Load the Adarkar Unicorn image for the diagram without hardcoding filenames.
   (async () => {
@@ -163,90 +232,9 @@
       if(!img) return;
       const srcRaw = String(card?.image || '').trim();
       if(!srcRaw) return;
-
       img.src = srcRaw.startsWith('/') ? srcRaw.slice(1) : srcRaw;
-
-      img.addEventListener('load', () => {
-        requestAnimationFrame(drawAnatomyLines);
-      }, { once: true });
-
     }catch(_e){ /* silent */ }
   })();
-
-  function drawAnatomyLines(){
-    const diagram = document.querySelector('.anatomyDiagram');
-    const svg = document.getElementById('anatomyLines');
-    const card = document.getElementById('diagramCard');
-    if(!diagram || !svg || !card) return;
-
-    const d = diagram.getBoundingClientRect();
-    const c = card.getBoundingClientRect();
-    if(!d.width || !d.height || !c.width || !c.height) return;
-
-    svg.setAttribute('viewBox', `0 0 ${d.width} ${d.height}`);
-    svg.setAttribute('width', d.width);
-    svg.setAttribute('height', d.height);
-
-    const cardLeft = c.left - d.left;
-    const cardRight = c.right - d.left;
-    const cardTop = c.top - d.top;
-    const cardW = c.width;
-    const cardH = c.height;
-
-    const items = Array.from(diagram.querySelectorAll('.anatomyItem[data-point]'));
-
-    const defs = `
-      <defs>
-        <marker id="arrowOpen" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="userSpaceOnUse">
-          <path d="M 0 0 L 9 5 L 0 10" fill="none" stroke="rgba(233,238,247,0.85)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-        </marker>
-        <filter id="lineGlow" x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow dx="0" dy="0" stdDeviation="2" flood-color="rgba(0,0,0,0.55)" />
-        </filter>
-      </defs>
-    `;
-
-    const lines = items.map((el) => {
-      const p = String(el.getAttribute('data-point') || '').split(',').map(v => parseFloat(v.trim()));
-      const fx = Number.isFinite(p[0]) ? p[0] : 0.5;
-      const fy = Number.isFinite(p[1]) ? p[1] : 0.5;
-
-      const r = el.getBoundingClientRect();
-      const isLeft = !!el.closest('.anatomyLeft');
-
-      const sx = (isLeft ? r.right : r.left) - d.left;
-      const sy = (r.top + r.height/2) - d.top;
-
-      const tx = cardLeft + fx * cardW;
-      const ty = cardTop + fy * cardH;
-
-      const elbowX = (isLeft ? (cardLeft - 14) : (cardRight + 14));
-
-      const pts = [
-        [sx, sy],
-        [elbowX, sy],
-        [elbowX, ty],
-        [tx, ty]
-      ].map(pair => pair.map(n => Math.round(n)).join(',')).join(' ');
-
-      return `
-        <polyline points="${pts}" fill="none"
-          stroke="rgba(233,238,247,0.78)" stroke-width="1.6"
-          stroke-linecap="round" stroke-linejoin="round"
-          marker-end="url(#arrowOpen)" filter="url(#lineGlow)" />
-        <circle cx="${Math.round(tx)}" cy="${Math.round(ty)}" r="3"
-          fill="none" stroke="rgba(233,238,247,0.75)" stroke-width="1.4" />
-      `;
-    }).join('');
-
-    svg.innerHTML = defs + lines;
-  }
-
-  let _anatomyRaf = null;
-  window.addEventListener('resize', () => {
-    if(_anatomyRaf) cancelAnimationFrame(_anatomyRaf);
-    _anatomyRaf = requestAnimationFrame(drawAnatomyLines);
-  });
   </script>
 </body>
 </html>
