@@ -1,9 +1,8 @@
 /* ElderForge — Ice Age | styles.css (full) */
-@import url("https://fonts.googleapis.com/css2?family=Oxanium:wght@400;500;600;700&display=swap");
-
-
+@import url("https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap");
 :root{
   --font-ui: "Oxanium", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  --font-magic: "Cormorant Garamond", ui-serif, Georgia, serif;
   --bg0:#070b12;
   --bg1:#0b1220;
   --panel: rgba(255,255,255,0.04);
@@ -69,6 +68,16 @@ body{
   justify-content:flex-end;
   padding-right: 8px;
 }
+
+
+/* Brand title/subtitle use Oxanium synthetic small-caps */
+.brand .title,
+.brand .subtitle{
+  font-variant-caps: small-caps;
+  font-synthesis-small-caps: auto;
+  letter-spacing: .02em;
+}
+
 
 .nav{
   display:flex;
@@ -220,7 +229,8 @@ body{
 }
 .cardType{
   color: var(--muted);
-  font-size: 12.5px;
+  font-size: 13.2px;
+  font-weight: 500;
   margin-top: 4px;
   line-height: 1.2;
 }
@@ -998,3 +1008,13 @@ body{
   font-size: 0.90em;
 }
 
+
+
+/* Reduce uppercase dominance specifically on type/subtype lines */
+.cardType::first-letter{ font-size: 0.86em; }
+.cardType{ letter-spacing: .015em; }
+
+/* Magical serif for card popup content (Rules/Flavor/Lore/Art bodies) */
+.modalCard .blockBody{
+  font-family: var(--font-magic);
+}
