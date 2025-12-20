@@ -1,8 +1,8 @@
 /* ElderForge — Ice Age | styles.css (full) */
-@import url("https://fonts.googleapis.com/css2?family=Saira:...&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Saira:wght@300;400;500;600;700&display=swap");
 :root{
   --font-ui: "Saira", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  --font-magic: "Saira", ui-serif, Georgia, serif;
+  --font-magic: "Saira", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   --bg0:#070b12;
   --bg1:#0b1220;
   --panel: rgba(255,255,255,0.04);
@@ -70,7 +70,7 @@ body{
 }
 
 
-/* Brand title/subtitle use Saira synthetic small-caps */
+/* Brand title/subtitle use Oxanium synthetic small-caps */
 .brand .title,
 .brand .subtitle{
   font-variant-caps: small-caps;
@@ -973,7 +973,7 @@ body{
 }
 
 
-/* Saira small-caps styling (synthetic) — tuned to reduce the “giant first letter” effect */
+/* Oxanium small-caps styling (synthetic) — tuned to reduce the “giant first letter” effect */
 .uiSmallCaps,
 .navBtn,
 .ddBtn,
