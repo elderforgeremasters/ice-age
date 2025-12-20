@@ -766,8 +766,7 @@ body{
 .anatomyRight .anatomyItem{ justify-content:flex-start; }
 .anatomyRight .anatomyArrow{ order: 1; }
 .anatomyRight .anatomyText{ order: 2; }
-
- (max-width: 980px){
+@media (max-width: 980px){
   .anatomyGrid{ grid-template-columns: 1fr; }
   .anatomyLeft .anatomyItem, .anatomyRight .anatomyItem{ text-align:left; justify-content:flex-start; }
   .anatomyLeft .anatomyArrow, .anatomyRight .anatomyArrow{ display:none; }
@@ -1013,109 +1012,53 @@ body{
 .pagePanel h2::first-letter,
 .mapTitle::first-letter,
 .iconSectionTitle::first-letter{
-  font-size: 0.8em;
+  font-size: 0.90em;
 }
 
 
 
 /* Reduce uppercase dominance specifically on type/subtype lines */
-.cardType::first-letter{ font-size: 0.8em; }
+.cardType::first-letter{ font-size: 0.86em; }
 .cardType{ letter-spacing: .015em; }
 
 /* Magical serif for card popup content (Rules/Flavor/Lore/Art bodies) */
 .modalCard .blockBody{
   font-family: var(--font-magic);
 }
-/* === Modal polish (optical centering + tighter title/meta grouping) === */
-.modalClose,
-.modalNavBtn{
-  box-sizing: border-box;
-  padding: 0 0 2px 0; /* optical center for × ‹ › glyphs */
-}
-
-.modalMeta{
-  margin-top: -6px;   /* pull meta line closer to title/mana */
-  margin-bottom: 12px;/* add breathing room before the 3 blocks */
-}
-
-/* --- Modal polish v4: optical centering + tighter title/meta grouping --- */
-.modalClose,
-.modalNavBtn{
-  /* Optical centering for × / ‹ / › glyphs */
-  padding: 0 0 4px 0;
-}
-
-.modalMeta{
-  /* Pull meta closer to the title/mana cost */
-  margin-top: -8px;
-  /* Clear break before the content blocks */
-  margin-bottom: 12px;
-}
-/* --- Modal tuning patch (optical centering + meta spacing) ---
-   Paste this at the VERY END of your CSS (so it wins). */
-
-/* 1) Make the icons sit visually centered inside the square buttons */
-.modalClose,
-.modalNavBtn{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
-  padding: 0;            /* reset any previous padding */
-}
-
-/* X stays perfect */
-.modalClose{ padding: 0 0 4px 0; }
-
-/* Arrows were riding too high — give them less upward nudge */
-.modalNavBtn{ padding: 0 0 1px 0; }
-
-/* 2) Pull the meta line up to “belong” with the title, then give it breathing room */
-.modalMeta{
-  font-weight: 700;
-  margin-top: -18px;      /* closer to title + mana cost */
-  margin-bottom: 18px;   /* clear separation before the blocks */
-}
 
 /* ==========================================================
-   Modal header sizing tweak (title + mana) — Dec 2025
-   Goal: make Title+Mana feel like a single “header unit” and
-   visually bridge the gap to the meta line, WITHOUT pushing
-   the meta line further down.
+   FINAL modal tweaks (Title lowercaps + subtle real capitals,
+   and optical centering for × / ‹ / ›)
    ========================================================== */
 
-/* Control vertical rhythm explicitly (don’t rely on a single column gap) */
-.modalPanel .modalRight{
-  gap: 0 !important;
-}
-
-/* Bigger title, tighter line box */
-.modalPanel .modalTitle{
-  font-size: 40px;              /* was 28px */
-  line-height: 1;               /* tighten */
-  margin: 0 0 2px 0 !important; /* small title→meta spacing */
-}
-
-.modalPanel .modalTitle .titleName{
+/* Optical centering: keep × perfect, drop arrows slightly lower */
+.modalClose,
+.modalNavBtn{
+  display:flex;
+  align-items:center;
+  justify-content:center;
   line-height: 1;
+  padding: 0; /* reset */
+}
+.modalClose{ padding: 0 0 4px 0; }
+.modalNavBtn{ padding: 0 0 1px 0; }
+
+/* Modal title: uniform “lowercaps” baseline */
+.modalPanel .modalTitle{
+  font-variant-caps: all-small-caps !important;
+  font-synthesis-small-caps: auto !important;
 }
 
-/* Scale mana with the title (icons inherit size) */
+/* Bring back ONLY the capitals that exist in the source text (wrapped by JS),
+   but make them subtle (not towering). */
+.modalPanel .modalTitle .capInit{
+  font-variant-caps: normal !important; /* real caps */
+  font-size: 0.92em !important;         /* reduced caps */
+  position: relative;
+  top: -0.03em;                          /* tiny optical lift */
+}
+
+/* Mana cost group: lift slightly so it aligns with the title baseline */
 .modalPanel .modalTitle .nameCost{
-  font-size: 1.12em;            /* slightly larger than title text */
-  transform: translateY(2px);   /* optical baseline alignment */
-}
-
-/* Keep meta glued to title, then add breathing room before blocks */
-.modalPanel .modalMeta{
-  margin: 0 0 18px 0 !important;
-}
-
-/* Preserve the comfortable spacing between the content blocks */
-.modalPanel .block + .block{ margin-top: 10px; }
-
-
-/* --- Modal header optical tweak: lift mana glyphs without moving header stack --- */
-.modalPanel .nameCost{
-  transform: translateY(-0.5px) !important; /* was +1px in base; lift icons */
+  transform: translateY(-0.5px) !important;
 }

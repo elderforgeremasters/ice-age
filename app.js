@@ -19,6 +19,24 @@ function escapeHtml(s){
     .replaceAll("'","&#39;");
 }
 
+function wrapOriginalTitleCaps(nameSpan){
+  // Wrap ONLY word-initial uppercase letters that already exist in the title text.
+  // "Kjeldoran Skycaptain" -> K and S get wrapped
+  // "Kjeldoran skycaptain" -> only K gets wrapped
+  if(!nameSpan) return;
+
+  const txt = nameSpan.textContent || "";
+
+  // Replace word-initial uppercase letters (Unicode-aware).
+  const wrapped = txt.replace(/(^|[^\p{L}])(\p{Lu})/gu, (m, pre, cap) => {
+    return `${pre}<span class="capInit">${cap}</span>`;
+  });
+
+  nameSpan.innerHTML = wrapped;
+}
+
+
+
 function normalizePT(pt){
   if(!pt) return "";
   return String(pt).replace(/\\/g, "/");
@@ -477,7 +495,8 @@ function openModal(card){
 
   const costHTML = card.cost ? `<span class="nameCost">${richText(card.cost)}</span>` : "";
   if(titleEl){
-    titleEl.innerHTML = `${escapeHtml(card.name || "")}${costHTML}`;
+    titleEl.innerHTML = `<span class="titleName"><span class="nameText">${escapeHtml(card.name || "")}</span></span>${costHTML}`;
+    wrapOriginalTitleCaps(titleEl.querySelector(".nameText"));
     attachIconFallbacks(titleEl);
   }
 
