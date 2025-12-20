@@ -3,6 +3,7 @@
 
 
 :root{
+  --font-ui: "Oxanium", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   --bg0:#070b12;
   --bg1:#0b1220;
   --panel: rgba(255,255,255,0.04);
@@ -12,17 +13,14 @@
   --muted:#a8b3c7;
   --shadow: 0 14px 60px rgba(0,0,0,0.55);
   --radius: 18px;
-  --font-ui: "Oxanium", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
-
 *{ box-sizing:border-box; }
-html,body{ min-height:100%; }
 
 button, input, select, textarea{
   font-family: inherit;
 }
-
+html,body{ min-height:100%; }
 html{
   background: radial-gradient(1200px 600px at 40% -10%, rgba(95,140,255,0.18), transparent 60%),
               radial-gradient(900px 500px at 110% 10%, rgba(50,255,210,0.10), transparent 60%),
@@ -611,8 +609,8 @@ body{
   border: none;
   background: transparent;
   color: rgba(233,238,247,0.92);
-  font-size: 13px;
-  line-height: 1.25;
+  font-size: 12px;
+  line-height: 1.18;
   max-width: 260px;
   text-shadow: 0 2px 10px rgba(0,0,0,0.65);
 }
@@ -964,9 +962,9 @@ body{
   background: rgba(255,255,255,0.06);
 }
 
-/* Oxanium + tuned synthetic small-caps (bigger “lowercase” feel) */
-.brand .title,
-.brand .subtitle,
+
+/* Oxanium small-caps styling (synthetic) — tuned to reduce the “giant first letter” effect */
+.uiSmallCaps,
 .navBtn,
 .ddBtn,
 .ddItem,
@@ -977,29 +975,26 @@ body{
 .modalMeta,
 .pagePanel h1,
 .pagePanel h2,
-.block.flavorBlock > h3,
 .mapTitle,
 .iconSectionTitle{
   font-variant-caps: small-caps;
   font-synthesis-small-caps: auto;
   letter-spacing: .02em;
-  font-size: 1.06em;
 }
-.brand .title,
-.brand .subtitle,
-.navBtn,
-.ddBtn,
-.ddItem,
-.ddMenu a.ddLink,
-.cardName,
-.cardType,
-.modalTitle,
-.modalMeta,
-.pagePanel h1,
-.pagePanel h2,
-.block.flavorBlock > h3,
-.mapTitle,
+
+/* Make the leading capital less dominant so “faked lowercase” feels larger */
+.navBtn::first-letter,
+.ddBtn::first-letter,
+.ddItem::first-letter,
+.ddMenu a.ddLink::first-letter,
+.cardName::first-letter,
+.cardType::first-letter,
+.modalTitle::first-letter,
+.modalMeta::first-letter,
+.pagePanel h1::first-letter,
+.pagePanel h2::first-letter,
+.mapTitle::first-letter,
 .iconSectionTitle::first-letter{
-  font-size: .92em;
+  font-size: 0.90em;
 }
 
