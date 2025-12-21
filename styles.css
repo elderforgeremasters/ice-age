@@ -506,15 +506,13 @@ body{
   content:"";
   position:absolute;
   left: 32px;
-  /* Keep the top alignment as before; extend only the bottom */
   top: 8px;
-  bottom: 0px;
+  bottom: 10px;
   width: 2px;
   background: linear-gradient(to bottom, rgba(255,255,255,0.02), var(--blkRail, rgba(255,255,255,0.22)), rgba(255,255,255,0.02));
   opacity: .9;
   pointer-events:none;
   z-index: 1;
-  border-radius: 2px;
 }
 
 .modalPanel .blockHead,
@@ -573,10 +571,8 @@ body{
   --blkRail: rgba(220,185,120,0.55);
   --blkGlowA: rgba(220,165,95,0.16);
   --blkGlowB: rgba(120,70,25,0.10);
-  /* Revert to the nicer base hue; we'll add only a *very* subtle glow */
   --blkLabel: rgba(245,210,150,0.95);
   --blkText: rgba(255,216,150,0.93);
-  --blkTextGlow: rgba(220,185,120,0.14);
 
 }
 .modalPanel .flavorBlock .blockBody{
@@ -588,21 +584,11 @@ body{
   --blkRail: rgba(220,140,150,0.55);
   --blkGlowA: rgba(220,120,135,0.14);
   --blkGlowB: rgba(90,28,36,0.10);
-  /* Revert to the nicer base hue; keep readability with a gentle glow */
   --blkLabel: rgba(255,195,205,0.95);
   --blkText: rgba(255,200,210,0.93);
-  --blkTextGlow: rgba(220,140,150,0.14);
 
 }
 .modalPanel .loreBlock .blockBody{ color: var(--blkText, rgba(245,232,236,0.93)); }
-
-/* Flavor/Lore: keep your preferred base color, add just enough “lift” (no boxes) */
-.modalPanel .flavorBlock .blockBody,
-.modalPanel .loreBlock .blockBody{
-  text-shadow:
-    0 1px 0 rgba(0,0,0,0.78),
-    0 0 8px var(--blkTextGlow, rgba(255,255,255,0.06));
-}
 
 .lead{
   font-weight: 750;
@@ -1348,4 +1334,66 @@ body{
     0 1px 0 rgba(0,0,0,0.78),
     0 -1px 0 rgba(255,255,255,0.07),
     0 0 12px rgba(120,170,255,0.14);
+}
+/* ==========================================================
+   Basic Rules page layout polish (basic-rules.html only)
+   - More breathing room between sections (“chapters”)
+   - Two-column layout for "How to read a card" with a sample card image
+   ========================================================== */
+
+.basicRulesPage .pagePanel h2{
+  margin: 34px 0 12px 0;
+}
+.basicRulesPage .pagePanel h2:first-of-type{
+  margin-top: 22px;
+}
+.basicRulesPage .pagePanel h3{
+  margin: 22px 0 8px 0;
+}
+.basicRulesPage .pagePanel p{
+  margin: 0 0 16px 0;
+  line-height: 1.65;
+}
+.basicRulesPage .pagePanel ul,
+.basicRulesPage .pagePanel ol{
+  margin: 0 0 18px 22px;
+  padding: 0;
+  line-height: 1.6;
+}
+.basicRulesPage .pagePanel li{
+  margin: 6px 0;
+}
+
+.readCardLayout{
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 320px);
+  gap: 26px;
+  align-items: start;
+}
+.readCardArt{
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 6px;
+}
+.readCardImg{
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.02);
+  box-shadow: 0 18px 55px rgba(0,0,0,0.45);
+}
+
+@media (max-width: 980px){
+  .readCardLayout{
+    grid-template-columns: 1fr;
+  }
+  .readCardArt{
+    justify-content: center;
+    padding-top: 0;
+  }
+  .readCardImg{
+    max-width: 360px;
+  }
 }

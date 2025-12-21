@@ -7,8 +7,8 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 
-<body>
-  <header class="topbar">
+<body class="guidePage basicRulesPage">
+<header class="topbar">
     <div class="brand">
       <div class="title">ElderForge — Ice Age</div>
       <div class="subtitle">Basic Rules</div>
@@ -44,6 +44,7 @@
         in other ways.
       </p>
 
+
       <h2>What you need to know before your first game</h2>
       <ul>
         <li><strong>Cards cost mana.</strong> Mana usually comes from lands.</li>
@@ -56,13 +57,16 @@
           <img class="inlineIcon" alt="{T}" src="assets/icons/Ts.webp" onerror="this.onerror=null;this.src='assets/icons/Ts.png';">
           .
         </li>
-        <li><strong>Always read the card's type line.</strong> It tells you what the card actually is, so you know what to do with it.</li>
+        <li><strong>Always read the card's type line.</strong> It tells you what the card actually is.</li>
       </ul>
 
 
-      <h2>HOW TO READ A CARD</h2>
+      <h2>How to read a card</h2>
 
-      <h2>1] Card Name and Mana Cost</h2>
+      <div class="readCardLayout">
+        <div class="readCardText">
+
+      <h3>1] Card Name and Mana Cost</h3>
       <ul>
         <li><strong>Card name</strong> is in the top-left bar.</li>
         <li><strong>Mana cost</strong> is in the top-right corner of that same bar.</li>
@@ -78,13 +82,13 @@
         </li>
       </ul>
 
-      <h2>2] Artwork window</h2>
+      <h3>2] Artwork window</h3>
       <p>
         The large picture box under the top bar is the <strong>artwork</strong>.
         It is essential for establishing card's characteristics, environment, and tone.
       </p>
 
-      <h2>3] Type line and Set symbol</h2>
+      <h3>3] Type line and Set symbol</h3>
       <ul>
         <li>
           The <strong>type line</strong> is the thin strip directly under the art (e.g., <em>Creature — Elf Warrior</em>).
@@ -99,7 +103,7 @@
         </li>
       </ul>
 
-      <h2>4] Rules text and Flavor text</h2>
+      <h3>4] Rules text and Flavor text</h3>
       <ul>
         <li>The big text box below the type line contains the <strong>rules text</strong> (basically what the card does).</li>
         <li>
@@ -108,27 +112,34 @@
         </li>
       </ul>
 
-      <h2>5] Power/Toughness (creatures only)</h2>
+      <h3>5] Power/Toughness (creatures only)</h3>
       <p>
         Creature cards have a small box in the <strong>bottom-right corner</strong> showing
         <strong>Power/Toughness</strong> like <strong>3/2</strong>. Noncreature cards won’t have this.
       </p>
 
-      <h2>6] Bottom edge (fine print row)</h2>
+      <h3>6] Bottom edge (fine print row)</h3>
       <p>
         Along the bottom edge you’ll often find small-print metadata like <strong>collector's number</strong>,
         <strong>artist credit</strong>, additional card/set details and copyright text.
       </p>
 
+        </div>
 
-      <h2>SETUP</h2>
+        <aside class="readCardArt" aria-hidden="true">
+          <img class="readCardImg" src="cards/001-Adarkar-Unicorn.webp" alt="" loading="lazy" onerror="this.onerror=null;this.src='cards/001-Adarkar-Unicorn.png';">
+        </aside>
+      </div>
+
+
+      <h2>Setup</h2>
       <ul>
         <li>Each player shuffles their deck (library) and draws <strong>5 cards</strong>.</li>
         <li>Decide who goes first (roll a die, coin flip, whoever lost last time, etc.).</li>
       </ul>
 
 
-      <h2>ANATOMY OF A TURN</h2>
+      <h2>Anatomy of a turn</h2>
       <ol>
         <li><strong>Untap</strong> — Untap your tapped cards.</li>
         <li><strong>Upkeep</strong> — When “During your upkeep” abilities happen.</li>
@@ -140,7 +151,7 @@
       </ol>
 
 
-      <h2>MANA (casting spells)</h2>
+      <h2>Mana and casting spells</h2>
       <ul>
         <li>To cast a spell, pay its <strong>mana cost</strong> (top-right of the card).</li>
         <li>You usually pay by tapping lands for mana; lands untap at the start of your next turn.</li>
@@ -148,7 +159,7 @@
       </ul>
 
 
-      <h2>CARD TYPES (quick model)</h2>
+      <h2>Card types (quick model)</h2>
       <ul>
         <li><strong>Lands</strong> — Permanent cards. Main mana source. Played only on your turn, usually one per turn.</li>
         <li><strong>Creatures</strong> — Permanent cards. They attack/block, deal combat damage, and have special abilities.</li>
@@ -158,7 +169,7 @@
       </ul>
 
 
-      <h2>COMBAT (how damage happens)</h2>
+      <h2>Combat (how damage happens)</h2>
       <ul>
         <li>You choose which creatures attack.</li>
         <li>Opponent chooses blockers and assigns them to attackers.</li>
@@ -171,42 +182,42 @@
       </ul>
 
 
-      <h2>ZONES (where certain cards are placed)</h2>
+      <h2>Zones (where certain cards are placed)</h2>
       <p>
         During a game, cards move between a few standard areas called <strong>zones</strong>.
         Knowing these makes the table layout feel obvious instead of chaotic.
       </p>
 
-      <h2>Hand</h2>
+      <h3>Hand</h3>
       <p>
         Cards you’ve drawn but haven’t played yet. Your hand is private unless an effect says otherwise.
       </p>
 
-      <h2>Library</h2>
+      <h3>Library</h3>
       <p>
         Your face-down deck. You draw from the top. If an effect tells you to search your library,
         you always shuffle afterward (unless the effect explicitly says not to).
       </p>
 
-      <h2>Play</h2>
+      <h3>Play</h3>
       <p>
         Cards “in play” are so-called permanents that sit on the table in front of you: lands, creatures, artifacts, enchantments, etc.
         Most ongoing effects come from cards in play.
       </p>
 
-      <h2>Graveyard</h2>
+      <h3>Graveyard</h3>
       <p>
         Your discard pile. Destroyed creatures go here. Instants and sorceries usually go here after they resolve.
         The graveyard is public, meaning your opponent can look at it whenever they want.
       </p>
 
-      <h2>Exile</h2>
+      <h3>Exile</h3>
       <p>
         A separate public zone for cards removed from the game by “exile” effects. Exile is different than graveyard —
         it’s usually much harder to get cards back from exile.
       </p>
 
-      <h2>Stack</h2>
+      <h3>Stack</h3>
       <p>
         This is not a physical pile, but it still counts as a zone. When a spell is cast or an ability is activated, it doesn't resolve immediately, but instead goes on the so-called <strong>stack</strong>. Players can then respond with a spell or ability of their own. If they do, that goes on top of the stack, and so on.
         When no one wants to respond, the stack finally resolves <strong>last-in, first-out</strong>.
@@ -225,7 +236,7 @@
       <h2>One last note</h2>
       <p>
         You don’t need to memorize everything. If you know the turn structure, mana, and combat,
-        you can play — the rest is more or less just learning what each individual card does, which is where the real fun part of this game starts.
+        you can play — the rest is more or less just learning what each individual cards do, which is the real fun part of this game.
       </p>
     </section>
   </main>
