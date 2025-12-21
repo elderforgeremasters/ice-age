@@ -883,10 +883,11 @@ function setBlock(id, label, text){
                : (id === "mLore")   ? "assets/icons/Lore.png"
                : "";
 
-  // Render a consistent, nicer block structure (icon header + body)
+  // Render an integrated section header + body.
+  // IMPORTANT: no icon "badge" or extra shapes — the icon floats with glow.
   el.innerHTML = `
     <div class="blockHead">
-      ${iconSrc ? `<span class="blockIconBadge"><img class="blockIcon" src="${iconSrc}" alt="" /></span>` : ""}
+      ${iconSrc ? `<img class="blockIcon" src="${iconSrc}" alt="" />` : ""}
       <div class="blockLabel">${escapeHtml(label || "")}</div>
     </div>
     <div class="blockBody">${bodyHtml}</div>
