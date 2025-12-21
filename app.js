@@ -19,6 +19,55 @@ function escapeHtml(s){
     .replaceAll("'","&#39;");
 }
 
+function wrapOriginalTitleCaps(nameSpan){
+  // Wrap ONLY word-initial uppercase letters that already exist in the title text.
+  // "Kjeldoran Skycaptain" -> K and S get wrapped
+  // "Kjeldoran skycaptain" -> only K gets wrapped
+  if(!nameSpan) return;
+
+  const txt = nameSpan.textContent || "";
+
+  // Replace word-initial uppercase letters (Unicode-aware).
+  const wrapped = txt.replace(/(^|[^\p{L}])(\p{Lu})/gu, (m, pre, cap) => {
+    return `${pre}<span class="capInit">${cap}</span>`;
+  });
+
+  nameSpan.innerHTML = wrapped;
+}
+
+function wrapOriginalCapsInTextNodes(root){
+  if(!root) return;
+
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+  const nodes = [];
+  while(walker.nextNode()){
+    const node = walker.currentNode;
+    const p = node.parentElement;
+    if(!p) continue;
+    if(p.closest('.capInit')) continue;
+    if(p.closest('.ptLabel') || p.closest('.ptVal')) continue;
+    nodes.push(node);
+  }
+
+  for(const node of nodes){
+    const txt = node.nodeValue || "";
+    if(!txt) continue;
+
+    const wrapped = txt.replace(/(^|[^\p{L}])(\p{Lu})/gu, (m, pre, cap) => {
+      return `${pre}<span class="capInit">${cap}</span>`;
+    });
+
+    if(wrapped === txt) continue;
+
+    const span = document.createElement('span');
+    span.innerHTML = wrapped;
+    node.parentNode.replaceChild(span, node);
+  }
+}
+
+
+
+
 function normalizePT(pt){
   if(!pt) return "";
   return String(pt).replace(/\\/g, "/");
@@ -477,7 +526,8 @@ function openModal(card){
 
   const costHTML = card.cost ? `<span class="nameCost">${richText(card.cost)}</span>` : "";
   if(titleEl){
-    titleEl.innerHTML = `${escapeHtml(card.name || "")}${costHTML}`;
+    titleEl.innerHTML = `<span class="titleName"><span class="nameText">${escapeHtml(card.name || "")}</span></span>${costHTML}`;
+    wrapOriginalTitleCaps(titleEl.querySelector(".nameText"));
     attachIconFallbacks(titleEl);
   }
 
@@ -499,8 +549,11 @@ function openModal(card){
   // Meta line (type, pt, rarity, set full name, year+Atlantica Remasters, collector)
   const metaBits = [];
   if(card.type) metaBits.push(escapeHtml(card.type));
-  if(card.pt) metaBits.push(escapeHtml(normalizeSlash(card.pt)));
-  metaBits.push(escapeHtml(rarityLong(card.rarity)));
+    if(card.pt){
+    const ptVal = escapeHtml(normalizeSlash(card.pt));
+    metaBits.push(`<span class=\"ptVal\">${ptVal}</span>`);
+  }
+metaBits.push(escapeHtml(rarityLong(card.rarity)));
   const si = getSetInfo(card.set);
   if(si.name) metaBits.push(escapeHtml(si.name));
   if(isNewCard(card)){
@@ -511,13 +564,16 @@ function openModal(card){
   const col = cleanCollector(card.collector);
   if(col) metaBits.push(escapeHtml(col));
 
-  const metaEl = $("mMeta") || modal.querySelector("#mMeta") || modal.querySelector(".modalMeta") || null;
-  if(metaEl){
-    metaEl.innerHTML = metaBits.join(" • ");
-    attachIconFallbacks(metaEl);
-  }
+  
+const metaEl = $("mMeta") || modal.querySelector("#mMeta") || modal.querySelector(".modalMeta") || null;
+if(metaEl){
+  metaEl.innerHTML = `<span class="metaText">${metaBits.join(" • ")}</span>`;
+  // Wrap original capitals in the meta line (but DON'T touch the explicit P/T label/value)
+  wrapOriginalCapsInTextNodes(metaEl.querySelector('.metaText'));
+  attachIconFallbacks(metaEl);
+}
 
-  // Blocks — hide empties
+// Blocks — hide empties
   ensureLoreArtBlocks(modal);
   setBlock("mRules", "Rules", card.rules);
   setBlock("mFlavor", "Flavor", card.flavor);
@@ -795,163 +851,3 @@ async function init(){
 }
 
 document.addEventListener("DOMContentLoaded", init);
-
-
-/* === Sitewide "popup-style" fake-lowercaps (v19) =========================
-   This matches the popup logic:
-   - Render display text as uppercase.
-   - If a letter was originally lowercase, render it as uppercase but smaller (.lcSub).
-   - If a letter was originally uppercase AND begins a word, render full size (.lcCap).
-   - If a letter was originally uppercase but NOT word-initial (e.g. ElderForge), treat as .lcSub.
-   - If a string is already all-caps, keep everything as .lcCap (uniform).
-========================================================================== */
-(function () {
-  "use strict";
-
-  // selectors to apply the effect to (extend as needed)
-  const LC_SELECTORS = [
-    ".brand .title",
-    ".brand .subtitle",
-    ".ddBtn",
-    ".ddMenu",
-    ".btn",
-    ".cardName",
-    ".cardType"
-  ];
-
-  const BOUNDARY_RE = /[\s\-–—\/\(\)\[\]\{\}"'“”‘’.,:;!?]/;
-
-  function isLetter(ch) {
-    return /[A-Za-z]/.test(ch);
-  }
-  function isUpper(ch) {
-    return /[A-Z]/.test(ch);
-  }
-  function hasLowercase(str) {
-    return /[a-z]/.test(str);
-  }
-  function hasUppercase(str) {
-    return /[A-Z]/.test(str);
-  }
-
-  function buildFragmentFromText(text) {
-    const frag = document.createDocumentFragment();
-
-    const anyUpper = hasUppercase(text);
-    const anyLower = hasLowercase(text);
-    const allCaps = anyUpper && !anyLower; // letters exist and none are lowercase
-
-    let prev = null;
-
-    for (let i = 0; i < text.length; i++) {
-      const ch = text[i];
-
-      if (!isLetter(ch)) {
-        frag.appendChild(document.createTextNode(ch));
-        prev = ch;
-        continue;
-      }
-
-      const upper = ch.toUpperCase();
-      let cls = "lcSub";
-
-      if (allCaps) {
-        cls = "lcCap";
-      } else {
-        const boundary = (prev == null) || BOUNDARY_RE.test(prev);
-        // Only original uppercase AND word-initial gets full-size caps.
-        // Mid-word original uppercase becomes lcSub (ElderForge => F shrinks).
-        cls = (isUpper(ch) && boundary) ? "lcCap" : "lcSub";
-      }
-
-      const span = document.createElement("span");
-      span.className = cls;
-      span.textContent = upper;
-      frag.appendChild(span);
-
-      prev = ch;
-    }
-
-    return frag;
-  }
-
-  function shouldSkipTextNode(node) {
-    if (!node || node.nodeType !== Node.TEXT_NODE) return true;
-    if (!node.nodeValue || !node.nodeValue.trim()) return true;
-
-    const p = node.parentElement;
-    if (!p) return false;
-
-    // don't touch our own spans
-    if (p.classList.contains("lcCap") || p.classList.contains("lcSub") || p.classList.contains("capInit") || p.classList.contains("capSub")) return true;
-
-    // don't touch editable / form fields, scripts, styles
-    if (p.closest("script, style, textarea, input, [contenteditable='true']")) return true;
-
-    return false;
-  }
-
-  function applyToElement(root) {
-    if (!root) return;
-
-    const walker = document.createTreeWalker(
-      root,
-      NodeFilter.SHOW_TEXT,
-      {
-        acceptNode(node) {
-          return shouldSkipTextNode(node) ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
-        }
-      }
-    );
-
-    const nodes = [];
-    while (walker.nextNode()) nodes.push(walker.currentNode);
-
-    for (const n of nodes) {
-      const text = n.nodeValue;
-      const frag = buildFragmentFromText(text);
-      try {
-        n.parentNode.replaceChild(frag, n);
-      } catch (e) {
-        // ignore edge cases where node disappeared
-      }
-    }
-  }
-
-  function applySitewideLowercapsOnce() {
-    for (const sel of LC_SELECTORS) {
-      document.querySelectorAll(sel).forEach(applyToElement);
-    }
-  }
-
-  // MutationObserver for dynamically inserted card tiles / menus
-  let scheduled = false;
-  function scheduleApply() {
-    if (scheduled) return;
-    scheduled = true;
-    requestAnimationFrame(() => {
-      scheduled = false;
-      applySitewideLowercapsOnce();
-    });
-  }
-
-  function startObserver() {
-    const obs = new MutationObserver(() => scheduleApply());
-    obs.observe(document.body, { childList: true, subtree: true, characterData: true });
-    return obs;
-  }
-
-  // boot
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", () => {
-      applySitewideLowercapsOnce();
-      startObserver();
-    });
-  } else {
-    applySitewideLowercapsOnce();
-    startObserver();
-  }
-
-  // Optional manual hook for debugging
-  window.applySitewideLowercaps = applySitewideLowercapsOnce;
-})();

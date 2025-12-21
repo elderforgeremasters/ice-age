@@ -1,8 +1,8 @@
 /* ElderForge — Ice Age | styles.css (full) */
-@import url("https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Saira:wght@300;400;500;600;700&display=swap");
 :root{
-  --font-ui: "Oxanium", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  --font-magic: "Cormorant Garamond", ui-serif, Georgia, serif;
+  --font-ui: "Saira", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  --font-magic: "Saira", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   --bg0:#070b12;
   --bg1:#0b1220;
   --panel: rgba(255,255,255,0.04);
@@ -275,6 +275,12 @@ body{
   color: var(--text);
   font-size: 26px;
   cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  line-height: 1;
+  padding: 0;
+
   z-index: 3;
 }
 .modalClose:hover{ background: rgba(255,255,255,0.07); }
@@ -361,6 +367,8 @@ body{
 .modalMeta{
   color: var(--muted);
   font-size: 14px;
+
+  font-weight: 700;
 }
 
 .block{
@@ -758,8 +766,7 @@ body{
 .anatomyRight .anatomyItem{ justify-content:flex-start; }
 .anatomyRight .anatomyArrow{ order: 1; }
 .anatomyRight .anatomyText{ order: 2; }
-
- (max-width: 980px){
+@media (max-width: 980px){
   .anatomyGrid{ grid-template-columns: 1fr; }
   .anatomyLeft .anatomyItem, .anatomyRight .anatomyItem{ text-align:left; justify-content:flex-start; }
   .anatomyLeft .anatomyArrow, .anatomyRight .anatomyArrow{ display:none; }
@@ -1019,56 +1026,124 @@ body{
   font-family: var(--font-magic);
 }
 
+/* ==========================================================
+   FINAL modal tweaks (Title lowercaps + subtle real capitals,
+   and optical centering for × / ‹ / ›)
+   ========================================================== */
 
-
-/* === Sitewide "popup-style" fake-lowercaps (v19) =========================
-   Goal: match popup title/meta logic everywhere else.
-   Strategy:
-   - JS rewrites text nodes into UPPERCASE spans.
-   - Letters that were originally lowercase (or mid-word uppercase) become .lcSub (slightly smaller).
-   - Word-initial original uppercase letters become .lcCap (full size).
-   - For already-all-caps strings, everything becomes .lcCap (uniform).
-   This intentionally does NOT use font-variant-caps, because those sections often
-   already use CSS text-transform: uppercase and it breaks the ratio.
-========================================================================== */
-
-.brand .title,
-.brand .subtitle,
-.ddBtn,
-.ddMenu,
-.btn,
-.cardName,
-.cardType{
-  /* prevent "double transforms" fighting the JS output */
-  font-variant: normal !important;
-  font-variant-caps: normal !important;
-  text-transform: none !important;
-}
-
-/* The two span classes created by JS */
-.lcCap,
-.lcSub{
-  display: inline-block;
-  transform-origin: 50% 100%;
+/* Optical centering: keep × perfect, drop arrows slightly lower */
+.modalClose,
+.modalNavBtn{
+  display:flex;
+  align-items:center;
+  justify-content:center;
   line-height: 1;
-  vertical-align: baseline;
+  padding: 0; /* reset */
+}
+.modalClose{ padding: 0 0 4px 0; }
+.modalNavBtn{ padding: 0 0 1px 0; }
+
+/* Modal title: uniform “lowercaps” baseline */
+.modalPanel .modalTitle{
+  font-variant-caps: all-small-caps !important;
+  font-synthesis-small-caps: auto !important;
 }
 
-/* "Cap" size = baseline (keeps the visual weight you're used to) */
-.lcCap{
-  transform: scale(1.00);
+/* Bring back ONLY the capitals that exist in the source text (wrapped by JS),
+   but make them subtle (not towering). */
+.modalPanel .modalTitle .capInit{
+  font-variant-caps: normal !important; /* real caps */
+  font-size: 0.86em !important;         /* ~6–8% larger than small-caps, depending on font */
+  position: relative;
+  top: 0;                                /* no lift */
+  letter-spacing: inherit;
 }
 
-/* "Sub" size = slightly smaller to simulate lowercase inside an all-caps font.
-   Keep the difference subtle (~7% vs caps). */
-.lcSub{
-  transform: scale(0.93);
+/* Mana cost group: lift slightly so it aligns with the title baseline */
+.modalPanel .modalTitle .nameCost{
+  transform: translateY(0.25px) !important;
 }
 
-/* Keep punctuation / spaces untouched by JS. For safety, don't let spans wrap weirdly */
-.brand .title,
-.brand .subtitle,
-.cardName,
-.cardType{
-  white-space: nowrap;
+/* ==========================================================
+   Modal header sizing + meta snugness (v3)
+   - Restore title presence (all-small-caps reads smaller)
+   - Make meta line sit snug under title (no abyss)
+   ========================================================== */
+
+/* Remove generic vertical gap in the right column so we can control spacing precisely */
+.modalPanel .modalRight{
+  gap: 0 !important;
+}
+
+/* Title: bump size a bit (small-caps looks ~10–15% smaller) */
+.modalPanel .modalTitle{
+  font-size: 36px !important;   /* tune: 38–44 */
+  line-height: 1.08 !important;
+  margin: 0 0 2px 0 !important; /* snug to meta */
+}
+
+/* Meta line: snug under title, then give breathing room before blocks */
+.modalPanel .modalMeta{
+  margin: 0 0 19px 0 !important;
+  font-size: 1.10em !important; /* tuned: ~-21% from 1.4em */
+  line-height: 1.15 !important;
+
+  padding-left: 3px !important; /* align with title */
+}
+
+/* ==========================================================
+   Modal section spacing (rules / flavor / lore)
+   ========================================================== */
+
+/* Ensure the three content blocks keep their breathing room */
+.modalPanel .block{
+  margin-top: 0 !important;
+}
+
+.modalPanel .block.rulesBlock,
+.modalPanel .block.flavorBlock,
+.modalPanel .block.loreBlock{
+  margin-top: 14px !important;   /* space between blocks */
+}
+
+.modalPanel .block.rulesBlock{ margin-top: 0 !important; } /* first block sits under meta spacing */
+
+/* ==========================================================
+   Modal meta line: match title lowercaps + subtle real caps
+   ========================================================== */
+
+.modalPanel .modalMeta{
+  font-variant-caps: all-small-caps !important;
+  font-synthesis-small-caps: auto !important;
+}
+
+/* Same cap ratio as the title */
+.modalPanel .modalMeta .capInit{
+  font-variant-caps: normal !important;
+  font-size: 0.86em !important;
+  position: relative;
+  top: 0;
+}
+
+
+/* ==========================================================
+   Meta line P/T label + value: keep normal (not all-small-caps)
+   ========================================================== */
+.modalPanel .modalMeta .ptLabel,
+.modalPanel .modalMeta .ptVal{
+  font-variant-caps: normal !important;
+  font-synthesis-small-caps: none !important;
+}
+.modalPanel .modalMeta .ptLabel{
+  letter-spacing: 0.08em;
+}
+
+/* ==========================================================
+   Meta line PT value: keep normal (not all-small-caps)
+   ========================================================== */
+.modalPanel .modalMeta .ptVal{
+  font-variant-caps: normal !important;
+  font-synthesis-small-caps: none !important;
+  font-size: 0.86em !important; /* match meta capInit */
+  letter-spacing: 0.02em;
 }
