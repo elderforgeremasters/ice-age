@@ -28,8 +28,8 @@ function wrapOriginalTitleCaps(nameSpan){
   const txt = nameSpan.textContent || "";
 
   // Replace word-initial uppercase letters (Unicode-aware).
-  const wrapped = txt.replace(/(^|[^\p{L}])(\p{Lu})/gu, (m, pre, cap) => {
-    return `${pre}<span class="capInit">${cap}</span>`;
+  const wrapped = txt.replace(/(\p{Lu})/gu, (m, cap) => {
+    return `<span class=\"capInit\">${cap}</span>`;
   });
 
   nameSpan.innerHTML = wrapped;
@@ -53,8 +53,8 @@ function wrapOriginalCapsInTextNodes(root){
     const txt = node.nodeValue || "";
     if(!txt) continue;
 
-    const wrapped = txt.replace(/(^|[^\p{L}])(\p{Lu})/gu, (m, pre, cap) => {
-      return `${pre}<span class="capInit">${cap}</span>`;
+    const wrapped = txt.replace(/(\p{Lu})/gu, (m, cap) => {
+      return `<span class=\"capInit\">${cap}</span>`;
     });
 
     if(wrapped === txt) continue;

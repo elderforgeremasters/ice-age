@@ -6,19 +6,23 @@
   <title>Basic Rules — ElderForge — Ice Age</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
   <header class="topbar">
     <div class="brand">
       <div class="title">ElderForge — Ice Age</div>
       <div class="subtitle">Basic Rules</div>
     </div>
+
     <div class="nav">
       <a class="navBtn" href="index.html">Card database</a>
+
       <div class="dropdown" id="guideDD">
         <button class="ddBtn ddSmall" id="guideBtn" type="button" aria-haspopup="menu" aria-expanded="false">
           <span>Guide</span>
           <span class="ddChev">▾</span>
         </button>
+
         <div class="ddMenu" id="guideMenu" role="menu" aria-label="Guide" hidden>
           <a class="ddLink" href="keyword-icons.html" role="menuitem">Keyword Icons</a>
           <a class="ddLink" href="basic-rules.html" role="menuitem">Basic Rules</a>
@@ -28,213 +32,217 @@
       </div>
     </div>
   </header>
+
   <main class="pageWrap">
     <section class="pagePanel">
       <h1>Basic Rules</h1>
-      <p>Magic is a duel between two mages. You win by reducing your opponent to <strong>0 life</strong> (most games), or by meeting a card’s special win condition.</p>
+
+      <p>
+        Magic is essentially a duel between two mages. You win by reducing your opponent to
+        <strong>0 life</strong> (usually through combat damage from creatures), though some cards can win
+        in other ways.
+      </p>
 
       <h2>What you need to know before your first game</h2>
       <ul>
         <li><strong>Cards cost mana.</strong> Mana usually comes from lands.</li>
-        <li><strong>You get one land play per turn.</strong> Lands don’t cost mana to play.</li>
-        <li><strong>Creatures attack; creatures block.</strong> Most spells happen on your turn, but instants can happen on any turn.</li>
-        <li><strong>“Tap” means rotate the card.</strong> Tapping is shown with the tap symbol <img class="inlineIcon" alt="{T}" src="assets/icons/Ts.webp" onerror="this.onerror=null;this.src='assets/icons/Ts.png';">.</li>
-        <li><strong>Read the type line.</strong> It tells you what the card is (Creature, Instant, Land, etc.).</li>
+        <li><strong>You normally play one land per turn.</strong></li>
+        <li><strong>Creatures attack and block.</strong> Unblocked attackers damage the opponent.</li>
+        <li><strong>Most spells happen on your turn.</strong> Instants are the fast ones.</li>
+        <li>
+          <strong>“Tap” means rotate the card.</strong>
+          Tapping is shown with the tap symbol
+          <img class="inlineIcon" alt="{T}" src="assets/icons/Ts.webp" onerror="this.onerror=null;this.src='assets/icons/Ts.png';">
+          .
+        </li>
+        <li><strong>Always read the type line.</strong> It tells you what the card is.</li>
       </ul>
 
-      <h2>Parts of a card (example: Adarkar Unicorn)</h2>
-      <p>This annotated example shows the key things to notice when you pick up a card for the first time.</p>
+      <h2>How to read a card by where your eyes go</h2>
+      <p>
+        Read a Magic card like a dashboard: identity up top, picture for vibe, rules for behavior,
+        then combat stats and metadata.
+      </p>
 
-      <div class="anatomyWrap">
-        <div class="anatomyGrid" aria-label="Card anatomy diagram">
-          <div class="anatomyCol anatomyLeft">
-            <div class="anatomyItem">
-              <div class="anatomyText">
-                <div class="anatomyTitle">Card name</div>
-                <div class="anatomyDesc">Top-left nameplate.</div>
-              </div>
-              <div class="anatomyArrow" aria-hidden="true">→</div>
-            </div>
+      <h3>1) Top bar: Name (left) and Mana Cost (right)</h3>
+      <ul>
+        <li><strong>Card name</strong> is in the top-left bar.</li>
+        <li><strong>Mana cost</strong> is in the top-right corner of that same bar.</li>
+        <li>
+          The mana cost also shows the card’s <strong>colors</strong> at a glance:
+          <strong>W</strong> (white), <strong>U</strong> (blue), <strong>B</strong> (black),
+          <strong>R</strong> (red), <strong>G</strong> (green).
+        </li>
+        <li>
+          A <strong>number in a circle</strong> is <strong>generic mana</strong> (paid with any color).
+          If the cost has only numbers / colorless symbols and no colored symbols, the card is usually
+          <strong>colorless</strong>.
+        </li>
+      </ul>
 
-            <div class="anatomyItem">
-              <div class="anatomyText">
-                <div class="anatomyTitle">Mana cost</div>
-                <div class="anatomyDesc">Top-right symbols tell you what mana to pay.</div>
-              </div>
-              <div class="anatomyArrow" aria-hidden="true">→</div>
-            </div>
+      <h3>2) Artwork window (upper half)</h3>
+      <p>
+        The large picture box under the top bar is the <strong>artwork</strong>.
+        It’s not rules text, but it often hints at creature type, environment, and tone.
+      </p>
 
-            <div class="anatomyItem">
-              <div class="anatomyText">
-                <div class="anatomyTitle">Expansion symbol</div>
-                <div class="anatomyDesc">Its <em>color</em> shows rarity: black (C), silver (U), gold (R), orange-red (M).</div>
-              </div>
-              <div class="anatomyArrow" aria-hidden="true">→</div>
-            </div>
+      <h3>3) Type line + Set symbol (strip under the art)</h3>
+      <ul>
+        <li>
+          The <strong>type line</strong> is the thin strip directly under the art (e.g., <em>Creature — Elf Warrior</em>).
+        </li>
+        <li>
+          The <strong>set / expansion symbol</strong> usually sits on the <strong>right side</strong> of that same strip.
+        </li>
+        <li>
+          On most modern frames, the symbol’s <strong>color shows rarity</strong>:
+          <strong>black</strong> = common, <strong>silver</strong> = uncommon, <strong>gold</strong> = rare,
+          <strong>orange/copper</strong> = mythic rare.
+        </li>
+      </ul>
 
-            <div class="anatomyItem">
-              <div class="anatomyText">
-                <div class="anatomyTitle">Type line & subtype</div>
-                <div class="anatomyDesc">Example: <strong>Creature — Unicorn</strong>. Subtype is after the dash.</div>
-              </div>
-              <div class="anatomyArrow" aria-hidden="true">→</div>
-            </div>
+      <h3>4) Rules text (and flavor text)</h3>
+      <ul>
+        <li>The big text box below the type line contains the <strong>rules text</strong> (what the card does).</li>
+        <li>
+          If present, <strong>flavor text</strong> is usually below rules text in the same box,
+          often italicized and separated by spacing.
+        </li>
+      </ul>
 
-            <div class="anatomyItem">
-              <div class="anatomyText">
-                <div class="anatomyTitle">Power / Toughness</div>
-                <div class="anatomyDesc">Bottom-right on creatures (attack / durability).</div>
-              </div>
-              <div class="anatomyArrow" aria-hidden="true">→</div>
-            </div>
-          </div>
+      <h3>5) Power/Toughness (creatures only)</h3>
+      <p>
+        Creature cards have a small box in the <strong>bottom-right corner</strong> showing
+        <strong>Power/Toughness</strong> like <strong>3/2</strong>. Noncreature cards won’t have this.
+      </p>
 
-          <div class="anatomyCard">
-            <img id="diagramCard" class="anatomyCardImg" alt="Adarkar Unicorn" />
-            <div class="anatomyCardNote">(Loaded from your card database, so it stays correct even if the filename changes.)</div>
-          </div>
-
-          <div class="anatomyCol anatomyRight">
-            <div class="anatomyItem">
-              <div class="anatomyArrow" aria-hidden="true">←</div>
-              <div class="anatomyText">
-                <div class="anatomyTitle">Rules text</div>
-                <div class="anatomyDesc">Abilities, restrictions, and activated costs live here.</div>
-              </div>
-            </div>
-
-            <div class="anatomyItem">
-              <div class="anatomyArrow" aria-hidden="true">←</div>
-              <div class="anatomyText">
-                <div class="anatomyTitle">Flavor text</div>
-                <div class="anatomyDesc">Story tone — has no gameplay effect.</div>
-              </div>
-            </div>
-
-            <div class="anatomyItem">
-              <div class="anatomyArrow" aria-hidden="true">←</div>
-              <div class="anatomyText">
-                <div class="anatomyTitle">Collector number</div>
-                <div class="anatomyDesc">Bottom line: set order and print identification.</div>
-              </div>
-            </div>
-
-            <div class="anatomyItem">
-              <div class="anatomyArrow" aria-hidden="true">←</div>
-              <div class="anatomyText">
-                <div class="anatomyTitle">Artist credit</div>
-                <div class="anatomyDesc">Bottom line: who illustrated the card.</div>
-              </div>
-            </div>
-
-            <div class="anatomyItem">
-              <div class="anatomyArrow" aria-hidden="true">←</div>
-              <div class="anatomyText">
-                <div class="anatomyTitle">Set code & rarity</div>
-                <div class="anatomyDesc">Bottom line: set abbreviation (e.g., ICE) and rarity letter (C/U/R/M).</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <h3>6) Bottom edge (fine print row)</h3>
+      <p>
+        Along the bottom edge you’ll often find small-print metadata like <strong>collector number</strong>,
+        <strong>artist credit</strong>, and legal/copyright text.
+      </p>
 
       <h2>Setup</h2>
       <ul>
-        <li>Each player shuffles their deck and draws <strong>7 cards</strong>.</li>
-        <li>Decide who goes first. (Often: roll a die.)</li>
-        <li><strong>Mulligan:</strong> If your hand is bad, you may reshuffle and draw 7 again, then put 1 card on the bottom for each mulligan taken.</li>
+        <li>Each player shuffles their deck (library) and draws <strong>5 cards</strong>.</li>
+        <li>Decide who goes first (roll a die, coin flip, etc.).</li>
       </ul>
 
       <h2>Anatomy of a turn</h2>
-      <p>Every turn has the same skeleton. Don’t panic — you’ll learn it by doing.</p>
       <ol>
         <li><strong>Untap</strong> — Untap your tapped cards.</li>
-        <li><strong>Upkeep</strong> — “At the beginning of your upkeep” abilities happen.</li>
-        <li><strong>Draw</strong> — Draw a card. (The starting player usually skips their first draw.)</li>
-        <li><strong>Main phase</strong> — Play a land (if you haven’t), cast spells, activate abilities.</li>
-        <li><strong>Combat</strong> — Declare attackers, then blockers, then damage happens.</li>
-        <li><strong>Main phase (again)</strong> — Cast more spells after combat.</li>
-        <li><strong>End step / Cleanup</strong> — “At end step” abilities happen; damage wears off; if you’re holding more than 7 cards, reduce to 7.</li>
+        <li><strong>Upkeep</strong> — “During your upkeep” abilities happen.</li>
+        <li><strong>Draw</strong> — Draw a card (either from basic land piles or your library).</li>
+        <li><strong>1st Main phase</strong> — Play a land, cast spells, activate abilities.</li>
+        <li><strong>Combat</strong> — Declare attackers, then blockers, then damage.</li>
+        <li><strong>2nd Main phase</strong> — Cast more spells after combat.</li>
+        <li><strong>End step</strong> — End-step abilities happen; damage wears off; discard down to <strong>5</strong>.</li>
       </ol>
 
       <h2>Mana and casting spells</h2>
       <ul>
-        <li>To cast a spell, you pay its <strong>mana cost</strong> (top-right of the card).</li>
-        <li>You usually pay by tapping lands for mana. Lands stay tapped until your next untap step.</li>
-        <li><strong>Unused mana empties</strong> as steps/phases end. (No saving it “for later” unless a card says you can.)</li>
+        <li>To cast a spell, pay its <strong>mana cost</strong> (top-right of the card).</li>
+        <li>You usually pay by tapping lands for mana; lands untap at the start of your next turn.</li>
+        <li><strong>Unused mana empties</strong> as steps/phases end (unless a card says otherwise).</li>
       </ul>
 
-      <h2>Card types (the quick mental model)</h2>
+      <h2>Card types (quick model)</h2>
       <ul>
-        <li><strong>Lands</strong> — Your main mana source. Played only on your turn, one per turn.</li>
-        <li><strong>Creatures</strong> — Stay in play. They attack/block. Power/Toughness is bottom-right (e.g., 3/2).</li>
-        <li><strong>Instants</strong> — Fast spells. Cast them any time you have priority (often in response).</li>
+        <li><strong>Lands</strong> — Main mana source. Played only on your turn, usually one per turn.</li>
+        <li><strong>Creatures</strong> — Stay in play. They attack/block. P/T is bottom-right (e.g., 3/2).</li>
+        <li><strong>Instants</strong> — Fast spells. Cast them at almost any time.</li>
         <li><strong>Sorceries</strong> — Slower spells. Cast only during your main phase when the stack is empty.</li>
         <li><strong>Enchantments / Artifacts</strong> — Permanents that stay in play and provide ongoing effects.</li>
-        <li><strong>Planeswalkers</strong> — Powerful permanents with loyalty abilities (use one per turn, on your turn).</li>
       </ul>
 
-      <h2>Combat (how the punching works)</h2>
+      <h2>Combat (how damage happens)</h2>
       <ul>
-        <li>You choose which creatures attack and who they attack (the opponent, or sometimes planeswalkers).</li>
+        <li>You choose which creatures attack.</li>
         <li>Opponent chooses blockers.</li>
-        <li><strong>Unblocked creatures</strong> deal damage to the opponent.</li>
+        <li><strong>Unblocked attackers</strong> deal damage to the opponent.</li>
         <li><strong>Blocked creatures</strong> deal damage to the creatures blocking / being blocked.</li>
-        <li>Most creatures have <strong>summoning sickness</strong>: a creature can’t attack or use tap abilities the turn it enters play unless it has <em>haste</em>.</li>
+        <li>
+          Most creatures have <strong>summoning sickness</strong>: they can’t attack or use tap abilities the
+          turn they enter play unless they have <em>haste</em>.
+        </li>
       </ul>
 
-      <h2>Stack and timing (the one concept that makes everything click)</h2>
-      <p>When a spell is cast or an ability is activated, it goes on the <strong>stack</strong>. Players can respond. The stack resolves <strong>last-in, first-out</strong>.</p>
+      <h2>Stack and timing (the “response” concept)</h2>
+      <p>
+        When a spell is cast or an ability is activated, it goes on the <strong>stack</strong>. Players can respond.
+        The stack resolves <strong>last-in, first-out</strong>.
+      </p>
+
+      <h2>Zones (where cards live)</h2>
+      <p>
+        During a game, cards move between a few standard areas called <strong>zones</strong>.
+        Knowing these makes the table layout feel obvious instead of chaotic.
+      </p>
+
+      <h3>Hand</h3>
+      <p>
+        Cards you’ve drawn but haven’t played yet. Your hand is private unless an effect says otherwise.
+      </p>
+
+      <h3>Library</h3>
+      <p>
+        Your face-down deck. You draw from the top. If an effect tells you to search your library,
+        you shuffle afterward (unless the effect explicitly says not to).
+      </p>
+
+      <h3>Play</h3>
+      <p>
+        Cards “in play” sit on the table in front of you: lands, creatures, artifacts, enchantments, etc.
+        Most ongoing effects come from cards in play.
+      </p>
+
+      <h3>Graveyard</h3>
+      <p>
+        Your discard pile. Destroyed creatures go here. Instants and sorceries usually go here after they resolve.
+        The graveyard is public information.
+      </p>
+
+      <h3>Exile</h3>
+      <p>
+        A separate public zone for cards removed from the game by “exile” effects. Exile is not the graveyard —
+        it’s usually harder to get cards back from exile unless a card specifically allows it.
+      </p>
+
+      <h3>Stack</h3>
+      <p>
+        This is not a physical pile, but it’s a real zone: when you cast a spell or activate an ability,
+        it goes on the <strong>stack</strong> first. Players can respond. Then it resolves last-in, first-out.
+        Instants and sorceries usually go to the graveyard after resolving. Permanents resolve by entering play.
+      </p>
+
+      <h3>Quick table layout tip</h3>
       <ul>
-        <li>Instants (and abilities) can be used to respond to other spells.</li>
-        <li>If nobody responds, the top thing resolves. Then players get another chance to respond.</li>
-        <li>Most of the time, just remember: <strong>you can respond to what your opponent just did.</strong></li>
+        <li>Keep <strong>lands</strong> in a row closest to you, creatures above them.</li>
+        <li>Keep your <strong>graveyard</strong> and <strong>exile</strong> separate so you never mix them up.</li>
+        <li>Keep your <strong>library</strong> in a consistent corner and always draw from the top.</li>
       </ul>
 
-      <h2>Keywords you’ll see a lot</h2>
-      <p>Your fastest path to confidence is recognizing keywords. The <a href="keyword-icons.html">Keyword Icons</a> page is your cheat sheet.</p>
-      <ul>
-        <li><strong>Flying</strong> — blocked only by flying/reach.</li>
-        <li><strong>Trample</strong> — extra damage spills over to the opponent.</li>
-        <li><strong>First strike / Double strike</strong> — deals damage earlier (or twice).</li>
-        <li><strong>Deathtouch</strong> — any damage is lethal to creatures.</li>
-        <li><strong>Hexproof / Shroud</strong> — harder (or impossible) to target.</li>
-      </ul>
-
-      <h2>One last “save your brain” note</h2>
-      <p>You do <strong>not</strong> need to memorize every rule. If you know the turn structure, mana, and combat, you can play. The rest is just learning what your cards do — which is the fun part.</p>
-
+      <h2>One last note</h2>
+      <p>
+        You don’t need to memorize everything. If you know turn structure, mana, and combat,
+        you can play — the rest is learning what your cards do.
+      </p>
     </section>
   </main>
-  <footer class="footer">
-  <div class="footerInner">
-    <div class="footerLeft">
-      <span class="footerText">This site is a fan-made reference for a private playgroup.</span>
-    </div>
-    <div class="footerLinks">
-      <a class="footerLink" href="contact.html">Contact</a>
-      <a class="footerLink" href="disclaimer.html">Disclaimer</a>
-      <a class="footerLink" href="privacy.html">Privacy</a>
-    </div>
-  </div>
-</footer>
-  <script src="site.js"></script>
-  <script>
-  // Load the Adarkar Unicorn image for the diagram without hardcoding filenames.
-  (async () => {
-    try{
-      const res = await fetch('data/cards.json', { cache: 'no-store' });
-      const data = await res.json();
-      const card = (Array.isArray(data) ? data : []).find(c => String(c?.name||'').toLowerCase() === 'adarkar unicorn')
-        || (Array.isArray(data) ? data : []).find(c => String(c?.name||'').toLowerCase().includes('adarkar unicorn'));
 
-      const img = document.getElementById('diagramCard');
-      if(!img) return;
-      const srcRaw = String(card?.image || '').trim();
-      if(!srcRaw) return;
-      img.src = srcRaw.startsWith('/') ? srcRaw.slice(1) : srcRaw;
-    }catch(_e){ /* silent */ }
-  })();
-  </script>
+  <footer class="footer">
+    <div class="footerInner">
+      <div class="footerLeft">
+        <span class="footerText">This site is a fan-made reference for a private playgroup.</span>
+      </div>
+      <div class="footerLinks">
+        <a class="footerLink" href="contact.html">Contact</a>
+        <a class="footerLink" href="disclaimer.html">Disclaimer</a>
+        <a class="footerLink" href="privacy.html">Privacy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="site.js"></script>
 </body>
 </html>
