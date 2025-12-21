@@ -861,6 +861,9 @@ function setBlock(id, label, text){
 
   // Ensure base styling + type styling
   el.classList.add("block");
+  // Modal section layout: icon (left) + color rail + text
+  // (no extra panels/headers/lines).
+  el.classList.add("stripBlock");
   el.classList.toggle("rulesBlock", id === "mRules");
   el.classList.toggle("flavorBlock", id === "mFlavor");
   el.classList.toggle("loreBlock", id === "mLore");
@@ -874,23 +877,33 @@ function setBlock(id, label, text){
 
   el.style.display = "block";
 
-  // Body text (headers are rendered via .blockHead now)
   let bodyHtml = richText(t);
+  if(id === "mLore") bodyHtml = `<span class="lead loreLead">Lore:</span> ` + bodyHtml;
+  if(id === "mArt")  bodyHtml = `<span class="lead artLead">Art:</span> ` + bodyHtml;
 
-  // Monochrome section icons (user-provided)
-  const iconSrc = (id === "mRules")  ? "assets/icons/Rules.png"
-               : (id === "mFlavor") ? "assets/icons/Flavor.png"
-               : (id === "mLore")   ? "assets/icons/Lore.png"
-               : "";
-
-  // Render a clean, integrated strip:
-  // icon (left) → color rail → text.
-  // No header bands, no horizontal dividers, no nested boxes.
-  el.innerHTML = `
-    ${iconSrc ? `<div class="secIcon"><img class="secIconImg" src="${iconSrc}" alt="" /></div>` : `<div class="secIcon"></div>`}
-    <div class="secRail" aria-hidden="true"></div>
-    <div class="secBody">${bodyHtml}</div>
-  `;
+  // Build the simple strip layout for the three primary sections.
+  // (If other block IDs exist in the future, they can fall back to default markup.)
+  if(id === "mRules" || id === "mFlavor" || id === "mLore"){
+    const iconName = (id === "mRules") ? "Rules" : (id === "mFlavor") ? "Flavor" : "Lore";
+    el.innerHTML = `
+      <div class="secIconWrap" aria-hidden="true">
+        <img class="secIcon" src="assets/icons/${iconName}.png" alt="">
+      </div>
+      <div class="secRail" aria-hidden="true"></div>
+      <div class="secBody">${bodyHtml}</div>
+    `;
+  } else {
+    // Default legacy layout
+    const body = el.querySelector?.(".blockBody") || el.querySelector?.(".body") || null;
+    if (body){
+      body.innerHTML = bodyHtml;
+    } else {
+      el.innerHTML = `
+        <div class="blockLabel">${escapeHtml(label || "")}</div>
+        <div class="blockBody">${bodyHtml}</div>
+      `;
+    }
+  }
 
   attachIconFallbacks(el);
 }
