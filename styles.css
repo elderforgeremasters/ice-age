@@ -506,7 +506,8 @@ body{
   content:"";
   position:absolute;
   left: 32px;
-  top: 0px;
+  /* Keep the top alignment as before; extend only the bottom */
+  top: 8px;
   bottom: 0px;
   width: 2px;
   background: linear-gradient(to bottom, rgba(255,255,255,0.02), var(--blkRail, rgba(255,255,255,0.22)), rgba(255,255,255,0.02));
@@ -572,9 +573,10 @@ body{
   --blkRail: rgba(220,185,120,0.55);
   --blkGlowA: rgba(220,165,95,0.16);
   --blkGlowB: rgba(120,70,25,0.10);
-  --blkLabel: rgba(255,215,160,0.98);
-  --blkText: rgba(255,220,165,0.96);
-  --blkTextGlow: rgba(220,185,120,0.22);
+  /* Revert to the nicer base hue; we'll add only a *very* subtle glow */
+  --blkLabel: rgba(245,210,150,0.95);
+  --blkText: rgba(255,216,150,0.93);
+  --blkTextGlow: rgba(220,185,120,0.14);
 
 }
 .modalPanel .flavorBlock .blockBody{
@@ -586,26 +588,20 @@ body{
   --blkRail: rgba(220,140,150,0.55);
   --blkGlowA: rgba(220,120,135,0.14);
   --blkGlowB: rgba(90,28,36,0.10);
-  --blkLabel: rgba(255,195,212,0.98);
-  --blkText: rgba(255,200,215,0.96);
-  --blkTextGlow: rgba(220,140,150,0.22);
+  /* Revert to the nicer base hue; keep readability with a gentle glow */
+  --blkLabel: rgba(255,195,205,0.95);
+  --blkText: rgba(255,200,210,0.93);
+  --blkTextGlow: rgba(220,140,150,0.14);
 
 }
 .modalPanel .loreBlock .blockBody{ color: var(--blkText, rgba(245,232,236,0.93)); }
 
-/* Richer Flavor/Lore text color without using boxes */
+/* Flavor/Lore: keep your preferred base color, add just enough “lift” (no boxes) */
 .modalPanel .flavorBlock .blockBody,
 .modalPanel .loreBlock .blockBody{
   text-shadow:
-    0 0 12px var(--blkTextGlow, rgba(255,255,255,0.08)),
-    0 1px 0 rgba(0,0,0,0.70);
-}
-
-.modalPanel .flavorBlock .blockHead .blockLabel,
-.modalPanel .loreBlock .blockHead .blockLabel{
-  text-shadow:
-    0 0 10px var(--blkTextGlow, rgba(255,255,255,0.07)),
-    0 2px 14px rgba(0,0,0,0.55);
+    0 1px 0 rgba(0,0,0,0.78),
+    0 0 8px var(--blkTextGlow, rgba(255,255,255,0.06));
 }
 
 .lead{
