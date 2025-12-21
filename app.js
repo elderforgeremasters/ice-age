@@ -883,17 +883,13 @@ function setBlock(id, label, text){
                : (id === "mLore")   ? "assets/icons/Lore.png"
                : "";
 
-  // Render an integrated section header + body.
-  // IMPORTANT: no "badge" or extra rectangles.
-  // The icon lives in its own left gutter, outside the rail.
+  // Render a clean, integrated strip:
+  // icon (left) → color rail → text.
+  // No header bands, no horizontal dividers, no nested boxes.
   el.innerHTML = `
-    <div class="blockIconSlot">${iconSrc ? `<img class="blockIcon" src="${iconSrc}" alt="" />` : ""}</div>
-    <div class="blockMain">
-      <div class="blockHead">
-        <div class="blockLabel">${escapeHtml(label || "")}</div>
-      </div>
-      <div class="blockBody">${bodyHtml}</div>
-    </div>
+    ${iconSrc ? `<div class="secIcon"><img class="secIconImg" src="${iconSrc}" alt="" /></div>` : `<div class="secIcon"></div>`}
+    <div class="secRail" aria-hidden="true"></div>
+    <div class="secBody">${bodyHtml}</div>
   `;
 
   attachIconFallbacks(el);
