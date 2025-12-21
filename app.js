@@ -551,7 +551,7 @@ function openModal(card){
   if(card.type) metaBits.push(escapeHtml(card.type));
     if(card.pt){
     const ptVal = escapeHtml(normalizeSlash(card.pt));
-    metaBits.push(`<span class="ptLabel">P/T</span> <span class="ptVal">${ptVal}</span>`);
+    metaBits.push(`<span class=\"ptVal\">${ptVal}</span>`);
   }
 metaBits.push(escapeHtml(rarityLong(card.rarity)));
   const si = getSetInfo(card.set);
