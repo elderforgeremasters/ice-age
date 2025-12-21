@@ -1061,7 +1061,7 @@ body{
 
 /* Mana cost group: lift slightly so it aligns with the title baseline */
 .modalPanel .modalTitle .nameCost{
-  transform: translateY(0px) !important;
+  transform: translateY(0.25px) !important;
 }
 
 /* ==========================================================
@@ -1103,3 +1103,20 @@ body{
 }
 
 .modalPanel .block.rulesBlock{ margin-top: 0 !important; } /* first block sits under meta spacing */
+
+/* ==========================================================
+   Modal meta line: match title lowercaps + subtle real caps
+   ========================================================== */
+
+.modalPanel .modalMeta{
+  font-variant-caps: all-small-caps !important;
+  font-synthesis-small-caps: auto !important;
+}
+
+/* Same cap ratio as the title */
+.modalPanel .modalMeta .capInit{
+  font-variant-caps: normal !important;
+  font-size: 0.86em !important;
+  position: relative;
+  top: 0;
+}
