@@ -1061,7 +1061,7 @@ body{
 
 /* Mana cost group: lift slightly so it aligns with the title baseline */
 .modalPanel .modalTitle .nameCost{
-  transform: translateY(-0.5px) !important;
+  transform: translateY(0px) !important;
 }
 
 /* ==========================================================
@@ -1077,7 +1077,7 @@ body{
 
 /* Title: bump size a bit (small-caps looks ~10–15% smaller) */
 .modalPanel .modalTitle{
-  font-size: 34px !important;   /* tune: 38–44 */
+  font-size: 36px !important;   /* tune: 38–44 */
   line-height: 1.08 !important;
   margin: 0 0 2px 0 !important; /* snug to meta */
 }
