@@ -1171,18 +1171,18 @@ body{
 
 .modalPanel .modalMeta .rarity-common{
   /* Common = bright cool white (no beige) */
-  color: rgba(245,245,245,0.72);
+  color: rgba(250,250,250,0.92);
   text-shadow:
-    0 1px 0 rgba(0,0,0,0.82),
+    0 1px 0 rgba(0,0,0,0.78),
     0 -1px 0 rgba(255,255,255,0.08),
     0 0 12px rgba(150,210,255,0.12);
 }
 
 .modalPanel .modalMeta .rarity-uncommon{
   /* Uncommon = silver/grey (distinct from common) */
-  color: rgba(130,130,130,0.72);
+  color: rgba(200,200,200,0.92);
   text-shadow:
-    0 1px 0 rgba(0,0,0,0.84),
+    0 1px 0 rgba(0,0,0,0.78),
     0 -1px 0 rgba(255,255,255,0.08),
     0 0 12px rgba(140,170,210,0.12);
 }
