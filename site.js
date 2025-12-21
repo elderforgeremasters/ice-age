@@ -134,5 +134,17 @@ function initClickMenu(btnId, menuId){
 
 document.addEventListener("DOMContentLoaded", ()=>{
   initClickMenu("guideBtn","guideMenu");
+
+  // The nav pill text uses our synthetic small-caps system.
+  // If the underlying label starts with a real capital (e.g. "Card database"),
+  // that first letter becomes a *true* cap while the rest are small-caps —
+  // visually it looks like the first letter is floating too high.
+  // Fix: normalize nav pill labels to lowercase before applying lowercaps.
+  document.querySelectorAll(".navBtn").forEach(a => {
+    const t = (a.textContent || "").trim();
+    if(!t) return;
+    a.textContent = t.toLowerCase();
+  });
+
   applyLowercaps(document);
 });
