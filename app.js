@@ -86,6 +86,7 @@ function markLowercaps(root = document){
     ".mapTitle",
     ".iconSectionTitle",
 
+    ".navBtn",
     ".ddBtn",
     ".ddMenu",
     ".ddItem",
@@ -873,20 +874,23 @@ function setBlock(id, label, text){
 
   el.style.display = "block";
 
+  // Body text (headers are rendered via .blockHead now)
   let bodyHtml = richText(t);
-  if(id === "mLore") bodyHtml = `<span class="lead loreLead">Lore:</span> ` + bodyHtml;
-  if(id === "mArt")  bodyHtml = `<span class="lead artLead">Art:</span> ` + bodyHtml;
 
-  // If your HTML template already contains a body element, use it.
-  const body = el.querySelector?.(".blockBody") || el.querySelector?.(".body") || null;
-  if (body){
-    body.innerHTML = bodyHtml;
-  } else {
-    el.innerHTML = `
+  // Monochrome section icons (user-provided)
+  const iconSrc = (id === "mRules")  ? "assets/icons/Rules.png"
+               : (id === "mFlavor") ? "assets/icons/Flavor.png"
+               : (id === "mLore")   ? "assets/icons/Lore.png"
+               : "";
+
+  // Render a consistent, nicer block structure (icon header + body)
+  el.innerHTML = `
+    <div class="blockHead">
+      ${iconSrc ? `<span class="blockIconBadge"><img class="blockIcon" src="${iconSrc}" alt="" /></span>` : ""}
       <div class="blockLabel">${escapeHtml(label || "")}</div>
-      <div class="blockBody">${bodyHtml}</div>
-    `;
-  }
+    </div>
+    <div class="blockBody">${bodyHtml}</div>
+  `;
 
   attachIconFallbacks(el);
 }
