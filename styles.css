@@ -48,13 +48,10 @@
 /* Nav pill text ("Card database") should not have a towering first capital.
    Bring the rescued initial closer to the small-caps x-height. */
 .navBtn.efLowercaps{
-  --capInitScale: .84em;
+  --capInitScale: .78em;
 }
 .navBtn.efLowercaps .capInit{
-  top: 0;
-  display: inline-block;
-  line-height: 1;
-  transform: translateY(.09em);
+  top: .02em;
 }
 
 /* Brand title should preserve intentional internal capitals (e.g. ElderForge) */
@@ -467,117 +464,6 @@ body{
   color: var(--text);
   line-height: 1.45;
 }
-
-/* ==========================================================
-   Modal content sections (Rules / Flavor / Lore)
-   Goal: keep your color scheme, but REMOVE the "three rounded squares"
-   look entirely. No extra badges. No nested boxes.
-   We use: a floating icon + a thin colored rail + soft ambient glow.
-   ========================================================== */
-
-.modalPanel .block{
-  position: relative;
-  padding: 0 0 0 58px;      /* room for icon + rail */
-  border: 0;
-  background: transparent;
-  border-radius: 0;
-  box-shadow: none;
-  overflow: visible;
-}
-
-.modalPanel .block + .block{ margin-top: 18px; }
-
-/* Soft ambient color (no hard rectangle edges) */
-.modalPanel .block::after{
-  content:"";
-  position:absolute;
-  inset: -10px -12px -12px -12px;
-  background:
-    radial-gradient(120% 90% at 10% 0%, var(--blkGlowA, rgba(255,255,255,0.08)), transparent 62%),
-    radial-gradient(120% 90% at 80% 100%, var(--blkGlowB, rgba(255,255,255,0.06)), transparent 70%);
-  opacity: .75;
-  filter: blur(16px);
-  pointer-events:none;
-  z-index: 0;
-}
-
-/* Thin rail (not a box) */
-.modalPanel .block::before{
-  content:"";
-  position:absolute;
-  left: 32px;
-  top: 8px;
-  bottom: 10px;
-  width: 2px;
-  background: linear-gradient(to bottom, rgba(255,255,255,0.02), var(--blkRail, rgba(255,255,255,0.22)), rgba(255,255,255,0.02));
-  opacity: .9;
-  pointer-events:none;
-  z-index: 1;
-}
-
-.modalPanel .blockHead,
-.modalPanel .blockBody{ position: relative; z-index: 2; }
-
-.modalPanel .blockHead{
-  display:flex;
-  align-items:center;
-  gap: 10px;
-  padding: 2px 0 8px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.10);
-}
-
-/* The icon is *just the icon* — no badge, no square */
-.modalPanel .blockIcon{
-  position: absolute;
-  left: 16px;
-  top: -2px;
-  width: 26px;
-  height: 26px;
-  object-fit: contain;
-  opacity: 0.98;
-  filter:
-    drop-shadow(0 0 1px rgba(255,255,255,0.95))
-    drop-shadow(0 0 6px rgba(175,230,255,0.26))
-    drop-shadow(0 2px 14px rgba(0,0,0,0.45));
-}
-
-.modalPanel .blockHead .blockLabel{
-  margin: 0;
-  font-weight: 880;
-  letter-spacing: .06em;
-  font-size: 13px;
-  font-variant-caps: all-small-caps;
-  font-synthesis-small-caps: auto;
-}
-
-.modalPanel .blockBody{
-  padding: 12px 0 0 0;
-}
-
-/* Per-section colors (rail + glow + text tone) */
-.modalPanel .rulesBlock{
-  --blkRail: rgba(210,232,255,0.55);
-  --blkGlowA: rgba(220,238,255,0.16);
-  --blkGlowB: rgba(170,220,255,0.10);
-}
-.modalPanel .rulesBlock .blockBody{ color: rgba(245,248,255,0.96); }
-
-.modalPanel .flavorBlock{
-  --blkRail: rgba(220,185,120,0.55);
-  --blkGlowA: rgba(220,165,95,0.16);
-  --blkGlowB: rgba(120,70,25,0.10);
-}
-.modalPanel .flavorBlock .blockBody{
-  font-style: italic;
-  color: rgba(245,232,205,0.92);
-}
-
-.modalPanel .loreBlock{
-  --blkRail: rgba(220,140,150,0.55);
-  --blkGlowA: rgba(220,120,135,0.14);
-  --blkGlowB: rgba(90,28,36,0.10);
-}
-.modalPanel .loreBlock .blockBody{ color: rgba(245,232,236,0.93); }
 
 .lead{
   font-weight: 750;
@@ -1220,18 +1106,137 @@ body{
    Modal section spacing (rules / flavor / lore)
    ========================================================== */
 
-/* Ensure the three content blocks keep their breathing room */
-.modalPanel .block{
+/* Legacy block spacing (non-strip layout only) */
+.modalPanel .block:not(.stripBlock){
   margin-top: 0 !important;
 }
 
-.modalPanel .block.rulesBlock,
-.modalPanel .block.flavorBlock,
-.modalPanel .block.loreBlock{
+.modalPanel .block.rulesBlock:not(.stripBlock),
+.modalPanel .block.flavorBlock:not(.stripBlock),
+.modalPanel .block.loreBlock:not(.stripBlock){
   margin-top: 14px !important;   /* space between blocks */
 }
 
-.modalPanel .block.rulesBlock{ margin-top: 0 !important; } /* first block sits under meta spacing */
+.modalPanel .block.rulesBlock:not(.stripBlock){ margin-top: 0 !important; } /* first block sits under meta spacing */
+
+/* ==========================================================
+   Modal section layout: icon + color rail + text (NO panels/lines)
+   ========================================================== */
+
+/*
+  IMPORTANT:
+  Some pages/patches ended up with slightly different modal nesting.
+  So we style both:
+    .modalPanel .block.stripBlock (expected)
+    .block.stripBlock             (fallback)
+*/
+
+.modalPanel .block.stripBlock,
+.block.stripBlock{
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+
+  /* Use flex (not grid) so it can't collapse into "stacked" mode.
+     Layout: [icon gutter] [color rail] [text] */
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+
+  margin-top: 22px;
+}
+
+.modalPanel .block.stripBlock:first-child,
+.block.stripBlock:first-child{ margin-top: 0; }
+
+.modalPanel .block.stripBlock .secIconWrap,
+.block.stripBlock .secIconWrap{
+  flex: 0 0 74px;               /* icon gutter */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 2px;
+}
+
+.modalPanel .block.stripBlock .secIcon,
+.block.stripBlock .secIcon{
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  /* subtle snowy edge so the black linework pops on dark */
+  filter:
+    drop-shadow(0 0 0.9px rgba(255,255,255,0.85))
+    drop-shadow(0 0 6px rgba(160,220,255,0.18))
+    drop-shadow(0 10px 22px rgba(0,0,0,0.42));
+  opacity: 0.95;
+}
+
+.modalPanel .block.stripBlock .secRail,
+.block.stripBlock .secRail{
+  flex: 0 0 14px;               /* wider, nicer color band */
+  border-radius: 999px;
+  align-self: stretch;          /* MUST stretch; otherwise it disappears */
+  min-height: 10px;             /* safety net for short lines */
+
+  /* base rail if a class is missing */
+  background: rgba(255,255,255,0.14);
+  box-shadow:
+    0 0 0 1px rgba(0,0,0,0.45) inset,
+    0 0 18px rgba(160,220,255,0.10);
+}
+
+/* Rail + text coloring per section */
+.modalPanel .block.rulesBlock.stripBlock .secRail,
+.block.rulesBlock.stripBlock .secRail{
+  background: linear-gradient(180deg, rgba(190,225,255,0.62), rgba(120,170,220,0.18));
+  box-shadow:
+    0 0 0 1px rgba(0,0,0,0.45) inset,
+    0 0 22px rgba(160,220,255,0.18);
+}
+
+.modalPanel .block.flavorBlock.stripBlock .secRail,
+.block.flavorBlock.stripBlock .secRail{
+  background: linear-gradient(180deg, rgba(245,210,140,0.55), rgba(120,80,30,0.14));
+  box-shadow:
+    0 0 0 1px rgba(0,0,0,0.45) inset,
+    0 0 20px rgba(220,180,120,0.18);
+}
+
+.modalPanel .block.loreBlock.stripBlock .secRail,
+.block.loreBlock.stripBlock .secRail{
+  background: linear-gradient(180deg, rgba(225,170,235,0.50), rgba(90,40,110,0.14));
+  box-shadow:
+    0 0 0 1px rgba(0,0,0,0.45) inset,
+    0 0 20px rgba(180,140,235,0.16);
+}
+
+.modalPanel .block.stripBlock .secBody,
+.block.stripBlock .secBody{
+  flex: 1 1 auto;
+  min-width: 0;
+  line-height: 1.48;
+  font-size: 18px;
+  color: rgba(245,248,255,0.94);
+  text-shadow: 0 1px 10px rgba(0,0,0,0.55);
+}
+
+.modalPanel .block.flavorBlock.stripBlock .secBody,
+.block.flavorBlock.stripBlock .secBody{
+  font-style: italic;
+  color: rgba(245,230,200,0.92);
+}
+
+.modalPanel .block.loreBlock.stripBlock .secBody,
+.block.loreBlock.stripBlock .secBody{
+  color: rgba(220,200,255,0.90);
+}
+
+/* The lead labels are optional; keep them subtle in the new layout */
+.modalPanel .block.stripBlock .lead,
+.block.stripBlock .lead{
+  opacity: 0.90;
+}
 
 /* ==========================================================
    Modal meta line: match title lowercaps + subtle real caps

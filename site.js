@@ -1,88 +1,86 @@
-// site.js — shared navigation behavior (no card loading)
+// site.js — shared navigation behavior for all pages (no card loading)
 
 function $(id){ return document.getElementById(id); }
 
 /* ==========================================================
-   Synthetic “lowercaps” engine (same as card modal/grid)
+   Synthetic “lowercaps” engine
+   - CSS sets all-small-caps on .efLowercaps
+   - JS wraps ORIGINAL uppercase letters with <span class="capInit">…</span>
    ========================================================== */
 
 function wrapOriginalCapsInTextNodes(root){
   if(!root) return;
 
-  const walker = document.createTreeWalker(
-    root,
-    NodeFilter.SHOW_TEXT,
-    {
-      acceptNode(node){
-        const p = node.parentElement;
-        if(!p) return NodeFilter.FILTER_REJECT;
-
-        // Never re-wrap inside existing wrappers / exclusions
-        if(p.closest(".capInit")) return NodeFilter.FILTER_REJECT;
-        if(p.closest(".noCapRescue")) return NodeFilter.FILTER_REJECT;
-
-        // Skip empty or already-normalized nodes
-        const s = node.nodeValue;
-        if(!s || !/[A-Z]/.test(s)) return NodeFilter.FILTER_REJECT;
-
-        return NodeFilter.FILTER_ACCEPT;
-      }
-    }
-  );
-
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
   const nodes = [];
-  while(walker.nextNode()) nodes.push(walker.currentNode);
+  while(walker.nextNode()){
+    const node = walker.currentNode;
+    const p = node.parentElement;
+    if(!p) continue;
+    if(p.closest('.capInit')) continue;
+    if(p.closest('.noCapRescue')) continue;
+    nodes.push(node);
+  }
 
-  nodes.forEach(node => {
-    const text = node.nodeValue;
-    const frag = document.createDocumentFragment();
+  for(const node of nodes){
+    const txt = node.nodeValue || "";
+    if(!txt) continue;
+    if(!/\p{Lu}/u.test(txt)) continue;
 
-    for(let i=0;i<text.length;i++){
-      const ch = text[i];
-      if(ch >= "A" && ch <= "Z"){
-        const span = document.createElement("span");
-        span.className = "capInit";
-        span.textContent = ch;
-        frag.appendChild(span);
-      }else{
-        frag.appendChild(document.createTextNode(ch));
-      }
-    }
+    const wrapped = txt.replace(/(\p{Lu})/gu, (m, cap) => {
+      return `<span class="capInit">${cap}</span>`;
+    });
+    if(wrapped === txt) continue;
 
-    node.parentNode.replaceChild(frag, node);
-  });
+    const span = document.createElement('span');
+    span.innerHTML = wrapped;
+    node.parentNode.replaceChild(span, node);
+  }
 }
 
-function markLowercaps(root=document){
+function markLowercaps(root = document){
+  // Keep this selector list in sync with app.js
   const sel = [
     ".brand .title",
+    ".uiSmallCaps",
     ".brand .subtitle",
-    ".navBtn",
-    "#guideBtn",
+
     ".pagePanel h1",
     ".pagePanel h2",
     ".mapTitle",
-    ".iconSectionTitle"
+    ".iconSectionTitle",
+
+    ".navBtn",
+    ".ddBtn",
+    ".ddMenu",
+    ".ddItem",
+    ".ddMenu a.ddLink",
+    "#rarityLabel",
+    "#typeLabel",
+    "#guideLabel",
+
+    "#status"
   ].join(",");
 
+  // querySelectorAll() doesn't include the root itself
+  if(root instanceof Element && root.matches(sel)){
+    root.classList.add("efLowercaps");
+  }
   root.querySelectorAll(sel).forEach(el => el.classList.add("efLowercaps"));
 }
 
-function applyLowercaps(root=document){
-  // Include root itself if it matches
-  // NOTE: We intentionally do NOT apply lowercaps to Guide menu items (.ddLink)
-  // because those should stay in normal text styling.
-  if(root instanceof HTMLElement && root.matches && root.matches(".brand .title, .brand .subtitle, .navBtn, #guideBtn, .pagePanel h1, .pagePanel h2, .mapTitle, .iconSectionTitle")){
-    root.classList.add("efLowercaps");
-  }
+function applyLowercaps(root = document){
   markLowercaps(root);
 
-  // Wrap capitals inside any opted-in element
-  root.querySelectorAll(".efLowercaps").forEach(el => {
-    // Avoid rewrapping if it already contains wrappers
-    if(el.querySelector(".capInit")) return;
+  const set = new Set();
+  if(root instanceof Element && root.classList.contains("efLowercaps")) set.add(root);
+  root.querySelectorAll(".efLowercaps").forEach(el => set.add(el));
+
+  for(const el of set){
+    // Avoid rewrapping if already wrapped
+    if(el.querySelector?.('.capInit')) continue;
     wrapOriginalCapsInTextNodes(el);
-  });
+  }
 }
 
 /* ==========================================================
@@ -95,14 +93,17 @@ function initClickMenu(btnId, menuId){
   if(!btn || !menu) return;
 
   function open(){
-    // Close other menus (avoid overlapping dropdowns)
+    // Close other menus when present (index page)
     const rm = $("rarityMenu"); if(rm) rm.hidden = true;
-    const rb = $("rarityBtn"); if(rb) rb.setAttribute("aria-expanded","false");
-    const tm = $("typeMenu"); if(tm) tm.hidden = true;
-    const tb = $("typeBtn"); if(tb) tb.setAttribute("aria-expanded","false");
+    const rb = $("rarityBtn");  if(rb) rb.setAttribute("aria-expanded","false");
+    const tm = $("typeMenu");   if(tm) tm.hidden = true;
+    const tb = $("typeBtn");    if(tb) tb.setAttribute("aria-expanded","false");
 
     menu.hidden = false;
     btn.setAttribute("aria-expanded","true");
+
+    // Ensure any dynamically revealed menu items are lowercapped
+    applyLowercaps(menu);
   }
 
   function close(){
@@ -117,7 +118,6 @@ function initClickMenu(btnId, menuId){
   });
 
   menu.addEventListener("click", (e)=>{
-    // Let links work, but don't bubble to document and instantly close other menus weirdly
     e.stopPropagation();
   });
 
