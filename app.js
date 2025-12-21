@@ -35,6 +35,37 @@ function wrapOriginalTitleCaps(nameSpan){
   nameSpan.innerHTML = wrapped;
 }
 
+function wrapOriginalCapsInTextNodes(root){
+  if(!root) return;
+
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+  const nodes = [];
+  while(walker.nextNode()){
+    const node = walker.currentNode;
+    const p = node.parentElement;
+    if(!p) continue;
+    if(p.closest('.capInit')) continue;
+    if(p.closest('.ptLabel') || p.closest('.ptVal')) continue;
+    nodes.push(node);
+  }
+
+  for(const node of nodes){
+    const txt = node.nodeValue || "";
+    if(!txt) continue;
+
+    const wrapped = txt.replace(/(^|[^\p{L}])(\p{Lu})/gu, (m, pre, cap) => {
+      return `${pre}<span class="capInit">${cap}</span>`;
+    });
+
+    if(wrapped === txt) continue;
+
+    const span = document.createElement('span');
+    span.innerHTML = wrapped;
+    node.parentNode.replaceChild(span, node);
+  }
+}
+
+
 
 
 function normalizePT(pt){
@@ -518,8 +549,11 @@ function openModal(card){
   // Meta line (type, pt, rarity, set full name, year+Atlantica Remasters, collector)
   const metaBits = [];
   if(card.type) metaBits.push(escapeHtml(card.type));
-  if(card.pt) metaBits.push(escapeHtml(normalizeSlash(card.pt)));
-  metaBits.push(escapeHtml(rarityLong(card.rarity)));
+    if(card.pt){
+    const ptVal = escapeHtml(normalizeSlash(card.pt));
+    metaBits.push(`<span class="ptLabel">P/T</span> <span class="ptVal">${ptVal}</span>`);
+  }
+metaBits.push(escapeHtml(rarityLong(card.rarity)));
   const si = getSetInfo(card.set);
   if(si.name) metaBits.push(escapeHtml(si.name));
   if(isNewCard(card)){
@@ -530,20 +564,16 @@ function openModal(card){
   const col = cleanCollector(card.collector);
   if(col) metaBits.push(escapeHtml(col));
 
-  const metaEl = $("mMeta") || modal.querySelector("#mMeta") || modal.querySelector(".modalMeta") || null;
-  if(metaEl){
-    const metaStr = metaBits.join(" • ").replace(/p\/t/gi, "P/T");
-    metaEl.innerHTML = metaStr;
-    // Wrap original capitals in the meta line (without inventing new ones)
-    if(!metaEl.querySelector('.metaText')){
-      metaEl.innerHTML = `<span class="metaText">${escapeHtml(metaEl.textContent)}</span>`;
-    }
-    wrapOriginalTitleCaps(metaEl.querySelector('.metaText'));
+  
+const metaEl = $("mMeta") || modal.querySelector("#mMeta") || modal.querySelector(".modalMeta") || null;
+if(metaEl){
+  metaEl.innerHTML = `<span class="metaText">${metaBits.join(" • ")}</span>`;
+  // Wrap original capitals in the meta line (but DON'T touch the explicit P/T label/value)
+  wrapOriginalCapsInTextNodes(metaEl.querySelector('.metaText'));
+  attachIconFallbacks(metaEl);
+}
 
-    attachIconFallbacks(metaEl);
-  }
-
-  // Blocks — hide empties
+// Blocks — hide empties
   ensureLoreArtBlocks(modal);
   setBlock("mRules", "Rules", card.rules);
   setBlock("mFlavor", "Flavor", card.flavor);

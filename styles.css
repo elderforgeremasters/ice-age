@@ -1124,3 +1124,16 @@ body{
   position: relative;
   top: 0;
 }
+
+
+/* ==========================================================
+   Meta line P/T label + value: keep normal (not all-small-caps)
+   ========================================================== */
+.modalPanel .modalMeta .ptLabel,
+.modalPanel .modalMeta .ptVal{
+  font-variant-caps: normal !important;
+  font-synthesis-small-caps: none !important;
+}
+.modalPanel .modalMeta .ptLabel{
+  letter-spacing: 0.08em;
+}
