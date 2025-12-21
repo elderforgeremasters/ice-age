@@ -1180,7 +1180,7 @@ body{
 
 .modalPanel .modalMeta .rarity-uncommon{
   /* Uncommon = silver/grey (distinct from common) */
-  color: rgba(150,150,150,0.92);
+  color: rgba(160,160,160,0.92);
   text-shadow:
     0 1px 0 rgba(0,0,0,0.78),
     0 -1px 0 rgba(255,255,255,0.08),
