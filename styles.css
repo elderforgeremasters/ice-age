@@ -469,116 +469,115 @@ body{
 }
 
 /* ==========================================================
-   Modal content panels (Rules / Flavor / Lore)
-   - Replace the "floating rounded rectangles" look with
-     an integrated header + body, using monochrome icons.
+   Modal content sections (Rules / Flavor / Lore)
+   Goal: keep your color scheme, but REMOVE the "three rounded squares"
+   look entirely. No extra badges. No nested boxes.
+   We use: a floating icon + a thin colored rail + soft ambient glow.
    ========================================================== */
 
 .modalPanel .block{
-  padding: 0;               /* header + body handle padding */
-  overflow: hidden;
-  border-radius: 18px;
-  background: transparent;  /* backgrounds live on head/body */
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.08),
-    0 18px 55px rgba(0,0,0,0.28);
+  position: relative;
+  padding: 0 0 0 58px;      /* room for icon + rail */
+  border: 0;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  overflow: visible;
 }
+
+.modalPanel .block + .block{ margin-top: 18px; }
+
+/* Soft ambient color (no hard rectangle edges) */
+.modalPanel .block::after{
+  content:"";
+  position:absolute;
+  inset: -10px -12px -12px -12px;
+  background:
+    radial-gradient(120% 90% at 10% 0%, var(--blkGlowA, rgba(255,255,255,0.08)), transparent 62%),
+    radial-gradient(120% 90% at 80% 100%, var(--blkGlowB, rgba(255,255,255,0.06)), transparent 70%);
+  opacity: .75;
+  filter: blur(16px);
+  pointer-events:none;
+  z-index: 0;
+}
+
+/* Thin rail (not a box) */
+.modalPanel .block::before{
+  content:"";
+  position:absolute;
+  left: 32px;
+  top: 8px;
+  bottom: 10px;
+  width: 2px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.02), var(--blkRail, rgba(255,255,255,0.22)), rgba(255,255,255,0.02));
+  opacity: .9;
+  pointer-events:none;
+  z-index: 1;
+}
+
+.modalPanel .blockHead,
+.modalPanel .blockBody{ position: relative; z-index: 2; }
 
 .modalPanel .blockHead{
   display:flex;
   align-items:center;
   gap: 10px;
-  padding: 10px 14px 9px 14px;
+  padding: 2px 0 8px 0;
   border-bottom: 1px solid rgba(255,255,255,0.10);
 }
 
-/* Frosted icon badge (helps B&W icons pop on dark UI) */
-.modalPanel .blockIconBadge{
-  width: 42px;
-  height: 42px;
-  display: grid;
-  place-items: center;
-  border-radius: 14px;
-  border: 1px solid rgba(255,255,255,0.14);
-  background:
-    radial-gradient(circle at 30% 25%, rgba(255,255,255,0.22), rgba(190,230,255,0.10) 45%, rgba(255,255,255,0.06) 70%),
-    rgba(255,255,255,0.06);
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.14),
-    0 10px 28px rgba(0,0,0,0.30);
-  backdrop-filter: blur(6px);
-}
-.modalPanel .blockIconBadge::after{
-  content:"";
-  position:absolute;
-  left: 50%;
-  top: 50%;
-  width: 62px;
-  height: 62px;
-  border-radius: 20px;
-  background: radial-gradient(circle, rgba(170,230,255,0.18), transparent 60%);
-  opacity: 0.55;
-  pointer-events:none;
-  filter: blur(0.2px);
-  transform: translate(-50%,-50%);
-  z-index: 0;
-}
-.modalPanel .blockIconBadge{ position: relative; }
-
+/* The icon is *just the icon* — no badge, no square */
 .modalPanel .blockIcon{
-  position: relative;
-  z-index: 1;
-  width: 24px;
-  height: 24px;
+  position: absolute;
+  left: 16px;
+  top: -2px;
+  width: 26px;
+  height: 26px;
   object-fit: contain;
   opacity: 0.98;
-  /* Snowy rim + subtle ice glow + depth */
   filter:
-    drop-shadow(0 0 0.8px rgba(255,255,255,0.95))
-    drop-shadow(0 0 2px rgba(255,255,255,0.65))
-    drop-shadow(0 0 7px rgba(150,220,255,0.26))
-    drop-shadow(0 2px 14px rgba(0,0,0,0.40));
+    drop-shadow(0 0 1px rgba(255,255,255,0.95))
+    drop-shadow(0 0 6px rgba(175,230,255,0.26))
+    drop-shadow(0 2px 14px rgba(0,0,0,0.45));
 }
 
 .modalPanel .blockHead .blockLabel{
   margin: 0;
-  font-weight: 860;
+  font-weight: 880;
   letter-spacing: .06em;
   font-size: 13px;
   font-variant-caps: all-small-caps;
   font-synthesis-small-caps: auto;
 }
 
-.modalPanel .block > .blockBody{
-  padding: 12px 14px 14px 14px;
+.modalPanel .blockBody{
+  padding: 12px 0 0 0;
 }
 
-/* Rules */
-.modalPanel .rulesBlock .blockHead{
-  background: rgba(245,250,255,0.16);
-  border-bottom-color: rgba(220,235,255,0.16);
+/* Per-section colors (rail + glow + text tone) */
+.modalPanel .rulesBlock{
+  --blkRail: rgba(210,232,255,0.55);
+  --blkGlowA: rgba(220,238,255,0.16);
+  --blkGlowB: rgba(170,220,255,0.10);
 }
-.modalPanel .rulesBlock .blockBody{
-  background: rgba(245,250,255,0.11);
-}
+.modalPanel .rulesBlock .blockBody{ color: rgba(245,248,255,0.96); }
 
-/* Flavor */
-.modalPanel .flavorBlock .blockHead{
-  background: linear-gradient(180deg, rgba(108,72,26,0.42), rgba(52,32,16,0.34));
-  border-bottom-color: rgba(220,185,120,0.18);
+.modalPanel .flavorBlock{
+  --blkRail: rgba(220,185,120,0.55);
+  --blkGlowA: rgba(220,165,95,0.16);
+  --blkGlowB: rgba(120,70,25,0.10);
 }
 .modalPanel .flavorBlock .blockBody{
-  background: linear-gradient(180deg, rgba(108,72,26,0.32), rgba(52,32,16,0.26));
+  font-style: italic;
+  color: rgba(245,232,205,0.92);
 }
 
-/* Lore */
-.modalPanel .loreBlock .blockHead{
-  background: linear-gradient(180deg, rgba(120,34,44,0.34), rgba(44,18,22,0.26));
-  border-bottom-color: rgba(220,140,150,0.16);
+.modalPanel .loreBlock{
+  --blkRail: rgba(220,140,150,0.55);
+  --blkGlowA: rgba(220,120,135,0.14);
+  --blkGlowB: rgba(90,28,36,0.10);
 }
-.modalPanel .loreBlock .blockBody{
-  background: linear-gradient(180deg, rgba(120,34,44,0.26), rgba(44,18,22,0.20));
-}
+.modalPanel .loreBlock .blockBody{ color: rgba(245,232,236,0.93); }
 
 .lead{
   font-weight: 750;
