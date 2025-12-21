@@ -1077,14 +1077,14 @@ body{
 
 /* Title: bump size a bit (small-caps looks ~10–15% smaller) */
 .modalPanel .modalTitle{
-  font-size: 38px !important;   /* tune: 38–44 */
+  font-size: 34px !important;   /* tune: 38–44 */
   line-height: 1.08 !important;
   margin: 0 0 2px 0 !important; /* snug to meta */
 }
 
 /* Meta line: snug under title, then give breathing room before blocks */
 .modalPanel .modalMeta{
-  margin: 0 0 22px 0 !important;
+  margin: 0 0 19px 0 !important;
 }
 
 /* ==========================================================
