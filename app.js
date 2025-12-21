@@ -86,7 +86,6 @@ function markLowercaps(root = document){
     ".mapTitle",
     ".iconSectionTitle",
 
-    ".navBtn",
     ".ddBtn",
     ".ddMenu",
     ".ddItem",
