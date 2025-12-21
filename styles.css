@@ -47,7 +47,7 @@
 
 /* Brand title should preserve intentional internal capitals (e.g. ElderForge) */
 .brand .title.efLowercaps{
-  --capInitScale: 1em;
+  --capInitScale: .90em;
 }
 
 *{ box-sizing:border-box; }
@@ -84,12 +84,12 @@ body{
 }
 
 .brand .title{
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 700;
   letter-spacing: 0.2px;
 }
 .brand .subtitle{
-  font-size: 13px;
+  font-size: 14px;
   color: var(--muted);
   margin-top: 2px;
 }
@@ -200,6 +200,7 @@ body{
 
 .status{
   color: var(--muted);
+  font-weight: 700;
   margin-bottom: 14px;
 }
 

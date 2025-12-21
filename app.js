@@ -86,6 +86,7 @@ function markLowercaps(root = document){
 
     ".navBtn",
     ".ddBtn",
+    ".ddMenu",
     ".ddItem",
     ".ddMenu a.ddLink",
     "#rarityLabel",
@@ -97,16 +98,29 @@ function markLowercaps(root = document){
     "#status"
   ].join(",");
 
+  // IMPORTANT: querySelectorAll() does not include the root element itself,
+  // so explicitly tag root when we call applyLowercaps(btn/menu).
+  if(root instanceof Element && root.matches(sel)){
+    root.classList.add("efLowercaps");
+  }
+
   root.querySelectorAll(sel).forEach(el => el.classList.add("efLowercaps"));
 }
 
 function applyLowercaps(root = document){
   markLowercaps(root);
 
+  const set = new Set();
+
+  if(root instanceof Element && root.classList.contains("efLowercaps")){
+    set.add(root);
+  }
+  root.querySelectorAll(".efLowercaps").forEach(el => set.add(el));
+
   // Wrap original capitals inside any element that opted in
-  root.querySelectorAll(".efLowercaps").forEach(el => {
+  for(const el of set){
     wrapOriginalCapsInTextNodes(el);
-  });
+  }
 }
 
 
