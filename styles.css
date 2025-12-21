@@ -48,10 +48,13 @@
 /* Nav pill text ("Card database") should not have a towering first capital.
    Bring the rescued initial closer to the small-caps x-height. */
 .navBtn.efLowercaps{
-  --capInitScale: .78em;
+  --capInitScale: .84em;
 }
 .navBtn.efLowercaps .capInit{
-  top: .02em;
+  top: 0;
+  display: inline-block;
+  line-height: 1;
+  transform: translateY(.09em);
 }
 
 /* Brand title should preserve intentional internal capitals (e.g. ElderForge) */
@@ -463,6 +466,118 @@ body{
 .blockBody{
   color: var(--text);
   line-height: 1.45;
+}
+
+/* ==========================================================
+   Modal content panels (Rules / Flavor / Lore)
+   - Replace the "floating rounded rectangles" look with
+     an integrated header + body, using monochrome icons.
+   ========================================================== */
+
+.modalPanel .block{
+  padding: 0;               /* header + body handle padding */
+  overflow: hidden;
+  border-radius: 18px;
+  background: transparent;  /* backgrounds live on head/body */
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.08),
+    0 18px 55px rgba(0,0,0,0.28);
+}
+
+.modalPanel .blockHead{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  padding: 10px 14px 9px 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+}
+
+/* Frosted icon badge (helps B&W icons pop on dark UI) */
+.modalPanel .blockIconBadge{
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background:
+    radial-gradient(circle at 30% 25%, rgba(255,255,255,0.22), rgba(190,230,255,0.10) 45%, rgba(255,255,255,0.06) 70%),
+    rgba(255,255,255,0.06);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.14),
+    0 10px 28px rgba(0,0,0,0.30);
+  backdrop-filter: blur(6px);
+}
+.modalPanel .blockIconBadge::after{
+  content:"";
+  position:absolute;
+  left: 50%;
+  top: 50%;
+  width: 62px;
+  height: 62px;
+  border-radius: 20px;
+  background: radial-gradient(circle, rgba(170,230,255,0.18), transparent 60%);
+  opacity: 0.55;
+  pointer-events:none;
+  filter: blur(0.2px);
+  transform: translate(-50%,-50%);
+  z-index: 0;
+}
+.modalPanel .blockIconBadge{ position: relative; }
+
+.modalPanel .blockIcon{
+  position: relative;
+  z-index: 1;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  opacity: 0.98;
+  /* Snowy rim + subtle ice glow + depth */
+  filter:
+    drop-shadow(0 0 0.8px rgba(255,255,255,0.95))
+    drop-shadow(0 0 2px rgba(255,255,255,0.65))
+    drop-shadow(0 0 7px rgba(150,220,255,0.26))
+    drop-shadow(0 2px 14px rgba(0,0,0,0.40));
+}
+
+.modalPanel .blockHead .blockLabel{
+  margin: 0;
+  font-weight: 860;
+  letter-spacing: .06em;
+  font-size: 13px;
+  font-variant-caps: all-small-caps;
+  font-synthesis-small-caps: auto;
+}
+
+.modalPanel .block > .blockBody{
+  padding: 12px 14px 14px 14px;
+}
+
+/* Rules */
+.modalPanel .rulesBlock .blockHead{
+  background: rgba(245,250,255,0.16);
+  border-bottom-color: rgba(220,235,255,0.16);
+}
+.modalPanel .rulesBlock .blockBody{
+  background: rgba(245,250,255,0.11);
+}
+
+/* Flavor */
+.modalPanel .flavorBlock .blockHead{
+  background: linear-gradient(180deg, rgba(108,72,26,0.42), rgba(52,32,16,0.34));
+  border-bottom-color: rgba(220,185,120,0.18);
+}
+.modalPanel .flavorBlock .blockBody{
+  background: linear-gradient(180deg, rgba(108,72,26,0.32), rgba(52,32,16,0.26));
+}
+
+/* Lore */
+.modalPanel .loreBlock .blockHead{
+  background: linear-gradient(180deg, rgba(120,34,44,0.34), rgba(44,18,22,0.26));
+  border-bottom-color: rgba(220,140,150,0.16);
+}
+.modalPanel .loreBlock .blockBody{
+  background: linear-gradient(180deg, rgba(120,34,44,0.26), rgba(44,18,22,0.20));
 }
 
 .lead{
@@ -1106,109 +1221,18 @@ body{
    Modal section spacing (rules / flavor / lore)
    ========================================================== */
 
-/* Legacy block spacing (non-strip layout only) */
-.modalPanel .block:not(.stripBlock){
+/* Ensure the three content blocks keep their breathing room */
+.modalPanel .block{
   margin-top: 0 !important;
 }
 
-.modalPanel .block.rulesBlock:not(.stripBlock),
-.modalPanel .block.flavorBlock:not(.stripBlock),
-.modalPanel .block.loreBlock:not(.stripBlock){
+.modalPanel .block.rulesBlock,
+.modalPanel .block.flavorBlock,
+.modalPanel .block.loreBlock{
   margin-top: 14px !important;   /* space between blocks */
 }
 
-.modalPanel .block.rulesBlock:not(.stripBlock){ margin-top: 0 !important; } /* first block sits under meta spacing */
-
-/* ==========================================================
-   Modal section layout: icon + color rail + text (NO panels/lines)
-   ========================================================== */
-
-.modalPanel .block.stripBlock{
-  background: none !important;
-  border: none !important;
-  padding: 0 !important;
-  border-radius: 0 !important;
-
-  display: grid;
-  grid-template-columns: 74px 10px 1fr; /* icon gutter | rail | text */
-  column-gap: 18px;
-  align-items: start;
-  margin-top: 22px;
-}
-
-.modalPanel .block.stripBlock:first-child{ margin-top: 0; }
-
-.modalPanel .block.stripBlock .secIconWrap{
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding-top: 4px;
-}
-
-.modalPanel .block.stripBlock .secIcon{
-  width: 52px;
-  height: 52px;
-  object-fit: contain;
-  /* subtle snowy edge so the black linework pops on dark */
-  filter:
-    drop-shadow(0 0 0.9px rgba(255,255,255,0.85))
-    drop-shadow(0 0 6px rgba(160,220,255,0.18))
-    drop-shadow(0 10px 22px rgba(0,0,0,0.42));
-  opacity: 0.95;
-}
-
-.modalPanel .block.stripBlock .secRail{
-  width: 10px;
-  border-radius: 999px;
-  /* base rail if a class is missing */
-  background: rgba(255,255,255,0.14);
-  box-shadow:
-    0 0 0 1px rgba(0,0,0,0.45) inset,
-    0 0 18px rgba(160,220,255,0.10);
-}
-
-/* Rail + text coloring per section */
-.modalPanel .block.rulesBlock.stripBlock .secRail{
-  background: linear-gradient(180deg, rgba(190,225,255,0.62), rgba(120,170,220,0.18));
-  box-shadow:
-    0 0 0 1px rgba(0,0,0,0.45) inset,
-    0 0 22px rgba(160,220,255,0.18);
-}
-
-.modalPanel .block.flavorBlock.stripBlock .secRail{
-  background: linear-gradient(180deg, rgba(245,210,140,0.55), rgba(120,80,30,0.14));
-  box-shadow:
-    0 0 0 1px rgba(0,0,0,0.45) inset,
-    0 0 20px rgba(220,180,120,0.18);
-}
-
-.modalPanel .block.loreBlock.stripBlock .secRail{
-  background: linear-gradient(180deg, rgba(225,170,235,0.50), rgba(90,40,110,0.14));
-  box-shadow:
-    0 0 0 1px rgba(0,0,0,0.45) inset,
-    0 0 20px rgba(180,140,235,0.16);
-}
-
-.modalPanel .block.stripBlock .secBody{
-  line-height: 1.48;
-  font-size: 18px;
-  color: rgba(245,248,255,0.94);
-  text-shadow: 0 1px 10px rgba(0,0,0,0.55);
-}
-
-.modalPanel .block.flavorBlock.stripBlock .secBody{
-  font-style: italic;
-  color: rgba(245,230,200,0.92);
-}
-
-.modalPanel .block.loreBlock.stripBlock .secBody{
-  color: rgba(220,200,255,0.90);
-}
-
-/* The lead labels are optional; keep them subtle in the new layout */
-.modalPanel .block.stripBlock .lead{
-  opacity: 0.90;
-}
+.modalPanel .block.rulesBlock{ margin-top: 0 !important; } /* first block sits under meta spacing */
 
 /* ==========================================================
    Modal meta line: match title lowercaps + subtle real caps
