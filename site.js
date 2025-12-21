@@ -59,6 +59,7 @@ function markLowercaps(root=document){
     ".brand .subtitle",
     ".navBtn",
     "#guideBtn",
+    ".ddMenu a.ddLink",
     ".pagePanel h1",
     ".pagePanel h2",
     ".mapTitle",
@@ -70,9 +71,7 @@ function markLowercaps(root=document){
 
 function applyLowercaps(root=document){
   // Include root itself if it matches
-  // NOTE: We intentionally do NOT apply lowercaps to Guide menu items (.ddLink)
-  // because those should stay in normal text styling.
-  if(root instanceof HTMLElement && root.matches && root.matches(".brand .title, .brand .subtitle, .navBtn, #guideBtn, .pagePanel h1, .pagePanel h2, .mapTitle, .iconSectionTitle")){
+  if(root instanceof HTMLElement && root.matches && root.matches(".brand .title, .brand .subtitle, .navBtn, #guideBtn, .pagePanel h1, .pagePanel h2, .mapTitle, .iconSectionTitle, .ddMenu a.ddLink")){
     root.classList.add("efLowercaps");
   }
   markLowercaps(root);
