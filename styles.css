@@ -52,7 +52,7 @@
 .navBtn.efLowercaps .capInit{
   display:inline-block;
   line-height: 1;
-  transform: translateY(.08em);
+  transform: translateY(.18em);
 }
 
 /* Brand title should preserve intentional internal capitals (e.g. ElderForge) */
