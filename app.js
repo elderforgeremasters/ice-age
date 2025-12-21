@@ -45,6 +45,8 @@ function wrapOriginalCapsInTextNodes(root){
     const p = node.parentElement;
     if(!p) continue;
     if(p.closest('.capInit')) continue;
+    // Allow opt-out zones (e.g., collector codes like 51A/697)
+    if(p.closest('.noCapRescue')) continue;
     if(p.closest('.ptLabel') || p.closest('.ptVal')) continue;
     nodes.push(node);
   }
@@ -615,7 +617,18 @@ function openModal(card){
     const ptVal = escapeHtml(normalizeSlash(card.pt));
     metaBits.push(`<span class=\"ptVal\">${ptVal}</span>`);
   }
-metaBits.push(escapeHtml(rarityLong(card.rarity)));
+  // Rarity (styled in the meta line)
+  {
+    const rLong = rarityLong(card.rarity);
+    const rCode = String(card.rarity ?? "").trim().toUpperCase();
+    const rKey = (rCode === "C") ? "common" :
+      (rCode === "U") ? "uncommon" :
+      (rCode === "R") ? "rare" :
+      (rCode === "M") ? "mythic" :
+      (rCode === "S") ? "special" :
+      "other";
+    metaBits.push(`<span class=\"rarityTag rarity-${rKey}\">${escapeHtml(rLong)}</span>`);
+  }
   const si = getSetInfo(card.set);
   if(si.name) metaBits.push(escapeHtml(si.name));
   if(isNewCard(card)){
@@ -624,7 +637,8 @@ metaBits.push(escapeHtml(rarityLong(card.rarity)));
     metaBits.push(escapeHtml(`${si.year} Atlantica Remasters`));
   }
   const col = cleanCollector(card.collector);
-  if(col) metaBits.push(escapeHtml(col));
+  // Collector code: keep full small-caps (do NOT rescue internal letters like the "A" in 51A/697)
+  if(col) metaBits.push(`<span class=\"collector noCapRescue\">${escapeHtml(col)}</span>`);
 
   
 const metaEl = $("mMeta") || modal.querySelector("#mMeta") || modal.querySelector(".modalMeta") || null;

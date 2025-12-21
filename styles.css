@@ -202,6 +202,7 @@ body{
   color: var(--muted);
   font-weight: 700;
   margin-bottom: 14px;
+  text-align: center;
 }
 
 .grid{
@@ -1137,4 +1138,53 @@ body{
   font-synthesis-small-caps: none !important;
   font-size: 0.86em !important; /* match meta capInit */
   letter-spacing: 0.02em;
+}
+
+/* ==========================================================
+   Modal meta: rarity color accents (subtle “beveled” pop)
+   ========================================================== */
+
+.modalPanel .modalMeta .rarityTag{
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  padding: 0 2px;
+}
+
+.modalPanel .modalMeta .rarity-common{
+  color: rgba(175,185,198,0.72);
+  text-shadow:
+    0 1px 0 rgba(0,0,0,0.70),
+    0 -1px 0 rgba(255,255,255,0.05);
+}
+
+.modalPanel .modalMeta .rarity-uncommon{
+  color: rgba(210,220,235,0.86);
+  text-shadow:
+    0 1px 0 rgba(0,0,0,0.75),
+    0 -1px 0 rgba(255,255,255,0.07),
+    0 0 10px rgba(220,235,255,0.10);
+}
+
+.modalPanel .modalMeta .rarity-rare{
+  color: rgba(200,165,82,0.92);
+  text-shadow:
+    0 1px 0 rgba(0,0,0,0.78),
+    0 -1px 0 rgba(255,255,255,0.08),
+    0 0 12px rgba(210,170,70,0.18);
+}
+
+.modalPanel .modalMeta .rarity-mythic{
+  color: rgba(205,105,78,0.92);
+  text-shadow:
+    0 1px 0 rgba(0,0,0,0.78),
+    0 -1px 0 rgba(255,255,255,0.08),
+    0 0 12px rgba(210,110,80,0.18);
+}
+
+.modalPanel .modalMeta .rarity-special{
+  color: rgba(155,190,255,0.86);
+  text-shadow:
+    0 1px 0 rgba(0,0,0,0.78),
+    0 -1px 0 rgba(255,255,255,0.07),
+    0 0 12px rgba(120,170,255,0.14);
 }
