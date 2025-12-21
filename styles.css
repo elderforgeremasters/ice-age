@@ -14,6 +14,40 @@
   --radius: 18px;
 }
 
+
+/* ---------- Small-caps + tuned capitals (site-wide UI) ---------- */
+/* This matches the ratio used in the modal title/meta: lowercase rendered as small-caps,
+   original capitals rendered slightly larger via .capInit spans. */
+
+.brand .title,
+.brand .subtitle,
+.ddBtn,
+.ddMenu,
+.btn,
+.cardName,
+.cardType{
+  font-variant-caps: all-small-caps;
+  font-synthesis-small-caps: auto;
+  letter-spacing: 0.02em;
+}
+
+.capInit{
+  font-variant-caps: normal;
+  font-synthesis: none;
+  font-size: 0.86em;
+  position: relative;
+  top: 0;
+}
+
+/* Light compensation so small-caps doesn't make UI feel "shrunk" */
+.brand .title{ font-size: 21px; }
+.brand .subtitle{ font-size: 14px; }
+.ddBtn, .ddMenu, .btn{ font-size: 15px; }
+.cardName{ font-size: 17px; }
+.cardType{ font-size: 14.2px; }
+
+
+
 *{ box-sizing:border-box; }
 
 button, input, select, textarea{

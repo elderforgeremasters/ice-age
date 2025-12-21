@@ -65,6 +65,42 @@ function wrapOriginalCapsInTextNodes(root){
   }
 }
 
+function applyLowercapsToSiteUI(){
+  // Apply the same "lowercaps + tuned capitals" treatment used in the modal
+  // to the rest of the site UI (header, filters, grid tiles).
+  const selectors = [
+    ".brand .title",
+    ".brand .subtitle",
+    ".ddBtn",
+    ".ddMenu",
+    ".btn"
+  ];
+  const sel = selectors.join(",");
+
+  // First pass: whatever already exists.
+  document.querySelectorAll(sel).forEach(el => {
+    try { wrapOriginalCapsInTextNodes(el); } catch(e) {}
+  });
+
+  // Keep it applied for dynamically-created UI (dropdown items, re-rendered header, etc).
+  if (window.__lcapsObserver) return;
+  window.__lcapsObserver = new MutationObserver((mutations) => {
+    for (const m of mutations) {
+      for (const node of m.addedNodes) {
+        if (!(node instanceof HTMLElement)) continue;
+
+        try {
+          if (node.matches?.(sel)) wrapOriginalCapsInTextNodes(node);
+          node.querySelectorAll?.(sel).forEach(el => wrapOriginalCapsInTextNodes(el));
+        } catch (e) {}
+      }
+    }
+  });
+  window.__lcapsObserver.observe(document.body, { childList: true, subtree: true });
+}
+
+
+
 
 
 
@@ -421,6 +457,13 @@ function render(){
         <div class="cardType">${type}</div>
       </div>
     `;
+
+    // Apply "lowercaps" capitals styling on grid tile text.
+    const nameEl = el.querySelector(".cardName");
+    if (nameEl) wrapOriginalCapsInTextNodes(nameEl);
+    const typeEl = el.querySelector(".cardType");
+    if (typeEl) wrapOriginalCapsInTextNodes(typeEl);
+
 
     el.addEventListener("click", (e) => {
       if(isContentWarn(card) && !isRevealed(card)){
@@ -842,7 +885,9 @@ async function init(){
     initTypeDropdown();
     bindModalClose();
     bindModalNavKeys();
-    applyFilters();
+    
+  applyLowercapsToSiteUI();
+applyFilters();
   }catch(err){
     console.error(err);
     if(status) status.textContent = `Failed to load cards: ${err?.message || err}`;
