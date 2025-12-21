@@ -1085,6 +1085,9 @@ body{
 /* Meta line: snug under title, then give breathing room before blocks */
 .modalPanel .modalMeta{
   margin: 0 0 19px 0 !important;
+  font-size: 1.4em !important; /* +40% */
+  line-height: 1.15 !important;
+
 }
 
 /* ==========================================================
