@@ -35,7 +35,7 @@ function wrapOriginalTitleCaps(nameSpan){
   nameSpan.innerHTML = wrapped;
 }
 
-function wrapOriginalCapsInTextNodes(root){
+function wrapCapsSmartInTextNodes(root){
   if(!root) return;
 
   const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
@@ -65,6 +65,84 @@ function wrapOriginalCapsInTextNodes(root){
   }
 }
 
+/**
+ * Smart small-caps helper:
+ * - If the text is ALL CAPS (letters only), wrap every A–Z as .capInit
+ * - Otherwise, wrap only WORD-INITIAL capitals (start or after whitespace/punct) as .capInit
+ *   This avoids "ElderForge" making the internal F shout.
+ */
+function wrapCapsSmartInTextNodes(root){
+  if(!root) return;
+
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+    acceptNode(node){
+      const t = node.nodeValue;
+      if(!t) return NodeFilter.FILTER_REJECT;
+      if(!/[A-Z]/.test(t)) return NodeFilter.FILTER_REJECT;
+
+      const p = node.parentElement;
+      if(!p) return NodeFilter.FILTER_REJECT;
+
+      const tag = p.tagName;
+      if(tag === 'SCRIPT' || tag === 'STYLE' || tag === 'TEXTAREA') return NodeFilter.FILTER_REJECT;
+
+      // Avoid already processed content
+      if(p.closest && p.closest('.capInit')) return NodeFilter.FILTER_REJECT;
+
+      return NodeFilter.FILTER_ACCEPT;
+    }
+  });
+
+  const nodes = [];
+  while(walker.nextNode()) nodes.push(walker.currentNode);
+
+  nodes.forEach(node=>{
+    const text = node.nodeValue;
+
+    const letters = text.replace(/[^A-Za-z]+/g,'');
+    const hasLetters = letters.length > 0;
+    const allCaps = hasLetters && letters === letters.toUpperCase();
+
+    let html = '';
+    for(let i=0;i<text.length;i++){
+      const ch = text[i];
+
+      if(ch >= 'A' && ch <= 'Z'){
+        let wrap = false;
+
+        if(allCaps){
+          wrap = true;
+        }else{
+          const prev = i === 0 ? '' : text[i-1];
+          if(i === 0){
+            wrap = true;
+          }else if(/\s/.test(prev)){
+            wrap = true;
+          }else if(/[—–\-\/\(\[\{“"‘'·•:;.,!?]/.test(prev)){
+            wrap = true;
+          }else{
+            wrap = false;
+          }
+        }
+
+        if(wrap){
+          html += `<span class="capInit">${ch}</span>`;
+        }else{
+          html += ch;
+        }
+      }else{
+        html += ch;
+      }
+    }
+
+    const span = document.createElement('span');
+    span.innerHTML = html;
+    node.parentNode.replaceChild(span, node);
+  });
+}
+
+
+
 function applyLowercapsToSiteUI(){
   // Apply the same "lowercaps + tuned capitals" treatment used in the modal
   // to the rest of the site UI (header, filters, grid tiles).
@@ -79,7 +157,7 @@ function applyLowercapsToSiteUI(){
 
   // First pass: whatever already exists.
   document.querySelectorAll(sel).forEach(el => {
-    try { wrapOriginalCapsInTextNodes(el); } catch(e) {}
+    try { wrapCapsSmartInTextNodes(el); } catch(e) {}
   });
 
   // Keep it applied for dynamically-created UI (dropdown items, re-rendered header, etc).
@@ -90,8 +168,8 @@ function applyLowercapsToSiteUI(){
         if (!(node instanceof HTMLElement)) continue;
 
         try {
-          if (node.matches?.(sel)) wrapOriginalCapsInTextNodes(node);
-          node.querySelectorAll?.(sel).forEach(el => wrapOriginalCapsInTextNodes(el));
+          if (node.matches?.(sel)) wrapCapsSmartInTextNodes(node);
+          node.querySelectorAll?.(sel).forEach(el => wrapCapsSmartInTextNodes(el));
         } catch (e) {}
       }
     }
@@ -460,9 +538,9 @@ function render(){
 
     // Apply "lowercaps" capitals styling on grid tile text.
     const nameEl = el.querySelector(".cardName");
-    if (nameEl) wrapOriginalCapsInTextNodes(nameEl);
+    if (nameEl) wrapCapsSmartInTextNodes(nameEl);
     const typeEl = el.querySelector(".cardType");
-    if (typeEl) wrapOriginalCapsInTextNodes(typeEl);
+    if (typeEl) wrapCapsSmartInTextNodes(typeEl);
 
 
     el.addEventListener("click", (e) => {
@@ -612,7 +690,7 @@ const metaEl = $("mMeta") || modal.querySelector("#mMeta") || modal.querySelecto
 if(metaEl){
   metaEl.innerHTML = `<span class="metaText">${metaBits.join(" • ")}</span>`;
   // Wrap original capitals in the meta line (but DON'T touch the explicit P/T label/value)
-  wrapOriginalCapsInTextNodes(metaEl.querySelector('.metaText'));
+  wrapCapsSmartInTextNodes(metaEl.querySelector('.metaText'));
   attachIconFallbacks(metaEl);
 }
 
