@@ -3,74 +3,90 @@
 function $(id){ return document.getElementById(id); }
 
 /* ==========================================================
-   Synthetic “lowercaps” engine (shared)
-   Uses the same approach as the card modal:
-   - CSS: .efLowercaps => all-small-caps
-   - JS: wrap original uppercase letters with <span class="capInit">
-   Subpages don’t load app.js, so this lives here too.
+   Synthetic “lowercaps” engine (same as card modal/grid)
    ========================================================== */
 
 function wrapOriginalCapsInTextNodes(root){
   if(!root) return;
 
-  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
-  const nodes = [];
-  while(walker.nextNode()){
-    const node = walker.currentNode;
-    const p = node.parentElement;
-    if(!p) continue;
-    if(p.closest('.capInit')) continue;
-    if(p.closest('.noCapRescue')) continue;
-    if(p.closest('.ptLabel') || p.closest('.ptVal')) continue;
-    nodes.push(node);
-  }
+  const walker = document.createTreeWalker(
+    root,
+    NodeFilter.SHOW_TEXT,
+    {
+      acceptNode(node){
+        const p = node.parentElement;
+        if(!p) return NodeFilter.FILTER_REJECT;
 
-  for(const node of nodes){
-    const txt = node.nodeValue || "";
-    if(!txt) continue;
-    const wrapped = txt.replace(/(\p{Lu})/gu, (m, cap) => `<span class="capInit">${cap}</span>`);
-    if(wrapped === txt) continue;
-    const span = document.createElement('span');
-    span.innerHTML = wrapped;
-    node.parentNode.replaceChild(span, node);
-  }
+        // Never re-wrap inside existing wrappers / exclusions
+        if(p.closest(".capInit")) return NodeFilter.FILTER_REJECT;
+        if(p.closest(".noCapRescue")) return NodeFilter.FILTER_REJECT;
+
+        // Skip empty or already-normalized nodes
+        const s = node.nodeValue;
+        if(!s || !/[A-Z]/.test(s)) return NodeFilter.FILTER_REJECT;
+
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    }
+  );
+
+  const nodes = [];
+  while(walker.nextNode()) nodes.push(walker.currentNode);
+
+  nodes.forEach(node => {
+    const text = node.nodeValue;
+    const frag = document.createDocumentFragment();
+
+    for(let i=0;i<text.length;i++){
+      const ch = text[i];
+      if(ch >= "A" && ch <= "Z"){
+        const span = document.createElement("span");
+        span.className = "capInit";
+        span.textContent = ch;
+        frag.appendChild(span);
+      }else{
+        frag.appendChild(document.createTextNode(ch));
+      }
+    }
+
+    node.parentNode.replaceChild(frag, node);
+  });
 }
 
-function markLowercaps(root = document){
+function markLowercaps(root=document){
   const sel = [
     ".brand .title",
-    ".uiSmallCaps",
     ".brand .subtitle",
+    ".navBtn",
+    "#guideBtn",
+    ".ddLink",
     ".pagePanel h1",
     ".pagePanel h2",
     ".mapTitle",
-    ".iconSectionTitle",
-    ".navBtn",
-    ".ddBtn",
-    ".ddMenu",
-    ".ddItem",
-    ".ddMenu a.ddLink",
-    "#status"
+    ".iconSectionTitle"
   ].join(",");
-
-  if(root instanceof Element && root.matches(sel)){
-    root.classList.add("efLowercaps");
-  }
 
   root.querySelectorAll(sel).forEach(el => el.classList.add("efLowercaps"));
 }
 
-function applyLowercaps(root = document){
+function applyLowercaps(root=document){
+  // Include root itself if it matches
+  if(root instanceof HTMLElement && root.matches && root.matches(".brand .title, .brand .subtitle, .navBtn, #guideBtn, .ddLink, .pagePanel h1, .pagePanel h2, .mapTitle, .iconSectionTitle")){
+    root.classList.add("efLowercaps");
+  }
   markLowercaps(root);
 
-  const set = new Set();
-  if(root instanceof Element && root.classList.contains("efLowercaps")) set.add(root);
-  root.querySelectorAll(".efLowercaps").forEach(el => set.add(el));
-
-  for(const el of set){
+  // Wrap capitals inside any opted-in element
+  root.querySelectorAll(".efLowercaps").forEach(el => {
+    // Avoid rewrapping if it already contains wrappers
+    if(el.querySelector(".capInit")) return;
     wrapOriginalCapsInTextNodes(el);
-  }
+  });
 }
+
+/* ==========================================================
+   Guide dropdown behavior
+   ========================================================== */
 
 function initClickMenu(btnId, menuId){
   const btn = $(btnId);
@@ -87,6 +103,7 @@ function initClickMenu(btnId, menuId){
     menu.hidden = false;
     btn.setAttribute("aria-expanded","true");
   }
+
   function close(){
     menu.hidden = true;
     btn.setAttribute("aria-expanded","false");
@@ -94,7 +111,8 @@ function initClickMenu(btnId, menuId){
 
   btn.addEventListener("click", (e)=>{
     e.stopPropagation();
-    if(menu.hidden) open(); else close();
+    if(menu.hidden) open();
+    else close();
   });
 
   menu.addEventListener("click", (e)=>{
@@ -108,6 +126,5 @@ function initClickMenu(btnId, menuId){
 
 document.addEventListener("DOMContentLoaded", ()=>{
   initClickMenu("guideBtn","guideMenu");
-  // Apply synthetic lowercaps consistently on subpages (and harmless on index).
   applyLowercaps(document);
 });

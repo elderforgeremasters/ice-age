@@ -713,15 +713,9 @@ function initRarityDropdown(){
 
   menu.addEventListener("click", (e) => {
     e.stopPropagation();
-    const t = e.target;
-    if(!(t instanceof HTMLElement)) return;
-    // After we apply the synthetic lowercaps styling, uppercase letters are
-    // wrapped in <span class="capInit">...</span>. Clicking the visible text
-    // may therefore target that inner span rather than the button.
-    const item = t.closest("[data-value]");
+    const item = e.target.closest("[data-value]");
     if(!(item instanceof HTMLElement)) return;
     const val = item.getAttribute("data-value");
-    if(val === null) return;
     sel.value = val;
     sel.dispatchEvent(new Event("change"));
     closeMenu();
@@ -780,15 +774,9 @@ function initTypeDropdown(){
 
   menu.addEventListener("click", (e) => {
     e.stopPropagation();
-    const t = e.target;
-    if(!(t instanceof HTMLElement)) return;
-    // After we apply the synthetic lowercaps styling, uppercase letters are
-    // wrapped in <span class="capInit">...</span>. Clicking the visible text
-    // may therefore target that inner span rather than the button.
-    const item = t.closest("[data-value]");
+    const item = e.target.closest("[data-value]");
     if(!(item instanceof HTMLElement)) return;
     const val = item.getAttribute("data-value");
-    if(val === null) return;
     sel.value = val;
     sel.dispatchEvent(new Event("change"));
     closeMenu();

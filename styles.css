@@ -87,21 +87,13 @@ body{
   font-size: 28px;
   font-weight: 700;
   letter-spacing: 0.2px;
-  line-height: 1.05;
+  line-height: 1.1;
 }
 .brand .subtitle{
+  margin-top: -2px;
   font-size: 16px;
   color: var(--muted);
-  margin-top: -2px;
-  line-height: 1.05;
-}
-
-/* Guide pill: slightly larger + bold label only (menu stays unchanged) */
-#guideBtn{
-  font-size: 15px;
-}
-#guideBtn > span:first-child{
-  font-weight: 800;
+  letter-spacing: 0.18px;
 }
 
 .controls{
@@ -563,6 +555,14 @@ body{
   justify-content:space-between;
   gap: 10px;
   cursor:pointer;
+}
+
+/* Guide pill: slightly larger + bold label only (menu items unchanged) */
+#guideBtn{
+  font-size: 15px;
+}
+#guideBtn > span:first-child{
+  font-weight: 700;
 }
 
 .ddSmall{ min-width: 110px; }
@@ -1161,20 +1161,19 @@ body{
 }
 
 .modalPanel .modalMeta .rarity-common{
-  /* Common: near-white, clean and readable (no metallic glow) */
-  color: rgba(235,242,252,0.92);
+  color: rgba(248, 252, 255, 0.96);
   text-shadow:
-    0 1px 0 rgba(0,0,0,0.70),
-    0 -1px 0 rgba(255,255,255,0.10);
+    0 1px 0 rgba(0,0,0,0.82),
+    0 -1px 0 rgba(255,255,255,0.10),
+    0 0 12px rgba(230,245,255,0.18);
 }
 
 .modalPanel .modalMeta .rarity-uncommon{
-  /* Uncommon: bright silver with a touch of "metal" pop */
-  color: rgba(225,235,250,0.96);
+  color: rgba(205, 213, 224, 0.96);
   text-shadow:
-    0 1px 0 rgba(0,0,0,0.75),
+    0 1px 0 rgba(0,0,0,0.84),
     0 -1px 0 rgba(255,255,255,0.14),
-    0 0 12px rgba(235,245,255,0.18);
+    0 0 14px rgba(200,220,255,0.22);
 }
 
 .modalPanel .modalMeta .rarity-rare{
