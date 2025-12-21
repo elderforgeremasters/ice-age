@@ -3,7 +3,7 @@
 function $(id){ return document.getElementById(id); }
 
 /* ==========================================================
-   Synthetic “lowercaps” engine (same as card modal/grid)
+   Synthetic “lowercaps” engine (match index/app.js behavior)
    ========================================================== */
 
 function wrapOriginalCapsInTextNodes(root){
@@ -53,35 +53,49 @@ function wrapOriginalCapsInTextNodes(root){
   });
 }
 
-function markLowercaps(root=document){
+function markLowercaps(root = document){
   const sel = [
     ".brand .title",
+    ".uiSmallCaps",
     ".brand .subtitle",
-    ".navBtn",
-    "#guideBtn",
-    ".ddMenu a.ddLink",
+
     ".pagePanel h1",
     ".pagePanel h2",
     ".mapTitle",
-    ".iconSectionTitle"
+    ".iconSectionTitle",
+
+    ".navBtn",
+    ".ddBtn",
+    ".ddMenu",
+    ".ddItem",
+    ".ddMenu a.ddLink",
+    "#rarityLabel",
+    "#typeLabel",
+    "#guideLabel"
   ].join(",");
+
+  // IMPORTANT: querySelectorAll() does not include the root element itself.
+  if(root instanceof Element && root.matches(sel)){
+    root.classList.add("efLowercaps");
+  }
 
   root.querySelectorAll(sel).forEach(el => el.classList.add("efLowercaps"));
 }
 
-function applyLowercaps(root=document){
-  // Include root itself if it matches
-  if(root instanceof HTMLElement && root.matches && root.matches(".brand .title, .brand .subtitle, .navBtn, #guideBtn, .pagePanel h1, .pagePanel h2, .mapTitle, .iconSectionTitle, .ddMenu a.ddLink")){
-    root.classList.add("efLowercaps");
-  }
+function applyLowercaps(root = document){
   markLowercaps(root);
 
-  // Wrap capitals inside any opted-in element
-  root.querySelectorAll(".efLowercaps").forEach(el => {
-    // Avoid rewrapping if it already contains wrappers
-    if(el.querySelector(".capInit")) return;
+  const set = new Set();
+
+  if(root instanceof Element && root.classList.contains("efLowercaps")){
+    set.add(root);
+  }
+  root.querySelectorAll(".efLowercaps").forEach(el => set.add(el));
+
+  // Wrap original capitals inside any element that opted in
+  for(const el of set){
     wrapOriginalCapsInTextNodes(el);
-  });
+  }
 }
 
 /* ==========================================================
@@ -102,6 +116,9 @@ function initClickMenu(btnId, menuId){
 
     menu.hidden = false;
     btn.setAttribute("aria-expanded","true");
+
+    // Ensure menu items are lowercapped on non-index pages too.
+    applyLowercaps(menu);
   }
 
   function close(){
