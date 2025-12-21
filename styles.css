@@ -1174,19 +1174,17 @@ body{
   color: #ffffff;
   text-shadow:
     0 1px 0 rgba(0,0,0,0.82),
-    0 -1px 0 rgba(255,255,255,0.20),
-    0 0 16px rgba(255,255,255,0.26),
-    0 0 30px rgba(150,210,255,0.12);
+    0 -1px 0 rgba(255,255,255,0.08),
+    0 0 12px rgba(150,210,255,0.12);
 }
 
 .modalPanel .modalMeta .rarity-uncommon{
   /* Uncommon = silver/grey (distinct from common) */
-  color: #cfd6e2;
+  color: rgba(130,130,130,0.82);
   text-shadow:
     0 1px 0 rgba(0,0,0,0.84),
-    0 -1px 0 rgba(255,255,255,0.22),
-    0 0 16px rgba(210,230,255,0.18),
-    0 0 28px rgba(140,170,210,0.12);
+    0 -1px 0 rgba(255,255,255,0.08),
+    0 0 12px rgba(140,170,210,0.12);
 }
 
 .modalPanel .modalMeta .rarity-rare{
