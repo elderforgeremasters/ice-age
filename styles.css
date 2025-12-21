@@ -45,10 +45,15 @@
   --capInitScale: .90em;
 }
 
-/* NOTE: Do not special-case nav pills here.
-   The index subtitle and nav pills should use the same cap tuning.
-   Nav-specific tweaks can cause baseline drift in some fonts.
-*/
+/* Nav pill: tiny baseline nudge so the first rescued capital doesn't float */
+.navBtn.efLowercaps{
+  --capInitScale: .84em;
+}
+.navBtn.efLowercaps .capInit{
+  display:inline-block;
+  line-height: 1;
+  transform: translateY(.06em);
+}
 
 /* Brand title should preserve intentional internal capitals (e.g. ElderForge) */
 .brand .title.efLowercaps{
