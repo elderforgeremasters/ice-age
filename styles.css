@@ -477,7 +477,10 @@ body{
 
 .modalPanel .block{
   position: relative;
-  padding: 0 0 0 58px;      /* room for icon + rail */
+  display: grid;
+  grid-template-columns: 62px 1fr; /* icon gutter | content */
+  column-gap: 16px;
+  padding: 0;
   border: 0;
   background: transparent;
   border-radius: 0;
@@ -501,18 +504,53 @@ body{
   z-index: 0;
 }
 
-/* Thin rail (not a box) */
-.modalPanel .block::before{
+/* Icon gutter (left of the rail) */
+.modalPanel .blockIconSlot{
+  position: relative;
+  align-self: center; /* not top-left; visually centered per section */
+  width: 62px;
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+
+/* The icon is *just the icon* — no badge, no square.
+   Twice the old size (26 -> 52). */
+.modalPanel .blockIcon{
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  opacity: 0.98;
+  filter:
+    drop-shadow(0 0 1px rgba(255,255,255,0.95))
+    drop-shadow(0 0 8px rgba(175,230,255,0.22))
+    drop-shadow(0 2px 16px rgba(0,0,0,0.48));
+}
+
+/* Main content (rail + header line + body) */
+.modalPanel .blockMain{
+  position: relative;
+  padding-left: 18px; /* space between rail and text */
+}
+
+/* Wider rail (more of that nice color) */
+.modalPanel .blockMain::before{
   content:"";
-  position:absolute;
-  left: 32px;
-  top: 8px;
+  position: absolute;
+  left: 0;
+  top: 10px;
   bottom: 10px;
-  width: 2px;
-  background: linear-gradient(to bottom, rgba(255,255,255,0.02), var(--blkRail, rgba(255,255,255,0.22)), rgba(255,255,255,0.02));
-  opacity: .9;
-  pointer-events:none;
+  width: 4px;
+  border-radius: 6px;
+  background: linear-gradient(to bottom,
+    rgba(255,255,255,0.02),
+    var(--blkRail, rgba(255,255,255,0.22)),
+    rgba(255,255,255,0.02)
+  );
+  opacity: .95;
+  pointer-events: none;
   z-index: 1;
+  box-shadow: 0 0 18px rgba(0,0,0,0.22);
 }
 
 .modalPanel .blockHead,
@@ -521,24 +559,25 @@ body{
 .modalPanel .blockHead{
   display:flex;
   align-items:center;
-  gap: 10px;
-  padding: 2px 0 8px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.10);
+  padding: 2px 0 10px 0;
 }
 
-/* The icon is *just the icon* — no badge, no square */
-.modalPanel .blockIcon{
-  position: absolute;
-  left: 16px;
-  top: -2px;
-  width: 26px;
-  height: 26px;
-  object-fit: contain;
-  opacity: 0.98;
-  filter:
-    drop-shadow(0 0 1px rgba(255,255,255,0.95))
-    drop-shadow(0 0 6px rgba(175,230,255,0.26))
-    drop-shadow(0 2px 14px rgba(0,0,0,0.45));
+/* Top divider line uses the SAME color scheme as the rail */
+.modalPanel .blockHead::after{
+  content:"";
+  position:absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  /* Start with the rail color so the "top line" + "left rail" read as one system. */
+  background: linear-gradient(to right,
+    var(--blkRail, rgba(255,255,255,0.22)),
+    rgba(255,255,255,0.10) 55%,
+    rgba(255,255,255,0.00)
+  );
+  opacity: .75;
+  pointer-events:none;
 }
 
 .modalPanel .blockHead .blockLabel{
@@ -569,7 +608,8 @@ body{
 }
 .modalPanel .flavorBlock .blockBody{
   font-style: italic;
-  color: rgba(245,232,205,0.92);
+  /* a touch more "gold" without losing readability */
+  color: rgba(255,222,170,0.92);
 }
 
 .modalPanel .loreBlock{
@@ -577,7 +617,11 @@ body{
   --blkGlowA: rgba(220,120,135,0.14);
   --blkGlowB: rgba(90,28,36,0.10);
 }
-.modalPanel .loreBlock .blockBody{ color: rgba(245,232,236,0.93); }
+.modalPanel .loreBlock .blockBody{ color: rgba(235,210,255,0.90); }
+
+/* Bring section label color closer to its rail hue */
+.modalPanel .flavorBlock .blockLabel{ color: rgba(235,195,125,0.95); }
+.modalPanel .loreBlock .blockLabel{ color: rgba(220,175,255,0.95); }
 
 .lead{
   font-weight: 750;

@@ -884,13 +884,16 @@ function setBlock(id, label, text){
                : "";
 
   // Render an integrated section header + body.
-  // IMPORTANT: no icon "badge" or extra shapes — the icon floats with glow.
+  // IMPORTANT: no "badge" or extra rectangles.
+  // The icon lives in its own left gutter, outside the rail.
   el.innerHTML = `
-    <div class="blockHead">
-      ${iconSrc ? `<img class="blockIcon" src="${iconSrc}" alt="" />` : ""}
-      <div class="blockLabel">${escapeHtml(label || "")}</div>
+    <div class="blockIconSlot">${iconSrc ? `<img class="blockIcon" src="${iconSrc}" alt="" />` : ""}</div>
+    <div class="blockMain">
+      <div class="blockHead">
+        <div class="blockLabel">${escapeHtml(label || "")}</div>
+      </div>
+      <div class="blockBody">${bodyHtml}</div>
     </div>
-    <div class="blockBody">${bodyHtml}</div>
   `;
 
   attachIconFallbacks(el);
