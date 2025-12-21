@@ -66,6 +66,50 @@ function wrapOriginalCapsInTextNodes(root){
 }
 
 
+/* ==========================================================
+   Synthetic “lowercaps” engine (global)
+   Uses the same trick as the modal title/meta:
+   - CSS sets all-small-caps on .efLowercaps
+   - JS wraps only ORIGINAL word-initial capitals with <span class="capInit">
+   ========================================================== */
+
+function markLowercaps(root = document){
+  const sel = [
+    ".brand .title",
+    ".uiSmallCaps",
+    ".brand .subtitle",
+
+    ".pagePanel h1",
+    ".pagePanel h2",
+    ".mapTitle",
+    ".iconSectionTitle",
+
+    ".navBtn",
+    ".ddBtn",
+    ".ddItem",
+    ".ddMenu a.ddLink",
+    "#rarityLabel",
+    "#typeLabel",
+    "#guideLabel",
+
+    ".cardName",
+    ".cardType",
+    "#status"
+  ].join(",");
+
+  root.querySelectorAll(sel).forEach(el => el.classList.add("efLowercaps"));
+}
+
+function applyLowercaps(root = document){
+  markLowercaps(root);
+
+  // Wrap original capitals inside any element that opted in
+  root.querySelectorAll(".efLowercaps").forEach(el => {
+    wrapOriginalCapsInTextNodes(el);
+  });
+}
+
+
 
 
 function normalizePT(pt){
@@ -417,8 +461,8 @@ function render(){
         ${cw ? `<div class="cwOverlay"><div class="cwMsg">Potentially NSFW artwork.<br>Click to reveal.</div></div>` : ``}
       </div>
       <div class="cardMeta">
-        <div class="cardName">${title}</div>
-        <div class="cardType">${type}</div>
+        <div class="cardName efLowercaps">${title}</div>
+        <div class="cardType efLowercaps">${type}</div>
       </div>
     `;
 
@@ -438,6 +482,10 @@ function render(){
 
   const status = $("status");
   if(status) status.textContent = `${FILTERED.length} cards`;
+
+  // Apply lowercaps styling to newly rendered cards + status line
+  applyLowercaps(grid);
+  if(status) applyLowercaps(status);
 }
 
 function applyFilters(){
@@ -611,6 +659,8 @@ function initRarityDropdown(){
   function setLabelFromValue(){
     const opt = Array.from(sel.options).find(o => o.value === sel.value);
     label.textContent = opt ? opt.textContent : "All rarities";
+    label.classList.add("efLowercaps");
+    wrapOriginalCapsInTextNodes(label);
   }
 
   function openMenu(){
@@ -656,6 +706,8 @@ function initRarityDropdown(){
   sel.addEventListener("change", () => setLabelFromValue());
 
   setLabelFromValue();
+  applyLowercaps(btn);
+  applyLowercaps(menu);
 }
 
 
@@ -669,6 +721,8 @@ function initTypeDropdown(){
   function setLabelFromValue(){
     const opt = Array.from(sel.options).find(o => o.value === sel.value);
     label.textContent = opt ? opt.textContent : "All types";
+    label.classList.add("efLowercaps");
+    wrapOriginalCapsInTextNodes(label);
   }
 
   function openMenu(){
@@ -707,6 +761,8 @@ function initTypeDropdown(){
 
   sel.addEventListener("change", () => setLabelFromValue());
   setLabelFromValue();
+  applyLowercaps(btn);
+  applyLowercaps(menu);
 }
 
 function bindModalClose(){
@@ -840,6 +896,8 @@ async function init(){
 
     initRarityDropdown();
     initTypeDropdown();
+    // Apply the “lowercaps” system across static UI (header, dropdowns, etc.)
+    applyLowercaps(document);
     bindModalClose();
     bindModalNavKeys();
     applyFilters();

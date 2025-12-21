@@ -14,6 +14,40 @@
   --radius: 18px;
 }
 
+
+/* ==========================================================
+   Synthetic “lowercaps” engine (global)
+   - Render text as all-small-caps (so it feels like lowercase)
+   - Then re-introduce ONLY the original capitals via .capInit (wrapped by JS)
+   ========================================================== */
+
+.efLowercaps{
+  font-variant-caps: all-small-caps;
+  font-synthesis-small-caps: auto;
+  letter-spacing: .02em;
+  --capInitScale: .86em; /* default matches modal tuning */
+}
+
+/* The “real” capitals wrapped in JS */
+.efLowercaps .capInit{
+  font-variant-caps: normal;
+  font-size: var(--capInitScale);
+  position: relative;
+  top: 0;
+  letter-spacing: inherit;
+}
+
+/* Slightly gentler cap scaling for small UI text */
+.cardName.efLowercaps,
+.cardType.efLowercaps,
+.ddBtn.efLowercaps,
+.ddItem.efLowercaps,
+.ddMenu a.ddLink.efLowercaps,
+.navBtn.efLowercaps,
+.brand .subtitle.efLowercaps{
+  --capInitScale: .90em;
+}
+
 *{ box-sizing:border-box; }
 
 button, input, select, textarea{
@@ -67,15 +101,6 @@ body{
 
   justify-content:flex-end;
   padding-right: 8px;
-}
-
-
-/* Brand title/subtitle use Oxanium synthetic small-caps */
-.brand .title,
-.brand .subtitle{
-  font-variant-caps: small-caps;
-  font-synthesis-small-caps: auto;
-  letter-spacing: .02em;
 }
 
 
@@ -980,45 +1005,6 @@ body{
 }
 
 
-/* Oxanium small-caps styling (synthetic) — tuned to reduce the “giant first letter” effect */
-.uiSmallCaps,
-.navBtn,
-.ddBtn,
-.ddItem,
-.ddMenu a.ddLink,
-.cardName,
-.cardType,
-.modalTitle,
-.modalMeta,
-.pagePanel h1,
-.pagePanel h2,
-.mapTitle,
-.iconSectionTitle{
-  font-variant-caps: small-caps;
-  font-synthesis-small-caps: auto;
-  letter-spacing: .02em;
-}
-
-/* Make the leading capital less dominant so “faked lowercase” feels larger */
-.navBtn::first-letter,
-.ddBtn::first-letter,
-.ddItem::first-letter,
-.ddMenu a.ddLink::first-letter,
-.cardName::first-letter,
-.cardType::first-letter,
-.modalTitle::first-letter,
-.modalMeta::first-letter,
-.pagePanel h1::first-letter,
-.pagePanel h2::first-letter,
-.mapTitle::first-letter,
-.iconSectionTitle::first-letter{
-  font-size: 0.90em;
-}
-
-
-
-/* Reduce uppercase dominance specifically on type/subtype lines */
-.cardType::first-letter{ font-size: 0.86em; }
 .cardType{ letter-spacing: .015em; }
 
 /* Magical serif for card popup content (Rules/Flavor/Lore/Art bodies) */
@@ -1047,6 +1033,7 @@ body{
 .modalPanel .modalTitle{
   font-variant-caps: all-small-caps !important;
   font-synthesis-small-caps: auto !important;
+  letter-spacing: .02em !important;
 }
 
 /* Bring back ONLY the capitals that exist in the source text (wrapped by JS),
@@ -1089,6 +1076,7 @@ body{
   line-height: 1.15 !important;
 
   padding-left: 3px !important; /* align with title */
+  letter-spacing: .02em !important;
 }
 
 /* ==========================================================
