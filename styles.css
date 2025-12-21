@@ -49,9 +49,14 @@
    Bring the rescued initial closer to the small-caps x-height. */
 .navBtn.efLowercaps{
   --capInitScale: .78em;
+  --navCapDrop: .08em; /* tweak if needed: 0.06–0.10em */
 }
 .navBtn.efLowercaps .capInit{
-  top: .02em;
+  /* Inline text + small-caps can make the rescued capital sit "too high".
+     Use an inline-block nudge instead of relying on baseline quirks. */
+  top: 0;
+  display: inline-block;
+  transform: translateY(var(--navCapDrop));
 }
 
 /* Brand title should preserve intentional internal capitals (e.g. ElderForge) */
