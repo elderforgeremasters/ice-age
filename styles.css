@@ -1372,7 +1372,10 @@ body{
 }
 .readCardArt{
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
+  gap: 14px;
+  align-items: flex-end;
+  justify-content: flex-start;
   padding-top: 6px;
 }
 .readCardImg{
