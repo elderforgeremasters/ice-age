@@ -45,19 +45,10 @@
   --capInitScale: .90em;
 }
 
-/* Nav pill text ("Card database") should not have a towering first capital.
-   Bring the rescued initial closer to the small-caps x-height. */
-.navBtn.efLowercaps{
-  --capInitScale: .78em;
-  --navCapDrop: .08em; /* tweak if needed: 0.06–0.10em */
-}
-.navBtn.efLowercaps .capInit{
-  /* Inline text + small-caps can make the rescued capital sit "too high".
-     Use an inline-block nudge instead of relying on baseline quirks. */
-  top: 0;
-  display: inline-block;
-  transform: translateY(var(--navCapDrop));
-}
+/* NOTE: Do not special-case nav pills here.
+   The index subtitle and nav pills should use the same cap tuning.
+   Nav-specific tweaks can cause baseline drift in some fonts.
+*/
 
 /* Brand title should preserve intentional internal capitals (e.g. ElderForge) */
 .brand .title.efLowercaps{
@@ -173,8 +164,6 @@ body{
   font-size: 14px;
   line-height: 1;
   transform: translateY(-0.5px);
-  text-transform: uppercase;
-  letter-spacing: .02em;
 }
 .navBtn:hover{ background: rgba(255,255,255,0.06); }
 .search{
