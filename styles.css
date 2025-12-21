@@ -1085,9 +1085,10 @@ body{
 /* Meta line: snug under title, then give breathing room before blocks */
 .modalPanel .modalMeta{
   margin: 0 0 19px 0 !important;
-  font-size: 1.4em !important; /* +40% */
+  font-size: 1.10em !important; /* tuned: ~-21% from 1.4em */
   line-height: 1.15 !important;
 
+  padding-left: 3px !important; /* align with title */
 }
 
 /* ==========================================================

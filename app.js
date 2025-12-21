@@ -532,7 +532,8 @@ function openModal(card){
 
   const metaEl = $("mMeta") || modal.querySelector("#mMeta") || modal.querySelector(".modalMeta") || null;
   if(metaEl){
-    metaEl.innerHTML = metaBits.join(" • ");
+    const metaStr = metaBits.join(\" • \").replace(/p\/t/gi, \"P/T\");
+    metaEl.innerHTML = metaStr;
     // Wrap original capitals in the meta line (without inventing new ones)
     if(!metaEl.querySelector('.metaText')){
       metaEl.innerHTML = `<span class="metaText">${escapeHtml(metaEl.textContent)}</span>`;
