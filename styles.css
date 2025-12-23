@@ -1473,6 +1473,7 @@ body{
 
 .imgCompare{
   position: relative;
+  --pos: 50%;
   width: 100%;
   aspect-ratio: 5 / 7;
   border-radius: 14px;
@@ -1492,6 +1493,11 @@ body{
   pointer-events:none;
 }
 
+.imgCompareTop{
+  clip-path: inset(0 calc(100% - var(--pos)) 0 0);
+  will-change: clip-path;
+}
+
 .imgCompareOverlay{
   position:absolute;
   inset:0;
@@ -1502,7 +1508,7 @@ body{
 .imgCompareDivider{
   position:absolute;
   top:0; bottom:0;
-  left:50%;
+  left: var(--pos);
   width: 2px;
   background: rgba(255,255,255,0.55);
   box-shadow: 0 0 0 1px rgba(0,0,0,0.55), 0 0 18px rgba(255,255,255,0.18);
@@ -1512,7 +1518,7 @@ body{
 .imgCompareKnob{
   position:absolute;
   top:50%;
-  left:50%;
+  left: var(--pos);
   transform: translate(-50%,-50%);
   width: 22px;
   height: 22px;

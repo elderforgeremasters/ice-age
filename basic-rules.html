@@ -5,7 +5,16 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <title>Basic Rules — ElderForge — Ice Age</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  
+  <!-- Tiny critical CSS to prevent a brief serif flash on hard reloads -->
+  <style>
+    :root{--font-ui:"Saira",ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;--text:#e9eef7;--bg0:#070b12;--bg1:#0b1220}
+    html{background:radial-gradient(1200px 600px at 40% -10%, rgba(95,140,255,0.18), transparent 60%),
+               radial-gradient(900px 500px at 110% 10%, rgba(50,255,210,0.10), transparent 60%),
+               linear-gradient(180deg,var(--bg1),var(--bg0));background-color:var(--bg0)}
+    body{margin:0;font-family:var(--font-ui);color:var(--text)}
+  </style>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira:wght@300;400;500;600;700&display=swap" />
   <link rel="preload" href="styles.css" as="style" />

@@ -147,19 +147,15 @@ function initClickMenu(btnId, menuId){
    Image compare sliders (About the Project)
    ========================================================== */
 
+
 function initImgCompare(root = document){
   root.querySelectorAll(".imgCompare").forEach((wrap)=>{
     const slider = wrap.querySelector(".imgCompareSlider");
-    const overlay = wrap.querySelector(".imgCompareOverlay");
-    const divider = wrap.querySelector(".imgCompareDivider");
-    const knob = wrap.querySelector(".imgCompareKnob");
-    if(!slider || !overlay || !divider) return;
+    if(!slider) return;
 
     const set = (val)=>{
       const v = Math.max(0, Math.min(100, Number(val)));
-      overlay.style.width = v + "%";
-      divider.style.left = v + "%";
-      if(knob) knob.style.left = v + "%";
+      wrap.style.setProperty("--pos", v + "%");
     };
 
     // Start position
