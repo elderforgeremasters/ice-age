@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /
+
+# This site is intended as a private playgroup reference.
+# Note: robots.txt is a request to crawlers, not a security feature.
