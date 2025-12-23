@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+
+  <title>About the Project — ElderForge — Ice Age</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira:wght@300;400;500;600;700&display=swap" />
+  <link rel="preload" href="styles.css" as="style" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="title">ElderForge — Ice Age</div>
+      <div class="subtitle">About the Project</div>
+    </div>
+
+    <div class="nav">
+      <a class="navBtn" href="index.html">Card database</a>
+
+      <div class="dropdown" id="guideDD">
+        <button class="ddBtn ddSmall" id="guideBtn" type="button" aria-haspopup="menu" aria-expanded="false">
+          <span>Guide</span>
+          <span class="ddChev">▾</span>
+        </button>
+        <div class="ddMenu" id="guideMenu" role="menu" aria-label="Guide" hidden>
+          <a class="ddLink" href="about-project.html" role="menuitem">About the Project</a>
+          <a class="ddLink" href="keyword-icons.html" role="menuitem">Keyword Icons</a>
+          <a class="ddLink" href="basic-rules.html" role="menuitem">Basic Rules</a>
+          <a class="ddLink" href="ice-age-lore.html" role="menuitem">Ice Age Lore</a>
+          <a class="ddLink" href="campaign-setup.html" role="menuitem">ElderForge Campaign</a>
+          <a class="ddLink" href="geography.html" role="menuitem">Geography</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="pageWrap">
+    <section class="pagePanel">
+      <h1>About the Project</h1>
+
+      <p>
+        ElderForge — Ice Age started as a love letter to early-90s Magic: The Gathering: the mood, the names, the
+        strange little rules, and that specific “my friend owns exactly one copy of this rare and we treat it like a
+        sacred artifact” energy.
+      </p>
+
+      <p>
+        The goal is to preserve the nostalgic simplicity of the original Ice Age era while polishing the rough edges:
+        cleaner templating, smoother play patterns, and modern frames — without turning the cards into a wall of text.
+        Power is kept aligned to each card’s original rarity, while still accounting for modern expectations and
+        <span class="muted">(power creep — the gradual increase in average card strength over the years)</span>.
+      </p>
+
+      <p>
+        Visuals are treated as part of the rules: artwork is redesigned to be consistent, natural, and lore-grounded,
+        matching each card’s character, mechanics, and tone — no uncanny CGI vibes, no “this looks like a different
+        universe every card” whiplash.
+      </p>
+
+      <h2>1:1 card comparisons</h2>
+      <p>
+        Below are three side-by-side comparisons using original 1995 printings (Scryfall scans) and their remastered
+        ElderForge versions. Drag the handle left/right to reveal more of the original or the remaster.
+      </p>
+
+      <div class="compareGrid" aria-label="Original vs remastered comparisons">
+        <div class="compareCard">
+          <div class="compareTitle"><span>Seraph (1995)</span><span>Remaster</span></div>
+
+          <div class="imgCompare" data-start="50">
+            <img class="imgCompareBase" src="cards/051-Seraph.webp" alt="Seraph — remaster" />
+            <div class="imgCompareOverlay">
+              <img src="assets/images/ice-51-seraph.jpg" alt="Seraph — original 1995 scan" />
+            </div>
+            <div class="imgCompareDivider"></div>
+            <div class="imgCompareKnob" aria-hidden="true"></div>
+            <input class="imgCompareSlider" type="range" min="0" max="100" value="50" aria-label="Compare Seraph original and remaster" />
+          </div>
+
+          <div class="compareCaption">Original: <span class="muted">assets/images/ice-51-seraph.jpg</span> • Remaster: <span class="muted">cards/051-Seraph.webp</span></div>
+        </div>
+
+        <div class="compareCard">
+          <div class="compareTitle"><span>Land Cap (1995)</span><span>Remaster</span></div>
+
+          <div class="imgCompare" data-start="50">
+            <img class="imgCompareBase" src="cards/357-Land-Cap.webp" alt="Land Cap — remaster" />
+            <div class="imgCompareOverlay">
+              <img src="assets/images/ice-357-land-cap.jpg" alt="Land Cap — original 1995 scan" />
+            </div>
+            <div class="imgCompareDivider"></div>
+            <div class="imgCompareKnob" aria-hidden="true"></div>
+            <input class="imgCompareSlider" type="range" min="0" max="100" value="50" aria-label="Compare Land Cap original and remaster" />
+          </div>
+
+          <div class="compareCaption">Original: <span class="muted">assets/images/ice-357-land-cap.jpg</span> • Remaster: <span class="muted">cards/357-Land-Cap.webp</span></div>
+        </div>
+
+        <div class="compareCard">
+          <div class="compareTitle"><span>Elvish Ranger (1995)</span><span>Remaster</span></div>
+
+          <div class="imgCompare" data-start="50">
+            <img class="imgCompareBase" src="cards/471-Elvish-Ranger.webp" alt="Elvish Ranger — remaster" />
+            <div class="imgCompareOverlay">
+              <img src="assets/images/all-88a-elvish-ranger.jpg" alt="Elvish Ranger — original 1995 scan" />
+            </div>
+            <div class="imgCompareDivider"></div>
+            <div class="imgCompareKnob" aria-hidden="true"></div>
+            <input class="imgCompareSlider" type="range" min="0" max="100" value="50" aria-label="Compare Elvish Ranger original and remaster" />
+          </div>
+
+          <div class="compareCaption">Original: <span class="muted">assets/images/all-88a-elvish-ranger.jpg</span> • Remaster: <span class="muted">cards/471-Elvish-Ranger.webp</span></div>
+        </div>
+      </div>
+
+      <h2>Lore-first, not just flavor text</h2>
+      <p>
+        The project is also a deep dive into the original Ice Age lore — especially Terisiare — carefully preserved and
+        expanded for maximum immersion. Every card has its own flavor text, and the wider campaign format ties gameplay
+        rewards and progression directly into the world’s people, places, and conflicts.
+      </p>
+
+      <p>
+        On top of the remastered Ice Age block, the project includes <strong>168 additional mythic rare cards</strong>
+        designed to close lore gaps: legendary characters, events, and locations that were mentioned but never properly
+        featured in the original printings. In the ElderForge campaign, these mythics appear as achievement rewards and
+        progression milestones — the “story treasure,” not just raw power.
+      </p>
+
+      <p class="muted">
+        Everything here is fan-made for a private playgroup and exists to celebrate the craft: tighter design, clearer
+        rules, and a world that feels like it actually has weather.
+      </p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footerInner">
+      <div class="footerLeft">
+        <span class="footerText">This site is a fan-made reference for a private playgroup.</span>
+      </div>
+      <div class="footerLinks">
+        <a class="footerLink" href="contact.html">Contact</a>
+        <a class="footerLink" href="privacy.html">Privacy</a>
+        <a class="footerLink" href="disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="site.js"></script>
+</body>
+</html>

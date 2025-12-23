@@ -141,7 +141,42 @@ function initClickMenu(btnId, menuId){
   document.addEventListener("keydown", (e)=>{ if(e.key === "Escape") close(); });
 }
 
+
+
+/* ==========================================================
+   Image compare sliders (About the Project)
+   ========================================================== */
+
+function initImgCompare(root = document){
+  root.querySelectorAll(".imgCompare").forEach((wrap)=>{
+    const slider = wrap.querySelector(".imgCompareSlider");
+    const overlay = wrap.querySelector(".imgCompareOverlay");
+    const divider = wrap.querySelector(".imgCompareDivider");
+    const knob = wrap.querySelector(".imgCompareKnob");
+    if(!slider || !overlay || !divider) return;
+
+    const set = (val)=>{
+      const v = Math.max(0, Math.min(100, Number(val)));
+      overlay.style.width = v + "%";
+      divider.style.left = v + "%";
+      if(knob) knob.style.left = v + "%";
+    };
+
+    // Start position
+    const start = wrap.getAttribute("data-start");
+    if(start != null && slider.value === "50"){
+      slider.value = start;
+    }
+    set(slider.value);
+
+    slider.addEventListener("input", ()=> set(slider.value));
+    slider.addEventListener("change", ()=> set(slider.value));
+  });
+}
+
+
 document.addEventListener("DOMContentLoaded", ()=>{
   initClickMenu("guideBtn","guideMenu");
+  initImgCompare(document);
   applyLowercaps(document);
 });

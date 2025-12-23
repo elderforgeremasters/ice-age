@@ -1,5 +1,4 @@
 /* ElderForge — Ice Age | styles.css (full) */
-@import url("https://fonts.googleapis.com/css2?family=Saira:wght@300;400;500;600;700&display=swap");
 :root{
   --font-ui: "Saira", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   --font-magic: "Saira", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -136,7 +135,7 @@ body{
   display:flex;
   align-items:center;
   gap:8px;
-  flex: 0 1 clamp(240px, 30vw, 460px);
+  flex: 0 1 clamp(180px, 22.5vw, 345px);
   min-width: 0;
 }
 
@@ -206,6 +205,10 @@ body{
 }
 
 .ddSmall{ min-width: 110px; }
+
+/* Filter dropdowns: 25% narrower */
+#typeDD .ddBtn,
+#rarityDD .ddBtn{ min-width: 120px; }
 .btn:hover{ background: rgba(255,255,255,0.06); }
 
 .wrap{
@@ -1433,4 +1436,114 @@ body{
   .readCardImg{
     max-width: 360px;
   }
+}
+
+/* ==========================================================
+   About the Project — image comparison sliders
+   ========================================================== */
+
+.compareGrid{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin: 22px 0 10px;
+}
+
+@media (max-width: 980px){
+  .compareGrid{ grid-template-columns: 1fr; }
+}
+
+.compareCard{
+  background: var(--panel);
+  border: 1px solid var(--stroke);
+  border-radius: 18px;
+  padding: 12px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+}
+
+.compareTitle{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap: 10px;
+  margin: 2px 4px 10px;
+  color: var(--muted);
+  font-size: 12.5px;
+}
+
+.imgCompare{
+  position: relative;
+  width: 100%;
+  aspect-ratio: 5 / 7;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(0,0,0,0.35);
+  overflow: hidden;
+}
+
+.imgCompare img{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  user-select:none;
+  -webkit-user-drag:none;
+  pointer-events:none;
+}
+
+.imgCompareOverlay{
+  position:absolute;
+  inset:0;
+  width:50%;
+  overflow:hidden;
+}
+
+.imgCompareDivider{
+  position:absolute;
+  top:0; bottom:0;
+  left:50%;
+  width: 2px;
+  background: rgba(255,255,255,0.55);
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.55), 0 0 18px rgba(255,255,255,0.18);
+  pointer-events:none;
+}
+
+.imgCompareKnob{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.14);
+  border: 1px solid rgba(255,255,255,0.30);
+  box-shadow: 0 10px 26px rgba(0,0,0,0.55);
+  pointer-events:none;
+}
+
+.imgCompareKnob::before{
+  content:"";
+  position:absolute;
+  inset: 6px 10px;
+  border-left: 2px solid rgba(255,255,255,0.55);
+  border-right: 2px solid rgba(255,255,255,0.55);
+  opacity: 0.85;
+}
+
+.imgCompareSlider{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  opacity:0;
+  cursor: ew-resize;
+}
+
+.compareCaption{
+  margin: 10px 4px 2px;
+  color: var(--muted);
+  font-size: 12.5px;
+  line-height: 1.35;
 }
