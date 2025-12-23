@@ -3,6 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <!-- Privacy: discourage indexing/snippets for the card database page (best-effort; not access control) -->
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
+  <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
+  <meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
+  <meta name="referrer" content="no-referrer" />
   <title>ElderForge — Ice Age</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -16,7 +21,6 @@
     <div class="controls">
       <div class="searchWrap">
         <input id="q" class="search" type="search" placeholder="Search name, type, rules, or flavor…" autocomplete="off" />
-        <button id="clearBtn" class="iconBtn" type="button" aria-label="Clear filters" title="Clear filters">×</button>
       </div>
 
       <!-- Hidden native selects (accessibility + state); custom dropdowns below -->

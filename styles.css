@@ -219,6 +219,12 @@ body{
   text-align: center;
 }
 
+/* Home: align the "960 cards" counter to the left, with a tiny right nudge */
+.home .status{
+  text-align: left;
+  padding-left: 5px;
+}
+
 .grid{
   display:grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -689,6 +695,17 @@ body{
   justify-content:space-between;
   gap: 10px;
   cursor:pointer;
+}
+
+/* Home filters: make Type + Rarity dropdown pills ~25% narrower */
+#typeDD .ddBtn,
+#rarityDD .ddBtn{
+  min-width: 120px;
+}
+
+#typeDD .ddMenu,
+#rarityDD .ddMenu{
+  width: 160px;
 }
 
 /* Guide pill: slightly larger + bold label only (menu items unchanged) */
