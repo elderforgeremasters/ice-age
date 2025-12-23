@@ -225,7 +225,8 @@ function richText(str){
     const n = String(num).toUpperCase();
     const sign = n.trim()[0];
     const cls = (sign === "+") ? "loy loyPlus" : "loy loyMinus";
-    return `${pre}<span class="${cls}">${n}:</span>`;
+    const body = n.slice(1); // strip sign; ":" is added via CSS
+    return `${pre}<span class="${cls}">${body}</span>`;
   });
 
   // Replace {Anything} with its icon (mana, keyword, etc.)
