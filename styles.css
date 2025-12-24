@@ -1611,3 +1611,7 @@ body{
   .apPair{ grid-template-columns: 1fr; }
   .apImg{ max-width: 360px; }
 }
+/* About the Project — Example 3: nudge the card images down by 10px */
+.pagePanel > .apRow:nth-of-type(3) .apMedia{
+  padding-top: 26px; /* was 6px; +10px = 16px */
+}
