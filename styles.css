@@ -1613,5 +1613,5 @@ body{
 }
 /* About the Project — Example 3: nudge the card images down by 10px */
 .pagePanel > .apRow:nth-of-type(3) .apMedia{
-  padding-top: 26px; /* was 6px; +10px = 16px */
+  padding-top: 36px; /* was 6px; +10px = 16px */
 }
