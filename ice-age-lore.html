@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Ice Age Lore — ElderForge — Ice Age</title>
-
+    
   <!-- Tiny critical CSS to prevent a brief serif flash on hard reloads -->
   <style>
     :root{--font-ui:"Saira",ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;--text:#e9eef7;--bg0:#070b12;--bg1:#0b1220}
@@ -13,12 +13,25 @@
                linear-gradient(180deg,var(--bg1),var(--bg0));background-color:var(--bg0)}
     body{margin:0;font-family:var(--font-ui);color:var(--text)}
   </style>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira:wght@300;400;500;600;700&display=swap" />
   <link rel="preload" href="styles.css" as="style" />
   <link rel="stylesheet" href="styles.css" />
+
+  <!-- Page-local layout helpers: tight, even card inserts (no giant blank gaps) -->
+  <style>
+    .loreCard{max-width:420px;margin:18px 0 28px}
+    .loreCard--right{margin-left:auto}
+    .loreCard--left{margin-right:auto}
+    .loreCard figure{margin:0}
+    .loreCard img{width:100%;height:auto;display:block;border-radius:14px;box-shadow:0 12px 28px rgba(0,0,0,.35)}
+    .loreCard figcaption{margin-top:10px;font-size:.95rem;line-height:1.25rem;opacity:.85}
+    @media (max-width:720px){
+      .loreCard{max-width:100%}
+      .loreCard--right,.loreCard--left{margin-left:0;margin-right:0}
+    }
+  </style>
 </head>
 
 <body>
@@ -38,8 +51,8 @@
         </button>
 
         <div class="ddMenu" id="guideMenu" role="menu" aria-label="Guide" hidden>
-          <a class="ddLink" href="about-project.html" role="menuitem">About the Project</a>
-          <a class="ddLink" href="keyword-icons.html" role="menuitem">Keyword Icons</a>
+                    <a class="ddLink" href="about-project.html" role="menuitem">About the Project</a>
+<a class="ddLink" href="keyword-icons.html" role="menuitem">Keyword Icons</a>
           <a class="ddLink" href="basic-rules.html" role="menuitem">Basic Rules</a>
           <a class="ddLink" href="ice-age-lore.html" role="menuitem">Ice Age Lore</a>
           <a class="ddLink" href="campaign-setup.html" role="menuitem">ElderForge Campaign</a>
@@ -67,24 +80,18 @@
         behaving like something temporary.
       </p>
 
-      <!-- Image 1 (right) -->
-      <div class="apRow">
-        <div class="apText">
-          <p>
-            Glaciers advance like empires. The <strong>Great Glacier</strong> fills the Lat-Nam Straits, binding old coastlines into new shapes
-            while sealing regions behind sheer walls of ice. Places are abandoned not because they lose wars, but because
-            the land itself becomes an enemy.
-          </p>
-        </div>
-        <div class="apMedia" aria-label="Island of Lat-Nam">
-          <div class="apPair">
-            <figure class="apFig">
-              <img class="apImg" src="cards/778-Island-of-Lat-Nam.webp" alt="Island of Lat-Nam" />
-              <figcaption>Island of Lat-Nam</figcaption>
-            </figure>
-          </div>
-        </div>
+      <p>
+        Glaciers advance like empires. The <strong>Great Glacier</strong> fills the Lat-Nam Straits, binding old coastlines into new shapes
+        while sealing regions behind sheer walls of ice. Places are abandoned not because they lose wars, but because
+        the land itself becomes an enemy.
+      </p>
+      <div class="loreCard loreCard--right">
+        <figure>
+          <img src="cards/778-Island-of-Lat-Nam.webp" alt="Island of Lat-Nam — the Great Glacier’s advance turns straits into walls, and coastlines into history." />
+          <figcaption>Island of Lat-Nam — the Great Glacier’s advance turns straits into walls, and coastlines into history.</figcaption>
+        </figure>
       </div>
+
 
       <h2>2) Terisiare is remade by ice</h2>
       <p>
@@ -102,25 +109,18 @@
       </p>
 
       <h2>3) The hidden refuge of magic</h2>
-
-      <!-- Image 2 (left) -->
-      <div class="apRow apFlip">
-        <div class="apText">
-          <p>
-            Civilization doesn’t stop — it goes underground, behind wards, into secrecy. When the <strong>City of Shadows</strong> is abandoned,
-            scholars flee and eventually establish the <strong>School of the Unseen</strong>: a hidden campus and sanctuary for spellcasters,
-            built to endure when ordinary cities cannot.
-          </p>
-        </div>
-        <div class="apMedia" aria-label="School of the Unseen">
-          <div class="apPair">
-            <figure class="apFig">
-              <img class="apImg" src="cards/524-School-of-the-Unseen.webp" alt="School of the Unseen" />
-              <figcaption>School of the Unseen</figcaption>
-            </figure>
-          </div>
-        </div>
+      <p>
+        Civilization doesn’t stop — it goes underground, behind wards, into secrecy. When the <strong>City of Shadows</strong> is abandoned,
+        scholars flee and eventually establish the <strong>School of the Unseen</strong>: a hidden campus and sanctuary for spellcasters,
+        built to endure when ordinary cities cannot.
+      </p>
+      <div class="loreCard loreCard--left">
+        <figure>
+          <img src="cards/524-School-of-the-Unseen.webp" alt="School of the Unseen — a hidden refuge where spellcraft survives when ordinary cities cannot." />
+          <figcaption>School of the Unseen — a hidden refuge where spellcraft survives when ordinary cities cannot.</figcaption>
+        </figure>
       </div>
+
 
       <p>
         Elsewhere, ambition finds a different form. On the ruins of old Kroog, the city of <strong>Soldev</strong> rises —
@@ -130,53 +130,40 @@
       <h2>4) The Shard of Twelve Worlds</h2>
       <p>
         Then the world gets smaller. As a side-effect of the Sylex Blast, the Multiverse around Dominaria is wrapped into an
-        envelope called the <strong>Shard of Twelve Worlds</strong>. Travel into or out of this pocket becomes impossible or severely limited.
+        envelope called the <strong>Shard of Twelve Worlds</strong>. Planeswalker travel into or out of this pocket becomes impossible or severely limited.
       </p>
 
-      <!-- Image 3 (right) -->
-      <div class="apRow">
-        <div class="apText">
-          <p>
-            Some planeswalkers are trapped within the Shard. Others are locked out. Terisiare is now a stage with the doors bolted shut.
-            The ancient players who are already inside can linger… and meddle.
-          </p>
-        </div>
-        <div class="apMedia" aria-label="Storgard">
-          <div class="apPair">
-            <figure class="apFig">
-              <img class="apImg" src="cards/860-Storgard.webp" alt="Storgard" />
-              <figcaption>Storgard</figcaption>
-            </figure>
-          </div>
-        </div>
-      </div>
+      <p>
+        Some planeswalkers are trapped within the Shard. Others are locked out. Terisiare is now a stage with the doors bolted shut.
+        The ancient players who are already inside can linger… and meddle.
+      </p>
 
       <h2>5) Storgard falls, Kjeldor rises</h2>
-
-      <!-- Image 4 (left) -->
-      <div class="apRow apFlip">
-        <div class="apText">
-          <p>
-            Centuries pass. The Ice Age grinds on. And then comes one of its defining tragedies: the <strong>Fall of Storgard</strong>.
-            The <strong>Raynor Glacier</strong> presses down upon the city, and the corruption of King Miko by <strong>Tevesh Szat</strong>
-            twists leadership when clarity is most needed.
-          </p>
-        </div>
-        <div class="apMedia" aria-label="Freyalise, Fyndhorn Goddess">
-          <div class="apPair">
-            <figure class="apFig">
-              <img class="apImg" src="cards/759-Freyalise-Fyndhorn-Goddess.webp" alt="Freyalise, Fyndhorn Goddess" />
-              <figcaption>Freyalise, Fyndhorn Goddess</figcaption>
-            </figure>
-          </div>
-        </div>
+      <p>
+        Centuries pass. The Ice Age grinds on. And then comes one of its defining tragedies: the <strong>Fall of Storgard</strong>.
+        The <strong>Raynor Glacier</strong> presses down upon the city, and the corruption of King Miko by <strong>Tevesh Szat</strong>
+        twists leadership when clarity is most needed.
+      </p>
+      <div class="loreCard loreCard--right">
+        <figure>
+          <img src="cards/860-Storgard.webp" alt="Storgard — a proud seat undone by ice and corruption, remembered as much for its choice as its fall." />
+          <figcaption>Storgard — a proud seat undone by ice and corruption, remembered as much for its choice as its fall.</figcaption>
+        </figure>
       </div>
+
 
       <p>
         Storgard fractures over a single question: stay, or flee? The decision is put to a duel between
         <strong>Jason Carthalion</strong> and <strong>Freyalise</strong> (before her ascension). Jason wins —
         and those who choose to leave are spared the fate of the city.
       </p>
+      <div class="loreCard loreCard--left">
+        <figure>
+          <img src="cards/759-Freyalise-Fyndhorn-Goddess.webp" alt="Freyalise — the will to preserve life and future growth, even when the present is all snow and loss." />
+          <figcaption>Freyalise — the will to preserve life and future growth, even when the present is all snow and loss.</figcaption>
+        </figure>
+      </div>
+
 
       <p>
         The refugees settle upon the ruins of old Penregon and found <strong>Kjeld</strong>.
@@ -186,59 +173,45 @@
       </p>
 
       <h2>6) The late Ice Age tightens: secrets, proxies, and a final convergence</h2>
+      <p>
+        By the end of the era, Terisiare is a continent full of hardened nations and refined magic —
+        but also a place where planeswalkers still cast long shadows. The Shard remains. The cold remains.
+        And conflicts increasingly feel like proxy wars: mortals fighting while larger hands steer the pieces.
+      </p>
 
-      <!-- Image 5 (right) -->
-      <div class="apRow">
-        <div class="apText">
-          <p>
-            Late in the era, Terisiare is a continent full of hardened nations and refined magic —
-            but also a place where planeswalkers still cast long shadows. The Shard remains. The cold remains.
-            And conflicts increasingly feel like proxy wars: mortals fighting while larger hands steer the pieces.
-          </p>
-
-          <p>
-            Planeswalkers gather at the <strong>Summit of the Null Moon</strong> to discuss breaking the Shard.
-            But the meeting is poisoned by private agendas. Death strikes: the Elder Dragon <strong>Chromium Rhuell</strong> dies,
-            and Faralyn’s spellsquire <strong>Ravidel</strong> is killed and resurrected — a kindness that drives him into fury and madness.
-            The summit fails to end the Shard, but it plants the final idea that will.
-          </p>
-        </div>
-        <div class="apMedia" aria-label="Summit of the Null Moon">
-          <div class="apPair">
-            <figure class="apFig">
-              <img class="apImg" src="cards/861-Summit-of-the-Null-Moon.webp" alt="Summit of the Null Moon" />
-              <figcaption>Summit of the Null Moon</figcaption>
-            </figure>
-          </div>
-        </div>
+      <p>
+        Planeswalkers gather at the <strong>Summit of the Null Moon</strong> to discuss breaking the Shard.
+        But the meeting is poisoned by private agendas. Death strikes: the Elder Dragon <strong>Chromium Rhuell</strong> dies,
+        and Faralyn’s spellsquire <strong>Ravidel</strong> is killed and resurrected — a kindness that drives him into fury and madness.
+        The summit fails to end the Shard, but it plants the final idea that will.
+      </p>
+      <div class="loreCard loreCard--right">
+        <figure>
+          <img src="cards/861-Summit-of-the-Null-Moon.webp" alt="Summit of the Null Moon — when ancient powers gathered to debate the Shard… and brought their agendas with them." />
+          <figcaption>Summit of the Null Moon — when ancient powers gathered to debate the Shard… and brought their agendas with them.</figcaption>
+        </figure>
       </div>
+
 
       <h2>7) Lim-Dûl’s Battle: the Last Battlefield</h2>
+      <p>
+        In that same late span, Terisiare erupts into its final great Ice Age war.
+        The necromancer <strong>Lim-Dûl</strong> brings an undead host through the Karplusan passes,
+        and the defenders gather at the mouth of a mountain route north of Krov.
+      </p>
 
-      <!-- Image 6 (left) -->
-      <div class="apRow apFlip">
-        <div class="apText">
-          <p>
-            In the same late span of history, Terisiare erupts into its final great Ice Age war.
-            The necromancer <strong>Lim-Dûl</strong> brings an undead host through the Karplusan passes,
-            and the defenders gather at the mouth of a mountain route north of Krov.
-          </p>
-
-          <p>
-            <strong>Lovisa Coldeyes</strong> leads Balduvia. <strong>General Varchild</strong> leads Kjeldor.
-            Mages fight openly: <strong>Jodah</strong> the archmage, <strong>Jaya Ballard</strong> the taskmage, and others whose names
-            become welded to the era’s ending. The battle is savage, uneven, and personal — with deaths that echo through the stories that follow.
-          </p>
-        </div>
-        <div class="apMedia" aria-label="Lovisa Coldeyes">
-          <div class="apPair">
-            <figure class="apFig">
-              <img class="apImg" src="cards/617-Lovisa-Coldeyes.webp" alt="Lovisa Coldeyes" />
-              <figcaption>Lovisa Coldeyes</figcaption>
-            </figure>
-          </div>
-        </div>
+      <p>
+        <strong>Lovisa Coldeyes</strong> leads Balduvia. <strong>General Varchild</strong> leads Kjeldor.
+        Mages fight openly: <strong>Jodah</strong> the archmage, <strong>Jaya Ballard</strong> the taskmage, and others whose names
+        become welded to the era’s ending. The battle is savage, uneven, and personal — with deaths that echo through the stories that follow.
+      </p>
+      <div class="loreCard loreCard--left">
+        <figure>
+          <img src="cards/617-Lovisa-Coldeyes.webp" alt="Lovisa Coldeyes — Balduvia’s iron presence at the Ice Age’s last great battlefield." />
+          <figcaption>Lovisa Coldeyes — Balduvia’s iron presence at the Ice Age’s last great battlefield.</figcaption>
+        </figure>
       </div>
+
 
       <p>
         At the climax, Jodah duels Lim-Dûl. Lim-Dûl calls on <strong>Leshrac</strong> for aid — and Leshrac arrives, not to save him,
@@ -252,44 +225,31 @@
       </p>
 
       <h2>8) The World Spell: ending the Ice Age</h2>
-
-      <!-- Image 7 (right) -->
-      <div class="apRow">
-        <div class="apText">
-          <p>
-            Immediately after, <strong>Freyalise</strong> acts. She casts the <strong>World Spell</strong> to break the Shard and end the Ice Age.
-            The ritual uses the <strong>Ice Cauldron</strong> (a replica of the Sylex) and <strong>Jodah’s mirror</strong>,
-            used to “show the land its true self.” <strong>Kaysa</strong> is present, as are Jodah and Jaya, Kolbjörn and others.
-          </p>
-        </div>
-        <div class="apMedia" aria-label="The World Spell">
-          <div class="apPair">
-            <figure class="apFig">
-              <img class="apImg" src="cards/867-The-World-Spell.webp" alt="The World Spell" />
-              <figcaption>The World Spell</figcaption>
-            </figure>
-          </div>
-        </div>
+      <p>
+        Immediately after, <strong>Freyalise</strong> acts. She casts the <strong>World Spell</strong> to break the Shard and end the Ice Age.
+        The ritual uses the <strong>Ice Cauldron</strong> (a replica of the Sylex) and <strong>Jodah’s mirror</strong>,
+        used to “show the land its true self.” <strong>Kaysa</strong> is present, as are Jodah and Jaya, Kolbjörn and others.
+      </p>
+      <div class="loreCard loreCard--right">
+        <figure>
+          <img src="cards/867-The-World-Spell.webp" alt="The World Spell — an act of magic vast enough to break the Shard and pry winter’s fingers from the land." />
+          <figcaption>The World Spell — an act of magic vast enough to break the Shard and pry winter’s fingers from the land.</figcaption>
+        </figure>
       </div>
 
-      <!-- Image 8 (left) -->
-      <div class="apRow apFlip">
-        <div class="apText">
-          <p>
-            The spell’s power is on par with the Sylex Blast — potentially devastating. The energy is dispersed across Terisiare
-            via safe havens, which are destroyed in the process. The world survives the cure.
-            The cure leaves scars. And the ice finally loosens its grip.
-          </p>
-        </div>
-        <div class="apMedia" aria-label="Jodah, Alliance Architect">
-          <div class="apPair">
-            <figure class="apFig">
-              <img class="apImg" src="cards/785-Jodah-Alliance-Architect.webp" alt="Jodah, Alliance Architect" />
-              <figcaption>Jodah, Alliance Architect</figcaption>
-            </figure>
-          </div>
-        </div>
+
+      <p>
+        The spell’s power is on par with the Sylex Blast — potentially devastating. The energy is dispersed across Terisiare
+        via safe havens, which are destroyed in the process. The world survives the cure.
+        The cure leaves scars. And the ice finally loosens its grip.
+      </p>
+      <div class="loreCard loreCard--left">
+        <figure>
+          <img src="cards/785-Jodah-Alliance-Architect.webp" alt="Jodah — the careful mind behind desperate alliances, when ending an era demanded more than courage." />
+          <figcaption>Jodah — the careful mind behind desperate alliances, when ending an era demanded more than courage.</figcaption>
+        </figure>
       </div>
+
 
       <h2>9) The Thaw and the Flood Age</h2>
       <p>
@@ -324,30 +284,23 @@
       </p>
 
       <h2>11) Coldsnap: winter’s last, organized bite</h2>
-
-      <!-- Image 9 (right) -->
-      <div class="apRow">
-        <div class="apText">
-          <p>
-            Even after the World Spell, the cold refuses to die politely. Movements rise that want the world frozen again.
-            The <strong>Cult of Rimewind</strong> becomes a force — not a place, but an ideology armed with undead, orcs,
-            Stromgald influence, and whatever war-machines the melt coughs up.
-          </p>
-
-          <p>
-            Kjeldor fights again in the early Thaw, not merely against enemies on the field, but against the idea that the past can be revived
-            if enough people fear the future. The Ice Age ends — and then has one more argument about it.
-          </p>
-        </div>
-        <div class="apMedia" aria-label="Rimewind Keep">
-          <div class="apPair">
-            <figure class="apFig">
-              <img class="apImg" src="cards/839-Rimewind-Keep.webp" alt="Rimewind Keep" />
-              <figcaption>Rimewind Keep</figcaption>
-            </figure>
-          </div>
-        </div>
+      <p>
+        Even after the World Spell, the cold refuses to die politely. Movements rise that want the world frozen again.
+        The <strong>Cult of Rimewind</strong> becomes a force — not a place, but an ideology armed with undead, orcs,
+        Stromgald influence, and whatever war-machines the melt coughs up.
+      </p>
+      <div class="loreCard loreCard--right">
+        <figure>
+          <img src="cards/839-Rimewind-Keep.webp" alt="Rimewind Keep — winter’s last organized bite: not merely cold returning, but a movement that wants it back." />
+          <figcaption>Rimewind Keep — winter’s last organized bite: not merely cold returning, but a movement that wants it back.</figcaption>
+        </figure>
       </div>
+
+
+      <p>
+        Kjeldor fights again in the early Thaw, not merely against enemies on the field, but against the idea that the past can be revived
+        if enough people fear the future. The Ice Age ends — and then has one more argument about it.
+      </p>
 
       <p>
         That’s the record: a world frozen by ancient disaster, sealed by planar consequence, hardened into nations,
