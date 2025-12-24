@@ -572,7 +572,7 @@ body{
   --blkGlowA: rgba(220,165,95,0.16);
   --blkGlowB: rgba(120,70,25,0.10);
   --blkLabel: rgba(245,210,150,0.95);
-  --blkText: rgba(255,216,150,0.93);
+  --blkText: rgba(255,200,105,0.93);
 
 }
 .modalPanel .flavorBlock .blockBody{
@@ -585,7 +585,7 @@ body{
   --blkGlowA: rgba(220,120,135,0.14);
   --blkGlowB: rgba(90,28,36,0.10);
   --blkLabel: rgba(255,195,205,0.95);
-  --blkText: rgba(255,200,210,0.93);
+  --blkText: rgba(255,150,110,0.93);
 
 }
 .modalPanel .loreBlock .blockBody{ color: var(--blkText, rgba(245,232,236,0.93)); }
@@ -1401,84 +1401,129 @@ body{
   }
 }
 
-/* ===== Mobile-only overrides (added) ===== */
+
+
+/* ==========================================================
+   Mobile-first tweaks (PHONE ONLY)
+   These rules ONLY apply on small screens and do NOT change desktop.
+   ========================================================== */
+
 @media (max-width: 720px){
-  /* Header becomes a tidy 2-row layout */
+
+  /* Top bar: prevent overflow and keep controls tappable */
   .topbar{
     padding: 12px 12px;
     gap: 10px;
-    align-items: flex-start;
   }
-
+  .brand{ flex: 1 1 100%; min-width: 0; }
   .brand .title{ font-size: 22px; }
   .brand .subtitle{ font-size: 13px; }
 
-  .home .controls{
-    width: 100%;
+  .controls{
+    flex: 1 1 100%;
     justify-content: flex-start;
     padding-right: 0;
     flex-wrap: wrap;
     gap: 8px;
   }
 
-  .home .searchWrap{ flex: 1 1 100%; }
-  .home .search{ height: 44px; font-size: 16px; }
-
-  /* Prevent iOS auto-zoom on focus by keeping interactive text >= 16px */
-  .ddBtn{ height: 44px; font-size: 16px; }
-  .navBtn{ height: 44px; font-size: 16px; }
-
-  /* Type + Rarity sit side-by-side, full-width buttons */
-  .home .controls > .dropdown{ flex: 1 1 calc(50% - 6px); }
-  .home .controls > .dropdown .ddBtn{ width: 100%; min-width: 0; }
-
-  /* Guide sits on its own row, aligned right */
-  .home .nav{
-    width: 100%;
-    margin-left: 0;
-    justify-content: flex-end;
+  /* Search + filters: wrap neatly instead of squishing */
+  .searchWrap{
+    flex: 1 1 100%;
+    min-width: 0;
   }
-
-  /* Dropdown menus: keep inside viewport + make scrollable */
+  #q{
+    height: 42px;
+    font-size: 16px;
+  }
+  .ddBtn{
+    min-width: 0;
+    flex: 1 1 calc(50% - 5px);
+  }
   .ddMenu{
-    width: min(280px, calc(100vw - 24px));
-    max-height: 60vh;
+    max-height: 52vh;
     overflow: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
-  /* Grid tighter on phones */
-  .wrap{ padding: 12px; }
-  .grid{ grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
-  .card{ padding: 7px; }
-  .cardName{ font-size: 15px; }
+  /* Grid: tighter cards, more columns */
+  .grid{
+    grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
+    gap: 10px;
+  }
+  .card{
+    padding: 6px;
+    gap: 8px;
+  }
 
-  /* Status line reads like a left-aligned label on mobile */
-  .status{ text-align: left; padding-left: 17px; }
-
-  /* Modal: full-screen friendly */
+  /* Modal: make it usable on phones (no overlay on art; scrollable text) */
+  .modal.open{
+    align-items: stretch;
+    justify-content: stretch;
+  }
   .modalPanel{
     width: 100vw;
+    height: 100vh;
     max-height: 100vh;
     border-radius: 0;
   }
-  .modalBody{ padding: 12px; gap: 12px; }
-  .modalTitle{ font-size: 24px; }
-  .modalMeta{ font-size: 13px; }
-  .modalClose,
-  .modalNavBtn{ width: 44px; height: 44px; border-radius: 16px; }
-  .modalNav{ top: 8px; right: 74px; }
-  .modalClose{ top: 8px; right: 10px; }
-  .modalCard{ max-height: 52vh; }
 
-  /* Modal rails/icons compress slightly for narrow widths */
-  .modalPanel .block{ padding-left: 46px; }
-  .modalPanel .block::before{ left: 24px; }
-  .modalPanel .blockIcon{ left: 8px; width: 22px; height: 22px; }
+  /* Reserve room for Close + Prev/Next so they don't sit on top of the art */
+  .modalBody{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 62px 14px 14px 14px;
+    gap: 12px;
+    overflow: hidden; /* scrolling happens in .modalRight */
+  }
+
+  .modalClose{
+    position: fixed;
+    top: 10px;
+    right: 12px;
+    z-index: 120;
+  }
+  .modalNav{
+    position: fixed;
+    top: 10px;
+    right: 62px;
+    z-index: 120;
+  }
+
+  .modalLeft{
+    justify-content: center;
+  }
+  .modalCard{
+    width: auto;
+    max-width: min(92vw, 420px);
+    max-height: 42vh;
+  }
+
+  .modalRight{
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-right: 4px;
+  }
+
+  .modalTitle{
+    font-size: 22px;
+  }
+
+  /* Reduce left padding inside blocks so rails don't eat the whole width */
+  .modalPanel .block{
+    padding-left: 44px; /* was 58px */
+  }
+  .modalPanel .block::before{
+    left: 20px; /* rail closer to edge */
+  }
 }
 
 @media (max-width: 420px){
-  .brand .title{ font-size: 20px; }
-  .ddBtn{ height: 44px; font-size: 15px; }
-  .modalTitle{ font-size: 22px; }
-  .grid{ grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+  .ddBtn{ flex-basis: 100%; }
+  .grid{ grid-template-columns: repeat(auto-fill, minmax(135px, 1fr)); }
+  .modalTitle{ font-size: 20px; }
+  .modalCard{ max-height: 38vh; }
 }
