@@ -7,16 +7,16 @@
 
   <title>About the Project — ElderForge — Ice Age</title>
 
-  
-  <!-- Tiny critical CSS to prevent a brief serif flash on hard reloads -->
+  <!-- Tiny critical CSS to reduce unstyled-font flashes on hard reloads -->
   <style>
     :root{--font-ui:"Saira",ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;--text:#e9eef7;--bg0:#070b12;--bg1:#0b1220}
     html{background:radial-gradient(1200px 600px at 40% -10%, rgba(95,140,255,0.18), transparent 60%),
-               radial-gradient(900px 500px at 110% 10%, rgba(50,255,210,0.10), transparent 60%),
-               linear-gradient(180deg,var(--bg1),var(--bg0));background-color:var(--bg0)}
+                 radial-gradient(900px 500px at 110% 10%, rgba(50,255,210,0.10), transparent 60%),
+                 linear-gradient(180deg,var(--bg1),var(--bg0));background-color:var(--bg0)}
     body{margin:0;font-family:var(--font-ui);color:var(--text)}
   </style>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira:wght@300;400;500;600;700&display=swap" />
   <link rel="preload" href="styles.css" as="style" />
@@ -55,95 +55,146 @@
       <h1>About the Project</h1>
 
       <p>
-        ElderForge — Ice Age started as a love letter to early‑90s Magic: The Gathering — the mood, the names, the
-        strange little rules, and that specific “my friend owns exactly one copy of this rare and we treat it like a
-        sacred artifact” energy.
+        ElderForge — Ice Age began as a love letter to early‑90s Magic: The Gathering — the mood, the names, the strange
+        little rules, and that specific feeling that every card is an artifact from a world that’s bigger than the table.
       </p>
 
       <p>
-        The mission is restoration, not reinvention: keep the nostalgic clarity of the originals, but sand down the
-        pain points that time exposed. Templating is streamlined, frames are modern, and the play patterns are tuned so
-        the cards feel crisp without turning into a wall of keywords. Power stays faithful to each card’s original
-        rarity while accounting for modern baselines
+        The original goal was straightforward: remaster the Ice Age block so it keeps its nostalgic clarity, but loses the
+        rough edges that time exposed. Rules are streamlined without turning into a wall of keywords, the card frames are
+        modernized, and power stays faithful to each card’s original rarity while accounting for modern baselines
         <span class="muted">(power creep — the gradual increase in average card strength over the years)</span>.
       </p>
 
       <p>
-        The art is treated like rules text with a soul: every piece is built to match the card’s character, mechanics,
-        and tone — consistent direction, natural materials, grounded anatomy, and Ice Age atmosphere. No CGI sheen, no
-        random style whiplash. Each illustration is meant to feel like it always belonged on Terisiare… just finally
-        rendered with the care the setting deserved.
+        Art is treated like rules text with a heartbeat: every illustration is <em>crafted</em> to match the card’s character,
+        mechanics, and tone — consistent direction, natural materials, grounded anatomy, and Ice Age atmosphere. No CGI sheen,
+        no random style whiplash. The aim is for each image to feel like it always belonged on Terisiare… just finally rendered
+        with the patience it deserved.
       </p>
 
-      <h2>1:1 card comparisons</h2>
-      <p>
-        Below are three side-by-side comparisons using original 1995 printings (Scryfall scans) and their remastered
-        ElderForge versions. Drag the handle left/right to reveal more of the original or the remaster.
-      </p>
-
-      <div class="compareGrid" aria-label="Original vs remastered comparisons">
-        <div class="compareCard">
-          <div class="compareTitle"><span>Seraph (1995)</span><span>Remaster</span></div>
-
-          <div class="imgCompare" data-start="50">
-            <img class="imgCompareBase" src="cards/051-Seraph.webp" alt="Seraph — remaster" />
-            <img class="imgCompareTop" src="assets/images/ice-51-seraph.jpg" alt="Seraph — original 1995 scan" />
-            <div class="imgCompareDivider"></div>
-            <div class="imgCompareKnob" aria-hidden="true"></div>
-            <input class="imgCompareSlider" type="range" min="0" max="100" value="50" aria-label="Compare Seraph original and remaster" />
-          </div>
-
-          <div class="compareCaption">Original: <span class="muted">assets/images/ice-51-seraph.jpg</span> • Remaster: <span class="muted">cards/051-Seraph.webp</span></div>
+      <!-- Comparison 1: text left, images right -->
+      <div class="apRow">
+        <div class="apText">
+          <h2>Seraph — clarity without losing the myth</h2>
+          <p>
+            Some cards are “simple” in the best way: they read cleanly, but they carry a whole story in a few lines.
+            Seraph is a perfect example — a single presence that feels like an omen. The remaster keeps that purity,
+            while tightening presentation and reinforcing what the card is <em>about</em>.
+          </p>
+          <p class="muted">
+            Left: original 1995 scan • Right: remaster (modern frame, tuned templating, art direction aligned to the setting).
+          </p>
         </div>
 
-        <div class="compareCard">
-          <div class="compareTitle"><span>Land Cap (1995)</span><span>Remaster</span></div>
-
-          <div class="imgCompare" data-start="50">
-            <img class="imgCompareBase" src="cards/357-Land-Cap.webp" alt="Land Cap — remaster" />
-            <img class="imgCompareTop" src="assets/images/ice-357-land-cap.jpg" alt="Land Cap — original 1995 scan" />
-            <div class="imgCompareDivider"></div>
-            <div class="imgCompareKnob" aria-hidden="true"></div>
-            <input class="imgCompareSlider" type="range" min="0" max="100" value="50" aria-label="Compare Land Cap original and remaster" />
+        <div class="apMedia" aria-label="Seraph comparison">
+          <div class="apPair">
+            <figure class="apFig">
+              <img class="apImg" src="assets/images/ice-51-seraph.jpg" alt="Seraph — original 1995 scan" />
+              <figcaption>Original (1995)</figcaption>
+            </figure>
+            <figure class="apFig">
+              <img class="apImg" src="cards/051-Seraph.webp" alt="Seraph — remaster" />
+              <figcaption>Remaster</figcaption>
+            </figure>
           </div>
-
-          <div class="compareCaption">Original: <span class="muted">assets/images/ice-357-land-cap.jpg</span> • Remaster: <span class="muted">cards/357-Land-Cap.webp</span></div>
-        </div>
-
-        <div class="compareCard">
-          <div class="compareTitle"><span>Elvish Ranger (1995)</span><span>Remaster</span></div>
-
-          <div class="imgCompare" data-start="50">
-            <img class="imgCompareBase" src="cards/471-Elvish-Ranger.webp" alt="Elvish Ranger — remaster" />
-            <img class="imgCompareTop" src="assets/images/all-88a-elvish-ranger.jpg" alt="Elvish Ranger — original 1995 scan" />
-            <div class="imgCompareDivider"></div>
-            <div class="imgCompareKnob" aria-hidden="true"></div>
-            <input class="imgCompareSlider" type="range" min="0" max="100" value="50" aria-label="Compare Elvish Ranger original and remaster" />
-          </div>
-
-          <div class="compareCaption">Original: <span class="muted">assets/images/all-88a-elvish-ranger.jpg</span> • Remaster: <span class="muted">cards/471-Elvish-Ranger.webp</span></div>
         </div>
       </div>
 
-      <h2>Lore-first, not just flavor text</h2>
       <p>
-        Ice Age isn’t just “snow set.” It’s nations under pressure, old grudges calcifying, magic thinning out, and a
-        continent (Terisiare) that feels big enough to get lost in. ElderForge dives into that lore and treats it as a
-        foundation: names, places, cultures, and the quiet connective tissue that makes a card feel like a real
-        artifact from a real world.
+        As the remastering work expanded, something became obvious: the Ice Age block isn’t just a set of cards — it’s an
+        entire continent under pressure. Terisiare has nations, grudges, migrations, cults, wars, and secrets that never fully
+        fit inside a handful of booster packs. So the project didn’t stop at “better card files.” It became a deep‑dive restoration
+        of the world itself.
+      </p>
+
+      <!-- Comparison 2: images left, text right -->
+      <div class="apRow apFlip">
+        <div class="apText">
+          <h2>Land Cap — smoother play, same identity</h2>
+          <p>
+            A good remaster doesn’t just look sharper — it plays smoother. The goal is the same Ice Age identity, with the
+            “rules friction” dialed down so games feel brisk and immersive. Cards keep their original weight in the environment,
+            especially relative to rarity, but the way they communicate that weight becomes more elegant.
+          </p>
+          <p>
+            That philosophy applies across the cube: keep the nostalgic simplicity, fix the clunk, and make sure the Limited
+            ecosystem feels coherent instead of spiky.
+          </p>
+        </div>
+
+        <div class="apMedia" aria-label="Land Cap comparison">
+          <div class="apPair">
+            <figure class="apFig">
+              <img class="apImg" src="assets/images/ice-357-land-cap.jpg" alt="Land Cap — original 1995 scan" />
+              <figcaption>Original (1995)</figcaption>
+            </figure>
+            <figure class="apFig">
+              <img class="apImg" src="cards/357-Land-Cap.webp" alt="Land Cap — remaster" />
+              <figcaption>Remaster</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+
+      <h2>How ElderForge was born</h2>
+      <p>
+        ElderForge started as “just” a card remastering project. But once the entire block was rebuilt as a cohesive cube — with
+        missing pieces restored, rough edges smoothed, and the lore expanded into something you can actually <em>travel through</em> —
+        it felt natural to give the world a format that matches its scope.
       </p>
 
       <p>
-        Every card carries its own voice, but the project goes further: <strong>168 additional mythic rare cards</strong>
-        were designed to tie off loose ends the original printings only hinted at — legendary figures, pivotal events,
-        and locations that deserved to be more than a line of flavor text. In the ElderForge campaign, these mythics
-        aren’t “pack luck.” They’re earned as rewards for progression and achievements — story‑anchored power, delivered
-        at the moments it actually means something.
+        That’s the core of ElderForge: a campaign‑style tabletop experience where players act as adventurers on their way to
+        becoming planeswalkers. You explore Terisiare, follow rumors, uncover hidden places, and clash with rival mages and
+        dangerous creatures through fast, mini Magic duels. Wins earn new cards as rewards. Treasure yields discoveries. Progress
+        is tangible.
+      </p>
+
+      <p>
+        All the while, you’re chasing the continent’s ultimate secret — something entombed deep inside the massive glaciers.
+        A secret that would force Dominaria’s history writers to tear up their neat little timelines and start over.
       </p>
 
       <p class="muted">
-        This is fan‑made, private‑playgroup craft work: obsessive, lore‑faithful, and built to be played — the kind of
-        project that exists because the world was worth preserving properly.
+        The campaign vibe is heavily inspired by the classic late‑90s MicroProse Shandalar game: roam, duel, grow stronger,
+        and let the world itself be the progression.
+      </p>
+
+      <!-- Comparison 3: text left, images right -->
+      <div class="apRow">
+        <div class="apText">
+          <h2>Elvish Ranger — characters that actually feel alive</h2>
+          <p>
+            Ice Age is packed with characters that were introduced in a single card and then… left hanging. The remaster approach
+            treats each one as a real person from a real place — not generic fantasy filler. Consistent art direction isn’t just
+            a style choice; it’s how you make the world feel continuous.
+          </p>
+          <p>
+            That same impulse is why the project includes <strong>168 additional mythic rare cards</strong>: legendary figures, events,
+            and locations the original printings hinted at, now designed and inserted as mythic “story anchors.” In the ElderForge
+            campaign, they don’t show up as random pack luck — they arrive as earned rewards at the moments where they actually
+            mean something.
+          </p>
+        </div>
+
+        <div class="apMedia" aria-label="Elvish Ranger comparison">
+          <div class="apPair">
+            <figure class="apFig">
+              <img class="apImg" src="assets/images/all-88a-elvish-ranger.jpg" alt="Elvish Ranger — original 1995 scan" />
+              <figcaption>Original (1995)</figcaption>
+            </figure>
+            <figure class="apFig">
+              <img class="apImg" src="cards/471-Elvish-Ranger.webp" alt="Elvish Ranger — remaster" />
+              <figcaption>Remaster</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+
+      <p class="muted">
+        This is fan‑made, private‑playgroup craft work: obsessive, lore‑faithful, and designed to be played — the kind of project
+        that exists because the world was worth preserving properly.
       </p>
 
     </section>
