@@ -572,7 +572,7 @@ body{
   --blkGlowA: rgba(220,165,95,0.16);
   --blkGlowB: rgba(120,70,25,0.10);
   --blkLabel: rgba(245,210,150,0.95);
-  --blkText: rgba(255,200,105,0.93);
+  --blkText: rgba(255,210,130,0.93);
 
 }
 .modalPanel .flavorBlock .blockBody{
@@ -585,7 +585,7 @@ body{
   --blkGlowA: rgba(220,120,135,0.14);
   --blkGlowB: rgba(90,28,36,0.10);
   --blkLabel: rgba(255,195,205,0.95);
-  --blkText: rgba(255,150,110,0.93);
+  --blkText: rgba(255,75,75,0.93);
 
 }
 .modalPanel .loreBlock .blockBody{ color: var(--blkText, rgba(245,232,236,0.93)); }
@@ -1526,4 +1526,32 @@ body{
   .grid{ grid-template-columns: repeat(auto-fill, minmax(135px, 1fr)); }
   .modalTitle{ font-size: 20px; }
   .modalCard{ max-height: 38vh; }
+}
+/* ==========================================================
+   FIX: Desktop control widths + Mobile dropdown offscreen
+   Paste this at the VERY END of styles.css
+   ========================================================== */
+
+/* Desktop (home): keep Type/Rarity 25% narrower, and tame Search width */
+.home #typeBtn,
+.home #rarityBtn{
+  min-width: 120px;
+}
+.home .searchWrap{
+  flex: 0 1 clamp(220px, 26vw, 360px);
+}
+
+/* Mobile: force dropdown menus (including Guide) to stay on-screen */
+@media (max-width: 720px){
+  .ddMenu{
+    position: fixed;
+    left: 12px;
+    right: 12px;
+    width: auto;
+    top: 122px; /* adjust if it overlaps your top bar */
+    max-height: calc(100vh - 148px);
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    z-index: 300;
+  }
 }
