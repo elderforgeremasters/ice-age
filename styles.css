@@ -1,4 +1,5 @@
 /* ElderForge — Ice Age | styles.css (full) */
+@import url("https://fonts.googleapis.com/css2?family=Saira:wght@300;400;500;600;700&display=swap");
 :root{
   --font-ui: "Saira", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   --font-magic: "Saira", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -135,7 +136,7 @@ body{
   display:flex;
   align-items:center;
   gap:8px;
-  flex: 0 1 clamp(180px, 22.5vw, 345px);
+  flex: 0 1 clamp(240px, 30vw, 460px);
   min-width: 0;
 }
 
@@ -205,10 +206,6 @@ body{
 }
 
 .ddSmall{ min-width: 110px; }
-
-/* Filter dropdowns: 25% narrower */
-#typeDD .ddBtn,
-#rarityDD .ddBtn{ min-width: 120px; }
 .btn:hover{ background: rgba(255,255,255,0.06); }
 
 .wrap{
@@ -602,10 +599,8 @@ body{
 
 /* planeswalker loyalty badge */
 .loy{
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 2px 10px 2px 9px;
+  display: inline-block;
+  padding: 2px 10px;
   margin-right: 8px;
   border-radius: 999px;
   font-weight: 800;
@@ -613,15 +608,7 @@ body{
   border: 1px solid rgba(255,255,255,0.18);
   background: rgba(255,255,255,0.10);
   box-shadow: 0 0 0 1px rgba(0,0,0,0.35) inset;
-  line-height: 1.1;
 }
-
-/* add the trailing colon consistently (JS omits it) */
-.loy::after{
-  content: ":";
-  opacity: 0.95;
-}
-
 .loyPlus{
   background: rgba(120, 210, 150, 0.18);
   border-color: rgba(160, 235, 185, 0.28);
@@ -629,30 +616,6 @@ body{
 .loyMinus{
   background: rgba(230, 120, 120, 0.14);
   border-color: rgba(255, 170, 170, 0.24);
-}
-
-/* arrow icon (triangle) */
-.loyPlus::before,
-.loyMinus::before{
-  content: "";
-  display: inline-block;
-  width: 0;
-  height: 0;
-  filter: drop-shadow(0 1px 0 rgba(0,0,0,0.35));
-}
-
-.loyPlus::before{
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
-  border-bottom: 10px solid rgba(175, 255, 205, 0.95);
-  margin-top: 1px;
-}
-
-.loyMinus::before{
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
-  border-top: 10px solid rgba(255, 170, 170, 0.95);
-  margin-bottom: 1px;
 }
 
 /* symbols */
@@ -1438,184 +1401,84 @@ body{
   }
 }
 
-/* ==========================================================
-   About the Project — image comparison sliders
-   ========================================================== */
-
-.compareGrid{
-  display:grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
-  margin: 22px 0 10px;
-}
-
-@media (max-width: 980px){
-  .compareGrid{ grid-template-columns: 1fr; }
-}
-
-.compareCard{
-  background: var(--panel);
-  border: 1px solid var(--stroke);
-  border-radius: 18px;
-  padding: 12px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.35);
-}
-
-.compareTitle{
-  display:flex;
-  align-items:baseline;
-  justify-content:space-between;
-  gap: 10px;
-  margin: 2px 4px 10px;
-  color: var(--muted);
-  font-size: 12.5px;
-}
-
-.imgCompare{
-  position: relative;
-  --pos: 50%;
-  width: 100%;
-  aspect-ratio: 5 / 7;
-  border-radius: 14px;
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(0,0,0,0.35);
-  overflow: hidden;
-}
-
-.imgCompare img{
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  user-select:none;
-  -webkit-user-drag:none;
-  pointer-events:none;
-}
-
-.imgCompareTop{
-  clip-path: inset(0 calc(100% - var(--pos)) 0 0);
-  will-change: clip-path;
-}
-
-.imgCompareOverlay{
-  position:absolute;
-  inset:0;
-  width:50%;
-  overflow:hidden;
-}
-
-.imgCompareDivider{
-  position:absolute;
-  top:0; bottom:0;
-  left: var(--pos);
-  width: 2px;
-  background: rgba(255,255,255,0.55);
-  box-shadow: 0 0 0 1px rgba(0,0,0,0.55), 0 0 18px rgba(255,255,255,0.18);
-  pointer-events:none;
-}
-
-.imgCompareKnob{
-  position:absolute;
-  top:50%;
-  left: var(--pos);
-  transform: translate(-50%,-50%);
-  width: 22px;
-  height: 22px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.14);
-  border: 1px solid rgba(255,255,255,0.30);
-  box-shadow: 0 10px 26px rgba(0,0,0,0.55);
-  pointer-events:none;
-}
-
-.imgCompareKnob::before{
-  content:"";
-  position:absolute;
-  inset: 6px 10px;
-  border-left: 2px solid rgba(255,255,255,0.55);
-  border-right: 2px solid rgba(255,255,255,0.55);
-  opacity: 0.85;
-}
-
-.imgCompareSlider{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  opacity:0;
-  cursor: ew-resize;
-}
-
-.compareCaption{
-  margin: 10px 4px 2px;
-  color: var(--muted);
-  font-size: 12.5px;
-  line-height: 1.35;
-}
-
-/* ==========================================================
-   About the Project — side-by-side comparisons (no sliders)
-   ========================================================== */
-
-.apRow{
-  display: flex;
-  gap: 26px;
-  align-items: flex-start;
-  margin: 22px 0 18px;
-}
-
-.apRow.apFlip{
-  flex-direction: row-reverse;
-}
-
-.apText{
-  flex: 1 1 0;
-  min-width: 0;
-}
-
-.apMedia{
-  flex: 0 0 min(520px, 48%);
-  min-width: 280px;
-}
-
-.apPair{
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-}
-
-.apFig{
-  margin: 0;
-}
-
-.apImg{
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 18px;
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(255,255,255,0.02);
-  box-shadow: 0 18px 55px rgba(0,0,0,0.45);
-}
-
-.apFig figcaption{
-  margin-top: 8px;
-  text-align: center;
-  color: var(--muted);
-  font-size: 12.5px;
-}
-
-@media (max-width: 980px){
-  .apRow{
-    flex-direction: column;
+/* ===== Mobile-only overrides (added) ===== */
+@media (max-width: 720px){
+  /* Header becomes a tidy 2-row layout */
+  .topbar{
+    padding: 12px 12px;
+    gap: 10px;
+    align-items: flex-start;
   }
-  .apRow.apFlip{
-    flex-direction: column;
-  }
-  .apMedia{
-    flex: 0 0 auto;
+
+  .brand .title{ font-size: 22px; }
+  .brand .subtitle{ font-size: 13px; }
+
+  .home .controls{
     width: 100%;
-    min-width: 0;
+    justify-content: flex-start;
+    padding-right: 0;
+    flex-wrap: wrap;
+    gap: 8px;
   }
+
+  .home .searchWrap{ flex: 1 1 100%; }
+  .home .search{ height: 44px; font-size: 16px; }
+
+  /* Prevent iOS auto-zoom on focus by keeping interactive text >= 16px */
+  .ddBtn{ height: 44px; font-size: 16px; }
+  .navBtn{ height: 44px; font-size: 16px; }
+
+  /* Type + Rarity sit side-by-side, full-width buttons */
+  .home .controls > .dropdown{ flex: 1 1 calc(50% - 6px); }
+  .home .controls > .dropdown .ddBtn{ width: 100%; min-width: 0; }
+
+  /* Guide sits on its own row, aligned right */
+  .home .nav{
+    width: 100%;
+    margin-left: 0;
+    justify-content: flex-end;
+  }
+
+  /* Dropdown menus: keep inside viewport + make scrollable */
+  .ddMenu{
+    width: min(280px, calc(100vw - 24px));
+    max-height: 60vh;
+    overflow: auto;
+  }
+
+  /* Grid tighter on phones */
+  .wrap{ padding: 12px; }
+  .grid{ grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+  .card{ padding: 7px; }
+  .cardName{ font-size: 15px; }
+
+  /* Status line reads like a left-aligned label on mobile */
+  .status{ text-align: left; padding-left: 17px; }
+
+  /* Modal: full-screen friendly */
+  .modalPanel{
+    width: 100vw;
+    max-height: 100vh;
+    border-radius: 0;
+  }
+  .modalBody{ padding: 12px; gap: 12px; }
+  .modalTitle{ font-size: 24px; }
+  .modalMeta{ font-size: 13px; }
+  .modalClose,
+  .modalNavBtn{ width: 44px; height: 44px; border-radius: 16px; }
+  .modalNav{ top: 8px; right: 74px; }
+  .modalClose{ top: 8px; right: 10px; }
+  .modalCard{ max-height: 52vh; }
+
+  /* Modal rails/icons compress slightly for narrow widths */
+  .modalPanel .block{ padding-left: 46px; }
+  .modalPanel .block::before{ left: 24px; }
+  .modalPanel .blockIcon{ left: 8px; width: 22px; height: 22px; }
+}
+
+@media (max-width: 420px){
+  .brand .title{ font-size: 20px; }
+  .ddBtn{ height: 44px; font-size: 15px; }
+  .modalTitle{ font-size: 22px; }
+  .grid{ grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
 }
