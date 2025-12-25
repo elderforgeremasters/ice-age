@@ -1721,7 +1721,7 @@ body{
 }
 /* Make all loyalty rectangles equal width + centered content */
 .modalPanel .loy{
-  min-width: 72px;          /* tweak: 56–72 usually feels right */
+  min-width: 64px;          /* tweak: 56–72 usually feels right */
   justify-content: center;  /* center arrow + text inside */
 }
 /* Tighten planeswalker loyalty rectangles so stacked ones don't touch */
