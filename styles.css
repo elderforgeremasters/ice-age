@@ -1662,3 +1662,65 @@ body{
 /* optional: subtle tint on the text itself */
 .loyPlus{ color: rgba(220, 255, 235, 0.95); }
 .loyMinus{ color: rgba(255, 225, 225, 0.95); }
+
+/* === Popup planeswalker loyalty: RECTANGLE badge (not pill) === */
+/* Safe: scoped to popup only */
+.modalPanel .loy{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 4px 10px;
+  margin-right: 10px;
+
+  border-radius: 4px;                 /* rectangle corners */
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.04);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.10),
+    0 8px 22px rgba(0,0,0,0.35);
+
+  font-weight: 850;
+  letter-spacing: 0.2px;
+}
+
+/* Arrow triangles */
+.modalPanel .loy::before{
+  content: "";
+  width: 0;
+  height: 0;
+  display: inline-block;
+  transform: translateY(-1px);
+}
+
+/* Plus: green rectangle tint + up arrow */
+.modalPanel .loyPlus{
+  color: rgba(230,255,240,0.95);
+  border-color: rgba(140, 235, 175, 0.26);
+  background: linear-gradient(180deg, rgba(140,235,175,0.12), rgba(140,235,175,0.04));
+}
+.modalPanel .loyPlus::before{
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 10px solid rgba(140,235,175,0.95);
+  filter: drop-shadow(0 1px 0 rgba(0,0,0,0.55)) drop-shadow(0 0 6px rgba(120,255,170,0.18));
+}
+
+/* Minus: red rectangle tint + down arrow */
+.modalPanel .loyMinus{
+  color: rgba(255,235,235,0.95);
+  border-color: rgba(255,155,155,0.24);
+  background: linear-gradient(180deg, rgba(255,155,155,0.11), rgba(255,155,155,0.04));
+}
+.modalPanel .loyMinus::before{
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 10px solid rgba(255,155,155,0.92);
+  filter: drop-shadow(0 1px 0 rgba(0,0,0,0.55)) drop-shadow(0 0 6px rgba(255,140,140,0.16));
+}
+/* Make all loyalty rectangles equal width + centered content */
+.modalPanel .loy{
+  min-width: 56px;          /* tweak: 56–72 usually feels right */
+  justify-content: center;  /* center arrow + text inside */
+}
