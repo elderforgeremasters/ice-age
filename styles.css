@@ -572,7 +572,7 @@ body{
   --blkGlowA: rgba(220,165,95,0.16);
   --blkGlowB: rgba(120,70,25,0.10);
   --blkLabel: rgba(245,210,150,0.95);
-  --blkText: rgba(255,216,150,0.93);
+  --blkText: rgba(255,210,130,0.93);
 
 }
 .modalPanel .flavorBlock .blockBody{
@@ -585,7 +585,7 @@ body{
   --blkGlowA: rgba(220,120,135,0.14);
   --blkGlowB: rgba(90,28,36,0.10);
   --blkLabel: rgba(255,195,205,0.95);
-  --blkText: rgba(255,200,210,0.93);
+  --blkText: rgba(255,175,190,0.93);
 
 }
 .modalPanel .loreBlock .blockBody{ color: var(--blkText, rgba(245,232,236,0.93)); }
@@ -597,65 +597,25 @@ body{
 .loreLead{ color: rgba(255,185,195,0.95); }
 .artLead{ color: rgba(210,222,240,0.95); }
 
-/* planeswalker loyalty (arrows + +/- number — no pill) */
+/* planeswalker loyalty badge */
 .loy{
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
+  display: inline-block;
+  padding: 2px 10px;
   margin-right: 8px;
-  font-weight: 900;
-  letter-spacing: 0.25px;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  box-shadow: none;
-  white-space: nowrap;
+  border-radius: 999px;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.10);
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.35) inset;
 }
-
-.loy::after{
-  content: ":";
-  margin-left: 2px;
-  opacity: 0.95;
-}
-
-/* arrow icons */
-.loyPlus::before,
-.loyMinus::before{
-  content:"";
-  width: 0;
-  height: 0;
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
-  transform: translateY(1px);
-  filter:
-    drop-shadow(0 1px 0 rgba(0,0,0,0.75))
-    drop-shadow(0 0 10px rgba(255,255,255,0.06));
-}
-
 .loyPlus{
-  color: rgba(170,255,210,0.92);
-  text-shadow:
-    0 1px 0 rgba(0,0,0,0.80),
-    0 0 12px rgba(80,220,150,0.35);
+  background: rgba(120, 210, 150, 0.18);
+  border-color: rgba(160, 235, 185, 0.28);
 }
-.loyPlus::before{
-  border-bottom: 10px solid rgba(120,235,175,0.92);
-  filter:
-    drop-shadow(0 1px 0 rgba(0,0,0,0.75))
-    drop-shadow(0 0 14px rgba(90,255,170,0.28));
-}
-
 .loyMinus{
-  color: rgba(255,175,175,0.90);
-  text-shadow:
-    0 1px 0 rgba(0,0,0,0.80),
-    0 0 12px rgba(255,110,110,0.28);
-}
-.loyMinus::before{
-  border-top: 10px solid rgba(255,135,135,0.90);
-  filter:
-    drop-shadow(0 1px 0 rgba(0,0,0,0.75))
-    drop-shadow(0 0 14px rgba(255,115,115,0.24));
+  background: rgba(230, 120, 120, 0.14);
+  border-color: rgba(255, 170, 170, 0.24);
 }
 
 /* symbols */
@@ -1412,7 +1372,10 @@ body{
 }
 .readCardArt{
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
+  gap: 14px;
+  align-items: flex-end;
+  justify-content: flex-start;
   padding-top: 6px;
 }
 .readCardImg{
@@ -1436,4 +1399,219 @@ body{
   .readCardImg{
     max-width: 360px;
   }
+}
+
+
+
+/* ==========================================================
+   Mobile-first tweaks (PHONE ONLY)
+   These rules ONLY apply on small screens and do NOT change desktop.
+   ========================================================== */
+
+@media (max-width: 720px){
+
+  /* Top bar: prevent overflow and keep controls tappable */
+  .topbar{
+    padding: 12px 12px;
+    gap: 10px;
+  }
+  .brand{ flex: 1 1 100%; min-width: 0; }
+  .brand .title{ font-size: 22px; }
+  .brand .subtitle{ font-size: 13px; }
+
+  .controls{
+    flex: 1 1 100%;
+    justify-content: flex-start;
+    padding-right: 0;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* Search + filters: wrap neatly instead of squishing */
+  .searchWrap{
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+  #q{
+    height: 42px;
+    font-size: 16px;
+  }
+  .ddBtn{
+    min-width: 0;
+    flex: 1 1 calc(50% - 5px);
+  }
+  .ddMenu{
+    max-height: 52vh;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Grid: tighter cards, more columns */
+  .grid{
+    grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
+    gap: 10px;
+  }
+  .card{
+    padding: 6px;
+    gap: 8px;
+  }
+
+  /* Modal: make it usable on phones (no overlay on art; scrollable text) */
+  .modal.open{
+    align-items: stretch;
+    justify-content: stretch;
+  }
+  .modalPanel{
+    width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
+    border-radius: 0;
+  }
+
+  /* Reserve room for Close + Prev/Next so they don't sit on top of the art */
+  .modalBody{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 62px 14px 14px 14px;
+    gap: 12px;
+    overflow: hidden; /* scrolling happens in .modalRight */
+  }
+
+  .modalClose{
+    position: fixed;
+    top: 10px;
+    right: 12px;
+    z-index: 120;
+  }
+  .modalNav{
+    position: fixed;
+    top: 10px;
+    right: 62px;
+    z-index: 120;
+  }
+
+  .modalLeft{
+    justify-content: center;
+  }
+  .modalCard{
+    width: auto;
+    max-width: min(92vw, 420px);
+    max-height: 42vh;
+  }
+
+  .modalRight{
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-right: 4px;
+  }
+
+  .modalTitle{
+    font-size: 22px;
+  }
+
+  /* Reduce left padding inside blocks so rails don't eat the whole width */
+  .modalPanel .block{
+    padding-left: 44px; /* was 58px */
+  }
+  .modalPanel .block::before{
+    left: 20px; /* rail closer to edge */
+  }
+}
+
+@media (max-width: 420px){
+  .ddBtn{ flex-basis: 100%; }
+  .grid{ grid-template-columns: repeat(auto-fill, minmax(135px, 1fr)); }
+  .modalTitle{ font-size: 20px; }
+  .modalCard{ max-height: 38vh; }
+}
+/* ==========================================================
+   FIX: Desktop control widths + Mobile dropdown offscreen
+   Paste this at the VERY END of styles.css
+   ========================================================== */
+
+/* Desktop (home): keep Type/Rarity 25% narrower, and tame Search width */
+.home #typeBtn,
+.home #rarityBtn{
+  min-width: 120px;
+}
+.home .searchWrap{
+  flex: 0 1 clamp(220px, 26vw, 360px);
+}
+
+/* Mobile: force dropdown menus (including Guide) to stay on-screen */
+@media (max-width: 720px){
+  .ddMenu{
+    position: fixed;
+    left: 12px;
+    right: 12px;
+    width: auto;
+    top: 122px; /* adjust if it overlaps your top bar */
+    max-height: calc(100vh - 148px);
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    z-index: 300;
+  }
+}
+/* ==========================================================
+   ABOUT THE PROJECT: image comparison layout
+   (Re-added because a previous full-file CSS replace likely removed it.)
+   Only affects about-project.html because it uses .ap* classes.
+   ========================================================== */
+
+.apRow{
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 540px;
+  gap: 34px;
+  align-items: start;
+  margin: 26px 0 36px;
+}
+
+.apRow.apFlip{
+  grid-template-columns: 540px minmax(0, 1fr);
+}
+
+.apRow.apFlip .apText{ order: 2; }
+.apRow.apFlip .apMedia{ order: 1; }
+
+.apMedia{ padding-top: 6px; }
+
+.apPair{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  justify-items: center;
+}
+
+.apFig{ margin: 0; }
+
+.apImg{
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.02);
+  box-shadow: 0 18px 55px rgba(0,0,0,0.45);
+}
+
+.apFig figcaption{
+  margin-top: 10px;
+  font-size: 13px;
+  color: rgba(233,238,247,0.70);
+}
+
+@media (max-width: 980px){
+  .apRow,
+  .apRow.apFlip{ grid-template-columns: 1fr; }
+  .apRow.apFlip .apText,
+  .apRow.apFlip .apMedia{ order: unset; }
+  .apPair{ grid-template-columns: 1fr; }
+  .apImg{ max-width: 360px; }
+}
+/* About the Project — Example 3: nudge the card images down by 10px */
+.pagePanel > .apRow:nth-of-type(3) .apMedia{
+  padding-top: 36px; /* was 6px; +10px = 16px */
 }

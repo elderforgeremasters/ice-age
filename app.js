@@ -218,16 +218,144 @@ function richText(str){
   // Bold anything wrapped in backticks: `Vigilance` -> <strong>Vigilance</strong>
   s = s.replace(/`([^`]+)`/g, "<strong>$1</strong>");
 
-  // Planeswalker loyalty costs: style "+1:" / "−2:" / "-X:" at line starts.
+  // Planeswalker loyalty costs: make "+1:" / "-2:" / "-X:" stand out at line starts.
   // Supports ASCII "-" and Unicode minus "−" (U+2212). Also matches literal <br> tags in source text.
   const LOY_RE = /(^|\n|\r|<br\s*\/?>)\s*([+\-−](?:\d+|X)):/gi;
   s = s.replace(LOY_RE, (m, pre, num) => {
-    const n = String(num).toUpperCase().trim(); // keep sign
-    const sign = n[0];
+    const n = String(num).toUpperCase();
+    const sign = n.trim()[0];
     const cls = (sign === "+") ? "loy loyPlus" : "loy loyMinus";
-    return `${pre}<span class="${cls}">${n}</span>`;
+    const body = n.slice(1); // strip sign; ":" is added via CSS
+    return `${pre}<span class="${cls}">${body}</span>`;
   });
 
+  // Replace {Anything} with its icon (mana, keyword, etc.)
+  s = s.replace(/\{([^}]+)\}/g, (m, tok) => iconIMGFromTok(tok));
+
+  // Add a little breathing room between adjacent keyword chunks (when the source had no spaces)
+  s = s.replace(/<\/strong>(?=<img class="sym")/g, "</strong>&nbsp;&nbsp;");
+
+  // Preserve line breaks from JSON (\n becomes actual newline after JSON.parse)
+  s = s.replace(/\r?\n/g, "<br>");
+
+  return s;
+}
+
+// Only used for Rules / Flavor rendering (keeps other fields untouched)
+function sanitizeRulesFlavorText(str){
+  if(str == null) return "";
+  let s = String(str);
+
+  // Remove custom break tokens that shouldn't appear in the UI
+  s = s.replaceAll("{BL}", "").replaceAll("{BL2}", "");
+
+  // Strip print-centering whitespace used in exported text (web should not render it)
+  // U+2007 figure space, U+200A hair space, U+2009 thin space, U+202F narrow no-break, U+00A0 nbsp
+  s = s.replace(/[\u00A0\u2000-\u200B\u202F\u205F\u3000]/g, "");
+  s = s.replaceAll("&hairsp;", "");
+
+  // Change {Tn} tokens to {Ts}
+  s = s.replaceAll("{Tn}", "{Ts}");
+
+  return s;
+}
+
+// Lore display sanitizer: same as rules/flavor, plus tighter em-dash typography
+function sanitizeLoreText(str){
+  if(str == null) return "";
+  let s = sanitizeRulesFlavorText(str);
+  s = s.replace(/\s*—\s*/g, "—");
+  return s;
+}
+
+// ---- sorting (by filename prefix) ----
+function sortKeyFromImage(imagePath){
+  const base = String(imagePath || "").split("/").pop() || "";
+  // 001-Name.webp
+  let m = base.match(/^(\d{3})-/);
+  if(m) return 0 * 1_000_000 + parseInt(m[1],10);
+
+  // L01-Plains1.webp
+  m = base.match(/^L(\d+)-/i);
+  if(m) return 1_000_000 + parseInt(m[1],10);
+
+  // T1-Token.webp
+  m = base.match(/^T(\d+)-/i);
+  if(m) return 2_000_000 + parseInt(m[1],10);
+
+  // fallback: by name
+  return 9_000_000 + base.toLowerCase().charCodeAt(0);
+}
+
+// ---- UI state ----
+let ALL_CARDS = [];
+let FILTERED = [];
+
+
+// ------------------------------
+// Content warnings (blur specific arts until clicked)
+// ------------------------------
+const CW_COLLECTORS = new Set([
+  "4","51A","64A","119","184","208A","260","260A","260B","260C","292","401","471A","483A","494","494A","511A","542"
+]);
+
+// Session-only reveal (no persistence)
+const CW_REVEALED = new Set();
+
+function collectorKey(card){
+  const raw = cleanCollector(card?.collector || "").trim();
+
+  // Many cards use "N/697" while some special sheets use "N/60" etc.
+  // Only collapse to the left side when the denominator is 697; otherwise keep the full string.
+  if(raw.includes("/")){
+    const [left, right] = raw.split("/", 2).map(s => (s || "").trim());
+    return (right === "697") ? left : raw;
+  }
+  return raw;
+}
+
+function cardNumber(card){
+  // Prefer numeric `num` field; otherwise parse leading digits from collector like "718\697" or "51A\697"
+  const n = Number(card?.num);
+  if(Number.isFinite(n) && n > 0) return n;
+
+  const raw = cleanCollector(card?.collector || "");
+  const first = (raw.split("/")[0] || "").trim();
+  const dm = first.match(/^(\d+)/);
+  return dm ? parseInt(dm[1], 10) : 0;
+}
+
+function isNewCard(card){
+  return cardNumber(card) >= 698;
+}
+
+
+function isContentWarn(card){
+  return CW_COLLECTORS.has(collectorKey(card));
+}
+
+function isRevealed(card){
+  return CW_REVEALED.has(collectorKey(card));
+}
+
+function revealCard(card){
+  if(!card) return;
+  CW_REVEALED.add(collectorKey(card));
+}
+
+let CURRENT_INDEX = -1;
+
+function findFilteredIndex(card){
+  if(!card) return -1;
+  const tgtImage = String(card.image || "");
+  const tgtCol = cleanCollector(card.collector || "");
+  const tgtName = String(card.name || "");
+
+  return FILTERED.findIndex(c =>
+    c === card ||
+    (tgtImage && String(c.image || "") === tgtImage) ||
+    (tgtCol && cleanCollector(c.collector || "") === tgtCol && String(c.name || "") === tgtName)
+  );
 }
 
 function gotoFilteredIndex(i){
