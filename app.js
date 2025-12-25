@@ -217,15 +217,18 @@ function richText(str){
 
   // Bold anything wrapped in backticks: `Vigilance` -> <strong>Vigilance</strong>
   s = s.replace(/`([^`]+)`/g, "<strong>$1</strong>");
+
   // Planeswalker loyalty costs: make "+1:" / "-2:" / "-X:" stand out at line starts.
   // Supports ASCII "-" and Unicode minus "−" (U+2212). Also matches literal <br> tags in source text.
   const LOY_RE = /(^|\n|\r|<br\s*\/?>)\s*([+\-−](?:\d+|X)):/gi;
   s = s.replace(LOY_RE, (m, pre, num) => {
-    const n = String(num).toUpperCase(); // keep sign: +2, −7, -X
+    const n = String(num).toUpperCase();
     const sign = n.trim()[0];
     const cls = (sign === "+") ? "loy loyPlus" : "loy loyMinus";
-    return `${pre}<span class="${cls}">${n}:</span>`;
+    const body = n.slice(1); // strip sign; ":" is added via CSS
+    return `${pre}<span class="${cls}">${body}</span>`;
   });
+
   // Replace {Anything} with its icon (mana, keyword, etc.)
   s = s.replace(/\{([^}]+)\}/g, (m, tok) => iconIMGFromTok(tok));
 
