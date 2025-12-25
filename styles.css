@@ -1615,3 +1615,50 @@ body{
 .pagePanel > .apRow:nth-of-type(3) .apMedia{
   padding-top: 36px; /* was 6px; +10px = 16px */
 }
+/* === Planeswalker loyalty: ▲ +1: and ▼ −2: (no pill) === */
+/* Paste at the very END of styles.css so it overrides earlier .loy rules */
+
+.loy{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  margin-right: 10px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  font-weight: 850;
+  letter-spacing: 0.2px;
+}
+
+/* fixed-size arrow icon */
+.loy::before{
+  content: "";
+  display: inline-block;
+  width: 0;
+  height: 0;
+  transform: translateY(-1px);
+}
+
+/* Up arrow for + abilities */
+.loyPlus::before{
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-bottom: 11px solid rgba(140, 235, 175, 0.95);
+  filter: drop-shadow(0 1px 0 rgba(0,0,0,0.55))
+          drop-shadow(0 0 6px rgba(120, 255, 170, 0.22));
+}
+
+/* Down arrow for - abilities */
+.loyMinus::before{
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 11px solid rgba(255, 155, 155, 0.92);
+  filter: drop-shadow(0 1px 0 rgba(0,0,0,0.55))
+          drop-shadow(0 0 6px rgba(255, 140, 140, 0.20));
+}
+
+/* optional: subtle tint on the text itself */
+.loyPlus{ color: rgba(220, 255, 235, 0.95); }
+.loyMinus{ color: rgba(255, 225, 225, 0.95); }
