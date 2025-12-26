@@ -96,37 +96,6 @@
   height: 18px;
   vertical-align: -3px;
 }
-
-/* --- Resolver subtable (nested under the most common pattern) --- */
-.resolverSubRow td{
-  background: rgba(95,140,255,0.10);
-}
-
-.resolverSubTableWrap{
-  border: 1px solid rgba(95,140,255,0.28);
-  background: rgba(0,0,0,0.14);
-  padding: 12px;
-  border-radius: 12px;
-}
-
-.resolverSubTitle{
-  font-weight: 800;
-  margin: 0 0 8px 0;
-  opacity: 0.95;
-}
-
-.diceDrawTable.resolverSubTable{
-  margin: 10px 0 0 0;
-  font-size: 17px;
-}
-
-.resolverNoteInline{
-  margin-top: 8px;
-  font-size: 16px;
-  opacity: 0.92;
-  text-align: left;
-}
-
 </style></head>
 <body class="guidePage basicRulesPage">
 <header class="topbar">
@@ -232,46 +201,255 @@
 </aside>
 </div>
 <h2>Casual ElderForge Game Setup</h2>
-<div class="setupBlock"><table class="setupTable"><thead><tr><th>Step</th><th>Action</th></tr></thead><tbody><tr><td class="setupStepNum">1</td><td>Sort basic lands, i.e. Plains, Islands, Swamps, Mountains and Forests into 5 respective piles face-up.</td></tr><tr><td class="setupStepNum">2</td><td>Sort all regular cards into 6 respective piles based on their color, i.e. White, Blue, Black, Red, Green and Multicolor+Colorless pile, shuffled, face-down.</td></tr><tr><td class="setupStepNum">3</td><td>Sort all extra mythic cards into a saparate, shuffled, face-down pile.</td></tr><tr><td class="setupStepNum">4</td><td>Before the duel, each player rolls 6 color dice to determine which colors they're playing.</td></tr></tbody></table><div class="setupSubhead">Cards drawn from the dice roll</div><div class="tableWrap"><table class="diceDrawTable">
-<thead>
-<tr>
-<th>Unique colors rolled</th>
-<th>Cards drawn from each rolled color</th>
-<th>Colorless cards drawn</th>
-<th>Total cards drawn</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>2</td>
-<td>8 each</td>
-<td>4 (2 per color)</td>
-<td>20</td>
-</tr>
-<tr>
-<td>3</td>
-<td>6 each</td>
-<td>6 (2 per color)</td>
-<td>24</td>
-</tr>
-<tr>
-<td>4</td>
-<td>5 each</td>
-<td>8 (2 per color)</td>
-<td>28</td>
-</tr>
-<tr>
-<td>5</td>
-<td>4 each</td>
-<td>10 (2 per color)</td>
-<td>30</td>
-</tr>
-</tbody>
-</table></div><p class="diceDrawNote" style="margin-top: 10px;">
-<strong>Bonus rule (adds on top of the row above):</strong><br/>
-    If <strong>any die shows Colorless (<img class="manaIcon" src="assets/icons/C.png" alt="C">)</strong>, <strong>or</strong> you roll <strong>6-of-a-kind</strong>,
-    draw <strong>+8 Colorless</strong> cards.
-  </p><table class="setupTable"><thead><tr><th>Step</th><th>Action</th></tr></thead><tbody><tr><td class="setupStepNum">5</td><td>Each player shuffles their final deck (called library in-game) and draws 5 cards .</td></tr><tr><td class="setupStepNum">6</td><td>Set your life totals to 20 and decide who goes first (roll a die, coin flip, whoever lost last time, etc.).</td></tr></tbody></table></div>
+<div class="setupBlock"><table class="setupTable"><thead><tr><th>Step</th><th>Action</th></tr></thead><tbody><tr><td class="setupStepNum">1</td><td>Sort basic lands, i.e. Plains, Islands, Swamps, Mountains and Forests into 5 respective piles face-up.</td></tr><tr><td class="setupStepNum">2</td><td>Sort all regular cards into 6 respective piles based on their color, i.e. White, Blue, Black, Red, Green and Multicolor+Colorless pile, shuffled, face-down.</td></tr><tr><td class="setupStepNum">3</td><td>Sort all extra mythic cards into a saparate, shuffled, face-down pile.</td></tr><tr><td class="setupStepNum">4</td><td>Before the duel, each player rolls 6 color dice to determine which colors they're playing.</td></tr></tbody></table>
+<div class="setupSubhead">Color determination (6 dice) — quick reference</div>
+<p class="diceDrawNote" style="margin-top: 10px;">
+  Roll all <strong>6</strong> color dice. Your final deck (library) is built from the table below.
+  Every library recipe <strong>includes 2 random Mythic cards</strong>.
+  Basic lands are <strong>not</strong> in libraries in ElderForge — on any draw, you may draw a basic land instead of drawing from your library.
+</p>
+
+<div class="tableWrap">
+  <table class="diceDrawTable">
+    <thead>
+      <tr>
+        <th>Dice pattern</th>
+        <th>Chance</th>
+        <th>Colors you play</th>
+        <th>Library build (includes 2 Mythics)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>2-1-1-1-</strong><img class="manaIcon" src="assets/icons/C.png" alt="C"/></td>
+        <td><strong>15.4%</strong></td>
+        <td>Resolver (see table below)</td>
+        <td>Reroll the <img class="manaIcon" src="assets/icons/C.png" alt="C"/> die until it shows a non-<img class="manaIcon" src="assets/icons/C.png" alt="C"/> color, then use the resulting row.</td>
+      </tr>
+      <tr>
+        <td colspan="4"><div class="setupSubhead">Resolver outcomes for 2-1-1-1-<img class="manaIcon" src="assets/icons/C.png" alt="C"/></div>
+<div class="tableWrap">
+  <table class="diceDrawTable">
+    <thead>
+      <tr>
+        <th>When the rerolled die becomes…</th>
+        <th>Final chance</th>
+        <th>Final colors</th>
+        <th>Library build (includes 2 Mythics)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>the pair color → <strong>3-1-1-1</strong></td>
+        <td>3.1%</td>
+        <td>Mono</td>
+        <td><strong>22</strong> = 2 Mythics + 7 Colorless + 13×A</td>
+      </tr>
+      <tr>
+        <td>one of the singletons → <strong>2-2-1-1</strong></td>
+        <td>9.3%</td>
+        <td>Two colors (equal)</td>
+        <td><strong>25</strong> = 2 Mythics + 7 Colorless + 8×A + 8×B</td>
+      </tr>
+      <tr>
+        <td>the missing 5th color → <strong>2-1-1-1-1</strong></td>
+        <td>3.1%</td>
+        <td>Five colors (primary)</td>
+        <td><strong>32</strong> = 2 Mythics + 9 Colorless + 5×A + 4×B + 4×D + 4×E + 4×F</td>
+      </tr>
+    </tbody>
+  </table>
+</div></td>
+      </tr>
+
+
+      <tr>
+        <td><strong>2-2-1-1</strong></td>
+        <td>11.6%</td>
+        <td>Two colors (equal)</td>
+        <td><strong>24</strong> = 2 Mythics + 6 Colorless + 8×A + 8×B</td>
+      </tr>
+      <tr>
+        <td><strong>2-2-1-</strong><img class="manaIcon" src="assets/icons/C.png" alt="C"/></td>
+        <td>11.6%</td>
+        <td>Two colors (equal)</td>
+        <td><strong>24</strong> = 2 Mythics + 6 Colorless + 8×A + 8×B</td>
+      </tr>
+      <tr>
+        <td><strong>2-1-1-</strong><img class="manaIcon" src="assets/icons/C.png" alt="C"/><strong>-</strong><img class="manaIcon" src="assets/icons/C.png" alt="C"/></td>
+        <td>11.6%</td>
+        <td>Three colors (primary)</td>
+        <td><strong>28</strong> = 2 Mythics + 7 Colorless + 7×A + 6×B + 6×D</td>
+      </tr>
+
+      <tr>
+        <td><strong>3-2-1</strong></td>
+        <td>7.7%</td>
+        <td>Mono</td>
+        <td><strong>20</strong> = 2 Mythics + 5 Colorless + 13×A</td>
+      </tr>
+      <tr>
+        <td><strong>3-1-1-</strong><img class="manaIcon" src="assets/icons/C.png" alt="C"/></td>
+        <td>7.7%</td>
+        <td>Mono</td>
+        <td><strong>20</strong> = 2 Mythics + 5 Colorless + 13×A</td>
+      </tr>
+
+      <tr>
+        <td><strong>3-1-1-1</strong></td>
+        <td>5.1%</td>
+        <td>Mono</td>
+        <td><strong>22</strong> = 2 Mythics + 6 Colorless + 14×A</td>
+      </tr>
+
+      <tr>
+        <td><strong>2-1-1-1-1</strong></td>
+        <td>3.9%</td>
+        <td>Five colors (primary)</td>
+        <td><strong>32</strong> = 2 Mythics + 9 Colorless + 5×A + 4×B + 4×D + 4×E + 4×F</td>
+      </tr>
+
+      <tr>
+        <td><strong>1-1-1-1-</strong><img class="manaIcon" src="assets/icons/C.png" alt="C"/><strong>-</strong><img class="manaIcon" src="assets/icons/C.png" alt="C"/><strong>*</strong></td>
+        <td>3.9%</td>
+        <td>Three colors (equal)</td>
+        <td><strong>27</strong> = 2 Mythics + 7 Colorless + 6×A + 6×B + 6×D
+<p class="diceDrawNote" style="margin-top: 10px;">
+  <strong>*1-1-1-1-</strong><img class="manaIcon" src="assets/icons/C.png" alt="C"/><strong>-</strong><img class="manaIcon" src="assets/icons/C.png" alt="C"/><strong> resolver:</strong> Reroll one <img class="manaIcon" src="assets/icons/C.png" alt="C"/> die until it shows one of the rolled colors. Remove that color. You play the remaining three colors.
+</p>
+</td>
+      </tr>
+
+      <tr>
+        <td><strong>3-2-</strong><img class="manaIcon" src="assets/icons/C.png" alt="C"/></td>
+        <td>2.6%</td>
+        <td>Mono</td>
+        <td><strong>22</strong> = 2 Mythics + 7 Colorless + 13×A</td>
+      </tr>
+      <tr>
+        <td><strong>3-1-</strong><img class="manaIcon" src="assets/icons/C.png" alt="C"/><strong>-</strong><img class="manaIcon" src="assets/icons/C.png" alt="C"/></td>
+        <td>2.6%</td>
+        <td>Mono</td>
+        <td><strong>22</strong> = 2 Mythics + 7 Colorless + 13×A</td>
+      </tr>
+      <tr>
+        <td><strong>2-1-</strong><img class="manaIcon" src="assets/icons/C.png" alt="C"/><strong>-</strong><img class="manaIcon" src="assets/icons/C.png" alt="C"/><strong>-</strong><img class="manaIcon" src="assets/icons/C.png" alt="C"/></td>
+        <td>2.6%</td>
+        <td>Two colors (primary)</td>
+        <td><strong>27</strong> = 2 Mythics + 8 Colorless + 9×A + 8×B</td>
+      </tr>
+      <tr>
+        <td><strong>1-1-1-</strong><img class="manaIcon" src="assets/icons/C.png" alt="C"/><strong>-</strong><img class="manaIcon" src="assets/icons/C.png" alt="C"/><strong>-</strong><img class="manaIcon" src="assets/icons/C.png" alt="C"/></td>
+        <td>2.6%</td>
+        <td>Three colors (equal)</td>
+        <td><strong>28</strong> = 2 Mythics + 8 Colorless + 6×A + 6×B + 6×D</td>
+      </tr>
+
+      <tr>
+        <td><strong>2-2-2</strong></td>
+        <td>1.9%</td>
+        <td>Three colors (equal)</td>
+        <td><strong>30</strong> = 2 Mythics + 10 Colorless + 6×A + 6×B + 6×D</td>
+      </tr>
+
+      <tr>
+        <td><strong>2-2-</strong><img class="manaIcon" src="assets/icons/C.png" alt="C"/><strong>-</strong><img class="manaIcon" src="assets/icons/C.png" alt="C"/></td>
+        <td>1.9%</td>
+        <td>Two colors (equal)</td>
+        <td><strong>30</strong> = 2 Mythics + 10 Colorless + 9×A + 9×B</td>
+      </tr>
+
+      <tr>
+        <td><strong>4-1-1</strong></td>
+        <td>1.9%</td>
+        <td>Mono</td>
+        <td><strong>24</strong> = 2 Mythics + 8 Colorless + 14×A</td>
+      </tr>
+
+      <tr>
+        <td><strong>1-1-1-1-1-</strong><img class="manaIcon" src="assets/icons/C.png" alt="C"/></td>
+        <td>1.5%</td>
+        <td>Five colors (equal)</td>
+        <td><strong>40</strong> = 2 Mythics + 13 Colorless + 5×A + 5×B + 5×D + 5×E + 5×F</td>
+      </tr>
+
+      <tr>
+        <td><strong>4-1-</strong><img class="manaIcon" src="assets/icons/C.png" alt="C"/></td>
+        <td>1.3%</td>
+        <td>Mono</td>
+        <td><strong>24</strong> = 2 Mythics + 9 Colorless + 13×A</td>
+      </tr>
+
+      <tr>
+        <td><strong>4-2</strong></td>
+        <td>0.6%</td>
+        <td>Mono</td>
+        <td><strong>24</strong> = 2 Mythics + 9 Colorless + 13×A</td>
+      </tr>
+
+      <tr>
+        <td><strong>1-1-</strong><img class="manaIcon" src="assets/icons/C.png" alt="C"/><strong>-</strong><img class="manaIcon" src="assets/icons/C.png" alt="C"/><strong>-</strong><img class="manaIcon" src="assets/icons/C.png" alt="C"/><strong>-</strong><img class="manaIcon" src="assets/icons/C.png" alt="C"/></td>
+        <td>0.6%</td>
+        <td>Two colors (equal)</td>
+        <td><strong>28</strong> = 2 Mythics + 10 Colorless + 8×A + 8×B</td>
+      </tr>
+
+      <tr>
+        <td><strong>3-3</strong></td>
+        <td>0.4%</td>
+        <td>Two colors (equal)</td>
+        <td><strong>28</strong> = 2 Mythics + 10 Colorless + 8×A + 8×B</td>
+      </tr>
+
+      <tr>
+        <td><strong>5-1</strong></td>
+        <td>0.3%</td>
+        <td>Mono</td>
+        <td><strong>26</strong> = 2 Mythics + 10 Colorless + 14×A</td>
+      </tr>
+
+      <tr>
+        <td><strong>3-</strong><img class="manaIcon" src="assets/icons/C.png" alt="C"/><strong>-</strong><img class="manaIcon" src="assets/icons/C.png" alt="C"/><strong>-</strong><img class="manaIcon" src="assets/icons/C.png" alt="C"/></td>
+        <td>0.2%</td>
+        <td>Mono</td>
+        <td><strong>26</strong> = 2 Mythics + 10 Colorless + 14×A</td>
+      </tr>
+      <tr>
+        <td><strong>4-</strong><img class="manaIcon" src="assets/icons/C.png" alt="C"/><strong>-</strong><img class="manaIcon" src="assets/icons/C.png" alt="C"/></td>
+        <td>0.2%</td>
+        <td>Mono</td>
+        <td><strong>26</strong> = 2 Mythics + 10 Colorless + 14×A</td>
+      </tr>
+      <tr>
+        <td><strong>2-</strong><img class="manaIcon" src="assets/icons/C.png" alt="C"/><strong>-</strong><img class="manaIcon" src="assets/icons/C.png" alt="C"/><strong>-</strong><img class="manaIcon" src="assets/icons/C.png" alt="C"/><strong>-</strong><img class="manaIcon" src="assets/icons/C.png" alt="C"/></td>
+        <td>0.2%</td>
+        <td>Mono</td>
+        <td><strong>26</strong> = 2 Mythics + 10 Colorless + 14×A</td>
+      </tr>
+
+      <tr>
+        <td><strong>5-</strong><img class="manaIcon" src="assets/icons/C.png" alt="C"/></td>
+        <td>0.06%</td>
+        <td>Mono</td>
+        <td><strong>28</strong> = 2 Mythics + 11 Colorless + 15×A</td>
+      </tr>
+      <tr>
+        <td><strong>1-</strong><img class="manaIcon" src="assets/icons/C.png" alt="C"/><strong>-</strong><img class="manaIcon" src="assets/icons/C.png" alt="C"/><strong>-</strong><img class="manaIcon" src="assets/icons/C.png" alt="C"/><strong>-</strong><img class="manaIcon" src="assets/icons/C.png" alt="C"/><strong>-</strong><img class="manaIcon" src="assets/icons/C.png" alt="C"/></td>
+        <td>0.06%</td>
+        <td>Mono</td>
+        <td><strong>28</strong> = 2 Mythics + 11 Colorless + 15×A</td>
+      </tr>
+
+      <tr>
+        <td><strong>6-of-a-kind</strong></td>
+        <td><strong>0.01%</strong></td>
+        <td><strong>Instant win</strong></td>
+        <td>Win the duel immediately (unless story-locked / boss duel).</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<table class="setupTable"><thead><tr><th>Step</th><th>Action</th></tr></thead><tbody><tr><td class="setupStepNum">5</td><td>Each player shuffles their final deck (called library in-game) and draws 5 cards .</td></tr><tr><td class="setupStepNum">6</td><td>Set your life totals to 20 and decide who goes first (roll a die, coin flip, whoever lost last time, etc.).</td></tr></tbody></table></div>
 <h2>Anatomy of a turn</h2>
 <ol>
 <li><strong>Untap</strong> — Untap your tapped cards.</li>
