@@ -117,7 +117,7 @@
 <p><strong>Remember:</strong> only one may forge their name in the ice.</p>
 
 <h2>What ElderForge is</h2>
-<p>ElderForge is a campaign mode played as a series of Magic duels. Instead of building one fixed deck, you assemble a duel library each match from packets, toolkits, and mythic slots. The world is explored by drawing and resolving tiles from two bags: a dangerous Journey bag and a safe Sanctuary bag.</p>
+<p>ElderForge is a campaign mode played as a series of Magic duels. Instead of building one fixed deck, you assemble a duel library each match from packs, toolkits, and mythic slots. The world is explored by drawing and resolving tiles from two bags: a dangerous Journey bag and a safe Sanctuary bag.</p>
 
 <h2>Core conventions</h2>
 <h3>Basic lands live outside libraries</h3>
@@ -126,29 +126,29 @@
 <h3>Zones that matter for campaign rewards</h3>
 <p>After a duel, only cards that were in play or in a graveyard count as eligible for capture rewards. Cards in exile and libraries are not eligible.</p>
 
-<h2>Starting pool and packets</h2>
+<h2>Starting pool and packs</h2>
 <h3>Starting pool</h3>
 <table class="setupTable">
   <thead><tr><th>Category</th><th>Contents</th></tr></thead>
   <tbody>
-    <tr><td>Each color</td><td>20 cards (8 Commons, 7 Uncommons, 5 Rares)</td></tr>
+    <tr><td>Each color</td><td>20 cards (9 Commons, 6 Uncommons, 5 Rares)</td></tr>
     <tr><td>Colorless pile</td><td>25 cards (artifacts + nonbasic lands + snow lands)</td></tr>
     <tr><td>Multicolor pile</td><td>10 cards</td></tr>
   </tbody>
 </table>
 
-<h3>Packet-based assembly</h3>
-<p>Each color has two fixed 10-card packets:</p>
+<h3>pack-based assembly</h3>
+<p>Each color has two fixed 10-card packs:</p>
 <table class="setupTable">
-  <thead><tr><th>Packet</th><th>Size</th><th>Notes</th></tr></thead>
+  <thead><tr><th>pack</th><th>Size</th><th>Notes</th></tr></thead>
   <tbody>
-    <tr><td>Core packet</td><td>10</td><td>Used for any time you play that color.</td></tr>
-    <tr><td>Identity packet</td><td>10</td><td>Added only when you are mono-color.</td></tr>
+    <tr><td>Core pack</td><td>10</td><td>Used for any time you play that color.</td></tr>
+    <tr><td>Identity pack</td><td>10</td><td>Added only when you are mono-color.</td></tr>
   </tbody>
 </table>
 
-<h3>Snow basics in packets</h3>
-<p>Snow basic lands must match the packet’s color (Snow-Covered Forest only in green packets, etc.). Each Core packet includes 1 matching snow basic by default, and each Identity packet includes 1 matching snow basic by default. Campaign progression can unlock a second matching snow basic slot per packet (Core and Identity each can go from 1 → 2).</p>
+<h3>Snow basics in packs</h3>
+d matching snow basic slot per pack (Core and Identity each can go from 1 → 2).</p>
 
 <h3>Relic Toolkits and the Confluence Prism Pack</h3>
 <table class="setupTable">
@@ -260,18 +260,18 @@
 
 
 <h2>Building your duel library</h2>
-<h3>Packet assembly</h3>
+<h3>pack assembly</h3>
 <table class="setupTable">
-  <thead><tr><th>Colors you play</th><th>Packets</th></tr></thead>
+  <thead><tr><th>Colors you play</th><th>packs</th></tr></thead>
   <tbody>
     <tr><td>Mono-color</td><td>Core + Identity for that color (20 cards)</td></tr>
-    <tr><td>Multi-color</td><td>Core packet for each color you play (10 each)</td></tr>
+    <tr><td>Multi-color</td><td>Core pack for each color you play (10 each)</td></tr>
   </tbody>
 </table>
 <p>Then add either Relic Toolkits (based on Null) or the Confluence Prism Pack (stable roll). Then add your Mythic Slots and shuffle.</p>
 
 <h3>Mythic Slots and piles</h3>
-<p>Mythic slots are separate from packets and are shuffled into every assembled duel library. Mythic slots can only be populated or changed at designated opportunity spots (Emberhold, Towns, Campfires), not before each duel.</p>
+<p>Mythic slots are separate from packs and are shuffled into every assembled duel library. Mythic slots can only be populated or changed at designated opportunity spots (Emberhold, Towns, Campfires), not before each duel.</p>
 <p>Mythic piles:</p>
 <table class="setupTable">
   <thead><tr><th>Pile</th><th>Contains</th></tr></thead>
@@ -319,7 +319,7 @@
   </tbody>
 </table>
 
-<p>On a duel loss: gain 1 Ascension, apply loss tokens as appropriate, return the failed tile to its bag, and replace its board position with a universal Fracture Tile drawn from outside all bags. Fracture Tiles have no additional rewards or effects beyond serving as the loss placeholder.</p>
+<p>On a duel loss: gain 1 Ascension and return the failed tile to its bag. Then take exactly one loss token based on the source of the final damage that killed you: <strong>Shockmark</strong> if a <strong>creature</strong> dealt the killing blow, or <strong>Stormlash</strong> if a <strong>noncreature source</strong> dealt the killing blow.</p>
 
 <h2>Duel rewards</h2>
 <h3>Card capture rule</h3>
@@ -331,7 +331,7 @@
   <thead><tr><th>#</th><th>Rare Feat condition</th></tr></thead>
   <tbody>
     <tr><td>1</td><td>Win with exactly 1 life remaining</td></tr>
-    <tr><td>2</td><td>Win with no creatures you control in play</td></tr>
+    <tr><td>2</td><td>Win with no creatures under your control</td></tr>
     <tr><td>3</td><td>Win with 0 cards in your library</td></tr>
     <tr><td>4</td><td>Win via alternate win condition</td></tr>
     <tr><td>5</td><td>Win by poisoning the opponent</td></tr>
@@ -393,7 +393,7 @@
     <tr><td>White</td><td>Kjeld; Glimmer Vale</td></tr>
     <tr><td>Blue</td><td>Soldev; School of the Unseen</td></tr>
     <tr><td>Black</td><td>Krov; The Black Spire</td></tr>
-    <tr><td>Red</td><td>Jornstad; Kher Keep</td></tr>
+    <tr><td>Red</td><td>Flarghold; Kher Keep</td></tr>
     <tr><td>Green</td><td>Kelsinko; Elbreth</td></tr>
   </tbody>
 </table>
@@ -514,7 +514,7 @@
     <tr><td>Kjeld</td><td>White</td><td>Crystalline Void</td><td>Glass Stalker</td><td>The Choirbreaker</td></tr>
     <tr><td>Soldev</td><td>Blue</td><td>Canyons of Bandu</td><td>Bandu Rift-Hunter</td><td>The Resonance Engineer</td></tr>
     <tr><td>Krov</td><td>Black</td><td>Argoth Island</td><td>Drowned Brinewraith</td><td>The Last Listener</td></tr>
-    <tr><td>Jornstad</td><td>Red</td><td>Valley of the Chimes</td><td>Carillon Sentry</td><td>Warden of the Chimes</td></tr>
+    <tr><td>Flarghold</td><td>Red</td><td>Valley of the Chimes</td><td>Carillon Sentry</td><td>Warden of the Chimes</td></tr>
     <tr><td>Kelsinko</td><td>Green</td><td>Sovereign’s Lantern</td><td>Lanternshade Prowler</td><td>The Lantern Sovereign</td></tr>
     <tr><td>Glimmer Vale</td><td>White</td><td>Glacial Chasm</td><td>Frostgorge Serpent</td><td>Rift-Oracle</td></tr>
     <tr><td>School of the Unseen</td><td>Blue</td><td>Shivering Chasm</td><td>Unseen Curriculum Specter</td><td>The Echo Scribe</td></tr>
