@@ -137,10 +137,10 @@
   </tbody>
 </table>
 
-<h3>pack-based assembly</h3>
+<h3>Pack-based assembly</h3>
 <p>Each color has two fixed 10-card packs:</p>
 <table class="setupTable">
-  <thead><tr><th>pack</th><th>Size</th><th>Notes</th></tr></thead>
+  <thead><tr><th>Pack</th><th>Size</th><th>Notes</th></tr></thead>
   <tbody>
     <tr><td>Core Pack</td><td>10</td><td>Used for any time you play that color.</td></tr>
     <tr><td>Identity Pack</td><td>10</td><td>Added only when you are mono-color.</td></tr>
@@ -148,13 +148,13 @@
 </table>
 
 <h3>Snow basics in packs</h3>
-d matching snow basic slot per pack (Core and Identity each can go from 1 → 2).</p>
-
+<p>Each Core Pack and Identity Pack can include up to two matching snow basic land slots. These slots start locked (empty). When a snow slot is unlocked, you may add the matching snow basic land to that pack during a Campfire Pack Upgrade.</p>
+<p>Snow slots are unlocked by effects such as <strong>Snowline Revelation</strong> (Mystery die) and <strong>Glacial Seal</strong> (Treasure die). Unlock order is always: Core first, then Identity.</p>
 <h3>Relic Toolkits and the Confluence Prism Pack</h3>
 <table class="setupTable">
   <thead><tr><th>Name</th><th>Size</th><th>When used</th></tr></thead>
   <tbody>
-    <tr><td>Relic Toolkit</td><td>5</td><td>Added based on Null results (up to 3 total Links/toolkits spent before a duel).</td></tr>
+    <tr><td>Relic Toolkit</td><td>5</td><td>Added based on Null results (max 3).</td></tr>
     <tr><td>Confluence Prism Pack</td><td>5</td><td>Added when Attunement is stable (0 Null results).</td></tr>
   </tbody>
 </table>
@@ -260,15 +260,15 @@ d matching snow basic slot per pack (Core and Identity each can go from 1 → 2)
 
 
 <h2>Building your duel library</h2>
-<h3>pack assembly</h3>
+<h3>Pack assembly</h3>
 <table class="setupTable">
-  <thead><tr><th>Colors you play</th><th>packs</th></tr></thead>
+  <thead><tr><th>Colors you play</th><th>Packs</th></tr></thead>
   <tbody>
     <tr><td>Mono-color</td><td>Core + Identity for that color (20 cards)</td></tr>
     <tr><td>Multi-color</td><td>Core Pack for each color you play (10 each)</td></tr>
   </tbody>
 </table>
-<p>Then add either Relic Toolkits (based on Null) or the Confluence Prism Pack (stable roll). Then add your Mythic Slots and shuffle.</p>
+<p>Then add either Relic Toolkits (based on Null) or the Confluence Prism Pack (stable roll). Then add your Mythic Slots and shuffle. Packs, Toolkits, the Prism Pack, and Mythic Slots can only be upgraded at Campfires.</p>
 
 <h3>Mythic Slots and piles</h3>
 <p>Mythic Slots are separate from Packs and are shuffled into every assembled duel library. Mythic Slots can only be populated or changed at <strong>Campfires</strong>.</p>
@@ -351,6 +351,9 @@ d matching snow basic slot per pack (Core and Identity each can go from 1 → 2)
 </table>
 
 <h2>Map system: Journey bag and Sanctuary bag</h2>
+<h3>The Emberhold (starting hex)</h3>
+<p>The campaign begins at <strong>The Emberhold</strong>, a double-size starting hex (two connected tile spaces). Place it on the table before any bag draws. All players begin on the Emberhold.</p>
+
 <h3>Journey bag (80 tiles)</h3>
 <table class="setupTable">
   <thead><tr><th>Tile type</th><th>Count</th></tr></thead>
@@ -364,6 +367,53 @@ d matching snow basic slot per pack (Core and Identity each can go from 1 → 2)
     <tr><td>Mystery tiles</td><td>10</td></tr>
   </tbody>
 </table>
+
+<h3>Generic foes (30)</h3>
+<p>Generic foes are the standard duels of the Journey bag. Each has a preset primary color and a <strong>Signature Eternal keyword token</strong>. Once each duel, when a creature enters play under that foe’s control, that player may put their Signature Eternal keyword token on that creature.</p>
+
+<p><strong>Generic foe secondary color / toolkit (Method 1):</strong> Roll 1 color die. If it matches the foe’s primary color, the foe is mono-color (20 cards). If it shows a different color, the foe is two-color (primary + rolled color, 10 cards each). If it shows <strong>Null</strong>, the foe gains 1 Relic Toolkit and you roll again for the secondary color; if the second roll is Null, the foe stays mono + toolkit; otherwise add the rolled color as secondary (if it matches primary, stay mono + toolkit).</p>
+
+<div class="tableWrap">
+<table class="setupTable">
+  <thead><tr><th>Color</th><th>Generic foe</th><th>Signature Eternal keyword token</th></tr></thead>
+  <tbody>
+    <tr><td>White</td><td>Cilantresh</td><td>Flying</td></tr>
+    <tr><td>White</td><td>Adarkar Crusader</td><td>Double strike</td></tr>
+    <tr><td>White</td><td>Kjeldoran Paladin</td><td>First strike</td></tr>
+    <tr><td>White</td><td>Mardun Priestess</td><td>Lifelink</td></tr>
+    <tr><td>White</td><td>Aurora Seer of Kher Ridges</td><td>Trample</td></tr>
+    <tr><td>White</td><td>High Priest of Koilos</td><td>Indestructible</td></tr>
+
+    <tr><td>Blue</td><td>Saltremtor</td><td>Flying</td></tr>
+    <tr><td>Blue</td><td>Mind Stealer</td><td>Menace</td></tr>
+    <tr><td>Blue</td><td>Unseen Illusionist</td><td>Hexproof</td></tr>
+    <tr><td>Blue</td><td>Thought Invoker</td><td>Vigilance</td></tr>
+    <tr><td>Blue</td><td>Sea Lord of Ilesemare</td><td>Trample</td></tr>
+    <tr><td>Blue</td><td>Astral Visionary</td><td>Reach</td></tr>
+
+    <tr><td>Black</td><td>Agagalneer</td><td>Flying</td></tr>
+    <tr><td>Black</td><td>Krovikan Succubus</td><td>Menace</td></tr>
+    <tr><td>Black</td><td>Soldevi Charmer</td><td>First strike</td></tr>
+    <tr><td>Black</td><td>Vampire Lord</td><td>Lifelink</td></tr>
+    <tr><td>Black</td><td>Grim Necromancer</td><td>Deathtouch</td></tr>
+    <tr><td>Black</td><td>Greater Lich</td><td>Indestructible</td></tr>
+
+    <tr><td>Red</td><td>Queltosh</td><td>Flying</td></tr>
+    <tr><td>Red</td><td>Balduvian Warlock</td><td>First strike</td></tr>
+    <tr><td>Red</td><td>Karplusan Elementalist</td><td>Vigilance</td></tr>
+    <tr><td>Red</td><td>Elite Thaumaturge</td><td>First strike</td></tr>
+    <tr><td>Red</td><td>Dragon Lord</td><td>Trample</td></tr>
+    <tr><td>Red</td><td>Kaeloran Berserker</td><td>Double strike</td></tr>
+
+    <tr><td>Green</td><td>Altakesh</td><td>Flying</td></tr>
+    <tr><td>Green</td><td>Fyndhorn Beastmaster</td><td>Reach</td></tr>
+    <tr><td>Green</td><td>Wildcaller of Yavimaya</td><td>Trample</td></tr>
+    <tr><td>Green</td><td>Thorncrown Lord</td><td>Trample</td></tr>
+    <tr><td>Green</td><td>Grand Summoner</td><td>Hexproof</td></tr>
+    <tr><td>Green</td><td>Sarrazan Mystic</td><td>Deathtouch</td></tr>
+  </tbody>
+</table>
+</div>
 <h3>Relic tile</h3>
 <p>Flip a coin. If you win the flip, gain 1 Mythic Card from the <strong>Reliquary</strong> pile. Otherwise, gain 1 card from the <strong>colorless</strong> pile.</p>
 
