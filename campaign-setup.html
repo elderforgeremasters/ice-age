@@ -311,16 +311,25 @@
 </table>
 
 <h2>Loss Tokens</h2>
+<p><strong>Loss tokens</strong> are persistent penalties you can accumulate after losing duels. They remain until healed at a Town or Campfire.</p>
+
 <table class="setupTable">
-  <thead><tr><th>Loss token</th><th>Effect</th></tr></thead>
+  <thead>
+    <tr><th>Token</th><th>Effect</th><th>Floor</th></tr>
+  </thead>
   <tbody>
-    <tr><td>Stormlash</td><td>-1 starting hand size until removed</td></tr>
-    <tr><td>Shockmark</td><td>-1 starting life until removed</td></tr>
+    <tr><td>Shockmark</td><td>-1 starting life</td><td>Starting life cannot be reduced below 5.</td></tr>
+    <tr><td>Stormlash</td><td>-1 starting hand size</td><td>Starting hand size cannot be reduced below 3.</td></tr>
   </tbody>
 </table>
 
-<p>On a duel loss: gain 1 Ascension and return the failed tile to its bag. Then take exactly one loss token based on the source of the final damage that killed you: <strong>Shockmark</strong> if a <strong>creature</strong> dealt the killing blow, or <strong>Stormlash</strong> if a <strong>noncreature source</strong> dealt the killing blow.</p>
+<p><strong>Gaining loss tokens:</strong> On a duel loss, gain 1 Ascension and return the failed tile to its bag. Then take exactly one loss token based on the source of the final damage that killed you: <strong>Shockmark</strong> if a <strong>creature</strong> dealt the killing blow, or <strong>Stormlash</strong> if a <strong>noncreature source</strong> dealt the killing blow.</p>
 
+<p><strong>Healing loss tokens:</strong></p>
+<ul>
+  <li><strong>Town — Sanctum:</strong> Remove <em>all</em> loss tokens of a single kind (remove all Shockmarks <em>or</em> remove all Stormlashes).</li>
+  <li><strong>Campfire — Rest:</strong> Remove <em>all</em> loss tokens of a single kind (remove all Shockmarks <em>or</em> remove all Stormlashes).</li>
+</ul>
 <h2>Duel rewards</h2>
 <h3>Card capture rule</h3>
 <p>After each win, the winner may choose one card the opponent owns that was in play or in their graveyard during that game (not exile/library) to take as a reward. On a loss, the winning opponent chooses one such card from the loser to remove from their ownership, placing it on the bottom of its card pile.</p>
@@ -533,6 +542,33 @@
 <p>Tower structure mirrors dungeons: Tower Gate is a Guardian duel; on a Guardian win add the double-size Tower tile (Mystery then Tower Boss). Tower victories grant Singing Crystals clues.</p>
 
 <h3>Tower roster (names, effects, guardians, bosses)</h3>
+
+<h3>Tower duels</h3>
+<p>Towers use the same duel structure as Dungeons: the <strong>Tower Gate</strong> is the Guardian duel. On a Guardian win, place the double-size Tower tile (Mystery room → Tower Boss).</p>
+
+<table class="setupTable">
+  <thead>
+    <tr><th>Duel</th><th>Starting hand</th><th>Starting life</th><th>Mythic Slots</th><th>Deck</th><th>Win reward</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Tower Gate (Guardian)</td>
+      <td>5</td>
+      <td>Your starting life +1</td>
+      <td>Your Mythic Slots</td>
+      <td>Mono 20 (Core Pack + Identity Pack of the tower’s color) + 1 Relic Toolkit</td>
+      <td>+2 Ascension, +2 Arcstones</td>
+    </tr>
+    <tr>
+      <td>Tower Boss</td>
+      <td>5</td>
+      <td>15</td>
+      <td>Your Mythic Slots +1</td>
+      <td>Mono 20 + 1 Relic Toolkit + 1 Confluence Prism Pack</td>
+      <td>+3 Ascension, +3 Arcstones + Singing Crystals clue (tower color) + Treasure die</td>
+    </tr>
+  </tbody>
+</table>
 <table class="setupTable">
   <thead><tr><th>Tower</th><th>Color</th><th>Tower effect</th><th>Guardian</th><th>Boss</th></tr></thead>
   <tbody>
