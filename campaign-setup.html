@@ -1,24 +1,23 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>ElderForge Campaign — ElderForge — Ice Age</title>
-    
-  <!-- Tiny critical CSS to prevent a brief serif flash on hard reloads -->
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>ElderForge Campaign — ElderForge — Ice Age</title>
+<!-- Tiny critical CSS to prevent a brief serif flash on hard reloads -->
+<style>
     :root{--font-ui:"Saira",ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;--text:#e9eef7;--bg0:#070b12;--bg1:#0b1220}
     html{background:radial-gradient(1200px 600px at 40% -10%, rgba(95,140,255,0.18), transparent 60%),
                radial-gradient(900px 500px at 110% 10%, rgba(50,255,210,0.10), transparent 60%),
                linear-gradient(180deg,var(--bg1),var(--bg0));background-color:var(--bg0)}
     body{margin:0;font-family:var(--font-ui);color:var(--text)}
   </style>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira:wght@300;400;500;600;700&display=swap" />
-  <link rel="preload" href="styles.css" as="style" />
-  <link rel="stylesheet" href="styles.css" />
-
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Saira:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link as="style" href="styles.css" rel="preload"/>
+<link href="styles.css" rel="stylesheet"/>
 <style>
 /* --- Tables: readable, light borders (match basic-rules.html) --- */
 .diceDrawTable,
@@ -79,737 +78,636 @@
   vertical-align: -3px;
 }
 </style>
-
 </head>
 <body>
-  <header class="topbar">
-    <div class="brand">
-      <div class="title">ElderForge — Ice Age</div>
-      <div class="subtitle">ElderForge Campaign</div>
-    </div>
-    <div class="nav">
-      <a class="navBtn" href="index.html">Card database</a>
-      <div class="dropdown" id="guideDD">
-        <button class="ddBtn ddSmall" id="guideBtn" type="button" aria-haspopup="menu" aria-expanded="false">
-          <span>Guide</span>
-          <span class="ddChev">▾</span>
-        </button>
-        <div class="ddMenu" id="guideMenu" role="menu" aria-label="Guide" hidden>
-                    <a class="ddLink" href="about-project.html" role="menuitem">About the Project</a>
+<header class="topbar">
+<div class="brand">
+<div class="title">ElderForge — Ice Age</div>
+<div class="subtitle">ElderForge Campaign</div>
+</div>
+<div class="nav">
+<a class="navBtn" href="index.html">Card database</a>
+<div class="dropdown" id="guideDD">
+<button aria-expanded="false" aria-haspopup="menu" class="ddBtn ddSmall" id="guideBtn" type="button">
+<span>Guide</span>
+<span class="ddChev">▾</span>
+</button>
+<div aria-label="Guide" class="ddMenu" hidden="" id="guideMenu" role="menu">
+<a class="ddLink" href="about-project.html" role="menuitem">About the Project</a>
 <a class="ddLink" href="keyword-icons.html" role="menuitem">Keyword Icons</a>
-          <a class="ddLink" href="basic-rules.html" role="menuitem">Basic Rules</a>
-          <a class="ddLink" href="world-lore.html" role="menuitem">World Lore</a>
-          <a class="ddLink" href="campaign-setup.html" role="menuitem">ElderForge Campaign</a>
-          <a class="ddLink" href="geography.html" role="menuitem">Geography</a>
-        </div>
-      </div>
-    </div>
-  </header>
-  <main class="pageWrap">
-    <section class="pagePanel">
-
+<a class="ddLink" href="basic-rules.html" role="menuitem">Basic Rules</a>
+<a class="ddLink" href="world-lore.html" role="menuitem">World Lore</a>
+<a class="ddLink" href="campaign-setup.html" role="menuitem">ElderForge Campaign</a>
+<a class="ddLink" href="geography.html" role="menuitem">Geography</a>
+</div>
+</div>
+</div>
+</header>
+<main class="pageWrap">
+<section class="pagePanel">
 <h1>ElderForge Campaign</h1>
-
 <p>The continent of Terisiare lies frozen. Magic dwindles. Alliances fracture. And beneath the Ohran Ridge, in a seam of stubborn warmth, a remote refuge endures: <strong>The Emberhold</strong>.</p>
-
 <p>Officially, the Emberhold is neutral ground — a treaty-sanctioned sanctuary where apprentice mages can rest, trade, and train without becoming property of the great color academies. In an Ice Age, a safe hearth is not a luxury; it is a political miracle.</p>
-
 <p>Unofficially, it is something sharper: a hidden research cell studying the world’s strangest threat — <strong>Null interference</strong>. When the mana flow stutters, anchored spellcraft becomes brittle. The Emberhold teaches <strong>Open Weave</strong>: the discipline of staying unanchored, reading the day’s mana like weather, and surviving instability through adaptation.</p>
-
 <p>Every apprentice who arrives has already learned one harsh lesson simply by living through the Ice Age: cold is not scenery, it is a law of nature. That shared upbringing leaves a mark on the spark itself — a baseline <strong>Snowcraft</strong> that lets any Emberhold-trained mage call on a little winter mana from day one.</p>
-
 <p>Beyond the Emberhold’s wards lies peril and opportunity. Rumors whisper of something ancient entombed beneath the vast Ronom Glacier — a draconic presence sealed before memory, stirring as the frost begins to crack. Some believe it will end the winter. Others believe it will end everything.</p>
-
 <p>You are an apprentice mage, newly awakened to your spark. You will duel rivals, raid towers, descend into moonlit dungeons, and chase echoes through the ice. With every victory, your power ascends. Climb from apprentice to planeswalker — and remember: in the crucible of frost and ambition, only one may forge their name in the ice.</p>
-
 <h2>Setup</h2>
-
 <h3>Card piles</h3>
 <p>Shuffle and place the following face-down piles on the table:</p>
 <table class="setupTable">
-  <thead><tr><th>Pile</th><th>Contents</th></tr></thead>
-  <tbody>
-    <tr><td>White / Blue / Black / Red / Green</td><td>One shuffled pile per color.</td></tr>
-    <tr><td>Colorless</td><td>Artifacts + nonbasic lands + other colorless cards.</td></tr>
-    <tr><td>Multicolor</td><td>All multicolor cards in a single shuffled pile.</td></tr>
-    <tr><td>Vanguard</td><td>Mythic creatures and planeswalkers.</td></tr>
-    <tr><td>Reliquary</td><td>Mythic relics (artifacts/lands/etc.).</td></tr>
-  </tbody>
+<thead><tr><th>Pile</th><th>Contents</th></tr></thead>
+<tbody>
+<tr><td>White / Blue / Black / Red / Green</td><td>One shuffled pile per color.</td></tr>
+<tr><td>Colorless</td><td>Artifacts + nonbasic lands + other colorless cards.</td></tr>
+<tr><td>Multicolor</td><td>All multicolor cards in a single shuffled pile.</td></tr>
+<tr><td>Vanguard</td><td>Mythic creatures and planeswalkers.</td></tr>
+<tr><td>Reliquary</td><td>Mythic relics (artifacts/lands/etc.).</td></tr>
+</tbody>
 </table>
-
 <h3>Basic lands and Snowbank</h3>
 <p>Basic lands are not kept inside libraries. Instead, make face-up stacks for each basic land type, and place a matching Snow-Covered basic stack beside each one:</p>
 <table class="setupTable">
-  <thead><tr><th>Face-up stacks</th><th>Place beside it</th></tr></thead>
-  <tbody>
-    <tr><td>Plains / Island / Swamp / Mountain / Forest</td><td>Snow-Covered Plains / Island / Swamp / Mountain / Forest</td></tr>
-  </tbody>
+<thead><tr><th>Face-up stacks</th><th>Place beside it</th></tr></thead>
+<tbody>
+<tr><td>Plains / Island / Swamp / Mountain / Forest</td><td>Snow-Covered Plains / Island / Swamp / Mountain / Forest</td></tr>
+</tbody>
 </table>
-
 <h3>Tokens</h3>
 <p>Prepare the following token piles:</p>
 <table class="setupTable">
-  <thead><tr><th>Token pile</th><th>Notes</th></tr></thead>
-  <tbody>
-    <tr><td>Arcstones</td><td>Currency used for purchases and Links.</td></tr>
-    <tr><td>Rumors</td><td>Spend at most once per turn, just before drawing from the Journey bag.</td></tr>
-    <tr><td>Loss tokens</td><td>Shockmark and Stormlash.</td></tr>
-    <tr><td>Clues</td><td>Ice Pillar Inscriptions, Singing Crystals, Halls of Echoes.</td></tr>
-    <tr><td><strong>Legendary token creatures (5)</strong></td><td>Five unique Legendary token creatures used by specific effects and encounters.</td></tr>
-  </tbody>
+<thead><tr><th>Token pile</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td>Arcstones</td><td>Currency used for purchases and Links.</td></tr>
+<tr><td>Rumors</td><td>Spend at most once per turn, just before drawing from the Journey bag.</td></tr>
+<tr><td>Loss tokens</td><td>Shockmark and Stormlash.</td></tr>
+<tr><td>Clues</td><td>Ice Pillar Inscriptions, Singing Crystals, Halls of Echoes.</td></tr>
+<tr><td><strong>Legendary token creatures (5)</strong></td><td>Five unique Legendary token creatures used by specific effects and encounters.</td></tr>
+</tbody>
 </table>
-
 <h2>What ElderForge is</h2>
 <p>ElderForge is a campaign mode played as a series of Magic duels. Instead of building one fixed deck, you assemble a duel library each match from packs, toolkits, and Mythic Slots. The world is explored by drawing and resolving tiles from two bags: a dangerous Journey bag and a safe Sanctuary bag.</p>
-
 <h2>Core conventions</h2>
 <h3>Basic lands live outside libraries</h3>
 <p>Basic lands are not shuffled into duel libraries. Keep basic lands in face-up piles. At any draw step, you may draw a basic land from outside the game instead of drawing from your library.</p>
-
 <h3>Zones that matter for campaign rewards</h3>
 <p>After a duel, only cards that were in play or in a graveyard count as eligible for capture rewards. Cards in exile and libraries are not eligible.</p>
-
-
 <h2>Starting pool and piles</h2>
-
 <h3>Starting pool</h3>
 <p>Your <strong>owned campaign pool</strong> begins with:</p>
 <table class="setupTable">
-  <thead><tr><th>Category</th><th>Contents</th></tr></thead>
-  <tbody>
-    <tr><td>Each color</td><td>20 cards (9 Commons, 6 Uncommons, 5 Rares)</td></tr>
-    <tr><td>Colorless</td><td>25 cards (artifacts + nonbasic lands + snow lands in one pile)</td></tr>
-    <tr><td>Multicolor</td><td>10 cards</td></tr>
-    <tr><td>Mythics</td><td>Two piles: <strong>Vanguard</strong> (creatures/planeswalkers) and <strong>Reliquary</strong> (relics/other)</td></tr>
-  </tbody>
+<thead><tr><th>Category</th><th>Contents</th></tr></thead>
+<tbody>
+<tr><td>Each color</td><td>20 cards (9 Commons, 6 Uncommons, 5 Rares)</td></tr>
+<tr><td>Colorless</td><td>25 cards (artifacts + nonbasic lands + snow lands in one pile)</td></tr>
+<tr><td>Multicolor</td><td>10 cards</td></tr>
+<tr><td>Mythics</td><td>Two piles: <strong>Vanguard</strong> (creatures/planeswalkers) and <strong>Reliquary</strong> (relics/other)</td></tr>
+</tbody>
 </table>
-
 <h3>Card piles used during play</h3>
 <p>For gameplay, you keep a single draw pile for each color (White, Blue, Black, Red, Green), plus one <strong>Multicolor</strong> pile and one <strong>Colorless</strong> pile. (Rarity symbols still exist on the cards, but you do not sort piles by rarity.)</p>
-
 <h3>Loaner deck construction</h3>
 <p>Before each duel, you build a <strong>loaner library</strong> from the piles based on your Attunement result. This loaner library is not “owned”; it is returned to the piles after the duel.</p>
 <ul>
-  <li><strong>Mono or two colors:</strong> draw 20 cards from the relevant color piles.</li>
-  <li><strong>Three colors:</strong> draw 24 cards from the relevant color piles.</li>
-  <li><strong>Five colors (equal):</strong> draw 25 cards (5 from each color).</li>
-  <li><strong>Five colors (primary):</strong> draw <strong>28</strong> cards as <strong>8/5/5/5/5</strong> (8 of the primary color, 5 of each other color).</li>
+<li><strong>Mono or two colors:</strong> draw 20 cards from the relevant color piles.</li>
+<li><strong>Three colors:</strong> draw 24 cards from the relevant color piles.</li>
+<li><strong>Five colors (equal):</strong> draw 25 cards (5 from each color).</li>
+<li><strong>Five colors (primary):</strong> draw <strong>28</strong> cards as <strong>8/5/5/5/5</strong> (8 of the primary color, 5 of each other color).</li>
 </ul>
-
 <h3>Null interference</h3>
 <p>After drawing your color cards, add extra cards based on Null results:</p>
 <ul>
-  <li>For each <strong>Null</strong> rolled, add <strong>one Relic Toolkit</strong> (5 cards) from the <strong>Colorless</strong> pile. There is no limit.</li>
-  <li>If you rolled <strong>0 Null</strong> (stable Attunement), add the <strong>Confluence Prism Pack</strong> (5 cards) from the <strong>Multicolor</strong> pile instead of any toolkits.</li>
+<li>For each <strong>Null</strong> rolled, add <strong>one Relic Toolkit</strong> (5 cards) from the <strong>Colorless</strong> pile. There is no limit.</li>
+<li>If you rolled <strong>0 Null</strong> (stable Attunement), add the <strong>Confluence Prism Pack</strong> (5 cards) from the <strong>Multicolor</strong> pile instead of any toolkits.</li>
 </ul>
-
 <h3>Personal card slots by level</h3>
 <p>Starting at Level 1, you gain <strong>personal slots</strong>. These slots are filled only at Campfires during upgrades. Before a duel, you may add slotted cards to your loaner library (they are “yours” and do not return to the piles).</p>
-
 <table class="setupTable">
-  <thead><tr><th>Level</th><th>Slots per section</th><th>Sections</th></tr></thead>
-  <tbody>
-    <tr><td>Level 0</td><td>0</td><td>—</td></tr>
-    <tr><td>Level 1–2</td><td>1</td><td>W / U / B / R / G / Colorless / Multicolor</td></tr>
-    <tr><td>Level 3–4</td><td>2</td><td>W / U / B / R / G / Colorless / Multicolor</td></tr>
-    <tr><td>Level 5–E</td><td>3</td><td>W / U / B / R / G / Colorless / Multicolor</td></tr>
-  </tbody>
+<thead><tr><th>Level</th><th>Slots per section</th><th>Sections</th></tr></thead>
+<tbody>
+<tr><td>Level 0</td><td>0</td><td>—</td></tr>
+<tr><td>Level 1–2</td><td>1</td><td>W / U / B / R / G / Colorless / Multicolor</td></tr>
+<tr><td>Level 3–4</td><td>2</td><td>W / U / B / R / G / Colorless / Multicolor</td></tr>
+<tr><td>Level 5–E</td><td>3</td><td>W / U / B / R / G / Colorless / Multicolor</td></tr>
+</tbody>
 </table>
-
 <p><strong>Slot legality:</strong> Monocolor slots may only hold monocolor cards of that color. <strong>Multicolor cards may not populate color slots.</strong> Colorless slots hold only colorless cards. Multicolor slots hold only multicolor cards.</p>
-
 <p><strong>Fast cleanup:</strong> Because slot legality follows the card’s frame color, post-duel cleanup is quick: return all loaner cards to their piles, and re-stack your personal cards by section.</p>
-
 <h3>Snowcraft (Snowbank)</h3>
 <p>Snow-Covered basic lands are kept outside all libraries in five Snowbank piles (one per color).</p>
 <p><strong>Snowcraft:</strong> For each color you are playing this duel, you begin with <strong>Snowcraft 1</strong> for that color. Each time you would draw a card, you may instead take a Snow-Covered basic of a color you are playing from its Snowbank pile. Doing so spends 1 Snowcraft for that color. When a color’s Snowcraft is 0, you cannot take additional Snow-Covered basics of that color this duel.</p>
 <p>Rewards can permanently increase your Snowcraft for a specific color (maximum <strong>3</strong>).</p>
 <h2>Attunement and color selection</h2>
 <p>Before each duel, each player performs Attunement: roll 6 custom dice with faces {W}{U}{B}{R}{G}{C}. Here {C} is Null.</p>
-
 <h3>Stable vs Null</h3>
 <table class="setupTable">
-  <thead><tr><th>Attunement result</th><th>Deck add-on</th></tr></thead>
-  <tbody>
-    <tr><td>0 Null (stable)</td><td>Add the Confluence Prism Pack.</td></tr>
-    <tr><td>1–3 Null</td><td>Add up to that many Relic Toolkits (max 3).</td></tr>
-  </tbody>
+<thead><tr><th>Attunement result</th><th>Deck add-on</th></tr></thead>
+<tbody>
+<tr><td>0 Null (stable)</td><td>Add the Confluence Prism Pack.</td></tr>
+<tr><td>1–3 Null</td><td>Add up to that many Relic Toolkits (max 3).</td></tr>
+</tbody>
 </table>
-
-
 <h3>Confluence Alignment Codex (player color selection)</h3>
 <p>Use the table below to convert a 6-die Attunement roll into “Colors you play”. Resolvers are shown directly under the patterns that use them.</p>
-
 <div class="tableWrap">
-  <table class="diceDrawTable">
-    <thead>
-      <tr><th>Dice pattern</th><th>Chance</th><th>Colors you play</th><th>Loaner draw</th></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><strong>2-1-1-1-C</strong></td>
-        <td><strong>15.4%</strong></td>
-        <td>Resolver (see below)</td>
-      </tr>
-
-      <tr>
-        <td colspan="3" style="text-align:left;">
-          <div class="setupSubhead">Resolver outcomes for 2-1-1-1-C</div>
-          <div class="tableWrap">
-            <table class="diceDrawTable">
-              <thead>
-                <tr><th>When the rerolled die becomes…</th><th>Final chance</th><th>Final colors</th><th>Loaner draw</th></tr>
-              </thead>
-              <tbody>
-                <tr><td>the pair color → <strong>3-1-1-1</strong></td><td>3.1%</td><td>Mono</td></tr>
-                <tr><td>one of the singletons → <strong>2-2-1-1</strong></td><td>9.3%</td><td>Two colors (equal)</td><td>Two colors (equal): 10/10 = 20 color cards. + Prism Pack (stable).</td></tr>
-                <tr><td>the missing 5th color → <strong>2-1-1-1-1</strong></td><td>3.1%</td><td>Five colors (primary)</td><td>Five colors (primary): 8/5/5/5/5 = 28 color cards. + Prism Pack (stable).</td></tr>
-              </tbody>
-            </table>
-          </div>
-          <p style="margin:10px 0 0 0;">Reroll the <strong>C</strong> die until it shows a non-<strong>C</strong> color, then use the resulting pattern.</p>
-        </td>
-      </tr>
-
-      <tr><td><strong>2-2-1-1</strong></td><td>11.6%</td><td>Two colors (equal)</td><td>Two colors (equal): 10/10 = 20 color cards. + Prism Pack (stable).</td></tr>
-      <tr><td><strong>2-2-1-C</strong></td><td>11.6%</td><td>Two colors (equal)</td></tr>
-      <tr><td><strong>2-1-1-C-C</strong></td><td>11.6%</td><td>Three colors (primary)</td></tr>
-      <tr><td><strong>3-2-1</strong></td><td>7.7%</td><td>Mono</td></tr>
-      <tr><td><strong>3-1-1-C</strong></td><td>7.7%</td><td>Mono</td></tr>
-      <tr><td><strong>3-1-1-1</strong></td><td>5.1%</td><td>Mono</td></tr>
-      <tr><td><strong>2-1-1-1-1</strong></td><td>3.9%</td><td>Five colors (primary)</td><td>Five colors (primary): 8/5/5/5/5 = 28 color cards. + Prism Pack (stable).</td></tr>
-
-      <tr>
-        <td><strong>1-1-1-1-C-C*</strong></td>
-        <td>3.9%</td>
-        <td>Three colors (equal)</td>
-      </tr>
-      <tr>
-        <td colspan="3" style="text-align:left;">
-          <p style="margin:0;">
-            <strong>*Resolver:</strong> Reroll one <strong>C</strong> die until it shows one of the rolled colors. Remove that color. You play the remaining three.
-          </p>
-        </td>
-      </tr>
-
-      <tr><td><strong>3-2-C</strong></td><td>2.6%</td><td>Mono</td></tr>
-      <tr><td><strong>3-1-C-C</strong></td><td>2.6%</td><td>Mono</td></tr>
-      <tr><td><strong>2-1-C-C-C</strong></td><td>2.6%</td><td>Two colors (primary)</td></tr>
-      <tr><td><strong>1-1-1-C-C-C</strong></td><td>2.6%</td><td>Three colors (equal)</td></tr>
-      <tr><td><strong>2-2-2</strong></td><td>1.9%</td><td>Three colors (equal)</td></tr>
-      <tr><td><strong>2-2-C-C</strong></td><td>1.9%</td><td>Two colors (equal)</td></tr>
-      <tr><td><strong>4-1-1</strong></td><td>1.9%</td><td>Mono</td></tr>
-      <tr><td><strong>1-1-1-1-1-C</strong></td><td>1.5%</td><td>Five colors (equal)</td></tr>
-      <tr><td><strong>4-1-C</strong></td><td>1.3%</td><td>Mono</td></tr>
-      <tr><td><strong>4-2</strong></td><td>0.6%</td><td>Mono</td></tr>
-      <tr><td><strong>1-1-C-C-C-C</strong></td><td>0.6%</td><td>Two colors (equal)</td></tr>
-      <tr><td><strong>3-3</strong></td><td>0.4%</td><td>Two colors (equal)</td></tr>
-      <tr><td><strong>5-1</strong></td><td>0.3%</td><td>Mono</td></tr>
-      <tr><td><strong>3-C-C-C</strong></td><td>0.2%</td><td>Mono</td></tr>
-      <tr><td><strong>4-C-C</strong></td><td>0.2%</td><td>Mono</td></tr>
-      <tr><td><strong>2-C-C-C-C</strong></td><td>0.2%</td><td>Mono</td></tr>
-      <tr><td><strong>5-C</strong></td><td>0.06%</td><td>Mono</td></tr>
-      <tr><td><strong>1-C-C-C-C-C</strong></td><td>0.06%</td><td>Mono</td></tr>
-      <tr><td><strong>6-of-a-kind</strong></td><td><strong>0.01%</strong></td><td><strong>Instant win</strong> (unless story-locked / boss duel)</td></tr>
-    </tbody>
-  </table>
+<table class="diceDrawTable">
+<thead>
+<tr><th>Dice pattern</th><th>Chance</th><th>Colors you play</th><th>Loaner draw</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>2-1-1-1-C</strong></td>
+<td><strong>15.4%</strong></td>
+<td>Resolver (see below)</td>
+<td>Resolver → final pattern; treat as stable (0 Null): add Prism Pack (5 multicolor).</td></tr>
+<tr>
+<td colspan="3" style="text-align:left;">
+<div class="setupSubhead">Resolver outcomes for 2-1-1-1-C</div>
+<div class="tableWrap">
+<table class="diceDrawTable">
+<thead>
+<tr><th>When the rerolled die becomes…</th><th>Final chance</th><th>Final colors</th><th>Loaner draw</th></tr>
+</thead>
+<tbody>
+<tr><td>the pair color → <strong>3-1-1-1</strong></td><td>3.1%</td><td>Mono</td><td>Draw 20 color cards (mono). Add Prism Pack (stable).</td></tr>
+<tr><td>one of the singletons → <strong>2-2-1-1</strong></td><td>9.3%</td><td>Two colors (equal)</td><td>Two colors (equal): 10/10 = 20 color cards. + Prism Pack (stable).</td></tr>
+<tr><td>the missing 5th color → <strong>2-1-1-1-1</strong></td><td>3.1%</td><td>Five colors (primary)</td><td>Five colors (primary): 8/5/5/5/5 = 28 color cards. + Prism Pack (stable).</td></tr>
+</tbody>
+</table>
 </div>
-
-
+<p style="margin:10px 0 0 0;">Reroll the <strong>C</strong> die until it shows a non-<strong>C</strong> color, then use the resulting pattern.</p>
+</td>
+</tr>
+<tr><td><strong>2-2-1-1</strong></td><td>11.6%</td><td>Two colors (equal)</td><td>Two colors (equal): 10/10 = 20 color cards. + Prism Pack (stable).</td></tr>
+<tr><td><strong>2-2-1-C</strong></td><td>11.6%</td><td>Two colors (equal)</td><td>Draw 10/10 = 20 color cards (two colors, equal). Add 1 Relic Toolkit (5 colorless each).</td></tr>
+<tr><td><strong>2-1-1-C-C</strong></td><td>11.6%</td><td>Three colors (primary)</td><td>Draw 10/7/7 = 24 color cards (three colors, primary). Add 2 Relic Toolkits (5 colorless each).</td></tr>
+<tr><td><strong>3-2-1</strong></td><td>7.7%</td><td>Mono</td><td>Draw 20 color cards (mono). Stable (0 Null): add Prism Pack (5 multicolor).</td></tr>
+<tr><td><strong>3-1-1-C</strong></td><td>7.7%</td><td>Mono</td><td>Draw 20 color cards (mono). Add 1 Relic Toolkit (5 colorless each).</td></tr>
+<tr><td><strong>3-1-1-1</strong></td><td>5.1%</td><td>Mono</td><td>Draw 20 color cards (mono). Stable (0 Null): add Prism Pack (5 multicolor).</td></tr>
+<tr><td><strong>2-1-1-1-1</strong></td><td>3.9%</td><td>Five colors (primary)</td><td>Five colors (primary): 8/5/5/5/5 = 28 color cards. + Prism Pack (stable).</td></tr>
+<tr>
+<td><strong>1-1-1-1-C-C*</strong></td>
+<td>3.9%</td>
+<td>Three colors (equal)</td>
+<td>Resolver → three colors (equal): draw 8/8/8 = 24 color cards, then add Prism Pack (5 multicolor).</td></tr>
+<tr>
+<td colspan="3" style="text-align:left;">
+<p style="margin:0;">
+<strong>*Resolver:</strong> Reroll one <strong>C</strong> die until it shows one of the rolled colors. Remove that color. You play the remaining three.
+          </p>
+</td>
+</tr>
+<tr><td><strong>3-2-C</strong></td><td>2.6%</td><td>Mono</td><td>Draw 20 color cards (mono). Add 1 Relic Toolkit (5 colorless each).</td></tr>
+<tr><td><strong>3-1-C-C</strong></td><td>2.6%</td><td>Mono</td><td>Draw 20 color cards (mono). Add 2 Relic Toolkits (5 colorless each).</td></tr>
+<tr><td><strong>2-1-C-C-C</strong></td><td>2.6%</td><td>Two colors (primary)</td><td>Draw 12/8 = 20 color cards (two colors, primary/secondary). Add 3 Relic Toolkits (5 colorless each).</td></tr>
+<tr><td><strong>1-1-1-C-C-C</strong></td><td>2.6%</td><td>Three colors (equal)</td><td>Draw 8/8/8 = 24 color cards (three colors, equal). Add 3 Relic Toolkits (5 colorless each).</td></tr>
+<tr><td><strong>2-2-2</strong></td><td>1.9%</td><td>Three colors (equal)</td><td>Draw 8/8/8 = 24 color cards (three colors, equal). Stable (0 Null): add Prism Pack (5 multicolor).</td></tr>
+<tr><td><strong>2-2-C-C</strong></td><td>1.9%</td><td>Two colors (equal)</td><td>Draw 10/10 = 20 color cards (two colors, equal). Add 2 Relic Toolkits (5 colorless each).</td></tr>
+<tr><td><strong>4-1-1</strong></td><td>1.9%</td><td>Mono</td><td>Draw 20 color cards (mono). Stable (0 Null): add Prism Pack (5 multicolor).</td></tr>
+<tr><td><strong>1-1-1-1-1-C</strong></td><td>1.5%</td><td>Five colors (equal)</td><td>Draw 5×5 = 25 color cards (five colors, equal). Add 1 Relic Toolkit (5 colorless each).</td></tr>
+<tr><td><strong>4-1-C</strong></td><td>1.3%</td><td>Mono</td><td>Draw 20 color cards (mono). Add 1 Relic Toolkit (5 colorless each).</td></tr>
+<tr><td><strong>4-2</strong></td><td>0.6%</td><td>Mono</td><td>Draw 20 color cards (mono). Stable (0 Null): add Prism Pack (5 multicolor).</td></tr>
+<tr><td><strong>1-1-C-C-C-C</strong></td><td>0.6%</td><td>Two colors (equal)</td><td>Draw 10/10 = 20 color cards (two colors, equal). Add 4 Relic Toolkits (5 colorless each).</td></tr>
+<tr><td><strong>3-3</strong></td><td>0.4%</td><td>Two colors (equal)</td><td>Draw 10/10 = 20 color cards (two colors, equal). Stable (0 Null): add Prism Pack (5 multicolor).</td></tr>
+<tr><td><strong>5-1</strong></td><td>0.3%</td><td>Mono</td><td>Draw 20 color cards (mono). Stable (0 Null): add Prism Pack (5 multicolor).</td></tr>
+<tr><td><strong>3-C-C-C</strong></td><td>0.2%</td><td>Mono</td><td>Draw 20 color cards (mono). Add 3 Relic Toolkits (5 colorless each).</td></tr>
+<tr><td><strong>4-C-C</strong></td><td>0.2%</td><td>Mono</td><td>Draw 20 color cards (mono). Add 2 Relic Toolkits (5 colorless each).</td></tr>
+<tr><td><strong>2-C-C-C-C</strong></td><td>0.2%</td><td>Mono</td><td>Draw 20 color cards (mono). Add 4 Relic Toolkits (5 colorless each).</td></tr>
+<tr><td><strong>5-C</strong></td><td>0.06%</td><td>Mono</td><td>Draw 20 color cards (mono). Add 1 Relic Toolkit (5 colorless each).</td></tr>
+<tr><td><strong>1-C-C-C-C-C</strong></td><td>0.06%</td><td>Mono</td><td>Draw 20 color cards (mono). Add 5 Relic Toolkits (5 colorless each).</td></tr>
+<tr><td><strong>6-of-a-kind</strong></td><td><strong>0.01%</strong></td><td><strong>Instant win</strong> (unless story-locked / boss duel)</td><td>Instant win (no deck needed).</td></tr>
+</tbody>
+</table>
+</div>
 <h2>Building your duel library</h2>
-<h3>Pack assembly</h3>
-<table class="setupTable">
-  <thead><tr><th>Colors you play</th><th>Packs</th></tr></thead>
-  <tbody>
-    <tr><td>Mono-color</td><td>Core + Identity for that color (20 cards)</td></tr>
-    <tr><td>Multi-color</td><td>color cards for each color you play (10 each)</td></tr>
-  </tbody>
-</table>
-<p>Then add either Relic Toolkits (based on Null) or the Confluence Prism Pack (stable roll). Then add your Mythic Slots and shuffle. Packs, Toolkits, the Prism Pack, and Mythic Slots can only be upgraded at Campfires.</p>
 
-<h3>Mythic Slots and piles</h3>
-<p>Mythic Slots are separate from Packs and are shuffled into every assembled duel library. Mythic Slots can only be populated or changed at <strong>Campfires</strong>.</p>
-<p>Mythic piles:</p>
-<table class="setupTable">
-  <thead><tr><th>Pile</th><th>Contains</th></tr></thead>
-  <tbody>
-    <tr><td>Vanguard</td><td>Creature/planeswalker mythics</td></tr>
-    <tr><td>Reliquary</td><td>Relic mythics (artifact/land/etc.)</td></tr>
-  </tbody>
-</table>
-<p>Opponent mythic draw order alternates piles starting with Vanguard, then Reliquary, then Vanguard, etc.</p>
+
+
+
+
+
+
+
+
+
 
 <h2>Levels, life totals, and Ascension</h2>
 <h3>Arcane progression</h3>
 <table class="setupTable">
-  <thead><tr><th>Level</th><th>Title</th><th>Starting life</th><th>Mythic Slots</th></tr></thead>
-  <tbody>
-    <tr><td>0</td><td>Apprentice</td><td>8</td><td>0</td></tr>
-    <tr><td>1</td><td>Enchanter</td><td>9</td><td>1</td></tr>
-    <tr><td>2</td><td>Sorcerer</td><td>10</td><td>2</td></tr>
-    <tr><td>3</td><td>Mage</td><td>11</td><td>3</td></tr>
-    <tr><td>4</td><td>Wizard</td><td>12</td><td>4</td></tr>
-    <tr><td>5</td><td>Planeswalker</td><td>13</td><td>5</td></tr>
-    <tr><td>E</td><td>Elderforged</td><td>15</td><td>6</td></tr>
-  </tbody>
+<thead><tr><th>Level</th><th>Title</th><th>Starting life</th><th>Mythic Slots</th></tr></thead>
+<tbody>
+<tr><td>0</td><td>Apprentice</td><td>8</td><td>0</td></tr>
+<tr><td>1</td><td>Enchanter</td><td>9</td><td>1</td></tr>
+<tr><td>2</td><td>Sorcerer</td><td>10</td><td>2</td></tr>
+<tr><td>3</td><td>Mage</td><td>11</td><td>3</td></tr>
+<tr><td>4</td><td>Wizard</td><td>12</td><td>4</td></tr>
+<tr><td>5</td><td>Planeswalker</td><td>13</td><td>5</td></tr>
+<tr><td>E</td><td>Elderforged</td><td>15</td><td>6</td></tr>
+</tbody>
 </table>
-
 <h3>Ascension thresholds</h3>
 <table class="setupTable">
-  <thead><tr><th>From</th><th>To</th><th>Ascension required</th></tr></thead>
-  <tbody>
-    <tr><td>0</td><td>1</td><td>6</td></tr>
-    <tr><td>1</td><td>2</td><td>7</td></tr>
-    <tr><td>2</td><td>3</td><td>8</td></tr>
-    <tr><td>3</td><td>4</td><td>9</td></tr>
-    <tr><td>4</td><td>5</td><td>10</td></tr>
-    <tr><td>5</td><td>E</td><td>12</td></tr>
-  </tbody>
+<thead><tr><th>From</th><th>To</th><th>Ascension required</th></tr></thead>
+<tbody>
+<tr><td>0</td><td>1</td><td>6</td></tr>
+<tr><td>1</td><td>2</td><td>7</td></tr>
+<tr><td>2</td><td>3</td><td>8</td></tr>
+<tr><td>3</td><td>4</td><td>9</td></tr>
+<tr><td>4</td><td>5</td><td>10</td></tr>
+<tr><td>5</td><td>E</td><td>12</td></tr>
+</tbody>
 </table>
-
 <h2>Loss Tokens</h2>
 <p><strong>Loss tokens</strong> are persistent penalties you can accumulate after losing duels. They remain until healed at a Town or Campfire.</p>
-
 <table class="setupTable">
-  <thead>
-    <tr><th>Token</th><th>Effect</th><th>Floor</th></tr>
-  </thead>
-  <tbody>
-    <tr><td>Shockmark</td><td>-1 starting life</td><td>Starting life cannot be reduced below 5.</td></tr>
-    <tr><td>Stormlash</td><td>-1 starting hand size</td><td>Starting hand size cannot be reduced below 3.</td></tr>
-  </tbody>
+<thead>
+<tr><th>Token</th><th>Effect</th><th>Floor</th></tr>
+</thead>
+<tbody>
+<tr><td>Shockmark</td><td>-1 starting life</td><td>Starting life cannot be reduced below 5.</td></tr>
+<tr><td>Stormlash</td><td>-1 starting hand size</td><td>Starting hand size cannot be reduced below 3.</td></tr>
+</tbody>
 </table>
-
 <p><strong>Gaining loss tokens:</strong> On a duel loss, gain 1 Ascension and return the failed tile to its bag. Then take exactly one loss token based on the source of the final damage that killed you: <strong>Shockmark</strong> if a <strong>creature</strong> dealt the killing blow, or <strong>Stormlash</strong> if a <strong>noncreature source</strong> dealt the killing blow.</p>
-
 <p><strong>Healing loss tokens:</strong></p>
 <ul>
-  <li><strong>Town — Sanctum:</strong> Remove <em>all</em> loss tokens of a single kind (remove all Shockmarks <em>or</em> remove all Stormlashes).</li>
-  <li><strong>Campfire — Rest:</strong> Remove <em>all</em> loss tokens of a single kind (remove all Shockmarks <em>or</em> remove all Stormlashes).</li>
+<li><strong>Town — Sanctum:</strong> Remove <em>all</em> loss tokens of a single kind (remove all Shockmarks <em>or</em> remove all Stormlashes).</li>
+<li><strong>Campfire — Rest:</strong> Remove <em>all</em> loss tokens of a single kind (remove all Shockmarks <em>or</em> remove all Stormlashes).</li>
 </ul>
 <h2>Duel rewards</h2>
 <h3>Card capture rule</h3>
 <p>After each win, the winner may choose one card the opponent owns that was in play or in their graveyard during that game (not exile/library) to take as a reward. On a loss, the winning opponent chooses one such card from the loser to remove from their ownership, placing it on the bottom of its card pile.</p>
-
 <h3>Rare Feat rewards</h3>
 <p>If you win a duel and also satisfy any one Rare Feat below, you immediately gain a bonus reward: choose either 1 colorless card or 1 multicolored card.</p>
 <table class="setupTable">
-  <thead><tr><th>#</th><th>Rare Feat condition</th></tr></thead>
-  <tbody>
-    <tr><td>1</td><td>Win with exactly 1 life remaining</td></tr>
-    <tr><td>2</td><td>Win with no creatures under your control</td></tr>
-    <tr><td>3</td><td>Win with 0 cards in your library</td></tr>
-    <tr><td>4</td><td>Win via alternate win condition</td></tr>
-    <tr><td>5</td><td>Win by poisoning the opponent</td></tr>
-  </tbody>
+<thead><tr><th>#</th><th>Rare Feat condition</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Win with exactly 1 life remaining</td></tr>
+<tr><td>2</td><td>Win with no creatures under your control</td></tr>
+<tr><td>3</td><td>Win with 0 cards in your library</td></tr>
+<tr><td>4</td><td>Win via alternate win condition</td></tr>
+<tr><td>5</td><td>Win by poisoning the opponent</td></tr>
+</tbody>
 </table>
-
 <h2>Links (Manavault items)</h2>
 <p>Players may carry Links between duels. Before a duel, a player may spend up to 3 total Links. Each Link is single-use and consumed once played. Duplicate Links are allowed.</p>
 <table class="setupTable">
-  <thead><tr><th>Link</th><th>Effect</th><th>Arcstone cost</th></tr></thead>
-  <tbody>
-    <tr><td>Manalink</td><td>+1 starting life</td><td>1</td></tr>
-    <tr><td>Landlink</td><td>Start the duel with 1 basic land in play, tapped</td><td>2</td></tr>
-    <tr><td>Weavelink</td><td>Reroll your entire Attunement once after rolling (must use the new result)</td><td>2</td></tr>
-    <tr><td>Runelink</td><td>+1 starting hand size (default is 5)</td><td>3</td></tr>
-  </tbody>
+<thead><tr><th>Link</th><th>Effect</th><th>Arcstone cost</th></tr></thead>
+<tbody>
+<tr><td>Manalink</td><td>+1 starting life</td><td>1</td></tr>
+<tr><td>Landlink</td><td>Start the duel with 1 basic land in play, tapped</td><td>2</td></tr>
+<tr><td>Weavelink</td><td>Reroll your entire Attunement once after rolling (must use the new result)</td><td>2</td></tr>
+<tr><td>Runelink</td><td>+1 starting hand size (default is 5)</td><td>3</td></tr>
+</tbody>
 </table>
-
 <h2>Map system: Journey bag and Sanctuary bag</h2>
 <h3>The Emberhold (starting hex)</h3>
 <p>The campaign begins at <strong>The Emberhold</strong>, a double-size starting hex (two connected tile spaces). Place it on the table before any bag draws. All players begin on the Emberhold.</p>
-
 <h3>Journey bag (80 tiles)</h3>
 <table class="setupTable">
-  <thead><tr><th>Tile type</th><th>Count</th></tr></thead>
-  <tbody>
-    <tr><td>Generic duel tiles</td><td>30</td></tr>
-    <tr><td>Rival tiles</td><td>15 (3 copies each of five Rivals)</td></tr>
-    <tr><td>Roaming dragon boss tiles</td><td>5</td></tr>
-    <tr><td>Tower Gate tiles</td><td>5 (W/U/B/R/G)</td></tr>
-    <tr><td>Dungeon Entrance tiles</td><td>5 (W/U/B/R/G)</td></tr>
-    <tr><td>Relic tiles</td><td>10</td></tr>
-    <tr><td>Mystery tiles</td><td>10</td></tr>
-  </tbody>
+<thead><tr><th>Tile type</th><th>Count</th></tr></thead>
+<tbody>
+<tr><td>Generic duel tiles</td><td>30</td></tr>
+<tr><td>Rival tiles</td><td>15 (3 copies each of five Rivals)</td></tr>
+<tr><td>Roaming dragon boss tiles</td><td>5</td></tr>
+<tr><td>Tower Gate tiles</td><td>5 (W/U/B/R/G)</td></tr>
+<tr><td>Dungeon Entrance tiles</td><td>5 (W/U/B/R/G)</td></tr>
+<tr><td>Relic tiles</td><td>10</td></tr>
+<tr><td>Mystery tiles</td><td>10</td></tr>
+</tbody>
 </table>
-
 <h3>Generic foes (30)</h3>
 <p>Generic foes are the standard duels of the Journey bag. Each has a preset primary color and a <strong>Signature Eternal keyword token</strong>. Once each duel, when a creature enters play under that foe’s control, that player may put their Signature Eternal keyword token on that creature.</p>
-
 <p><strong>Generic foe secondary color / toolkit (Method 1):</strong> Roll 1 color die. If it matches the foe’s primary color, the foe is mono-color (20 cards). If it shows a different color, the foe is two-color (primary + rolled color, 10 cards each). If it shows <strong>Null</strong>, the foe gains 1 Relic Toolkit and you roll again for the secondary color; if the second roll is Null, the foe stays mono + toolkit; otherwise add the rolled color as secondary (if it matches primary, stay mono + toolkit).</p>
-
 <div class="tableWrap">
 <table class="setupTable">
-  <thead><tr><th>Color</th><th>Generic foe</th><th>Signature Eternal keyword token</th></tr></thead>
-  <tbody>
-    <tr><td>White</td><td>Cilantresh</td><td>Flying</td></tr>
-    <tr><td>White</td><td>Adarkar Crusader</td><td>Double strike</td></tr>
-    <tr><td>White</td><td>Kjeldoran Paladin</td><td>First strike</td></tr>
-    <tr><td>White</td><td>Mardun Priestess</td><td>Lifelink</td></tr>
-    <tr><td>White</td><td>Aurora Seer of Kher Ridges</td><td>Trample</td></tr>
-    <tr><td>White</td><td>High Priest of Koilos</td><td>Indestructible</td></tr>
-
-    <tr><td>Blue</td><td>Saltremtor</td><td>Flying</td></tr>
-    <tr><td>Blue</td><td>Mind Stealer</td><td>Menace</td></tr>
-    <tr><td>Blue</td><td>Unseen Illusionist</td><td>Hexproof</td></tr>
-    <tr><td>Blue</td><td>Thought Invoker</td><td>Vigilance</td></tr>
-    <tr><td>Blue</td><td>Sea Lord of Ilesemare</td><td>Trample</td></tr>
-    <tr><td>Blue</td><td>Astral Visionary</td><td>Reach</td></tr>
-
-    <tr><td>Black</td><td>Agagalneer</td><td>Flying</td></tr>
-    <tr><td>Black</td><td>Krovikan Succubus</td><td>Menace</td></tr>
-    <tr><td>Black</td><td>Soldevi Charmer</td><td>First strike</td></tr>
-    <tr><td>Black</td><td>Vampire Lord</td><td>Lifelink</td></tr>
-    <tr><td>Black</td><td>Grim Necromancer</td><td>Deathtouch</td></tr>
-    <tr><td>Black</td><td>Greater Lich</td><td>Indestructible</td></tr>
-
-    <tr><td>Red</td><td>Queltosh</td><td>Flying</td></tr>
-    <tr><td>Red</td><td>Balduvian Warlock</td><td>First strike</td></tr>
-    <tr><td>Red</td><td>Karplusan Elementalist</td><td>Vigilance</td></tr>
-    <tr><td>Red</td><td>Elite Thaumaturge</td><td>First strike</td></tr>
-    <tr><td>Red</td><td>Dragon Lord</td><td>Trample</td></tr>
-    <tr><td>Red</td><td>Kaeloran Berserker</td><td>Double strike</td></tr>
-
-    <tr><td>Green</td><td>Altakesh</td><td>Flying</td></tr>
-    <tr><td>Green</td><td>Fyndhorn Beastmaster</td><td>Reach</td></tr>
-    <tr><td>Green</td><td>Wildcaller of Yavimaya</td><td>Trample</td></tr>
-    <tr><td>Green</td><td>Thorncrown Lord</td><td>Trample</td></tr>
-    <tr><td>Green</td><td>Grand Summoner</td><td>Hexproof</td></tr>
-    <tr><td>Green</td><td>Sarrazan Mystic</td><td>Deathtouch</td></tr>
-  </tbody>
+<thead><tr><th>Color</th><th>Generic foe</th><th>Signature Eternal keyword token</th></tr></thead>
+<tbody>
+<tr><td>White</td><td>Cilantresh</td><td>Flying</td></tr>
+<tr><td>White</td><td>Adarkar Crusader</td><td>Double strike</td></tr>
+<tr><td>White</td><td>Kjeldoran Paladin</td><td>First strike</td></tr>
+<tr><td>White</td><td>Mardun Priestess</td><td>Lifelink</td></tr>
+<tr><td>White</td><td>Aurora Seer of Kher Ridges</td><td>Trample</td></tr>
+<tr><td>White</td><td>High Priest of Koilos</td><td>Indestructible</td></tr>
+<tr><td>Blue</td><td>Saltremtor</td><td>Flying</td></tr>
+<tr><td>Blue</td><td>Mind Stealer</td><td>Menace</td></tr>
+<tr><td>Blue</td><td>Unseen Illusionist</td><td>Hexproof</td></tr>
+<tr><td>Blue</td><td>Thought Invoker</td><td>Vigilance</td></tr>
+<tr><td>Blue</td><td>Sea Lord of Ilesemare</td><td>Trample</td></tr>
+<tr><td>Blue</td><td>Astral Visionary</td><td>Reach</td></tr>
+<tr><td>Black</td><td>Agagalneer</td><td>Flying</td></tr>
+<tr><td>Black</td><td>Krovikan Succubus</td><td>Menace</td></tr>
+<tr><td>Black</td><td>Soldevi Charmer</td><td>First strike</td></tr>
+<tr><td>Black</td><td>Vampire Lord</td><td>Lifelink</td></tr>
+<tr><td>Black</td><td>Grim Necromancer</td><td>Deathtouch</td></tr>
+<tr><td>Black</td><td>Greater Lich</td><td>Indestructible</td></tr>
+<tr><td>Red</td><td>Queltosh</td><td>Flying</td></tr>
+<tr><td>Red</td><td>Balduvian Warlock</td><td>First strike</td></tr>
+<tr><td>Red</td><td>Karplusan Elementalist</td><td>Vigilance</td></tr>
+<tr><td>Red</td><td>Elite Thaumaturge</td><td>First strike</td></tr>
+<tr><td>Red</td><td>Dragon Lord</td><td>Trample</td></tr>
+<tr><td>Red</td><td>Kaeloran Berserker</td><td>Double strike</td></tr>
+<tr><td>Green</td><td>Altakesh</td><td>Flying</td></tr>
+<tr><td>Green</td><td>Fyndhorn Beastmaster</td><td>Reach</td></tr>
+<tr><td>Green</td><td>Wildcaller of Yavimaya</td><td>Trample</td></tr>
+<tr><td>Green</td><td>Thorncrown Lord</td><td>Trample</td></tr>
+<tr><td>Green</td><td>Grand Summoner</td><td>Hexproof</td></tr>
+<tr><td>Green</td><td>Sarrazan Mystic</td><td>Deathtouch</td></tr>
+</tbody>
 </table>
 </div>
 <h3>Relic tile</h3>
 <p>Flip a coin. If you win the flip, gain 1 Mythic Card from the <strong>Reliquary</strong> pile. Otherwise, gain 1 card from the <strong>colorless</strong> pile.</p>
-
-
 <h3>Sanctuary bag (60 tiles)</h3>
 <table class="setupTable">
-  <thead><tr><th>Tile type</th><th>Count</th></tr></thead>
-  <tbody>
-    <tr><td>Towns</td><td>30 (10 towns × 3 copies)</td></tr>
-    <tr><td>Campfires</td><td>24</td></tr>
-    <tr><td>Mystery tiles</td><td>6</td></tr>
-  </tbody>
+<thead><tr><th>Tile type</th><th>Count</th></tr></thead>
+<tbody>
+<tr><td>Towns</td><td>30 (10 towns × 3 copies)</td></tr>
+<tr><td>Campfires</td><td>24</td></tr>
+<tr><td>Mystery tiles</td><td>6</td></tr>
+</tbody>
 </table>
-
 <h2>Rumors</h2>
 <p>Rumors cannot be stacked. A player may spend Rumors at most once per turn, and only just before drawing from the Journey bag.</p>
 <table class="setupTable">
-  <thead><tr><th>Spend</th><th>Option</th><th>Effect</th></tr></thead>
-  <tbody>
-    <tr><td>1 Rumor</td><td>Scout</td><td>Reveal 2 Journey tiles, pick 1, return the other to the bag.</td></tr>
-    <tr><td>2 Rumors</td><td>Scout deeper</td><td>Reveal 3 Journey tiles, pick 1, return the other two to the bag.</td></tr>
-  </tbody>
+<thead><tr><th>Spend</th><th>Option</th><th>Effect</th></tr></thead>
+<tbody>
+<tr><td>1 Rumor</td><td>Scout</td><td>Reveal 2 Journey tiles, pick 1, return the other to the bag.</td></tr>
+<tr><td>2 Rumors</td><td>Scout deeper</td><td>Reveal 3 Journey tiles, pick 1, return the other two to the bag.</td></tr>
+</tbody>
 </table>
-
 <h2>Towns</h2>
 <h3>Town list</h3>
 <table class="setupTable">
-  <thead><tr><th>Color</th><th>Towns</th></tr></thead>
-  <tbody>
-    <tr><td>White</td><td>Kjeld; Glimmer Vale</td></tr>
-    <tr><td>Blue</td><td>Soldev; School of the Unseen</td></tr>
-    <tr><td>Black</td><td>Krov; The Black Spire</td></tr>
-    <tr><td>Red</td><td>Flarghold; Kher Keep</td></tr>
-    <tr><td>Green</td><td>Kelsinko; Elbreth</td></tr>
-  </tbody>
+<thead><tr><th>Color</th><th>Towns</th></tr></thead>
+<tbody>
+<tr><td>White</td><td>Kjeld; Glimmer Vale</td></tr>
+<tr><td>Blue</td><td>Soldev; School of the Unseen</td></tr>
+<tr><td>Black</td><td>Krov; The Black Spire</td></tr>
+<tr><td>Red</td><td>Flarghold; Kher Keep</td></tr>
+<tr><td>Green</td><td>Kelsinko; Elbreth</td></tr>
+</tbody>
 </table>
-
 <h3>Town Tile procedure (fixed order, final step exclusive)</h3>
 <p>On a Town Tile, players may perform all actions below in order. The final step is exclusive: choose either Tavern or Questboard.</p>
 <table class="setupTable">
-  <thead><tr><th>Step</th><th>Action</th><th>Rules</th></tr></thead>
-  <tbody>
-    <tr><td>1</td><td>Sanctum (Healing)</td><td>Remove 1 loss token.</td></tr>
-    <tr><td>2</td><td>Market Stall (Trade / Purchase)</td><td>Trade up to 3 unused cards matching the town’s color; for each traded card gain 1 random new card of the same color and same rarity. Purchase: Common 1 Arcstone, Uncommon 2, Rare 3. Purchase requires at least 3 Arcstones. Reveal 3 cards of the town’s color; buy any/all; unpurchased go to the bottom of their respective piles.</td></tr>
-    <tr><td>3</td><td>Manavault (Shop)</td><td>Buy Links.</td></tr>
-    <tr><td>4</td><td>Tavern or Questboard</td><td><strong>Tavern:</strong> spend 1 Arcstone for 1 Rumor, or spend the night for 3 Rumors (skip your next turn). <strong>Questboard:</strong> each town has exactly 3 quests (including 1 Expedition).</td></tr>
-  </tbody>
+<thead><tr><th>Step</th><th>Action</th><th>Rules</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Sanctum (Healing)</td><td>Remove 1 loss token.</td></tr>
+<tr><td>2</td><td>Market Stall (Trade / Purchase)</td><td>Trade up to 3 unused cards matching the town’s color; for each traded card gain 1 random new card of the same color and same rarity. Purchase: Common 1 Arcstone, Uncommon 2, Rare 3. Purchase requires at least 3 Arcstones. Reveal 3 cards of the town’s color; buy any/all; unpurchased go to the bottom of their respective piles.</td></tr>
+<tr><td>3</td><td>Manavault (Shop)</td><td>Buy Links.</td></tr>
+<tr><td>4</td><td>Tavern or Questboard</td><td><strong>Tavern:</strong> spend 1 Arcstone for 1 Rumor, or spend the night for 3 Rumors (skip your next turn). <strong>Questboard:</strong> each town has exactly 3 quests (including 1 Expedition).</td></tr>
+</tbody>
 </table>
-
 <h3>Quest procedure</h3>
 <p>Questboard is the last town action. Choosing a quest means: next turn you start the chosen quest by placing the corresponding quest tile ahead; the following turn you move onto that tile and resolve it. The quest tile remains on the board after resolution. If you lose, return the quest tile and move back 1 tile; normal loss consequences apply; the quest is considered failed for now.</p>
-
 <h2>Campfires</h2>
 <p>On a Campfire, the player may do any and all of the following, in this order:</p>
 <table class="setupTable">
-  <thead><tr><th>Step</th><th>Action</th><th>Rules</th></tr></thead>
-  <tbody>
-    <tr><td>1</td><td>Rest</td><td>Heal 1 loss token.</td></tr>
-    <tr><td>2</td><td>Level Up</td><td>Only possible at Campfires and requires enough Ascension points. When you level up, resolve a Lore Encounter (gain 1 Mythic Card from the <strong>Vanguard</strong> pile). <br><em>In lore:</em> a friendly NPC visits the fire and may teach spells, provide artifacts, or even accompany you.</td></tr>
-    <tr><td>3</td><td>Pack Upgrade</td><td>Only possible at Campfires. Upgrade mini-decks/Packs/Relic Toolkits/Prism Pack/Mythic Slots using new cards gained via rewards, trades, or purchases.</td></tr>
-  </tbody>
+<thead><tr><th>Step</th><th>Action</th><th>Rules</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Rest</td><td>Heal 1 loss token.</td></tr>
+<tr><td>2</td><td>Level Up</td><td>Only possible at Campfires and requires enough Ascension points. When you level up, resolve a Lore Encounter (gain 1 Mythic Card from the <strong>Vanguard</strong> pile). <br/><em>In lore:</em> a friendly NPC visits the fire and may teach spells, provide artifacts, or even accompany you.</td></tr>
+<tr><td>3</td><td>Pack Upgrade</td><td>Only possible at Campfires. Upgrade mini-decks/Packs/Relic Toolkits/Prism Pack/Mythic Slots using new cards gained via rewards, trades, or purchases.</td></tr>
+</tbody>
 </table>
-
 <h2>Mystery tiles</h2>
 <h3>Mystery die (d6)</h3>
 <table class="setupTable">
-  <thead><tr><th>Result</th><th>Name</th><th>Effect</th></tr></thead>
-  <tbody>
-    <tr><td>1</td><td>Sudden Ambush</td><td>Forced duel. Roll 3 color dice to determine the attackers’ colors. Attackers have the same starting life as you. If any of the 3 dice are Null, attackers get +1 Relic Toolkit. If you win the duel: gain +3 Ascension and +3 Arcstones.</td></tr>
-    <tr><td>2</td><td>Snowline Revelation</td><td>Roll 1 color die to unlock the 2nd snow basic slot for that color (Core first, then Identity). If both already unlocked for that color, gain +1 Ascension instead. If you roll Null: on your next duel, you may add +1 extra Relic Toolkit in addition to whatever Attunement gives.</td></tr>
-    <tr><td>3</td><td>Restored Power</td><td>Remove all loss tokens.</td></tr>
-    <tr><td>4</td><td>Mysterious Benefactor</td><td>Gain 3 Arcstones and a Link of your choice that you don’t yet have.</td></tr>
-    <tr><td>5</td><td>Whispers on the Road</td><td>Gain 3 Rumors.</td></tr>
-    <tr><td>6</td><td>A Gift from the Shadows</td><td>Gain 1 Mythic Card (player chooses which mythic pile to draw from).</td></tr>
-  </tbody>
+<thead><tr><th>Result</th><th>Name</th><th>Effect</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Sudden Ambush</td><td>Forced duel. Roll 3 color dice to determine the attackers’ colors. Attackers have the same starting life as you. If any of the 3 dice are Null, attackers get +1 Relic Toolkit. If you win the duel: gain +3 Ascension and +3 Arcstones.</td></tr>
+<tr><td>2</td><td>Snowline Revelation</td><td>Roll 1 color die to unlock the 2nd snow basic slot for that color (Core first, then Identity). If both already unlocked for that color, gain +1 Ascension instead. If you roll Null: on your next duel, you may add +1 extra Relic Toolkit in addition to whatever Attunement gives.</td></tr>
+<tr><td>3</td><td>Restored Power</td><td>Remove all loss tokens.</td></tr>
+<tr><td>4</td><td>Mysterious Benefactor</td><td>Gain 3 Arcstones and a Link of your choice that you don’t yet have.</td></tr>
+<tr><td>5</td><td>Whispers on the Road</td><td>Gain 3 Rumors.</td></tr>
+<tr><td>6</td><td>A Gift from the Shadows</td><td>Gain 1 Mythic Card (player chooses which mythic pile to draw from).</td></tr>
+</tbody>
 </table>
-
 <h2>Treasure</h2>
 <p>Treasure happens after boss duel wins (including roaming dragons and expedition bosses). Roll 3 Treasure dice and choose 1 result.</p>
 <table class="setupTable">
-  <thead><tr><th>Result</th><th>Name</th><th>Effect</th></tr></thead>
-  <tbody>
-    <tr><td>1</td><td>Gift of the Realm</td><td>Gain 1 Mythic Card (player chooses which mythic pile to draw from).</td></tr>
-    <tr><td>2</td><td>Strength of Ages</td><td>Gain an Eternal +1/+1 counter. Once each duel, as a sorcery, you may put that Eternal +1/+1 counter on a creature you control.</td></tr>
-    <tr><td>3</td><td>Runeblight</td><td>Gain 1 random keyword token from the keyword bag. Once each duel, you may place that Eternal keyword token on any creature (yours or an opponent’s).</td></tr>
-    <tr><td>4</td><td>Glacial Seal</td><td>Unlock a 2nd snow basic slot in the boss/town color (Core first, then Identity).</td></tr>
-    <tr><td>5</td><td>Rite of Ascension</td><td>Permanently sacrifice from your campaign unused card pool: 6 Commons or 4 Uncommons or 2 Rares. Then reveal 2 Mythic Cards from Reliquary and 2 from Vanguard; choose 1 to gain. Put the 3 unpicked on the bottom of their respective piles in any order.</td></tr>
-    <tr><td>6</td><td>Weakness of Ages</td><td>Gain an Eternal -1/-1 counter. Once each duel, as a sorcery, you may put that Eternal -1/-1 counter on a creature an opponent controls.</td></tr>
-  </tbody>
+<thead><tr><th>Result</th><th>Name</th><th>Effect</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Gift of the Realm</td><td>Gain 1 Mythic Card (player chooses which mythic pile to draw from).</td></tr>
+<tr><td>2</td><td>Strength of Ages</td><td>Gain an Eternal +1/+1 counter. Once each duel, as a sorcery, you may put that Eternal +1/+1 counter on a creature you control.</td></tr>
+<tr><td>3</td><td>Runeblight</td><td>Gain 1 random keyword token from the keyword bag. Once each duel, you may place that Eternal keyword token on any creature (yours or an opponent’s).</td></tr>
+<tr><td>4</td><td>Glacial Seal</td><td>Unlock a 2nd snow basic slot in the boss/town color (Core first, then Identity).</td></tr>
+<tr><td>5</td><td>Rite of Ascension</td><td>Permanently sacrifice from your campaign unused card pool: 6 Commons or 4 Uncommons or 2 Rares. Then reveal 2 Mythic Cards from Reliquary and 2 from Vanguard; choose 1 to gain. Put the 3 unpicked on the bottom of their respective piles in any order.</td></tr>
+<tr><td>6</td><td>Weakness of Ages</td><td>Gain an Eternal -1/-1 counter. Once each duel, as a sorcery, you may put that Eternal -1/-1 counter on a creature an opponent controls.</td></tr>
+</tbody>
 </table>
-
 <h2>Dungeons</h2>
 <p>Dungeon Entrance tiles are Guardian duels. You must defeat the Guardian on the first try to enter. On a Guardian win, place the corresponding double-size Dungeon tile (Mystery then Boss). Boss duels may be retried unlimited times. After a Dungeon Boss win, roll Treasure immediately, gain +3 Ascension and +3 Arcstones, and gain an Ice Pillar Inscription clue of that dungeon’s color.</p>
-
 <h3>Dungeon roster (names and Moon bonuses)</h3>
 <table class="setupTable">
-  <thead><tr><th>Dungeon</th><th>Color</th><th>Environment bonus</th><th>Guardian</th><th>Boss</th></tr></thead>
-  <tbody>
-    <tr><td>The Forgotten Crypt</td><td>Black</td><td><strong>Bad Moon</strong> — All black creatures get +1/+1.</td><td>The Restless Warden</td><td>Necromancer Khoran</td></tr>
-    <tr><td>Molten Caves</td><td>Red</td><td><strong>Blood Moon</strong> — All red creatures get +1/+1.</td><td>Forged Titan</td><td>Lava Brute Yurtak</td></tr>
-    <tr><td>The Abyssal Caverns</td><td>Blue</td><td><strong>Silver Moon</strong> — All blue creatures get +1/+1.</td><td>Abyssal Leviathan</td><td>Libramancer Zael</td></tr>
-    <tr><td>The Aegis Vault</td><td>White</td><td><strong>Sunset Moon</strong> — All white creatures get +1/+1.</td><td>Pearl Golem</td><td>Master Vaultkeeper Morath</td></tr>
-    <tr><td>The Verdant Hollow</td><td>Green</td><td><strong>Verdant Moon</strong> — All green creatures get +1/+1.</td><td>The Wild Beastlord</td><td>Vine Witch Sylara</td></tr>
-  </tbody>
+<thead><tr><th>Dungeon</th><th>Color</th><th>Environment bonus</th><th>Guardian</th><th>Boss</th></tr></thead>
+<tbody>
+<tr><td>The Forgotten Crypt</td><td>Black</td><td><strong>Bad Moon</strong> — All black creatures get +1/+1.</td><td>The Restless Warden</td><td>Necromancer Khoran</td></tr>
+<tr><td>Molten Caves</td><td>Red</td><td><strong>Blood Moon</strong> — All red creatures get +1/+1.</td><td>Forged Titan</td><td>Lava Brute Yurtak</td></tr>
+<tr><td>The Abyssal Caverns</td><td>Blue</td><td><strong>Silver Moon</strong> — All blue creatures get +1/+1.</td><td>Abyssal Leviathan</td><td>Libramancer Zael</td></tr>
+<tr><td>The Aegis Vault</td><td>White</td><td><strong>Sunset Moon</strong> — All white creatures get +1/+1.</td><td>Pearl Golem</td><td>Master Vaultkeeper Morath</td></tr>
+<tr><td>The Verdant Hollow</td><td>Green</td><td><strong>Verdant Moon</strong> — All green creatures get +1/+1.</td><td>The Wild Beastlord</td><td>Vine Witch Sylara</td></tr>
+</tbody>
 </table>
-
 <h3>Dungeon opponent specs</h3>
 <table class="setupTable">
-  <thead><tr><th>Opponent</th><th>Starting life</th><th>Starting hand</th><th>Mythic Slots</th><th>Deck</th></tr></thead>
-  <tbody>
-    <tr><td>Dungeon Guardian</td><td>Player life +1</td><td>5</td><td>Player Mythic Slots</td><td>Mono 20 (Core+Identity) + 1 Relic Toolkit</td></tr>
-    <tr><td>Dungeon Boss</td><td>15</td><td>5</td><td>Player Mythic Slots +1</td><td>Mono 20 + 1 Relic Toolkit + 1 Prism Pack</td></tr>
-  </tbody>
+<thead><tr><th>Opponent</th><th>Starting life</th><th>Starting hand</th><th>Mythic Slots</th><th>Deck</th></tr></thead>
+<tbody>
+<tr><td>Dungeon Guardian</td><td>Player life +1</td><td>5</td><td>Player Mythic Slots</td><td>Mono 20 (Core+Identity) + 1 Relic Toolkit</td></tr>
+<tr><td>Dungeon Boss</td><td>15</td><td>5</td><td>Player Mythic Slots +1</td><td>Mono 20 + 1 Relic Toolkit + 1 Prism Pack</td></tr>
+</tbody>
 </table>
-
 <h2>Towers</h2>
 <p>Tower structure mirrors dungeons: Tower Gate is a Guardian duel; on a Guardian win add the double-size Tower tile (Mystery then Tower Boss). Tower victories grant Singing Crystals clues.</p>
-
 <h3>Tower roster (names, effects, guardians, bosses)</h3>
-
 <h3>Tower duels</h3>
 <p>Towers use the same duel structure as Dungeons: the <strong>Tower Gate</strong> is the Guardian duel. On a Guardian win, place the double-size Tower tile (Mystery room → Tower Boss).</p>
-
 <table class="setupTable">
-  <thead>
-    <tr><th>Duel</th><th>Starting hand</th><th>Starting life</th><th>Mythic Slots</th><th>Deck</th><th>Win reward</th></tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Tower Gate (Guardian)</td>
-      <td>5</td>
-      <td>Your starting life +1</td>
-      <td>Your Mythic Slots</td>
-      <td>Mono 20 (color cards + color cards of the tower’s color) + 1 Relic Toolkit</td>
-      <td>+2 Ascension, +2 Arcstones</td>
-    </tr>
-    <tr>
-      <td>Tower Boss</td>
-      <td>5</td>
-      <td>15</td>
-      <td>Your Mythic Slots +1</td>
-      <td>Mono 20 + 1 Relic Toolkit + 1 Confluence Prism Pack</td>
-      <td>+3 Ascension, +3 Arcstones + Singing Crystals clue (tower color) + Treasure die</td>
-    </tr>
-  </tbody>
+<thead>
+<tr><th>Duel</th><th>Starting hand</th><th>Starting life</th><th>Mythic Slots</th><th>Deck</th><th>Win reward</th></tr>
+</thead>
+<tbody>
+<tr>
+<td>Tower Gate (Guardian)</td>
+<td>5</td>
+<td>Your starting life +1</td>
+<td>Your Mythic Slots</td>
+<td>Mono 20 (color cards + color cards of the tower’s color) + 1 Relic Toolkit</td>
+<td>+2 Ascension, +2 Arcstones</td>
+</tr>
+<tr>
+<td>Tower Boss</td>
+<td>5</td>
+<td>15</td>
+<td>Your Mythic Slots +1</td>
+<td>Mono 20 + 1 Relic Toolkit + 1 Confluence Prism Pack</td>
+<td>+3 Ascension, +3 Arcstones + Singing Crystals clue (tower color) + Treasure die</td>
+</tr>
+</tbody>
 </table>
 <table class="setupTable">
-  <thead><tr><th>Tower</th><th>Color</th><th>Tower effect</th><th>Guardian</th><th>Boss</th></tr></thead>
-  <tbody>
-    <tr><td>The White Tower</td><td>White</td><td>Creatures the opponent casts enter play tapped unless that player pays {1}.</td><td>Blizzard Warden</td><td>Frost Sorceress Elira</td></tr>
-    <tr><td>Rimewind Keep</td><td>Blue</td><td>The first creature spell the opponent casts each turn costs {1} more.</td><td>Arcane Overlord</td><td>Heidar, Rimewind Master</td></tr>
-    <tr><td>Tresserhorn Fortress</td><td>Black</td><td>Whenever a creature card is put into your graveyard, you gain 1 life.</td><td>Chaeska, the Keeper</td><td>Lim-Dûl the Necromancer</td></tr>
-    <tr><td>Citadel Pyre Academy</td><td>Red</td><td>The first noncreature spell you cast each turn costs {1} less.</td><td>Fire Sentinel</td><td>Professor Malvorr</td></tr>
-    <tr><td>Thornreach Spire</td><td>Green</td><td>The first creature spell you cast each turn costs {1} less.</td><td>Rootwatcher</td><td>Thorntwister</td></tr>
-  </tbody>
+<thead><tr><th>Tower</th><th>Color</th><th>Tower effect</th><th>Guardian</th><th>Boss</th></tr></thead>
+<tbody>
+<tr><td>The White Tower</td><td>White</td><td>Creatures the opponent casts enter play tapped unless that player pays {1}.</td><td>Blizzard Warden</td><td>Frost Sorceress Elira</td></tr>
+<tr><td>Rimewind Keep</td><td>Blue</td><td>The first creature spell the opponent casts each turn costs {1} more.</td><td>Arcane Overlord</td><td>Heidar, Rimewind Master</td></tr>
+<tr><td>Tresserhorn Fortress</td><td>Black</td><td>Whenever a creature card is put into your graveyard, you gain 1 life.</td><td>Chaeska, the Keeper</td><td>Lim-Dûl the Necromancer</td></tr>
+<tr><td>Citadel Pyre Academy</td><td>Red</td><td>The first noncreature spell you cast each turn costs {1} less.</td><td>Fire Sentinel</td><td>Professor Malvorr</td></tr>
+<tr><td>Thornreach Spire</td><td>Green</td><td>The first creature spell you cast each turn costs {1} less.</td><td>Rootwatcher</td><td>Thorntwister</td></tr>
+</tbody>
 </table>
-
 <h2>Clues and the road to endgame</h2>
 <table class="setupTable">
-  <thead><tr><th>Clue type</th><th>Found in</th><th>Meaning</th></tr></thead>
-  <tbody>
-    <tr><td>Ice Pillar Inscriptions</td><td>Dungeons</td><td>Runes engraved in ancient ice pillars, fragments of prophecy that point toward Merrevia’s prison.</td></tr>
-    <tr><td>Halls of Echoes</td><td>Expeditions</td><td>Echoing chambers carrying Icewind songs; patterns in the echoes reveal location fragments.</td></tr>
-    <tr><td>Singing Crystals</td><td>Towers</td><td>Crystals that resonate with melodies and memories; the harmonics guide the final path.</td></tr>
-  </tbody>
+<thead><tr><th>Clue type</th><th>Found in</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td>Ice Pillar Inscriptions</td><td>Dungeons</td><td>Runes engraved in ancient ice pillars, fragments of prophecy that point toward Merrevia’s prison.</td></tr>
+<tr><td>Halls of Echoes</td><td>Expeditions</td><td>Echoing chambers carrying Icewind songs; patterns in the echoes reveal location fragments.</td></tr>
+<tr><td>Singing Crystals</td><td>Towers</td><td>Crystals that resonate with melodies and memories; the harmonics guide the final path.</td></tr>
+</tbody>
 </table>
 <p>To locate Merrevia Sal’s lair, you must find at least one of each clue type, and the three clues must be of different colors. A player begins endgame when they are Level E and have the three required clues.</p>
-
 <h2>Quests</h2>
 <p>Each town has exactly three quests: Expedition, Escort Run, and Bounty Contract.</p>
-
 <h3>Expeditions (10 total)</h3>
 <p>Each Expedition is a triple-size tile with three spaces in order: (1) Encounter duel, (2) Mystery tile, (3) Boss duel in the Halls of Echoes. After an Expedition Boss win, also roll Treasure (roll 3 choose 1).</p>
-
 <table class="setupTable">
-  <thead><tr><th>Town</th><th>Color</th><th>Expedition</th><th>Encounter</th><th>Boss (Halls of Echoes)</th></tr></thead>
-  <tbody>
-    <tr><td>Kjeld</td><td>White</td><td>Crystalline Void</td><td>Glass Stalker</td><td>The Choirbreaker</td></tr>
-    <tr><td>Soldev</td><td>Blue</td><td>Canyons of Bandu</td><td>Bandu Rift-Hunter</td><td>The Resonance Engineer</td></tr>
-    <tr><td>Krov</td><td>Black</td><td>Argoth Island</td><td>Drowned Brinewraith</td><td>The Last Listener</td></tr>
-    <tr><td>The Black Spire</td><td>Black</td><td>Valley of the Chimes</td><td>Carillon Sentry</td><td>Warden of the Chimes</td></tr>
-    <tr><td>Kelsinko</td><td>Green</td><td>Sovereign’s Lantern</td><td>Lanternshade Prowler</td><td>The Lantern Sovereign</td></tr>
-    <tr><td>Glimmer Vale</td><td>White</td><td>Glacial Chasm</td><td>Frostgorge Serpent</td><td>Rift-Oracle</td></tr>
-    <tr><td>School of the Unseen</td><td>Blue</td><td>Shivering Chasm</td><td>Unseen Curriculum Specter</td><td>The Echo Scribe</td></tr>
-    <tr><td>Flarghold</td><td>Red</td><td>Endless Sea</td><td>Abysmal Skimmer</td><td>Tide-Lich</td></tr>
-    <tr><td>Kher Keep</td><td>Red</td><td>Moongrave Shipwreck</td><td>Moongrave Revenant</td><td>Captain Blackwake</td></tr>
-    <tr><td>Elbreth</td><td>Green</td><td>Sheltered Valley</td><td>Havenwatcher</td><td>The Oath-Singer</td></tr>
-  </tbody>
+<thead><tr><th>Town</th><th>Color</th><th>Expedition</th><th>Encounter</th><th>Boss (Halls of Echoes)</th></tr></thead>
+<tbody>
+<tr><td>Kjeld</td><td>White</td><td>Crystalline Void</td><td>Glass Stalker</td><td>The Choirbreaker</td></tr>
+<tr><td>Soldev</td><td>Blue</td><td>Canyons of Bandu</td><td>Bandu Rift-Hunter</td><td>The Resonance Engineer</td></tr>
+<tr><td>Krov</td><td>Black</td><td>Argoth Island</td><td>Drowned Brinewraith</td><td>The Last Listener</td></tr>
+<tr><td>The Black Spire</td><td>Black</td><td>Valley of the Chimes</td><td>Carillon Sentry</td><td>Warden of the Chimes</td></tr>
+<tr><td>Kelsinko</td><td>Green</td><td>Sovereign’s Lantern</td><td>Lanternshade Prowler</td><td>The Lantern Sovereign</td></tr>
+<tr><td>Glimmer Vale</td><td>White</td><td>Glacial Chasm</td><td>Frostgorge Serpent</td><td>Rift-Oracle</td></tr>
+<tr><td>School of the Unseen</td><td>Blue</td><td>Shivering Chasm</td><td>Unseen Curriculum Specter</td><td>The Echo Scribe</td></tr>
+<tr><td>Flarghold</td><td>Red</td><td>Endless Sea</td><td>Abysmal Skimmer</td><td>Tide-Lich</td></tr>
+<tr><td>Kher Keep</td><td>Red</td><td>Moongrave Shipwreck</td><td>Moongrave Revenant</td><td>Captain Blackwake</td></tr>
+<tr><td>Elbreth</td><td>Green</td><td>Sheltered Valley</td><td>Havenwatcher</td><td>The Oath-Singer</td></tr>
+</tbody>
 </table>
-
 <h3>Expedition deck colors (Open Weave)</h3>
 <p>Both Encounter and Boss use the town’s predetermined color as base. Roll 2 color dice for additional colors:</p>
 <table class="setupTable">
-  <thead><tr><th>2-die result</th><th>Opponent deck colors / add-ons</th></tr></thead>
-  <tbody>
-    <tr><td>0 Null</td><td>Two-color: 10 cards of each rolled color (if both match, treat as mono 20).</td></tr>
-    <tr><td>1 Null</td><td>Mono: town color 20 cards + 1 Relic Toolkit.</td></tr>
-    <tr><td>2 Null</td><td>10 town-color cards + 2 Relic Toolkits.</td></tr>
-  </tbody>
+<thead><tr><th>2-die result</th><th>Opponent deck colors / add-ons</th></tr></thead>
+<tbody>
+<tr><td>0 Null</td><td>Two-color: 10 cards of each rolled color (if both match, treat as mono 20).</td></tr>
+<tr><td>1 Null</td><td>Mono: town color 20 cards + 1 Relic Toolkit.</td></tr>
+<tr><td>2 Null</td><td>10 town-color cards + 2 Relic Toolkits.</td></tr>
+</tbody>
 </table>
-
 <h3>Expedition opponent stats and special powers</h3>
 <table class="setupTable">
-  <thead><tr><th>Opponent</th><th>Starting life</th><th>Starting hand</th><th>Mythic Slots</th><th>Win reward</th><th>Special power</th></tr></thead>
-  <tbody>
-    <tr><td>Encounter</td><td>Player starting life (max 12)</td><td>5</td><td>Player Mythic Slots (max 3)</td><td>+2 Ascension, +2 Arcstones</td><td>Once each duel, as a sorcery, untap all lands you control.</td></tr>
-    <tr><td>Boss</td><td>Player starting life +2 (max 15)</td><td>5</td><td>Player Mythic Slots +1 (max 5)</td><td>+3 Ascension, +3 Arcstones + Treasure</td><td>Once each duel, the first time you have no cards in hand, draw 3 cards.</td></tr>
-  </tbody>
+<thead><tr><th>Opponent</th><th>Starting life</th><th>Starting hand</th><th>Mythic Slots</th><th>Win reward</th><th>Special power</th></tr></thead>
+<tbody>
+<tr><td>Encounter</td><td>Player starting life (max 12)</td><td>5</td><td>Player Mythic Slots (max 3)</td><td>+2 Ascension, +2 Arcstones</td><td>Once each duel, as a sorcery, untap all lands you control.</td></tr>
+<tr><td>Boss</td><td>Player starting life +2 (max 15)</td><td>5</td><td>Player Mythic Slots +1 (max 5)</td><td>+3 Ascension, +3 Arcstones + Treasure</td><td>Once each duel, the first time you have no cards in hand, draw 3 cards.</td></tr>
+</tbody>
 </table>
-
 <h3>Escort Run (10 opponents)</h3>
 <p>Escort Runs are single-tile quests with predetermined two-color opponents. Escort opponents share a memorable special power.</p>
-
 <table class="setupTable">
-  <thead><tr><th>Opponent</th><th>Town</th><th>Colors</th></tr></thead>
-  <tbody>
-    <tr><td>Adarkar Waylay Priors</td><td>Kjeld</td><td>W/U</td></tr>
-    <tr><td>Rimewatch Extortionists</td><td>Glimmer Vale</td><td>W/G</td></tr>
-    <tr><td>Soldevi Fence-Runners</td><td>Soldev</td><td>U/B</td></tr>
-    <tr><td>Mistcloak Interdictors</td><td>School of the Unseen</td><td>U/W</td></tr>
-    <tr><td>Krovikan Sled-Reavers</td><td>Krov</td><td>B/R</td></tr>
-    <tr><td>Null-Oath Marauders</td><td>The Black Spire</td><td>B/U</td></tr>
-    <tr><td>Balduvian Roadburners</td><td>Flarghold</td><td>R/G</td></tr>
-    <tr><td>Ashwarren Cutthroats</td><td>Kher Keep</td><td>R/B</td></tr>
-    <tr><td>Fyndhorn Tollkeepers</td><td>Kelsinko</td><td>G/W</td></tr>
-    <tr><td>Karplusan Pursuers</td><td>Elbreth</td><td>G/R</td></tr>
-  </tbody>
+<thead><tr><th>Opponent</th><th>Town</th><th>Colors</th></tr></thead>
+<tbody>
+<tr><td>Adarkar Waylay Priors</td><td>Kjeld</td><td>W/U</td></tr>
+<tr><td>Rimewatch Extortionists</td><td>Glimmer Vale</td><td>W/G</td></tr>
+<tr><td>Soldevi Fence-Runners</td><td>Soldev</td><td>U/B</td></tr>
+<tr><td>Mistcloak Interdictors</td><td>School of the Unseen</td><td>U/W</td></tr>
+<tr><td>Krovikan Sled-Reavers</td><td>Krov</td><td>B/R</td></tr>
+<tr><td>Null-Oath Marauders</td><td>The Black Spire</td><td>B/U</td></tr>
+<tr><td>Balduvian Roadburners</td><td>Flarghold</td><td>R/G</td></tr>
+<tr><td>Ashwarren Cutthroats</td><td>Kher Keep</td><td>R/B</td></tr>
+<tr><td>Fyndhorn Tollkeepers</td><td>Kelsinko</td><td>G/W</td></tr>
+<tr><td>Karplusan Pursuers</td><td>Elbreth</td><td>G/R</td></tr>
+</tbody>
 </table>
-
 <table class="setupTable">
-  <thead><tr><th>Starting life</th><th>Starting hand</th><th>Mythic Slots</th><th>Deck</th><th>Win reward</th><th>Quest reward</th><th>Special power</th></tr></thead>
-  <tbody>
-    <tr><td>Player starting life (max 12)</td><td>5</td><td>Player Mythic Slots (max 3)</td><td>20 cards: 10 of each color</td><td>+2 Ascension, +2 Arcstones</td><td>2 colorless cards; 2 Manalinks; 2 Rumors</td><td>Once each duel, as a sorcery, destroy target land.</td></tr>
-  </tbody>
+<thead><tr><th>Starting life</th><th>Starting hand</th><th>Mythic Slots</th><th>Deck</th><th>Win reward</th><th>Quest reward</th><th>Special power</th></tr></thead>
+<tbody>
+<tr><td>Player starting life (max 12)</td><td>5</td><td>Player Mythic Slots (max 3)</td><td>20 cards: 10 of each color</td><td>+2 Ascension, +2 Arcstones</td><td>2 colorless cards; 2 Manalinks; 2 Rumors</td><td>Once each duel, as a sorcery, destroy target land.</td></tr>
+</tbody>
 </table>
-
 <h3>Bounty Contract (10 opponents)</h3>
 <table class="setupTable">
-  <thead><tr><th>Opponent</th><th>Town</th><th>Colors</th></tr></thead>
-  <tbody>
-    <tr><td>Adarkar Enforcer</td><td>Kjeld</td><td>W/U</td></tr>
-    <tr><td>Rimewatch Justiciars</td><td>Glimmer Vale</td><td>W/G</td></tr>
-    <tr><td>Soldevi Savant</td><td>Soldev</td><td>U/B</td></tr>
-    <tr><td>Mistcloak Magistrate</td><td>School of the Unseen</td><td>U/W</td></tr>
-    <tr><td>Krovikan Oath-Collector</td><td>Krov</td><td>B/R</td></tr>
-    <tr><td>Null-Writ Inquisitor</td><td>The Black Spire</td><td>B/U</td></tr>
-    <tr><td>Balduvian Headtaker</td><td>Flarghold</td><td>R/G</td></tr>
-    <tr><td>Ashwarren Brandstalker</td><td>Kher Keep</td><td>R/B</td></tr>
-    <tr><td>Fyndhorn Debt-Hunter</td><td>Kelsinko</td><td>G/W</td></tr>
-    <tr><td>Oathtrail Pursuer</td><td>Elbreth</td><td>G/R</td></tr>
-  </tbody>
+<thead><tr><th>Opponent</th><th>Town</th><th>Colors</th></tr></thead>
+<tbody>
+<tr><td>Adarkar Enforcer</td><td>Kjeld</td><td>W/U</td></tr>
+<tr><td>Rimewatch Justiciars</td><td>Glimmer Vale</td><td>W/G</td></tr>
+<tr><td>Soldevi Savant</td><td>Soldev</td><td>U/B</td></tr>
+<tr><td>Mistcloak Magistrate</td><td>School of the Unseen</td><td>U/W</td></tr>
+<tr><td>Krovikan Oath-Collector</td><td>Krov</td><td>B/R</td></tr>
+<tr><td>Null-Writ Inquisitor</td><td>The Black Spire</td><td>B/U</td></tr>
+<tr><td>Balduvian Headtaker</td><td>Flarghold</td><td>R/G</td></tr>
+<tr><td>Ashwarren Brandstalker</td><td>Kher Keep</td><td>R/B</td></tr>
+<tr><td>Fyndhorn Debt-Hunter</td><td>Kelsinko</td><td>G/W</td></tr>
+<tr><td>Oathtrail Pursuer</td><td>Elbreth</td><td>G/R</td></tr>
+</tbody>
 </table>
-
 <table class="setupTable">
-  <thead><tr><th>Starting life</th><th>Starting hand</th><th>Mythic Slots</th><th>Win reward</th><th>Quest reward</th><th>Special power</th></tr></thead>
-  <tbody>
-    <tr><td>Player life +1</td><td>5</td><td>Player Mythic Slots +1 (no limits)</td><td>+3 Ascension, +6 Arcstones</td><td>2 multicolored cards; 1 Landlink; 1 Weavelink; 2 Rumors</td><td>Once each duel, as a sorcery, destroy target creature.</td></tr>
-  </tbody>
+<thead><tr><th>Starting life</th><th>Starting hand</th><th>Mythic Slots</th><th>Win reward</th><th>Quest reward</th><th>Special power</th></tr></thead>
+<tbody>
+<tr><td>Player life +1</td><td>5</td><td>Player Mythic Slots +1 (no limits)</td><td>+3 Ascension, +6 Arcstones</td><td>2 multicolored cards; 1 Landlink; 1 Weavelink; 2 Rumors</td><td>Once each duel, as a sorcery, destroy target creature.</td></tr>
+</tbody>
 </table>
-
 <h2>Rivals and roaming dragons</h2>
 <h3>Rivals (five)</h3>
 <table class="setupTable">
-  <thead><tr><th>Rival</th><th>Color</th><th>Signature (once each duel)</th></tr></thead>
-  <tbody>
-    <tr><td>Nyra Valewind</td><td>White</td><td>When a single source would deal damage to you, you may prevent that damage.</td></tr>
-    <tr><td>Thalavri of the Pale Grove</td><td>Green</td><td>When a land enters play under your control, put two +1/+1 counters on target creature you control.</td></tr>
-    <tr><td>Skara Veyne</td><td>Blue</td><td>When you become the target of a spell or ability an opponent controls, you may change the target to another legal target.</td></tr>
-    <tr><td>Rukk One-Eye</td><td>Red</td><td>After combat on your turn, Rukk deals 3 damage to any target and 1 damage to you.</td></tr>
-    <tr><td>Zareth Umbraxis</td><td>Black</td><td>When a creature an opponent controls dies, you may return that card to play under your control with a -1/-1 counter on it.</td></tr>
-  </tbody>
+<thead><tr><th>Rival</th><th>Color</th><th>Signature (once each duel)</th></tr></thead>
+<tbody>
+<tr><td>Nyra Valewind</td><td>White</td><td>When a single source would deal damage to you, you may prevent that damage.</td></tr>
+<tr><td>Thalavri of the Pale Grove</td><td>Green</td><td>When a land enters play under your control, put two +1/+1 counters on target creature you control.</td></tr>
+<tr><td>Skara Veyne</td><td>Blue</td><td>When you become the target of a spell or ability an opponent controls, you may change the target to another legal target.</td></tr>
+<tr><td>Rukk One-Eye</td><td>Red</td><td>After combat on your turn, Rukk deals 3 damage to any target and 1 damage to you.</td></tr>
+<tr><td>Zareth Umbraxis</td><td>Black</td><td>When a creature an opponent controls dies, you may return that card to play under your control with a -1/-1 counter on it.</td></tr>
+</tbody>
 </table>
-
 <p>Rival reward on defeat: +2 Ascension and +2 Arcstones. Rival deck assembly and stats follow the locked Rival rules (hand size 5; life and Mythic Slots match the player’s current level; deck 10 fixed-color + 10 rolled-color with the Null reroll + toolkit rule).</p>
-
 <h3>Roaming dragon bosses (five)</h3>
 <table class="setupTable">
-  <thead><tr><th>Dragon</th><th>Color</th><th>Presence ability (always on)</th></tr></thead>
-  <tbody>
-    <tr><td>Kiskara</td><td>White</td><td>Creatures you control have vigilance.</td></tr>
-    <tr><td>Whim</td><td>Blue</td><td>Opponents’ creatures enter play tapped.</td></tr>
-    <tr><td>Mandurang</td><td>Black</td><td>Whenever a creature an opponent controls dies, that player loses 1 life and you gain 1 life.</td></tr>
-    <tr><td>Dracur</td><td>Red</td><td>Players can’t gain life.</td></tr>
-    <tr><td>Prismat</td><td>Green</td><td>Whenever a creature you control becomes the target of a spell or ability an opponent controls, put a +1/+1 counter on that creature.</td></tr>
-  </tbody>
+<thead><tr><th>Dragon</th><th>Color</th><th>Presence ability (always on)</th></tr></thead>
+<tbody>
+<tr><td>Kiskara</td><td>White</td><td>Creatures you control have vigilance.</td></tr>
+<tr><td>Whim</td><td>Blue</td><td>Opponents’ creatures enter play tapped.</td></tr>
+<tr><td>Mandurang</td><td>Black</td><td>Whenever a creature an opponent controls dies, that player loses 1 life and you gain 1 life.</td></tr>
+<tr><td>Dracur</td><td>Red</td><td>Players can’t gain life.</td></tr>
+<tr><td>Prismat</td><td>Green</td><td>Whenever a creature you control becomes the target of a spell or ability an opponent controls, put a +1/+1 counter on that creature.</td></tr>
+</tbody>
 </table>
-
 <p>Dragon bosses have 20 life, starting hand size 5, 5 Mythic Slots, are mono-color only, and always add 1 Relic Toolkit and 1 Confluence Prism Pack (30-card deck). Treasure applies after dragon wins.</p>
-
 <h2>Endgame: The Dread Nexus and Merrevia Sal</h2>
 <h3>Endgame entry condition</h3>
 <p>A player enters endgame when they are Level E and have 3 clues of different colors, one of each clue type (Ice Pillar Inscriptions, Halls of Echoes, Singing Crystals).</p>
-
 <h3>The Dread Nexus (horizontal double tile)</h3>
 <p>The Dread Nexus blocks other players’ path; if another player reaches it in time, they must engage it as well.</p>
 <table class="setupTable">
-  <thead><tr><th>Dungeon effect</th><th>Details</th></tr></thead>
-  <tbody>
-    <tr><td>Null Suppression</td><td>Players can’t cast more than one spell each turn. Dungeon opponents are not affected.</td></tr>
-  </tbody>
+<thead><tr><th>Dungeon effect</th><th>Details</th></tr></thead>
+<tbody>
+<tr><td>Null Suppression</td><td>Players can’t cast more than one spell each turn. Dungeon opponents are not affected.</td></tr>
+</tbody>
 </table>
-
 <h3>The Eternal Watcher (guardian)</h3>
 <p>Life: 20. Mythic Slots: 5. Deck color determination uses the player’s Open Weave / Confluence Alignment Codex (Attunement-based) method.</p>
-
 <h3>The Voidbringer (mini-boss)</h3>
 <p>Life: 30. Mythic Slots: 5. Deck color determination uses the player’s Open Weave / Attunement resolver method.</p>
 <p>Extra ability: once each duel, as a sorcery, exile target spell on the stack.</p>
-
 <h3>Merrevia Sal (final duel)</h3>
 <p>Merrevia Sal has 99 life. Players duel her and her remaining life persists across fights (does not reset). A player may spare her by reducing her to exactly 1 life; this choice has consequences in later ElderForge editions (post–Ice Age).</p>
 <p>Each campaign records whether Merrevia was slain (by player X) or spared (by player Y). Across multiple campaigns, the most common outcome becomes the official resolution that affects future ElderForge expansions.</p>
-
 <h2>Notes and remaining open items</h2>
 <p>Merrevia’s deck assembly and signature abilities are the only major remaining campaign spec to finalize.</p>
-
-    </section>
-  </main>
-    <footer class="footer">
-    <div class="footerInner">
-      <div class="footerLeft">
-        <span class="footerText">This site is a fan-made reference for a private playgroup.</span>
-      </div>
-      <div class="footerLinks">
-        <a class="footerLink" href="contact.html">Contact</a>
-        <a class="footerLink" href="privacy.html">Privacy</a>
-        <a class="footerLink" href="disclaimer.html">Disclaimer</a>
-      </div>
-    </div>
-  </footer>
-  <script src="site.js"></script>
+</section>
+</main>
+<footer class="footer">
+<div class="footerInner">
+<div class="footerLeft">
+<span class="footerText">This site is a fan-made reference for a private playgroup.</span>
+</div>
+<div class="footerLinks">
+<a class="footerLink" href="contact.html">Contact</a>
+<a class="footerLink" href="privacy.html">Privacy</a>
+<a class="footerLink" href="disclaimer.html">Disclaimer</a>
+</div>
+</div>
+</footer>
+<script src="site.js"></script>
 </body>
 </html>
