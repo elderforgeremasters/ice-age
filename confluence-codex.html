@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Confluence Codex — ElderForge — Ice Age</title>
+
+<!-- Tiny critical CSS to prevent a brief serif flash on hard reloads -->
+<style>
+  :root{--font-ui:"Saira",ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;--text:#e9eef7;--bg0:#070b12;--bg1:#0b1220}
+  html{background:radial-gradient(1200px 600px at 40% -10%, rgba(95,140,255,0.18), transparent 60%),
+               radial-gradient(900px 500px at 110% 10%, rgba(50,255,210,0.10), transparent 60%),
+               linear-gradient(180deg,var(--bg1),var(--bg0));background-color:var(--bg0)}
+  body{margin:0;font-family:var(--font-ui);color:var(--text)}
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira:wght@300;400;500;600;700&display=swap"/>
+<link rel="preload" href="styles.css" as="style"/>
+<link href="styles.css" rel="stylesheet"/>
+
+<style>
+/* --- Tables: readable, light borders (match other Guide pages) --- */
+.diceDrawTable,
+.setupTable{
+  width: 100%;
+  border-collapse: collapse;
+  margin: 14px 0;
+  font-size: 18px;
+  line-height: 1.35;
+}
+
+.diceDrawTable th, .diceDrawTable td,
+.setupTable th, .setupTable td{
+  border: 1px solid rgba(255,255,255,0.18);
+  padding: 10px 12px;
+  vertical-align: middle;
+}
+
+.diceDrawTable th,
+.setupTable th{
+  background: rgba(255,255,255,0.06);
+  font-weight: 700;
+}
+
+.diceDrawTable th, .diceDrawTable td{
+  text-align: center;
+}
+
+.setupSubhead{
+  margin-top: 18px;
+  margin-bottom: 6px;
+  font-weight: 800;
+  opacity: 0.95;
+}
+
+.tableWrap{
+  overflow-x: auto;
+}
+
+/* --- Mana icons inline --- */
+.manaIconRow{
+  display: inline-flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.manaIconItem{
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.manaIcon{
+  width: 18px;
+  height: 18px;
+  vertical-align: -3px;
+}
+</style>
+</head>
+
+<body class="guidePage confluenceCodexPage">
+<header class="topbar">
+  <div class="brand">
+    <div class="title">ElderForge — Ice Age</div>
+    <div class="subtitle">Confluence Codex</div>
+  </div>
+
+  <div class="nav">
+    <a class="navBtn" href="index.html">Card database</a>
+
+    <div class="dropdown" id="guideDD">
+      <button aria-expanded="false" aria-haspopup="menu" class="ddBtn ddSmall" id="guideBtn" type="button">
+        <span>Guide</span>
+        <span class="ddChev">▾</span>
+      </button>
+
+      <div aria-label="Guide" class="ddMenu" hidden="" id="guideMenu" role="menu">
+        <a class="ddLink" href="about-project.html" role="menuitem">About the Project</a>
+        <a class="ddLink" href="keyword-icons.html" role="menuitem">Keyword Icons</a>
+        <a class="ddLink" href="basic-rules.html" role="menuitem">Basic Rules</a>
+        <a class="ddLink" href="world-lore.html" role="menuitem">World Lore</a>
+        <a class="ddLink" href="campaign-setup.html" role="menuitem">ElderForge Campaign</a>
+        <a class="ddLink" href="confluence-codex.html" role="menuitem">Confluence Codex</a>
+        <a class="ddLink" href="geography.html" role="menuitem">Geography</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="pageWrap">
+  <section class="pagePanel">
+    <h1>Confluence Codex</h1>
+    <p>This is the <strong>Confluence Alignment Codex</strong> extracted from the ElderForge Campaign page, presented as a standalone reference.</p>
+
+    <h2>Attunement and color selection</h2>
+<p>Before each duel, each player performs Attunement: roll 6 custom dice with faces <span class="manaIconRow"><span class="manaIconItem"><img alt="{W}" class="manaIcon" src="assets/icons/W.png"/></span><span class="manaIconItem"><img alt="{U}" class="manaIcon" src="assets/icons/U.png"/></span><span class="manaIconItem"><img alt="{B}" class="manaIcon" src="assets/icons/B.png"/></span><span class="manaIconItem"><img alt="{R}" class="manaIcon" src="assets/icons/R.png"/></span><span class="manaIconItem"><img alt="{G}" class="manaIcon" src="assets/icons/G.png"/></span><span class="manaIconItem"><img class="manaIcon" src="assets/icons/C.png" alt="{C}"/></span></span>. Here <img class="manaIcon" src="assets/icons/C.png" alt="{C}"/> is <strong>Null</strong>.</p>
+<h3>Stable vs Null</h3>
+<table class="setupTable">
+<thead><tr><th>Attunement result</th><th>Deck add-on</th></tr></thead>
+<tbody>
+<tr><td>0 Null (stable)</td><td>Add the Confluence Prism Pack.</td></tr>
+<tr><td>1–3 Null</td><td>Add up to that many Relic Toolkits (max 3).</td></tr>
+</tbody>
+</table>
+<h3>Confluence Alignment Codex (player color selection)</h3>
+<p>Use the table below to convert a 6-die Attunement roll into “Colors you play”. Resolvers are shown directly under the patterns that use them.</p>
+<div class="tableWrap">
+<table class="diceDrawTable">
+<thead>
+<tr><th>Dice pattern</th><th>Chance</th><th>Colors you play</th><th>Loaner draw</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>2-1-1-1-<img class="manaIcon" src="assets/icons/C.png" alt="{C}"/></strong></td>
+<td><strong>15.4%</strong></td>
+<td>Resolver (see below)</td>
+<td>Resolver → final pattern; treat as stable (0 Null): add Prism Pack (5 multicolor).</td></tr>
+<tr>
+<td colspan="3" style="text-align:left;">
+<div class="setupSubhead">Resolver outcomes for 2-1-1-1-C</div>
+<div class="tableWrap">
+<table class="diceDrawTable">
+<thead>
+<tr><th>When the rerolled die becomes…</th><th>Final chance</th><th>Final colors</th><th>Loaner draw</th></tr>
+</thead>
+<tbody>
+<tr><td>the pair color → <strong>3-1-1-1</strong></td><td>3.1%</td><td>Mono</td><td>Draw 20 color cards (mono). Add Prism Pack (stable).</td></tr>
+<tr><td>one of the singletons → <strong>2-2-1-1</strong></td><td>9.3%</td><td>Two colors (equal)</td><td>Two colors (equal): 10/10 = 20 color cards. + Prism Pack (stable).</td></tr>
+<tr><td>the missing 5th color → <strong>2-1-1-1-1</strong></td><td>3.1%</td><td>Five colors (primary)</td><td>Five colors (primary): 8/5/5/5/5 = 28 color cards. + Prism Pack (stable).</td></tr>
+</tbody>
+</table>
+</div>
+<p style="margin:10px 0 0 0;">Reroll the <img class="manaIcon" src="assets/icons/C.png" alt="{C}"/> die until it shows a non-<img class="manaIcon" src="assets/icons/C.png" alt="{C}"/> color, then use the resulting pattern.</p>
+</td>
+</tr>
+<tr><td><strong>2-2-1-1</strong></td><td>11.6%</td><td>Two colors (equal)</td><td>Two colors (equal): 10/10 = 20 color cards. + Prism Pack (stable).</td></tr>
+<tr><td><strong>2-2-1-<img class="manaIcon" src="assets/icons/C.png" alt="{C}"/></strong></td><td>11.6%</td><td>Two colors (equal)</td><td>Draw 10/10 = 20 color cards (two colors, equal). Add 1 Relic Toolkit (5 colorless each).</td></tr>
+<tr><td><strong>2-1-1-<img class="manaIcon" src="assets/icons/C.png" alt="{C}"/>-<img class="manaIcon" src="assets/icons/C.png" alt="{C}"/></strong></td><td>11.6%</td><td>Three colors (primary)</td><td>Draw 10/7/7 = 24 color cards (three colors, primary). Add 2 Relic Toolkits (5 colorless each).</td></tr>
+<tr><td><strong>3-2-1</strong></td><td>7.7%</td><td>Mono</td><td>Draw 20 color cards (mono). Stable (0 Null): add Prism Pack (5 multicolor).</td></tr>
+<tr><td><strong>3-1-1-<img class="manaIcon" src="assets/icons/C.png" alt="{C}"/></strong></td><td>7.7%</td><td>Mono</td><td>Draw 20 color cards (mono). Add 1 Relic Toolkit (5 colorless each).</td></tr>
+<tr><td><strong>3-1-1-1</strong></td><td>5.1%</td><td>Mono</td><td>Draw 20 color cards (mono). Stable (0 Null): add Prism Pack (5 multicolor).</td></tr>
+<tr><td><strong>2-1-1-1-1</strong></td><td>3.9%</td><td>Five colors (primary)</td><td>Five colors (primary): 8/5/5/5/5 = 28 color cards. + Prism Pack (stable).</td></tr>
+<tr>
+<td><strong>1-1-1-1-<img class="manaIcon" src="assets/icons/C.png" alt="{C}"/>-<img class="manaIcon" src="assets/icons/C.png" alt="{C}"/>*</strong></td>
+<td>3.9%</td>
+<td>Three colors (equal)</td>
+<td>Resolver → three colors (equal): draw 8/8/8 = 24 color cards, then add Prism Pack (5 multicolor).</td></tr>
+<tr>
+<td colspan="3" style="text-align:left;">
+<p style="margin:0;">
+<strong>*Resolver:</strong> Reroll one <img class="manaIcon" src="assets/icons/C.png" alt="{C}"/> die until it shows one of the rolled colors. Remove that color. You play the remaining three.
+          </p>
+</td>
+</tr>
+<tr><td><strong>3-2-<img class="manaIcon" src="assets/icons/C.png" alt="{C}"/></strong></td><td>2.6%</td><td>Mono</td><td>Draw 20 color cards (mono). Add 1 Relic Toolkit (5 colorless each).</td></tr>
+<tr><td><strong>3-1-<img class="manaIcon" src="assets/icons/C.png" alt="{C}"/>-<img class="manaIcon" src="assets/icons/C.png" alt="{C}"/></strong></td><td>2.6%</td><td>Mono</td><td>Draw 20 color cards (mono). Add 2 Relic Toolkits (5 colorless each).</td></tr>
+<tr><td><strong>2-1-<img class="manaIcon" src="assets/icons/C.png" alt="{C}"/>-<img class="manaIcon" src="assets/icons/C.png" alt="{C}"/>-<img class="manaIcon" src="assets/icons/C.png" alt="{C}"/></strong></td><td>2.6%</td><td>Two colors (primary)</td><td>Draw 12/8 = 20 color cards (two colors, primary/secondary). Add 3 Relic Toolkits (5 colorless each).</td></tr>
+<tr><td><strong>1-1-1-<img class="manaIcon" src="assets/icons/C.png" alt="{C}"/>-<img class="manaIcon" src="assets/icons/C.png" alt="{C}"/>-<img class="manaIcon" src="assets/icons/C.png" alt="{C}"/></strong></td><td>2.6%</td><td>Three colors (equal)</td><td>Draw 8/8/8 = 24 color cards (three colors, equal). Add 3 Relic Toolkits (5 colorless each).</td></tr>
+<tr><td><strong>2-2-2</strong></td><td>1.9%</td><td>Three colors (equal)</td><td>Draw 8/8/8 = 24 color cards (three colors, equal). Stable (0 Null): add Prism Pack (5 multicolor).</td></tr>
+<tr><td><strong>2-2-<img class="manaIcon" src="assets/icons/C.png" alt="{C}"/>-<img class="manaIcon" src="assets/icons/C.png" alt="{C}"/></strong></td><td>1.9%</td><td>Two colors (equal)</td><td>Draw 10/10 = 20 color cards (two colors, equal). Add 2 Relic Toolkits (5 colorless each).</td></tr>
+<tr><td><strong>4-1-1</strong></td><td>1.9%</td><td>Mono</td><td>Draw 20 color cards (mono). Stable (0 Null): add Prism Pack (5 multicolor).</td></tr>
+<tr><td><strong>1-1-1-1-1-<img class="manaIcon" src="assets/icons/C.png" alt="{C}"/></strong></td><td>1.5%</td><td>Five colors (equal)</td><td>Draw 5×5 = 25 color cards (five colors, equal). Add 1 Relic Toolkit (5 colorless each).</td></tr>
+<tr><td><strong>4-1-<img class="manaIcon" src="assets/icons/C.png" alt="{C}"/></strong></td><td>1.3%</td><td>Mono</td><td>Draw 20 color cards (mono). Add 1 Relic Toolkit (5 colorless each).</td></tr>
+<tr><td><strong>4-2</strong></td><td>0.6%</td><td>Mono</td><td>Draw 20 color cards (mono). Stable (0 Null): add Prism Pack (5 multicolor).</td></tr>
+<tr><td><strong>1-1-<img class="manaIcon" src="assets/icons/C.png" alt="{C}"/>-<img class="manaIcon" src="assets/icons/C.png" alt="{C}"/>-<img class="manaIcon" src="assets/icons/C.png" alt="{C}"/>-<img class="manaIcon" src="assets/icons/C.png" alt="{C}"/></strong></td><td>0.6%</td><td>Two colors (equal)</td><td>Draw 10/10 = 20 color cards (two colors, equal). Add 4 Relic Toolkits (5 colorless each).</td></tr>
+<tr><td><strong>3-3</strong></td><td>0.4%</td><td>Two colors (equal)</td><td>Draw 10/10 = 20 color cards (two colors, equal). Stable (0 Null): add Prism Pack (5 multicolor).</td></tr>
+<tr><td><strong>5-1</strong></td><td>0.3%</td><td>Mono</td><td>Draw 20 color cards (mono). Stable (0 Null): add Prism Pack (5 multicolor).</td></tr>
+<tr><td><strong>3-<img class="manaIcon" src="assets/icons/C.png" alt="{C}"/>-<img class="manaIcon" src="assets/icons/C.png" alt="{C}"/>-<img class="manaIcon" src="assets/icons/C.png" alt="{C}"/></strong></td><td>0.2%</td><td>Mono</td><td>Draw 20 color cards (mono). Add 3 Relic Toolkits (5 colorless each).</td></tr>
+<tr><td><strong>4-<img class="manaIcon" src="assets/icons/C.png" alt="{C}"/>-<img class="manaIcon" src="assets/icons/C.png" alt="{C}"/></strong></td><td>0.2%</td><td>Mono</td><td>Draw 20 color cards (mono). Add 2 Relic Toolkits (5 colorless each).</td></tr>
+<tr><td><strong>2-<img class="manaIcon" src="assets/icons/C.png" alt="{C}"/>-<img class="manaIcon" src="assets/icons/C.png" alt="{C}"/>-<img class="manaIcon" src="assets/icons/C.png" alt="{C}"/>-<img class="manaIcon" src="assets/icons/C.png" alt="{C}"/></strong></td><td>0.2%</td><td>Mono</td><td>Draw 20 color cards (mono). Add 4 Relic Toolkits (5 colorless each).</td></tr>
+<tr><td><strong>5-<img class="manaIcon" src="assets/icons/C.png" alt="{C}"/></strong></td><td>0.06%</td><td>Mono</td><td>Draw 20 color cards (mono). Add 1 Relic Toolkit (5 colorless each).</td></tr>
+<tr><td><strong>1-<img class="manaIcon" src="assets/icons/C.png" alt="{C}"/>-<img class="manaIcon" src="assets/icons/C.png" alt="{C}"/>-<img class="manaIcon" src="assets/icons/C.png" alt="{C}"/>-<img class="manaIcon" src="assets/icons/C.png" alt="{C}"/>-<img class="manaIcon" src="assets/icons/C.png" alt="{C}"/></strong></td><td>0.06%</td><td>Mono</td><td>Draw 20 color cards (mono). Add 5 Relic Toolkits (5 colorless each).</td></tr>
+<tr><td><strong>6-of-a-kind</strong></td><td><strong>0.01%</strong></td><td><strong>Instant win</strong> (unless story-locked / boss duel)</td><td>Instant win (no deck needed).</td></tr>
+</tbody>
+</table>
+</div>
+
+    <p style="margin-top:18px;opacity:0.9;">
+      Note: <strong>Null</strong> uses the <img class="manaIcon" src="assets/icons/C.png" alt="{C}"/> symbol on the dice.
+    </p>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footerInner">
+    <div class="footerLeft">
+      <span class="footerText">This site is a fan-made reference for a private playgroup.</span>
+    </div>
+    <div class="footerLinks">
+      <a class="footerLink" href="contact.html">Contact</a>
+      <a class="footerLink" href="privacy.html">Privacy</a>
+      <a class="footerLink" href="disclaimer.html">Disclaimer</a>
+    </div>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+</body>
+</html>

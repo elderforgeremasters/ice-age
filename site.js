@@ -171,7 +171,36 @@ function initImgCompare(root = document){
 }
 
 
+/* ==========================================================
+   Ensure "Confluence Codex" exists in Guide dropdown
+   (so we don't have to hand-edit every page header)
+   ========================================================== */
+
+function ensureGuideConfluenceLink(){
+  const menu = $("guideMenu");
+  if(!menu) return;
+
+  // Already present?
+  const existing = menu.querySelector('a.ddLink[href="confluence-codex.html"]');
+  if(existing) return;
+
+  const a = document.createElement("a");
+  a.className = "ddLink";
+  a.setAttribute("role", "menuitem");
+  a.href = "confluence-codex.html";
+  a.textContent = "Confluence Codex";
+
+  // Insert after ElderForge Campaign if possible, otherwise append.
+  const after = menu.querySelector('a.ddLink[href="campaign-setup.html"]');
+  if(after){
+    after.insertAdjacentElement("afterend", a);
+  }else{
+    menu.appendChild(a);
+  }
+}
+
 document.addEventListener("DOMContentLoaded", ()=>{
+  ensureGuideConfluenceLink();
   initClickMenu("guideBtn","guideMenu");
   initImgCompare(document);
   applyLowercaps(document);
