@@ -172,23 +172,32 @@ function initImgCompare(root = document){
 
 
 /* ==========================================================
-   Ensure "Confluence Codex" exists in Guide dropdown
+   Ensure "Attunement Codex" exists in Guide dropdown
    (so we don't have to hand-edit every page header)
    ========================================================== */
 
-function ensureGuideConfluenceLink(){
+function ensureGuideAttunementLink(){
   const menu = $("guideMenu");
   if(!menu) return;
 
+  // If the old link exists, upgrade it in-place (keeps order, avoids duplicates).
+  const legacy = menu.querySelector('a.ddLink[href="confluence-codex.html"]');
+  if(legacy){
+    legacy.href = "attunement-codex.html";
+    legacy.textContent = "Attunement Codex";
+    legacy.setAttribute("role","menuitem");
+    return;
+  }
+
   // Already present?
-  const existing = menu.querySelector('a.ddLink[href="confluence-codex.html"]');
+  const existing = menu.querySelector('a.ddLink[href="attunement-codex.html"]');
   if(existing) return;
 
   const a = document.createElement("a");
   a.className = "ddLink";
   a.setAttribute("role", "menuitem");
-  a.href = "confluence-codex.html";
-  a.textContent = "Confluence Codex";
+  a.href = "attunement-codex.html";
+  a.textContent = "Attunement Codex";
 
   // Insert after ElderForge Campaign if possible, otherwise append.
   const after = menu.querySelector('a.ddLink[href="campaign-setup.html"]');
@@ -198,9 +207,8 @@ function ensureGuideConfluenceLink(){
     menu.appendChild(a);
   }
 }
-
 document.addEventListener("DOMContentLoaded", ()=>{
-  ensureGuideConfluenceLink();
+  ensureGuideAttunementLink();
   initClickMenu("guideBtn","guideMenu");
   initImgCompare(document);
   applyLowercaps(document);
