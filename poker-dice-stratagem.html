@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Poker Dice Stratagem — ElderForge — Ice Age</title>
+<!-- Tiny critical CSS to prevent a brief serif flash on hard reloads -->
+<style>
+  :root{--font-ui:"Saira",ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;--text:#e9eef7;--bg0:#070b12;--bg1:#0b1220}
+  html{background:radial-gradient(1200px 600px at 40% -10%, rgba(95,140,255,0.18), transparent 60%),
+               radial-gradient(900px 500px at 110% 10%, rgba(50,255,210,0.10), transparent 60%),
+               linear-gradient(180deg,var(--bg1),var(--bg0));background-color:var(--bg0)}
+  body{margin:0;font-family:var(--font-ui);color:var(--text)}
+</style>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Saira:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link as="style" href="styles.css" rel="preload"/>
+<link href="styles.css" rel="stylesheet"/>
+<style>
+/* --- Tables: readable, light borders (match other Guide pages) --- */
+.diceDrawTable,
+.setupTable{
+  width: 100%;
+  border-collapse: collapse;
+  margin: 14px 0;
+  font-size: 18px;
+  line-height: 1.35;
+}
+
+.diceDrawTable th, .diceDrawTable td,
+.setupTable th, .setupTable td{
+  border: 1px solid rgba(255,255,255,0.18);
+  padding: 10px 12px;
+  vertical-align: middle;
+}
+
+.diceDrawTable th,
+.setupTable th{
+  background: rgba(255,255,255,0.06);
+  font-weight: 700;
+}
+
+.diceDrawTable th, .diceDrawTable td{
+  text-align: center;
+}
+
+.tableWrap{ overflow-x: auto; }
+.noteBox{margin:10px 0 0 0;padding:10px 12px;border:1px solid rgba(233,238,247,0.18);border-radius:10px;background:rgba(0,0,0,0.18)}
+</style>
+</head>
+
+<body class="guidePage pokerDiceStratagemPage">
+<header class="topbar">
+<div class="brand">
+<div class="title">ElderForge — Ice Age</div>
+<div class="subtitle">Poker Dice Stratagem</div>
+</div>
+<div class="nav">
+<a class="navBtn" href="index.html">Card database</a>
+<div class="dropdown" id="guideDD">
+<button aria-expanded="false" aria-haspopup="menu" class="ddBtn ddSmall" id="guideBtn" type="button">
+<span>Guide</span>
+<span class="ddChev">▾</span>
+</button>
+<div aria-label="Guide" class="ddMenu" hidden="" id="guideMenu" role="menu">
+<a class="ddLink" href="about-project.html" role="menuitem">About the Project</a>
+<a class="ddLink" href="keyword-icons.html" role="menuitem">Keyword Icons</a>
+<a class="ddLink" href="basic-rules.html" role="menuitem">Basic Rules</a>
+<a class="ddLink" href="world-lore.html" role="menuitem">World Lore</a>
+<a class="ddLink" href="campaign-setup.html" role="menuitem">ElderForge Campaign</a>
+<a class="ddLink" href="attunement-codex.html" role="menuitem">Attunement Codex</a>
+<a class="ddLink" href="geography.html" role="menuitem">Geography</a>
+</div>
+</div>
+</div>
+</header>
+
+<main class="pageWrap">
+<section class="pagePanel">
+<h1>Poker Dice Stratagem</h1>
+
+<p>
+Poker Dice Stratagem is a fast 4‑player dice poker variant: everyone rolls simultaneously in leather cups,
+<strong>keeps 3</strong> dice, <strong>donates 2</strong> to a communal pool, the pool is rerolled through a
+<strong>wooden dice tower</strong>, then everyone drafts back <strong>two</strong> dice in a snake pick.
+The winner scores by rarity.
+</p>
+
+<h2>Components</h2>
+<div class="tableWrap">
+<table class="setupTable">
+<thead><tr><th>Item</th><th>Quantity</th></tr></thead>
+<tbody>
+<tr><td>Players</td><td><strong>4</strong> (locked)</td></tr>
+<tr><td>Classic d6 dice</td><td>5 per player (20 total)</td></tr>
+<tr><td>Leather dice cups</td><td>1 per player (4 total)</td></tr>
+<tr><td>Wooden dice tower</td><td>1 (communal reroll)</td></tr>
+<tr><td>Wooden hexes (score tokens)</td><td><strong>400</strong> in a velvet bag</td></tr>
+<tr><td>Start Token</td><td>1 (any marker)</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2>Objective</h2>
+<p>
+Be the first player to reach <strong>100 points</strong>. Points are tracked using wooden hexes drawn from the velvet bag.
+If you stop due to time, the player with the highest score wins.
+</p>
+
+<h2>Setup</h2>
+<ol>
+<li>Put all <strong>400</strong> wooden hexes into the velvet bag and place it in the center.</li>
+<li>Choose a starting player once (any method you like).</li>
+<li>Give that player the <strong>Start Token</strong>.</li>
+</ol>
+
+<h2>Round flow</h2>
+<p class="noteBox"><strong>Round mantra:</strong> Roll → Keep 3 → Offer 2 → Tower reroll → Snake draft 2 → Showdown → Score</p>
+
+<h3>1) Cup Roll (simultaneous)</h3>
+<p>All players roll <strong>5</strong> dice at the same time using their cups.</p>
+
+<h3>2) Keep 3 / Donate 2 (simultaneous)</h3>
+<p>Each player chooses <strong>exactly 3</strong> dice to keep, and places the remaining <strong>exactly 2</strong> dice into the center pool.</p>
+
+<h3>3) Tower Reroll (communal)</h3>
+<p>Roll the <strong>8</strong> donated dice (2×4) through the dice tower. Place the results in the center as the <strong>Draft Pool</strong>.</p>
+
+<h3>4) Snake Draft (each player drafts 2 dice)</h3>
+<p>
+Starting with the player holding the Start Token, draft dice from the Draft Pool in this exact order:
+<strong>1 → 2 → 3 → 4 → 4 → 3 → 2 → 1</strong>.
+After drafting, each player has <strong>5 dice</strong> again.
+</p>
+
+<h2>Hands and scoring (unified ladder)</h2>
+<p>
+The highest hand <strong>wins the round</strong> and scores the listed points. Only the round winner scores.
+<strong>Scatter</strong> means all five values are different and it is <strong>not</strong> a straight.
+</p>
+
+<div class="tableWrap">
+<table class="diceDrawTable">
+<thead>
+<tr><th>Hand</th><th>Pattern</th><th>Points</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Five of a Kind</strong></td><td>aaaaa</td><td><strong>10</strong></td></tr>
+<tr><td><strong>Straight</strong></td><td>12345 or 23456</td><td><strong>7</strong></td></tr>
+<tr><td><strong>Four of a Kind</strong></td><td>aaaab</td><td><strong>6</strong></td></tr>
+<tr><td><strong>Scatter</strong></td><td>abcde (not straight)</td><td><strong>5</strong></td></tr>
+<tr><td><strong>Full House</strong></td><td>aaabb</td><td><strong>3</strong></td></tr>
+<tr><td><strong>Three of a Kind</strong></td><td>aaabc (not full house)</td><td><strong>2</strong></td></tr>
+<tr><td><strong>Two Pair</strong></td><td>aabbc</td><td><strong>1</strong></td></tr>
+<tr><td><strong>One Pair</strong></td><td>aabcd</td><td><strong>0</strong></td></tr>
+</tbody>
+</table>
+</div>
+
+<h2>Tie-breakers</h2>
+<p>If players have the same hand type, break ties quickly using the rules below.</p>
+
+<div class="tableWrap">
+<table class="setupTable">
+<thead><tr><th>Hand type</th><th>Tie-break rule</th></tr></thead>
+<tbody>
+<tr>
+<td>Five / Four / Three of a kind</td>
+<td>Higher matching set wins (e.g., four 6s beats four 5s). If still tied, compare remaining dice high→low.</td>
+</tr>
+<tr>
+<td>Full House</td>
+<td>Higher trip wins; if tied, higher pair wins.</td>
+</tr>
+<tr>
+<td>Two Pair</td>
+<td>Higher top pair, then higher second pair, then kicker.</td>
+</tr>
+<tr>
+<td>Straight</td>
+<td>23456 beats 12345.</td>
+</tr>
+<tr>
+<td>Scatter / One Pair</td>
+<td>Compare dice sorted high→low.</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h2>Exact ties: shared payout</h2>
+<p>
+If players are still tied exactly after tie-breakers (same dice values), they share the payout.
+Let <em>P</em> be the points for the tied hand and <em>T</em> the number of tied players.
+Each tied player scores <strong>ceil(P / T)</strong> and draws that many wooden hexes from the velvet bag.
+</p>
+<p class="noteBox">
+Example: Three-way exact tie on <strong>Scatter</strong> (5 points) → 5/3 = 1.67 → each tied player takes <strong>2</strong> hexes.
+</p>
+
+<h2>End of round</h2>
+<ol>
+<li>The winner (or tied winners) draws hexes from the velvet bag and adds them to their score pile.</li>
+<li>Pass the <strong>Start Token clockwise</strong>.</li>
+<li>Begin the next round.</li>
+</ol>
+
+<h2>Game end</h2>
+<ul>
+<li>The first player to reach <strong>100+</strong> points wins immediately, or</li>
+<li>If time is called, highest score wins.</li>
+</ul>
+
+</section>
+</main>
+
+<footer class="footer">
+<div class="footerInner">
+<div class="footerLeft">
+<span class="footerText">This site is a fan-made reference for a private playgroup.</span>
+</div>
+<div class="footerLinks">
+<a class="footerLink" href="contact.html">Contact</a>
+<a class="footerLink" href="privacy.html">Privacy</a>
+<a class="footerLink" href="disclaimer.html">Disclaimer</a>
+</div>
+</div>
+</footer>
+
+<script src="site.js"></script>
+</body>
+</html>

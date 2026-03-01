@@ -207,8 +207,36 @@ function ensureGuideAttunementLink(){
     menu.appendChild(a);
   }
 }
+
+/* ==========================================================
+   Ensure "Poker Dice Stratagem" exists in Guide dropdown
+   ========================================================== */
+
+function ensureGuidePokerDiceStratagemLink(){
+  const menu = $("guideMenu");
+  if(!menu) return;
+
+  // Already present?
+  const existing = menu.querySelector('a.ddLink[href="poker-dice-stratagem.html"]');
+  if(existing) return;
+
+  const a = document.createElement("a");
+  a.className = "ddLink";
+  a.setAttribute("role", "menuitem");
+  a.href = "poker-dice-stratagem.html";
+  a.textContent = "Poker Dice Stratagem";
+
+  // Insert after Basic Rules if possible, otherwise append.
+  const after = menu.querySelector('a.ddLink[href="basic-rules.html"]');
+  if(after){
+    after.insertAdjacentElement("afterend", a);
+  }else{
+    menu.appendChild(a);
+  }
+}
 document.addEventListener("DOMContentLoaded", ()=>{
   ensureGuideAttunementLink();
+  ensureGuidePokerDiceStratagemLink();
   initClickMenu("guideBtn","guideMenu");
   initImgCompare(document);
   applyLowercaps(document);
