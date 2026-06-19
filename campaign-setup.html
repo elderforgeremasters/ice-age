@@ -98,10 +98,12 @@
   object-fit:contain;
   display:block;
   margin:auto;
+  filter: invert(1) brightness(1.18) drop-shadow(0 0 5px rgba(255,255,255,0.18));
 }
 .setupTable td.iconCell{
   width:76px;
   text-align:center;
+  background:rgba(0,0,0,0.18);
 }
 .calloutBox{
   border:1px solid rgba(255,255,255,0.18);
@@ -182,11 +184,12 @@
 <h3>Tile bags and starting tiles</h3>
 <p>The Emberhold is represented by two fixed Starting Tiles, one for Player 1 and one for Player 2. Placed together, they form the full Emberhold structure. These tiles begin on the table before any bag draws.</p>
 <table class="setupTable">
-<thead><tr><th>Bag / group</th><th>Contents</th></tr></thead>
+<thead><tr><th>Bag / group</th><th>Total</th><th>Contents</th></tr></thead>
 <tbody>
-<tr><td>Journey Bag</td><td>30 Generic Duel tiles; 15 Rival tiles (3 copies each of five Rivals); 5 Roaming Dragon tiles; 5 Tower Entrance tiles; 5 Dungeon Entrance tiles; 10 Relic tiles; 10 Mystery tiles.</td></tr>
-<tr><td>Sanctuary Bag</td><td>30 Town tiles (10 towns × 3 copies). Add Campfire tiles according to your chosen map length.</td></tr>
-<tr><td>Quest Bag</td><td>Triggered and placed tiles: Dungeon Mystery, Dungeon Boss, Tower Mystery, Tower Boss, Expedition Encounter, Expedition Mystery, Expedition Reckoning, Escort Run, and Bounty Contract tiles.</td></tr>
+<tr><td>Starting Tiles</td><td>2 fixed tiles</td><td>The two Emberhold tiles, one for each player. They are not placed in a bag.</td></tr>
+<tr><td>Journey Bag</td><td>80 tiles</td><td>30 Generic Duel; 15 Rival (3 copies each of five Rivals); 5 Roaming Dragon; 5 Tower Entrance; 5 Dungeon Entrance; 10 Relic; 10 Mystery.</td></tr>
+<tr><td>Sanctuary Bag</td><td>60 tiles</td><td>30 Town (10 towns × 3 copies); 24 Campfire; 6 Sanctuary Mystery.</td></tr>
+<tr><td>Quest Bag</td><td>70 tiles</td><td>5 Dungeon Mystery; 5 Dungeon Boss; 5 Tower Mystery; 5 Tower Boss; 10 Expedition Encounter; 10 Expedition Mystery; 10 Expedition Reckoning; 10 Escort Run; 10 Bounty Contract.</td></tr>
 </tbody>
 </table>
 
@@ -353,7 +356,7 @@
 
 <h2>4. Clues, Dungeons, Towers, and Expeditions</h2>
 <h3>Clue tokens and endgame requirement</h3>
-<p>To open the way to the buried prison, a player must hold one clue from each source type, and the three clue tokens must be of different colors. The evidence does not name what waits below; it only proves that the old stories are incomplete.</p>
+<p>To locate Merrevia Sal’s prison, a player must hold one clue from each source type, and the three clue tokens must be of different colors.</p>
 <table class="setupTable">
 <thead><tr><th>Source location</th><th>Actual clue token gained</th><th>Found in</th></tr></thead>
 <tbody>
@@ -461,7 +464,7 @@
 <table class="setupTable">
 <thead><tr><th>Town action</th><th>Rules</th></tr></thead>
 <tbody>
-<tr><td>Market Stall</td><td>Choose one Market trade: trade up to 3 owned unused cards matching the town’s color; for each traded card, gain 1 random new card of the same color and rarity. Or trade exactly 2 owned unused cards to gain 1 Map. You may also reveal 3 cards of the town’s color and buy any/all: Common costs 1 Frost, Uncommon costs 1 Sky, Rare costs 1 Fire. Unpurchased cards go to the bottom of their piles.</td></tr>
+<tr><td>Market Stall</td><td>Choose one trade option: trade up to 3 owned unused cards matching the town’s color; for each traded card, gain 1 random new card of the same color and rarity. Or trade exactly 2 owned unused cards to gain 1 Map. You may also reveal 3 cards of the town’s color and buy any/all: Common costs 1 Frost, Uncommon costs 1 Sky, Rare costs 1 Fire. Unpurchased cards go to the bottom of their piles.</td></tr>
 <tr><td>Manavault</td><td>Buy Links using the Link costs above.</td></tr>
 <tr><td>Tavern or Questboard</td><td><strong>Tavern:</strong> spend 1 Frost Crystal for 1 Rumor, or spend the night for 3 Rumors and skip your next turn. <strong>Questboard:</strong> choose one of the town’s available quests.</td></tr>
 </tbody>
